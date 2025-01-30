@@ -1,0 +1,23 @@
+packages:
+  # Core packages
+  - 'packages/*'            # All packages in the packages directory
+  - 'packages/cli'
+  - 'packages/core'         # Core animation library
+  - 'packages/react'        # React components
+  - 'packages/tsconfig'     # Shared TypeScript configuration
+  - 'packages/eslint-*'     # All ESLint configurations
+  
+  # Applications
+  - 'apps/*'               # All applications
+  - 'apps/web'             # Next.js application
+  - 'apps/docs'            # Documentation site (if needed)
+  
+  # Development tools and examples
+  - 'examples/*'           # Example implementations
+  - 'tools/*'              # Development tooling
+  
+  # Exclude directories
+  - '!**/dist'             # Exclude all dist directories
+  - '!**/build'            # Exclude all build directories
+  - '!**/node_modules'     # Exclude all node_modules directories
+  - '!**/test'             # Exclude test directories from workspace

@@ -1,0 +1,345 @@
+2025-01-15T10:49:12.798455Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\1.cookie"), AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T10:49:12.798571Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T10:49:12.908064Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo"), AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf(".turbo\\cookies\\1.cookie"), AnchoredSystemPathBuf(".turbo\\cookies\\.turbo-cookie")}
+2025-01-15T10:49:12.908098Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T10:49:13.011665Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2025-01-15T10:49:13.394650Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\2.cookie"), AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T10:49:13.394678Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T10:49:13.597579Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\20a0218f6f5f691b-turbo.log.2025-01-15")}
+2025-01-15T10:49:13.597604Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T10:49:14.702970Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\.turbo"), AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log")}
+2025-01-15T10:49:14.702987Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T10:49:15.205059Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf("packages\\core\\.turbo"), AnchoredSystemPathBuf(".turbo\\daemon"), AnchoredSystemPathBuf("packages\\core")}
+2025-01-15T10:49:15.205146Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }, WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T10:49:19.307238Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log")}
+2025-01-15T10:49:19.307265Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T10:51:55.205655Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\src\\components"), AnchoredSystemPathBuf("packages\\core\\src\\components\\index.ts")}
+2025-01-15T10:51:55.205687Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T10:53:58.994951Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\src\\components\\index.ts")}
+2025-01-15T10:53:58.995005Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T10:54:09.000338Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\src"), AnchoredSystemPathBuf("packages\\core\\src\\index.ts")}
+2025-01-15T10:54:09.000364Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T10:54:22.107744Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\src\\index.ts")}
+2025-01-15T10:54:22.107765Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T10:54:27.695351Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\3.cookie")}
+2025-01-15T10:54:27.695376Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T10:54:28.209502Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf(".turbo\\cookies\\4.cookie")}
+2025-01-15T10:54:28.209534Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T10:54:28.599228Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log")}
+2025-01-15T10:54:28.599249Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T10:54:30.108907Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T10:54:30.108929Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T10:54:31.194915Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log")}
+2025-01-15T10:54:31.194940Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T10:55:04.507595Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\package.json")}
+2025-01-15T10:55:04.507613Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T10:55:12.998926Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\package.json")}
+2025-01-15T10:55:12.998946Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-15T10:55:13.102251Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\package.json")}
+2025-01-15T10:55:13.102271Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-15T10:55:21.801081Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\5.cookie")}
+2025-01-15T10:55:21.801107Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T10:55:22.301991Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\6.cookie"), AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T10:55:22.302015Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T10:55:22.504803Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log")}
+2025-01-15T10:55:22.504829Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T10:55:23.998268Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T10:55:23.998290Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T10:55:24.998275Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.mjs"), AnchoredSystemPathBuf("packages\\core"), AnchoredSystemPathBuf("packages\\core\\dist\\index.js"), AnchoredSystemPathBuf("packages\\core\\dist")}
+2025-01-15T10:55:24.998303Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T10:55:30.395728Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log")}
+2025-01-15T10:55:30.395756Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T10:56:48.702572Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\src\\types\\animation.d.ts")}
+2025-01-15T10:56:48.702593Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T10:57:07.099194Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\src\\types\\animation.d.ts")}
+2025-01-15T10:57:07.099216Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T11:00:53.504229Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\src\\components\\slide\\variants.ts")}
+2025-01-15T11:00:53.504254Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T11:01:39.498448Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\src\\types\\animation.d.ts")}
+2025-01-15T11:01:39.498490Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T11:02:35.099625Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\src\\components\\slide\\index.tsx")}
+2025-01-15T11:02:35.099653Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T11:03:39.098846Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\src\\components\\slide\\variants.ts")}
+2025-01-15T11:03:39.098883Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T11:03:39.197827Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\src\\components\\slide\\variants.ts")}
+2025-01-15T11:03:39.197859Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T11:03:48.810383Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\7.cookie")}
+2025-01-15T11:03:48.810464Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T11:03:49.408611Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf(".turbo\\cookies\\8.cookie")}
+2025-01-15T11:03:49.408640Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T11:03:49.703511Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log")}
+2025-01-15T11:03:49.703540Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T11:03:51.307587Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T11:03:51.307613Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T11:03:52.200346Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.js"), AnchoredSystemPathBuf("packages\\core\\dist\\index.mjs")}
+2025-01-15T11:03:52.200382Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T11:03:56.502736Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.d.mts"), AnchoredSystemPathBuf("packages\\core\\dist\\index.d.ts")}
+2025-01-15T11:03:56.502771Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T11:03:56.705232Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\.turbo"), AnchoredSystemPathBuf("packages\\core\\dist"), AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf("packages\\react\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies\\9.cookie"), AnchoredSystemPathBuf(".turbo\\cookies\\10.cookie")}
+2025-01-15T11:03:56.705281Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }, WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }, WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-15T11:03:56.795192Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\.turbo"), AnchoredSystemPathBuf("packages\\react"), AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T11:03:56.795222Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }, WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-15T11:04:00.808888Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\.turbo\\turbo-build.log")}
+2025-01-15T11:04:00.808920Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-15T11:05:58.510103Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\tsconfig.json")}
+2025-01-15T11:05:58.510127Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-15T11:06:28.400666Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\11.cookie")}
+2025-01-15T11:06:28.400695Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T11:06:28.900666Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf(".turbo\\cookies\\12.cookie")}
+2025-01-15T11:06:28.900693Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T11:06:29.102049Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log")}
+2025-01-15T11:06:29.102100Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T11:06:30.794842Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T11:06:30.794863Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T11:06:31.495260Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.mjs"), AnchoredSystemPathBuf("packages\\core\\dist\\index.js")}
+2025-01-15T11:06:31.495286Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T11:06:35.607970Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.d.ts"), AnchoredSystemPathBuf("packages\\core\\dist\\index.d.mts")}
+2025-01-15T11:06:35.607997Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T11:06:35.701676Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies\\13.cookie"), AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf(".turbo\\cookies\\14.cookie")}
+2025-01-15T11:06:35.701708Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }, WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }, WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T11:06:36.200576Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T11:06:36.200599Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T11:06:38.205397Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\dist\\index.mjs"), AnchoredSystemPathBuf("packages\\react"), AnchoredSystemPathBuf("packages\\react\\dist"), AnchoredSystemPathBuf("packages\\react\\dist\\index.js")}
+2025-01-15T11:06:38.205419Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-15T11:06:41.904324Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\dist\\index.d.mts"), AnchoredSystemPathBuf("packages\\react\\dist\\index.d.ts")}
+2025-01-15T11:06:41.904358Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-15T11:06:42.201284Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf("packages\\react\\dist"), AnchoredSystemPathBuf(".turbo\\cookies\\15.cookie")}
+2025-01-15T11:06:42.201310Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }, WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T11:06:47.297762Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T11:06:47.297792Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T11:52:32.702284Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli")}
+2025-01-15T11:52:32.702465Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T11:52:34.106033Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages")}
+2025-01-15T11:52:34.106066Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-15T11:52:52.308750Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\tsconfig.json")}
+2025-01-15T11:52:52.308777Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T11:52:52.712011Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli")}
+2025-01-15T11:52:52.712038Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T11:56:03.904311Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\tsconfig.json")}
+2025-01-15T11:56:03.904366Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T11:56:20.996109Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\package.json")}
+2025-01-15T11:56:20.996126Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T11:56:21.308083Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli")}
+2025-01-15T11:56:21.308110Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T11:56:39.097547Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\package.json")}
+2025-01-15T11:56:39.097571Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:03:45.795613Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\package.json")}
+2025-01-15T12:03:45.795678Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:03:45.901701Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\package.json")}
+2025-01-15T12:03:45.901723Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:04:10.895017Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src")}
+2025-01-15T12:04:10.895061Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:04:12.194980Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli")}
+2025-01-15T12:04:12.195004Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:04:17.595509Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src"), AnchoredSystemPathBuf("packages\\cli\\src\\index.ts")}
+2025-01-15T12:04:17.595571Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:04:38.901988Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\index.ts")}
+2025-01-15T12:04:38.902091Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:04:58.503491Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\commands"), AnchoredSystemPathBuf("packages\\cli\\src")}
+2025-01-15T12:04:58.503522Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:05:55.399592Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\commands\\init.ts"), AnchoredSystemPathBuf("packages\\cli\\src\\commands")}
+2025-01-15T12:05:55.399625Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:06:03.104936Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\commands\\init.ts")}
+2025-01-15T12:06:03.104959Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:06:39.007418Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\commands"), AnchoredSystemPathBuf("packages\\cli\\src\\commands\\add.ts")}
+2025-01-15T12:06:39.007437Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:06:41.912607Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\commands\\add.ts")}
+2025-01-15T12:06:41.912641Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:06:58.294606Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src"), AnchoredSystemPathBuf("packages\\cli\\src\\utils")}
+2025-01-15T12:06:58.294630Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:07:39.001096Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\utils\\components.ts")}
+2025-01-15T12:07:39.001122Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:07:39.109412Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\utils")}
+2025-01-15T12:07:39.109459Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:07:42.698948Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\utils\\components.ts")}
+2025-01-15T12:07:42.698996Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:08:43.100807Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\utils\\dependencies.ts"), AnchoredSystemPathBuf("packages\\cli\\src\\utils")}
+2025-01-15T12:08:43.100839Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:09:00.895729Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\utils\\dependencies.ts")}
+2025-01-15T12:09:00.895761Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:10:45.999905Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\commands\\init.ts")}
+2025-01-15T12:10:45.999931Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:11:29.100260Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("pnpm-workspace.yaml")}
+2025-01-15T12:11:29.100314Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:11:29.205207Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("pnpm-workspace.yaml")}
+2025-01-15T12:11:29.205225Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:11:36.095795Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("_tmp_1856_66b34ccb23913013f80ae64a66c3cef1")}
+2025-01-15T12:11:36.095819Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:11:36.202327Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(""), AnchoredSystemPathBuf("_tmp_1856_66b34ccb23913013f80ae64a66c3cef1")}
+2025-01-15T12:11:36.202386Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:11:41.701862Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("pnpm-lock.yaml.2315477499"), AnchoredSystemPathBuf("pnpm-lock.yaml"), AnchoredSystemPathBuf("")}
+2025-01-15T12:11:41.701893Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:11:47.403368Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli")}
+2025-01-15T12:11:47.403462Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:11:49.800875Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("pnpm-lock.yaml.3991346380")}
+2025-01-15T12:11:49.800907Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:11:49.895729Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("pnpm-lock.yaml"), AnchoredSystemPathBuf("pnpm-lock.yaml.3991346380"), AnchoredSystemPathBuf("")}
+2025-01-15T12:11:49.895760Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:12:41.803186Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\commands\\add.ts")}
+2025-01-15T12:12:41.803216Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:13:15.703529Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\index.ts")}
+2025-01-15T12:13:15.703549Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:17:16.008000Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\utils\\getPackagemanager.ts")}
+2025-01-15T12:17:16.008025Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:17:16.101377Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\utils")}
+2025-01-15T12:17:16.101500Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:17:35.405446Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\utils"), AnchoredSystemPathBuf("packages\\cli\\src\\utils\\getPackageManager.ts"), AnchoredSystemPathBuf("packages\\cli\\src\\utils\\getPackagemanager.ts")}
+2025-01-15T12:17:35.405473Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:17:53.806177Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\commands\\init.ts")}
+2025-01-15T12:17:53.806243Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:19:08.095564Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\utils\\getPackageManager.ts")}
+2025-01-15T12:19:08.095582Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:19:44.295815Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\utils\\dependencies.ts")}
+2025-01-15T12:19:44.295867Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:19:44.395917Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\utils\\dependencies.ts")}
+2025-01-15T12:19:44.395934Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:19:49.702431Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\commands\\init.ts")}
+2025-01-15T12:19:49.702476Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:19:49.797404Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\commands\\init.ts")}
+2025-01-15T12:19:49.797423Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:19:54.398124Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("_tmp_31276_197521ba4b1aab7f4583a31cc70c52ec")}
+2025-01-15T12:19:54.398152Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:19:54.508204Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("_tmp_31276_197521ba4b1aab7f4583a31cc70c52ec"), AnchoredSystemPathBuf("")}
+2025-01-15T12:19:54.508230Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:20:23.704855Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\16.cookie")}
+2025-01-15T12:20:23.704879Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:20:24.209315Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\17.cookie"), AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T12:20:24.209392Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:20:25.597604Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\18.cookie"), AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf("packages\\cli\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf("packages\\cli\\.turbo")}
+2025-01-15T12:20:25.597636Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:20:25.716213Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log")}
+2025-01-15T12:20:25.716245Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T12:20:25.796142Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf("packages\\cli")}
+2025-01-15T12:20:25.796167Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:20:25.896409Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\.turbo")}
+2025-01-15T12:20:25.896438Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:20:31.096460Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\.turbo\\turbo-build.log")}
+2025-01-15T12:20:31.096489Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:20:31.205942Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log")}
+2025-01-15T12:20:31.206030Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T12:20:31.609591Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.mjs"), AnchoredSystemPathBuf("packages\\core\\dist\\index.js")}
+2025-01-15T12:20:31.609623Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T12:21:51.710292Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\package.json")}
+2025-01-15T12:21:51.710311Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:21:57.502067Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\19.cookie")}
+2025-01-15T12:21:57.502100Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:21:57.895682Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf(".turbo\\cookies\\20.cookie")}
+2025-01-15T12:21:57.895704Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:21:58.208870Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\21.cookie"), AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf("packages\\cli\\.turbo\\turbo-build.log")}
+2025-01-15T12:21:58.208899Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }, WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:21:59.899627Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T12:21:59.899659Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:22:01.208785Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.mjs"), AnchoredSystemPathBuf("packages\\core\\dist\\index.js")}
+2025-01-15T12:22:01.208818Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T12:22:01.302628Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli"), AnchoredSystemPathBuf("packages\\cli\\dist\\index.js"), AnchoredSystemPathBuf("packages\\cli\\dist")}
+2025-01-15T12:22:01.302662Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:22:01.394776Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies\\22.cookie")}
+2025-01-15T12:22:01.394799Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:22:05.394682Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T12:22:05.394708Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:22:06.804725Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.d.mts"), AnchoredSystemPathBuf("packages\\core\\dist\\index.d.ts")}
+2025-01-15T12:22:06.804755Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T12:22:06.899061Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies\\23.cookie"), AnchoredSystemPathBuf(".turbo\\cookies\\24.cookie"), AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log")}
+2025-01-15T12:22:06.899093Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }, WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }, WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:22:09.099374Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\dist\\index.mjs"), AnchoredSystemPathBuf("packages\\react\\dist\\index.js")}
+2025-01-15T12:22:09.099448Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-15T12:22:11.299839Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T12:22:11.299876Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:22:14.501838Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\dist\\index.d.mts"), AnchoredSystemPathBuf("packages\\react\\dist\\index.d.ts")}
+2025-01-15T12:22:14.501874Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-15T12:22:14.595396Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\25.cookie"), AnchoredSystemPathBuf("packages\\react\\.turbo\\turbo-build.log")}
+2025-01-15T12:22:14.595430Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }, WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:22:16.699031Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T12:22:16.699056Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:23:11.604952Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\commands\\init.ts")}
+2025-01-15T12:23:11.604969Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:24:31.295973Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\index.ts")}
+2025-01-15T12:24:31.296005Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:24:35.101646Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\commands\\add.ts")}
+2025-01-15T12:24:35.101739Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:25:55.909227Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\index.ts")}
+2025-01-15T12:25:55.909247Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:26:07.404976Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\commands\\init.ts")}
+2025-01-15T12:26:07.404995Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:26:17.905590Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\commands\\add.ts")}
+2025-01-15T12:26:17.905673Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:26:26.410306Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\26.cookie")}
+2025-01-15T12:26:26.410324Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:26:26.802247Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf(".turbo\\cookies\\27.cookie")}
+2025-01-15T12:26:26.802266Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:26:27.100234Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies\\28.cookie"), AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T12:26:27.100271Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }, WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:26:27.208846Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\.turbo\\turbo-build.log")}
+2025-01-15T12:26:27.209004Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:26:28.806315Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T12:26:28.806345Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:26:29.808651Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\dist\\index.js")}
+2025-01-15T12:26:29.808683Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:26:29.899656Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\29.cookie"), AnchoredSystemPathBuf("packages\\cli\\.turbo\\turbo-build.log")}
+2025-01-15T12:26:29.899688Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:26:30.108528Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.mjs"), AnchoredSystemPathBuf("packages\\core\\dist\\index.js")}
+2025-01-15T12:26:30.108549Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T12:26:34.299403Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T12:26:34.299425Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:26:35.000329Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.d.mts")}
+2025-01-15T12:26:35.000361Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T12:26:35.100574Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.d.mts"), AnchoredSystemPathBuf("packages\\core\\dist\\index.d.ts")}
+2025-01-15T12:26:35.100599Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T12:26:35.196430Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies\\30.cookie"), AnchoredSystemPathBuf(".turbo\\cookies\\31.cookie"), AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T12:26:35.196521Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }, WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }, WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T12:26:37.301410Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\dist\\index.mjs"), AnchoredSystemPathBuf("packages\\react\\dist\\index.js")}
+2025-01-15T12:26:37.301440Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-15T12:26:39.802008Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T12:26:39.802030Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:26:41.799174Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\dist\\index.d.ts"), AnchoredSystemPathBuf("packages\\react\\dist\\index.d.mts")}
+2025-01-15T12:26:41.799202Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-15T12:26:41.909271Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\32.cookie"), AnchoredSystemPathBuf("packages\\react\\.turbo\\turbo-build.log")}
+2025-01-15T12:26:41.909297Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }, WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-15T12:26:45.197418Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T12:26:45.197444Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:32:11.005398Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\tsconfig.json")}
+2025-01-15T12:32:11.005428Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:33:09.303709Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\tsconfig.json")}
+2025-01-15T12:33:09.303759Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:33:38.994344Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\commands\\init.ts")}
+2025-01-15T12:33:38.994372Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:33:39.101689Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\src\\commands\\init.ts")}
+2025-01-15T12:33:39.101710Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:33:51.507057Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\33.cookie")}
+2025-01-15T12:33:51.507087Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:33:52.103849Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\34.cookie"), AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T12:33:52.103876Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:33:52.399356Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies\\35.cookie"), AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log")}
+2025-01-15T12:33:52.399398Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }, WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T12:33:54.395449Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T12:33:54.395480Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:33:56.696511Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\dist\\index.js")}
+2025-01-15T12:33:56.696544Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:33:56.804165Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\36.cookie"), AnchoredSystemPathBuf("packages\\cli\\.turbo\\turbo-build.log")}
+2025-01-15T12:33:56.804195Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:33:57.195878Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.js"), AnchoredSystemPathBuf("packages\\core\\dist\\index.mjs")}
+2025-01-15T12:33:57.195914Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T12:34:00.009833Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T12:34:00.009868Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:34:03.299826Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.d.mts"), AnchoredSystemPathBuf("packages\\core\\dist\\index.d.ts")}
+2025-01-15T12:34:03.299851Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T12:34:03.409799Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf("packages\\react\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies\\37.cookie"), AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf(".turbo\\cookies\\38.cookie")}
+2025-01-15T12:34:03.409832Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }, WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }, WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-15T12:34:05.605869Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T12:34:05.605907Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:34:05.809686Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\dist\\index.js"), AnchoredSystemPathBuf("packages\\react\\dist\\index.mjs")}
+2025-01-15T12:34:05.809716Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-15T12:34:10.204474Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\dist\\index.d.mts"), AnchoredSystemPathBuf("packages\\react\\dist\\index.d.ts")}
+2025-01-15T12:34:10.204503Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-15T12:34:10.297495Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies\\39.cookie")}
+2025-01-15T12:34:10.297537Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }, WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-15T12:34:10.995203Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-15T12:34:10.995223Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:39:43.207698Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(""), AnchoredSystemPathBuf("_tmp_23728_57067f6228d18796ad405c97380f8b78"), AnchoredSystemPathBuf("_tmp_23728_82b780df179416f76cd489157ac21b04")}
+2025-01-15T12:39:43.207742Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:39:43.696590Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2025-01-15T12:39:43.696613Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2025-01-15T12:52:05.197170Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\package.json")}
+2025-01-15T12:52:05.197205Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-15T12:52:16.109201Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\dist\\index.js")}
+2025-01-15T12:52:16.109284Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
