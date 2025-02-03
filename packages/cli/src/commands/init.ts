@@ -49,7 +49,7 @@ export async function init(options: { yes?: boolean }) {
     }
 
     // Create components/ui directory if it doesn't exist
-    const uiDir = path.resolve('components/ui');
+    const uiDir = path.resolve('src/components/ui');
     await fs.ensureDir(uiDir);
 
     // Add utils/cn.ts

@@ -82,7 +82,7 @@ async function init(options) {
 }`
       );
     }
-    const uiDir = path.resolve("components/ui");
+    const uiDir = path.resolve("src/components/ui");
     await fs.ensureDir(uiDir);
     const utilsDir = path.resolve("utils");
     await fs.ensureDir(utilsDir);
@@ -240,7 +240,7 @@ Component "${componentName}" not found`));
       process.exit(1);
     }
     const spinner = ora2(`Adding ${component.name} component...`).start();
-    const componentDir = path2.resolve("components/ui");
+    const componentDir = path2.resolve("src/components/ui");
     await fs2.ensureDir(componentDir);
     await fs2.writeFile(
       path2.join(componentDir, `${component.name}.tsx`),

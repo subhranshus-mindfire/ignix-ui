@@ -36,7 +36,7 @@ export async function add(componentName?: string) {
     const spinner = ora(`Adding ${component.name} component...`).start();
 
     // Create component file
-    const componentDir = path.resolve('components/ui');
+    const componentDir = path.resolve('src/components/ui');
     await fs.ensureDir(componentDir);
     await fs.writeFile(
       path.join(componentDir, `${component.name}.tsx`),

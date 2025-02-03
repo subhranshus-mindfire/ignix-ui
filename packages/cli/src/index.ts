@@ -2,7 +2,6 @@
 import { Command } from 'commander';
 import { init } from './commands/init';
 import { add } from './commands/add';
-import chalk from 'chalk';
 
 const program = new Command();
 
