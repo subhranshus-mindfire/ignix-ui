@@ -43,3 +43,93 @@
 2025-01-30T08:42:16.089658Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/cli"), path: AnchoredSystemPathBuf("packages\\cli") }}))
 2025-01-30T08:43:21.503065Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
 2025-01-30T08:43:21.503094Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2025-01-30T09:03:54.402741Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\caf9b029fbf8ba83-turbo.log.2025-01-30")}
+2025-01-30T09:03:54.402773Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-30T09:27:40.095294Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2025-01-30T09:27:40.095322Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2025-01-30T09:28:23.187933Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli")}
+2025-01-30T09:28:23.187960Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/cli"), path: AnchoredSystemPathBuf("packages\\cli") }}))
+2025-01-30T09:28:37.392805Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\caf9b029fbf8ba83-turbo.log.2025-01-30")}
+2025-01-30T09:28:37.392832Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-30T09:29:53.289344Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2025-01-30T09:29:53.289430Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2025-01-30T09:30:30.299232Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2025-01-30T09:30:30.299251Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2025-01-30T10:15:38.193826Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\8.cookie")}
+2025-01-30T10:15:38.193858Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-30T10:15:38.594676Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\10.cookie"), AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies\\9.cookie"), AnchoredSystemPathBuf("packages\\cli\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-30T10:15:38.594703Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }, WorkspacePackage { name: Other("@animation-ui/cli"), path: AnchoredSystemPathBuf("packages\\cli") }, WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-30T10:15:39.796888Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\dist\\index.js")}
+2025-01-30T10:15:39.796946Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/cli"), path: AnchoredSystemPathBuf("packages\\cli") }}))
+2025-01-30T10:15:39.863989Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-01-30T10:15:39.888213Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.mjs"), AnchoredSystemPathBuf("packages\\core\\dist\\index.js")}
+2025-01-30T10:15:39.888254Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-30T10:15:39.962699Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-01-30T10:15:40.016382Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies\\11.cookie")}
+2025-01-30T10:15:40.016428Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/cli"), path: AnchoredSystemPathBuf("packages\\cli") }, WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-30T10:15:40.089359Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-30T10:15:40.089429Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-30T10:15:40.693306Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log")}
+2025-01-30T10:15:40.693332Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-30T10:15:40.702912Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-01-30T10:15:45.895801Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\12.cookie")}
+2025-01-30T10:15:45.895818Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-30T10:15:46.193700Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf(".turbo\\cookies\\14.cookie"), AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies\\13.cookie")}
+2025-01-30T10:15:46.193728Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }, WorkspacePackage { name: Other("@animation-ui/cli"), path: AnchoredSystemPathBuf("packages\\cli") }, WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-30T10:15:46.193802Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-01-30T10:15:47.294718Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.js"), AnchoredSystemPathBuf("packages\\cli\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf("packages\\core\\dist\\index.mjs"), AnchoredSystemPathBuf("packages\\cli\\dist\\index.js")}
+2025-01-30T10:15:47.294773Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/cli"), path: AnchoredSystemPathBuf("packages\\cli") }, WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-30T10:15:47.332501Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-01-30T10:15:47.401551Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf("packages\\cli\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies\\15.cookie")}
+2025-01-30T10:15:47.401578Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/cli"), path: AnchoredSystemPathBuf("packages\\cli") }, WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-30T10:15:47.401627Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-01-30T10:15:47.587283Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-30T10:15:47.587303Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-30T10:15:50.094213Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.d.ts"), AnchoredSystemPathBuf("packages\\core\\dist\\index.d.mts")}
+2025-01-30T10:15:50.094241Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-30T10:15:50.094303Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-01-30T10:15:50.200091Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies\\16.cookie"), AnchoredSystemPathBuf(".turbo\\cookies\\17.cookie"), AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log")}
+2025-01-30T10:15:50.200107Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }, WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }, WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-30T10:15:51.399107Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\dist\\index.js"), AnchoredSystemPathBuf("packages\\react\\dist\\index.mjs")}
+2025-01-30T10:15:51.399145Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-30T10:15:51.399222Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-01-30T10:15:53.394685Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\dist\\index.d.mts"), AnchoredSystemPathBuf("packages\\react\\dist\\index.d.ts")}
+2025-01-30T10:15:53.394788Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-30T10:15:53.394850Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-01-30T10:15:53.487763Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf(".turbo\\cookies\\18.cookie")}
+2025-01-30T10:15:53.487781Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }, WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-30T10:15:53.799769Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-30T10:15:53.799787Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-30T10:17:10.400478Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\19.cookie")}
+2025-01-30T10:17:10.400501Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-30T10:17:10.601031Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\21.cookie"), AnchoredSystemPathBuf(".turbo\\cookies\\20.cookie"), AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf("packages\\cli\\.turbo\\turbo-build.log")}
+2025-01-30T10:17:10.601059Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/cli"), path: AnchoredSystemPathBuf("packages\\cli") }, WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-30T10:17:10.694153Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log")}
+2025-01-30T10:17:10.694185Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-30T10:17:13.795088Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\cli\\dist\\index.js"), AnchoredSystemPathBuf("packages\\core\\dist\\index.js"), AnchoredSystemPathBuf("packages\\core\\dist\\index.mjs")}
+2025-01-30T10:17:13.795230Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/cli"), path: AnchoredSystemPathBuf("packages\\cli") }, WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-30T10:17:13.795300Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-01-30T10:17:13.838775Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-01-30T10:17:13.891131Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.js"), AnchoredSystemPathBuf(".turbo\\cookies\\22.cookie"), AnchoredSystemPathBuf("packages\\core\\dist\\index.mjs"), AnchoredSystemPathBuf("packages\\cli\\.turbo\\turbo-build.log")}
+2025-01-30T10:17:13.891181Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }, WorkspacePackage { name: Other("@animation-ui/cli"), path: AnchoredSystemPathBuf("packages\\cli") }, WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-30T10:17:13.891428Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-01-30T10:17:20.801097Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\core\\dist\\index.d.mts"), AnchoredSystemPathBuf("packages\\core\\dist\\index.d.ts")}
+2025-01-30T10:17:20.801162Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }}))
+2025-01-30T10:17:20.801238Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-01-30T10:17:20.889089Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\24.cookie"), AnchoredSystemPathBuf(".turbo\\cookies\\23.cookie"), AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf("packages\\core\\.turbo\\turbo-build.log"), AnchoredSystemPathBuf("packages\\react\\.turbo\\turbo-build.log")}
+2025-01-30T10:17:20.889133Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }, WorkspacePackage { name: Other("@animation-ui/core"), path: AnchoredSystemPathBuf("packages\\core") }, WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-30T10:17:21.188849Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-30T10:17:21.188896Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-30T10:17:23.187317Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\dist\\index.mjs"), AnchoredSystemPathBuf("packages\\react\\dist\\index.js")}
+2025-01-30T10:17:23.187356Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-30T10:17:23.222050Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-01-30T10:17:23.288055Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\dist\\index.js")}
+2025-01-30T10:17:23.288090Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-30T10:17:23.288143Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-01-30T10:17:27.689083Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\react\\dist\\index.d.mts"), AnchoredSystemPathBuf("packages\\react\\dist\\index.d.ts")}
+2025-01-30T10:17:27.689117Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }}))
+2025-01-30T10:17:27.689175Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-01-30T10:17:27.796582Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\25.cookie"), AnchoredSystemPathBuf("packages\\react\\.turbo\\turbo-build.log")}
+2025-01-30T10:17:27.796615Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@animation-ui/react"), path: AnchoredSystemPathBuf("packages\\react") }, WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-01-30T10:17:28.089389Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2025-01-30T10:17:28.089416Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))

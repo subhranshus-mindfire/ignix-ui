@@ -1,1 +1,9 @@
 node_modules
+.turbo
+dist
+coverage
+storybook-static
+.next
+build
+.env*
+.DS_Store
