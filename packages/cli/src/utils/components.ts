@@ -15,7 +15,7 @@ interface ComponentRegistry {
   }>;
 }
 
-const GITHUB_RAW_BASE_URL = 'https://raw.githubusercontent.com/lakinmindfire/animate-ui/refs/heads/dev'; // Change to your repo URL
+const GITHUB_RAW_BASE_URL = 'https://raw.githubusercontent.com/lakinmindfire/animate-ui/refs/heads/dev/packages'; // Change to your repo URL
 
 async function fetchComponentContent(path: string): Promise<string> {
   const response = await fetch(`${GITHUB_RAW_BASE_URL}${path}`);

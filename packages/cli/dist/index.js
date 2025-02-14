@@ -132,7 +132,7 @@ import fs2 from "fs-extra";
 
 // src/utils/components.ts
 import fetch from "node-fetch";
-var GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/lakinmindfire/animate-ui/refs/heads/dev";
+var GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/lakinmindfire/animate-ui/refs/heads/dev/packages";
 async function fetchComponentContent(path3) {
   const response = await fetch(`${GITHUB_RAW_BASE_URL}${path3}`);
   if (!response.ok) {
