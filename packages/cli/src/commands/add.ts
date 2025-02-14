@@ -16,7 +16,7 @@ export async function add(componentName?: string) {
         type: 'select',
         name: 'component',
         message: 'Select a component to add',
-        choices: components.map(c => ({ title: c.name, value: c.name }))
+        choices: components.map((c) => ({ title: c.name, value: c.name })),
       });
       componentName = response.component;
     }
@@ -26,10 +26,13 @@ export async function add(componentName?: string) {
       process.exit(1);
     }
 
-    const component = components.find(c => c.name === componentName);
+    const component = components.find((c) => c.name === componentName);
     if (!component) {
       console.log(chalk.red(`\nComponent "${componentName}" not found`));
-      console.log('Available components:', components.map(c => c.name).join(', '));
+      console.log(
+        'Available components:',
+        components.map((c) => c.name).join(', ')
+      );
       process.exit(1);
     }
 
@@ -46,15 +49,18 @@ export async function add(componentName?: string) {
     // Install dependencies if needed
     if (component.dependencies?.length) {
       await addDependencies({
-        dependencies: component.dependencies
+        dependencies: component.dependencies,
       });
     }
 
     spinner.succeed(chalk.green(`Added ${component.name} component`));
-    
-    console.log('\nYou can now import the component from:');
-    console.log(chalk.cyan(`import { ${component.name} } from "@/components/ui/${component.name}"`));
 
+    console.log('\nYou can now import the component from:');
+    console.log(
+      chalk.cyan(
+        `import { ${component.name} } from "@/components/ui/${component.name}"`
+      )
+    );
   } catch (error) {
     console.error(chalk.red('Failed to add component:'), error);
     process.exit(1);

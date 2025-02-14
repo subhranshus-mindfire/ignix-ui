@@ -12,18 +12,26 @@ export async function addDependencies(options: DependencyOptions) {
   // Handle dependencies for npm, yarn, pnpm, and bun
   if (options.dependencies?.length) {
     if (pkgManager === 'bun') {
-      execSync(`bun add ${options.dependencies.join(' ')}`, { stdio: 'inherit' });
+      execSync(`bun add ${options.dependencies.join(' ')}`, {
+        stdio: 'inherit',
+      });
     } else {
-      execSync(`${pkgManager} add ${options.dependencies.join(' ')}`, { stdio: 'inherit' });
+      execSync(`${pkgManager} add ${options.dependencies.join(' ')}`, {
+        stdio: 'inherit',
+      });
     }
   }
 
   // Handle devDependencies for npm, yarn, pnpm, and bun
   if (options.devDependencies?.length) {
     if (pkgManager === 'bun') {
-      execSync(`bun add --dev ${options.devDependencies.join(' ')}`, { stdio: 'inherit' });
+      execSync(`bun add --dev ${options.devDependencies.join(' ')}`, {
+        stdio: 'inherit',
+      });
     } else {
-      execSync(`${pkgManager} add -D ${options.devDependencies.join(' ')}`, { stdio: 'inherit' });
+      execSync(`${pkgManager} add -D ${options.devDependencies.join(' ')}`, {
+        stdio: 'inherit',
+      });
     }
   }
 }

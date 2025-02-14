@@ -29,16 +29,24 @@ async function addDependencies(options) {
   const pkgManager = options.packageManager || "npm";
   if ((_a = options.dependencies) == null ? void 0 : _a.length) {
     if (pkgManager === "bun") {
-      execSync(`bun add ${options.dependencies.join(" ")}`, { stdio: "inherit" });
+      execSync(`bun add ${options.dependencies.join(" ")}`, {
+        stdio: "inherit"
+      });
     } else {
-      execSync(`${pkgManager} add ${options.dependencies.join(" ")}`, { stdio: "inherit" });
+      execSync(`${pkgManager} add ${options.dependencies.join(" ")}`, {
+        stdio: "inherit"
+      });
     }
   }
   if ((_b = options.devDependencies) == null ? void 0 : _b.length) {
     if (pkgManager === "bun") {
-      execSync(`bun add --dev ${options.devDependencies.join(" ")}`, { stdio: "inherit" });
+      execSync(`bun add --dev ${options.devDependencies.join(" ")}`, {
+        stdio: "inherit"
+      });
     } else {
-      execSync(`${pkgManager} add -D ${options.devDependencies.join(" ")}`, { stdio: "inherit" });
+      execSync(`${pkgManager} add -D ${options.devDependencies.join(" ")}`, {
+        stdio: "inherit"
+      });
     }
   }
 }
@@ -97,21 +105,16 @@ export function cn(...inputs: ClassValue[]) {
     );
     const pkgManager = await getPackageManager(process.cwd());
     await addDependencies({
-      dependencies: [
-        "framer-motion",
-        "clsx",
-        "tailwind-merge"
-      ],
-      devDependencies: [
-        "tailwindcss",
-        "autoprefixer",
-        "postcss"
-      ],
+      dependencies: ["framer-motion", "clsx", "tailwind-merge"],
+      devDependencies: ["tailwindcss", "autoprefixer", "postcss"],
       packageManager: pkgManager
     });
     spinner.succeed(chalk.green("Successfully initialized animation-ui"));
     console.log("\nNext steps:");
-    console.log("1. Add components using:", chalk.cyan("npx animation-ui add <component>"));
+    console.log(
+      "1. Add components using:",
+      chalk.cyan("npx animation-ui add <component>")
+    );
     console.log("2. Start using animations in your project!\n");
   } catch (error) {
     spinner.fail(chalk.red("Failed to initialize animation-ui"));
@@ -128,90 +131,33 @@ import path2 from "path";
 import fs2 from "fs-extra";
 
 // src/utils/components.ts
+import fetch from "node-fetch";
+var GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/lakinmindfire/animate-ui/refs/heads/dev";
+async function fetchComponentContent(path3) {
+  const response = await fetch(`${GITHUB_RAW_BASE_URL}${path3}`);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch component from ${path3}`);
+  }
+  return response.text();
+}
 async function getAvailableComponents() {
-  return [
-    {
-      name: "slide",
-      content: `import { motion } from 'framer-motion';
-  import { cn } from '@/utils/cn';
-  
-  interface SlideProps {
-    children: React.ReactNode;
-    direction?: 'up' | 'down' | 'left' | 'right';
-    duration?: number;
-    className?: string;
+  const registryUrl = `${GITHUB_RAW_BASE_URL}/registry/registry.json`;
+  const registryResponse = await fetch(registryUrl);
+  if (!registryResponse.ok) {
+    throw new Error("Failed to fetch component registry");
   }
-  
-  export const Slide = ({
-    children,
-    direction = 'up',
-    duration = 0.4,
-    className
-  }: SlideProps) => {
-    const slideVariants = {
-      initial: {
-        opacity: 0,
-        x: direction === 'left' ? 20 : direction === 'right' ? -20 : 0,
-        y: direction === 'up' ? 20 : direction === 'down' ? -20 : 0
-      },
-      animate: {
-        opacity: 1,
-        x: 0,
-        y: 0
-      },
-      exit: {
-        opacity: 0,
-        x: direction === 'left' ? -20 : direction === 'right' ? 20 : 0,
-        y: direction === 'up' ? -20 : direction === 'down' ? 20 : 0
-      }
-    };
-  
-    return (
-      <motion.div
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        variants={slideVariants}
-        transition={{ duration }}
-        className={cn('', className)}
-      >
-        {children}
-      </motion.div>
-    );
-  };`,
-      dependencies: ["framer-motion"]
-    },
-    {
-      name: "fade",
-      content: `import { motion } from 'framer-motion';
-  import { cn } from '@/utils/cn';
-  
-  interface FadeProps {
-    children: React.ReactNode;
-    duration?: number;
-    className?: string;
-  }
-  
-  export const Fade = ({
-    children,
-    duration = 0.4,
-    className
-  }: FadeProps) => {
-    return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration }}
-        className={cn('', className)}
-      >
-        {children}
-      </motion.div>
-    );
-  };`,
-      dependencies: ["framer-motion"]
-    }
-  ];
+  const registry = await registryResponse.json();
+  const componentEntries = Object.entries(registry.components);
+  return Promise.all(
+    componentEntries.map(async ([key, componentData]) => {
+      const content = await fetchComponentContent(componentData.path);
+      return {
+        name: componentData.name,
+        content,
+        dependencies: componentData.dependencies || []
+      };
+    })
+  );
 }
 
 // src/commands/add.ts
@@ -236,7 +182,10 @@ async function add(componentName) {
     if (!component) {
       console.log(chalk2.red(`
 Component "${componentName}" not found`));
-      console.log("Available components:", components.map((c) => c.name).join(", "));
+      console.log(
+        "Available components:",
+        components.map((c) => c.name).join(", ")
+      );
       process.exit(1);
     }
     const spinner = ora2(`Adding ${component.name} component...`).start();
@@ -253,7 +202,11 @@ Component "${componentName}" not found`));
     }
     spinner.succeed(chalk2.green(`Added ${component.name} component`));
     console.log("\nYou can now import the component from:");
-    console.log(chalk2.cyan(`import { ${component.name} } from "@/components/ui/${component.name}"`));
+    console.log(
+      chalk2.cyan(
+        `import { ${component.name} } from "@/components/ui/${component.name}"`
+      )
+    );
   } catch (error) {
     console.error(chalk2.red("Failed to add component:"), error);
     process.exit(1);

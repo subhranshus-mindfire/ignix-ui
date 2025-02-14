@@ -1,0 +1,18 @@
+{
+    "components": {
+      "slide": {
+        "name": "Slide",
+        "description": "A slide animation component with configurable direction",
+        "path": "./components/slide/index.tsx",
+        "dependencies": ["framer-motion"]
+      },
+      "fade": {
+        "name": "Fade",
+        "description": "A fade animation component",
+        "path": "./components/fade/index.tsx",
+        "dependencies": ["framer-motion"]
+      }
+     
+    }
+  }
+  
