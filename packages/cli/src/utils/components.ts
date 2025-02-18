@@ -1,4 +1,5 @@
-import fetch from 'node-fetch';
+// cli/src/utils/registry.ts
+import axios from 'axios';
 
 interface Component {
   name: string;
@@ -6,43 +7,61 @@ interface Component {
   dependencies?: string[];
 }
 
-interface ComponentRegistry {
-  components: Record<string, {
-    name: string;
-    description: string;
-    path: string;
-    dependencies?: string[];
-  }>;
-}
+export async function getComponent(name: string): Promise<Component | null> {
+  try {
+    // First fetch the registry to get component info
+    const registryUrl = 'https://raw.githubusercontent.com/lakinmindfire/animate-ui/dev/packages/registry/registry.json';
+    const { data: registry } = await axios.get(registryUrl);
+    
+    const componentInfo = registry.components[name];
+    if (!componentInfo) {
+      throw new Error(`Component ${name} not found in registry`);
+    }
 
-const GITHUB_RAW_BASE_URL = 'https://raw.githubusercontent.com/lakinmindfire/animate-ui/refs/heads/dev/packages'; // Change to your repo URL
+    // Construct the correct raw URL for the component
+    const componentUrl = `https://raw.githubusercontent.com/lakinmindfire/animate-ui/dev/packages/registry/components/${name}/index.tsx`;
+    const { data: content } = await axios.get(componentUrl);
 
-async function fetchComponentContent(path: string): Promise<string> {
-  const response = await fetch(`${GITHUB_RAW_BASE_URL}${path}`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch component from ${path}`);
+    return {
+      name,
+      content,
+      dependencies: componentInfo.dependencies
+    };
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response?.status === 404) {
+        console.error(`Component ${name} not found in repository`);
+      } else {
+        console.error(`Error fetching component ${name}:`, error.message);
+      }
+    } else {
+      console.error(`Unexpected error:`, error);
+    }
+    return null;
   }
-  return response.text();
 }
 
 export async function getAvailableComponents(): Promise<Component[]> {
-  const registryUrl = `${GITHUB_RAW_BASE_URL}/registry/registry.json`;
-  const registryResponse = await fetch(registryUrl);
-  if (!registryResponse.ok) {
-    throw new Error('Failed to fetch component registry');
+  try {
+    const registryUrl = 'https://raw.githubusercontent.com/lakinmindfire/animate-ui/dev/packages/registry/registry.json';
+    const { data: registry } = await axios.get(registryUrl);
+
+    const components = await Promise.all(
+      Object.entries(registry.components).map(async ([name, componentInfo]) => {
+        const componentUrl = `https://raw.githubusercontent.com/lakinmindfire/animate-ui/dev/packages/registry/components/${name}/index.tsx`;
+        const { data: content } = await axios.get(componentUrl);
+
+        return {
+          name,
+          content,
+          dependencies: (componentInfo as any).dependencies
+        };
+      })
+    );
+
+    return components;
+  } catch (error) {
+    console.error('Error loading components from registry:', error);
+    return [];
   }
-  
-  const registry: ComponentRegistry = await registryResponse.json() as ComponentRegistry;
-  const componentEntries = Object.entries(registry.components);
-  
-  return Promise.all(
-    componentEntries.map(async ([key, componentData]) => {
-      const content = await fetchComponentContent(componentData.path);
-      return {
-        name: componentData.name,
-        content,
-        dependencies: componentData.dependencies || [],
-      };
-    })
-  );
 }

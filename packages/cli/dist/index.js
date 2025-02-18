@@ -131,33 +131,27 @@ import path2 from "path";
 import fs2 from "fs-extra";
 
 // src/utils/components.ts
-import fetch from "node-fetch";
-var GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/lakinmindfire/animate-ui/refs/heads/dev/packages";
-async function fetchComponentContent(path3) {
-  const response = await fetch(`${GITHUB_RAW_BASE_URL}${path3}`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch component from ${path3}`);
-  }
-  return response.text();
-}
+import axios from "axios";
 async function getAvailableComponents() {
-  const registryUrl = `${GITHUB_RAW_BASE_URL}/registry/registry.json`;
-  const registryResponse = await fetch(registryUrl);
-  if (!registryResponse.ok) {
-    throw new Error("Failed to fetch component registry");
+  try {
+    const registryUrl = "https://raw.githubusercontent.com/lakinmindfire/animate-ui/dev/packages/registry/registry.json";
+    const { data: registry } = await axios.get(registryUrl);
+    const components = await Promise.all(
+      Object.entries(registry.components).map(async ([name, componentInfo]) => {
+        const componentUrl = `https://raw.githubusercontent.com/lakinmindfire/animate-ui/dev/packages/registry/components/${name}/index.tsx`;
+        const { data: content } = await axios.get(componentUrl);
+        return {
+          name,
+          content,
+          dependencies: componentInfo.dependencies
+        };
+      })
+    );
+    return components;
+  } catch (error) {
+    console.error("Error loading components from registry:", error);
+    return [];
   }
-  const registry = await registryResponse.json();
-  const componentEntries = Object.entries(registry.components);
-  return Promise.all(
-    componentEntries.map(async ([key, componentData]) => {
-      const content = await fetchComponentContent(componentData.path);
-      return {
-        name: componentData.name,
-        content,
-        dependencies: componentData.dependencies || []
-      };
-    })
-  );
 }
 
 // src/commands/add.ts

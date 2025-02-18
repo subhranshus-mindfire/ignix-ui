@@ -3,13 +3,11 @@
       "slide": {
         "name": "Slide",
         "description": "A slide animation component with configurable direction",
-        "path": "https://raw.githubusercontent.com/lakinmindfire/animate-ui/refs/heads/dev/packages/registry/components/slide/index.tsx",
         "dependencies": ["framer-motion"]
       },
       "fade": {
         "name": "Fade",
         "description": "A fade animation component",
-        "path": "https://raw.githubusercontent.com/lakinmindfire/animate-ui/refs/heads/dev/packages/registry/components/fade/index.tsx",
         "dependencies": ["framer-motion"]
       }
      
