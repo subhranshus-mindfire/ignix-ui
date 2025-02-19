@@ -1,4 +1,3 @@
-// cli/src/utils/registry.ts
 import axios from 'axios';
 
 interface Component {
