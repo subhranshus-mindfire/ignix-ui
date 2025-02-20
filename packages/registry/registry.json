@@ -10,12 +10,11 @@
         "description": "A fade animation component",
         "dependencies": ["framer-motion"]
       },
-      "accordian": {
-        "name": "Accordian",
+      "accordion": {
+        "name": "Accordion",
         "description": "A slide animation component with configurable direction",
-        "dependencies": ["@radix-ui/react-accordion","lucide-react"]
+        "dependencies": ["@radix-ui/react-accordion","lucide-react","framer-motion"]
       }
-     
     }
   }
   
