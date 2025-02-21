@@ -1,4 +1,3 @@
-// utils/components.ts
 import axios from 'axios';
 import fs from 'fs-extra';
 import path from 'path';
@@ -9,20 +8,38 @@ const REGISTRY_BASE_URL = 'https://raw.githubusercontent.com/lakinmindfire/anima
 
 export async function getComponent(name: string): Promise<ComponentConfig | null> {
   try {
-    // Fetch registry
-    const { data: registry } = await axios.get<Registry>(`${REGISTRY_BASE_URL}/registry.json`);
+    console.log(`Fetching registry from: ${REGISTRY_BASE_URL}/registry.json`);
     
-    const componentInfo = registry.components[name];
-    if (!componentInfo) {
-      throw new Error(`Component ${name} not found in registry`);
+    // Fetch registry
+    const response = await axios.get<Registry>(`${REGISTRY_BASE_URL}/registry.json`);
+    const registry = response.data;
+    
+    // Validate registry
+    if (!registry || !registry.components) {
+      throw new Error('Invalid registry format: Missing components object');
     }
+
+    // Look up component (case insensitive)
+    const componentInfo = registry.components[name.toLowerCase()];
+    if (!componentInfo) {
+      throw new Error(`Component "${name}" not found in registry`);
+    }
+
+    console.log(`Fetching files for component: ${name}`);
 
     // Fetch all component files
     const files = await Promise.all(
       Object.entries(componentInfo.files).map(async ([key, fileInfo]) => {
-        const fileUrl = `${REGISTRY_BASE_URL}/${fileInfo.path}`;
-        const { data: content } = await axios.get(fileUrl);
-        return [key, { ...fileInfo, content }];
+        try {
+          const fileUrl = `${REGISTRY_BASE_URL}/${fileInfo.path}`;
+          console.log(`Fetching file: ${fileUrl}`);
+          
+          const { data: content } = await axios.get(fileUrl);
+          return [key, { ...fileInfo, content }];
+        } catch (error) {
+          console.error(`Error fetching file ${fileInfo.path}:`, error);
+          throw new Error(`Failed to fetch file: ${fileInfo.path}`);
+        }
       })
     );
 
@@ -40,33 +57,39 @@ export async function installComponent(
   component: ComponentConfig,
   projectRoot: string = process.cwd()
 ): Promise<void> {
-  // Create base directories
   const componentsDir = path.join(projectRoot, 'src/components/ui');
   await fs.ensureDir(componentsDir);
 
-  // Create component directory
   const componentDir = path.join(componentsDir, component.name.toLowerCase());
   await fs.ensureDir(componentDir);
 
   // Install all component files
   for (const [_, fileInfo] of Object.entries(component.files)) {
     const filePath = path.join(componentDir, path.basename(fileInfo.path));
-    if (fileInfo.content !== undefined) {
-      await fs.writeFile(filePath, fileInfo.content);
-    } else {
-      console.warn(`File content for ${filePath} is undefined.`);
+    
+    if (!fileInfo.content) {
+      throw new Error(`Missing content for file: ${fileInfo.path}`);
     }
 
-    // If this is a config file, handle Tailwind configuration
+    await fs.writeFile(filePath, fileInfo.content);
+    console.log(`Written file: ${filePath}`);
+
+    // Handle config files
     if (fileInfo.type === 'config' && fileInfo.content) {
-      const config: ComponentConfigFile = eval(`(${fileInfo.content})`);
-      if (config.tailwind) {
-        await mergeTailwindConfig(config.tailwind, projectRoot);
+      try {
+        const config: ComponentConfigFile = eval(`(${fileInfo.content})`);
+        if (config.tailwind) {
+          await mergeTailwindConfig(config.tailwind, projectRoot);
+          console.log('Updated Tailwind configuration');
+        }
+      } catch (error) {
+        console.error('Error processing config file:', error);
+        throw error;
       }
     }
   }
 
-  // Create/update index.ts for component exports
+  // Update index.ts
   const indexPath = path.join(componentsDir, 'index.ts');
   const indexContent = await fs.pathExists(indexPath)
     ? await fs.readFile(indexPath, 'utf-8')
@@ -75,12 +98,19 @@ export async function installComponent(
   const exportStatement = `export * from './${component.name.toLowerCase()}';\n`;
   if (!indexContent.includes(exportStatement)) {
     await fs.appendFile(indexPath, exportStatement);
+    console.log('Updated component index file');
   }
 }
 
 export async function getAvailableComponents(): Promise<ComponentConfig[]> {
   try {
+    console.log('Fetching available components...');
     const { data: registry } = await axios.get<Registry>(`${REGISTRY_BASE_URL}/registry.json`);
+    
+    if (!registry || !registry.components) {
+      throw new Error('Invalid registry format: Missing components object');
+    }
+    
     return Object.values(registry.components);
   } catch (error) {
     console.error('Error loading components from registry:', error);

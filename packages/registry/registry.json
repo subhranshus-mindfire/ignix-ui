@@ -23,33 +23,34 @@
         "main": {
           "path": "components/accordion/index.tsx",
           "type": "component"
+        }
       }
-    }
-  },
-  "toast": {
-    "name": "Toast",
-    "description": "A toast notification component with animation and different variants",
-    "dependencies": [
-      "@radix-ui/react-toast",
-      "framer-motion",
-      "lucide-react"
-    ],
-    "files": {
-      "main": {
-        "path": "components/toast/index.tsx",
-        "type": "component"
-      },
-      "types": {
-        "path": "components/toast/types.ts",
-        "type": "types"
-      },
-      "hook": {
-        "path": "components/toast/use-toast.ts",
-        "type": "hook"
-      },
-      "config": {
-        "path": "components/toast/config.ts",
-        "type": "config"
+    },
+    "toast": {
+      "name": "Toast",
+      "description": "A toast notification component with animation and different variants",
+      "dependencies": [
+        "@radix-ui/react-toast",
+        "framer-motion",
+        "lucide-react"
+      ],
+      "files": {
+        "main": {
+          "path": "components/toast/index.tsx",
+          "type": "component"
+        },
+        "types": {
+          "path": "components/toast/types.ts",
+          "type": "types"
+        },
+        "hook": {
+          "path": "components/toast/use-toast.ts",
+          "type": "hook"
+        },
+        "config": {
+          "path": "components/toast/config.ts",
+          "type": "config"
+        }
       }
     }
   }
