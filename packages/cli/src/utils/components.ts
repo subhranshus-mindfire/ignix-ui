@@ -84,17 +84,23 @@ export async function installComponent(
     // Install all component files
     for (const [key, fileInfo] of Object.entries(component.files)) {
       try {
-        const filePath = path.join(componentDir, path.basename(fileInfo.path));
-        
         if (!fileInfo.content) {
           throw new Error(`Missing content for file: ${fileInfo.path}`);
         }
 
+        // Skip writing config files to disk, but still process them
+        if (fileInfo.type === 'tailwind-config') {
+          await processFile(fileInfo, fileInfo.content, projectRoot);
+          continue;
+        }
+
+        // Write other files to disk
+        const filePath = path.join(componentDir, path.basename(fileInfo.path));
         await fs.writeFile(filePath, fileInfo.content);
         console.log(`Written file: ${filePath}`);
         processedFiles.push(filePath);
 
-        // Handle config files
+        // Process the file (for non-config files)
         await processFile(fileInfo, fileInfo.content, projectRoot);
       } catch (error) {
         console.error(`Error processing file ${key}:`, error);

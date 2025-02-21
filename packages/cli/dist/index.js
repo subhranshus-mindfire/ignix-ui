@@ -228,10 +228,14 @@ async function installComponent(component, projectRoot2 = process.cwd()) {
     const processedFiles = [];
     for (const [key, fileInfo] of Object.entries(component.files)) {
       try {
-        const filePath = path3.join(componentDir, path3.basename(fileInfo.path));
         if (!fileInfo.content) {
           throw new Error(`Missing content for file: ${fileInfo.path}`);
         }
+        if (fileInfo.type === "tailwind-config") {
+          await processFile(fileInfo, fileInfo.content, projectRoot2);
+          continue;
+        }
+        const filePath = path3.join(componentDir, path3.basename(fileInfo.path));
         await fs3.writeFile(filePath, fileInfo.content);
         console.log(`Written file: ${filePath}`);
         processedFiles.push(filePath);

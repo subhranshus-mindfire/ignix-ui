@@ -10,8 +10,8 @@
 
  WARN  [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mUsing direct eval with a bundler is not recommended and may cause problems[0m [direct-eval]
 
-    src/utils/components.ts:156:19:
-[37m      156 │     const config = [32meval[37m(`(${configMatch[1]})`);
+    src/utils/components.ts:162:19:
+[37m      162 │     const config = [32meval[37m(`(${configMatch[1]})`);
           ╵                    [32m~~~~[0m
 
   You can read more about direct eval and bundling here: [4mhttps://esbuild.github.io/link/direct-eval[0m
@@ -26,8 +26,8 @@
          ╵                          [32m~~~~[0m
 
   You can read more about direct eval and bundling here: [4mhttps://esbuild.github.io/link/direct-eval[0m
+[32mESM[39m [1mdist\index.js [22m[32m15.06 KB[39m
+
+[32mESM[39m ⚡️ Build success in 101ms
 
 
-
-[32mESM[39m [1mdist\index.js [22m[32m14.91 KB[39m
-[32mESM[39m ⚡️ Build success in 91ms
