@@ -1,26 +1,29 @@
-// types/index.ts
-export interface ComponentFile {
-    path: string;
-    type: 'component' | 'types' | 'hook' | 'utils' | 'config';
-    content?: string;
-  }
-  
-  export interface ComponentConfig {
+export interface ComponentConfig {
     name: string;
     description: string;
-    dependencies: string[];
-    files: Record<string, ComponentFile>;
+    dependencies?: string[];
+    files: {
+      [key: string]: {
+        path: string;
+        type: string;
+        content?: string;
+      };
+    };
   }
   
   export interface Registry {
-    components: Record<string, ComponentConfig>;
-  }
-  
-  export interface TailwindConfig {
-    keyframes?: Record<string, Record<string, any>>;
-    animation?: Record<string, string>;
+    components: {
+      [key: string]: ComponentConfig;
+    };
   }
   
   export interface ComponentConfigFile {
-    tailwind?: TailwindConfig;
+    tailwind?: {
+      theme?: {
+        extend?: {
+          keyframes?: Record<string, unknown>;
+          animation?: Record<string, string>;
+        };
+      };
+    };
   }

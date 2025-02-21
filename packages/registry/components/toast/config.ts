@@ -1,9 +1,8 @@
-// registry/components/toast/config.ts
-export default {
+module.exports = {
     tailwind: {
       keyframes: {
         toastIn: {
-          from: { 
+          from: {
             opacity: '0',
             transform: 'translateY(20px) scale(0.8)'
           },

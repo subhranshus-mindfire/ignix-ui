@@ -136,14 +136,21 @@ import path3 from "path";
 // src/utils/tailwind.ts
 import fs2 from "fs-extra";
 import path2 from "path";
-async function mergeTailwindConfig(config2, projectRoot2 = process.cwd()) {
+async function mergeTailwindConfig(configToMerge, projectRoot = process.cwd()) {
   var _a, _b, _c, _d, _e;
-  const configPath = path2.join(projectRoot2, "tailwind.config.js");
-  if (!await fs2.pathExists(configPath)) {
-    throw new Error("tailwind.config.js not found");
+  const configPath = path2.join(projectRoot, "tailwind.config.ts");
+  const jsConfigPath = path2.join(projectRoot, "tailwind.config.js");
+  const finalConfigPath = await fs2.pathExists(configPath) ? configPath : jsConfigPath;
+  if (!await fs2.pathExists(finalConfigPath)) {
+    throw new Error("tailwind.config.ts or tailwind.config.js not found");
   }
-  let existingConfig = await import(configPath);
-  existingConfig = {
+  const configContent = await fs2.readFile(finalConfigPath, "utf-8");
+  const configMatch = configContent.match(/module\.exports\s*=\s*({[\s\S]*})/);
+  if (!configMatch) {
+    throw new Error("Invalid Tailwind config format");
+  }
+  const existingConfig = eval(`(${configMatch[1]})`);
+  const mergedConfig = {
     ...existingConfig,
     theme: {
       ...existingConfig.theme,
@@ -151,17 +158,18 @@ async function mergeTailwindConfig(config2, projectRoot2 = process.cwd()) {
         ...(_a = existingConfig.theme) == null ? void 0 : _a.extend,
         keyframes: {
           ...(_c = (_b = existingConfig.theme) == null ? void 0 : _b.extend) == null ? void 0 : _c.keyframes,
-          ...config2.keyframes
+          ...configToMerge.keyframes
         },
         animation: {
           ...(_e = (_d = existingConfig.theme) == null ? void 0 : _d.extend) == null ? void 0 : _e.animation,
-          ...config2.animation
+          ...configToMerge.animation
         }
       }
     }
   };
-  const configContent = `module.exports = ${JSON.stringify(existingConfig, null, 2)}`;
-  await fs2.writeFile(configPath, configContent);
+  const newConfigContent = `/** @type {import('tailwindcss').Config} */
+module.exports = ${JSON.stringify(mergedConfig, null, 2)}`;
+  await fs2.writeFile(finalConfigPath, newConfigContent);
 }
 
 // src/utils/components.ts
@@ -174,65 +182,120 @@ async function getComponent(name) {
     if (!registry || !registry.components) {
       throw new Error("Invalid registry format: Missing components object");
     }
-    const componentInfo = registry.components[name.toLowerCase()];
+    const componentName = name.toLowerCase();
+    const componentInfo = registry.components[componentName];
     if (!componentInfo) {
       throw new Error(`Component "${name}" not found in registry`);
     }
     console.log(`Fetching files for component: ${name}`);
     const files = await Promise.all(
-      Object.entries(componentInfo.files).map(async ([key, fileInfo2]) => {
+      Object.entries(componentInfo.files).map(async ([key, fileInfo]) => {
         try {
-          const fileUrl = `${REGISTRY_BASE_URL}/${fileInfo2.path}`;
+          const fileUrl = `${REGISTRY_BASE_URL}/${fileInfo.path}`;
           console.log(`Fetching file: ${fileUrl}`);
-          const { data: content } = await axios.get(fileUrl);
-          return [key, { ...fileInfo2, content }];
+          const { data: content2 } = await axios.get(fileUrl);
+          if (typeof content2 !== "string") {
+            throw new Error(`Invalid content type for file: ${fileInfo.path}`);
+          }
+          return [key, { ...fileInfo, content: content2 }];
         } catch (error) {
-          console.error(`Error fetching file ${fileInfo2.path}:`, error);
-          throw new Error(`Failed to fetch file: ${fileInfo2.path}`);
+          console.error(`Error fetching file ${fileInfo.path}:`, error);
+          throw new Error(`Failed to fetch file: ${fileInfo.path}`);
         }
       })
     );
-    return {
+    const component = {
       ...componentInfo,
       files: Object.fromEntries(files)
     };
+    return component;
   } catch (error) {
     console.error(`Error fetching component ${name}:`, error);
     return null;
   }
 }
-async function installComponent(component, projectRoot = process.cwd()) {
-  const componentsDir = path3.join(projectRoot, "src/components/ui");
-  await fs3.ensureDir(componentsDir);
-  const componentDir = path3.join(componentsDir, component.name.toLowerCase());
-  await fs3.ensureDir(componentDir);
-  for (const [_, fileInfo] of Object.entries(component.files)) {
-    const filePath = path3.join(componentDir, path3.basename(fileInfo.path));
-    if (!fileInfo.content) {
-      throw new Error(`Missing content for file: ${fileInfo.path}`);
-    }
-    await fs3.writeFile(filePath, fileInfo.content);
-    console.log(`Written file: ${filePath}`);
-    if (fileInfo.type === "config" && fileInfo.content) {
+async function installComponent(component, projectRoot2 = process.cwd()) {
+  try {
+    const componentsDir = path3.join(projectRoot2, "src/components/ui");
+    await fs3.ensureDir(componentsDir);
+    const componentDir = path3.join(componentsDir, component.name.toLowerCase());
+    await fs3.ensureDir(componentDir);
+    const processedFiles = [];
+    for (const [key, fileInfo] of Object.entries(component.files)) {
       try {
-        const config = eval(`(${fileInfo.content})`);
-        if (config.tailwind) {
-          await mergeTailwindConfig(config.tailwind, projectRoot);
-          console.log("Updated Tailwind configuration");
+        const filePath = path3.join(componentDir, path3.basename(fileInfo.path));
+        if (!fileInfo.content) {
+          throw new Error(`Missing content for file: ${fileInfo.path}`);
+        }
+        await fs3.writeFile(filePath, fileInfo.content);
+        console.log(`Written file: ${filePath}`);
+        processedFiles.push(filePath);
+        if (fileInfo.type === "config") {
+          await processConfigFile(fileInfo.content, projectRoot2);
         }
       } catch (error) {
-        console.error("Error processing config file:", error);
+        console.error(`Error processing file ${key}:`, error);
+        await cleanupFailedInstallation(processedFiles);
         throw error;
       }
     }
+    await updateIndexFile(componentsDir, component.name);
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`Failed to install component: ${error.message}`);
+    } else {
+      throw new Error("Failed to install component: Unknown error");
+    }
   }
+}
+async function processConfigFile(content, projectRoot) {
+  var _a;
+  try {
+    const configMatch = content.match(/module\.exports\s*=\s*({[\s\S]*})/);
+    if (!configMatch) {
+      throw new Error("Invalid config file format");
+    }
+    const config = eval(`(${configMatch[1]})`);
+    if ((_a = config.theme) == null ? void 0 : _a.extend) {
+      await mergeTailwindConfig(config.theme.extend, projectRoot);
+      console.log("Updated Tailwind configuration");
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`Error processing config file: ${error.message}`);
+    } else {
+      throw new Error("Error processing config file: Unknown error");
+    }
+  }
+}
+async function updateIndexFile(componentsDir, componentName) {
   const indexPath = path3.join(componentsDir, "index.ts");
-  const indexContent = await fs3.pathExists(indexPath) ? await fs3.readFile(indexPath, "utf-8") : "";
-  const exportStatement = `export * from './${component.name.toLowerCase()}';
+  const exportStatement = `export * from './${componentName.toLowerCase()}';
 `;
-  if (!indexContent.includes(exportStatement)) {
-    await fs3.appendFile(indexPath, exportStatement);
-    console.log("Updated component index file");
+  try {
+    const indexContent = await fs3.pathExists(indexPath) ? await fs3.readFile(indexPath, "utf-8") : "";
+    if (!indexContent.includes(exportStatement)) {
+      await fs3.appendFile(indexPath, exportStatement);
+      console.log("Updated component index file");
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`Failed to update index file: ${error.message}`);
+    } else {
+      throw new Error("Failed to update index file: Unknown error");
+    }
+  }
+}
+async function cleanupFailedInstallation(files) {
+  for (const file of files) {
+    try {
+      if (await fs3.pathExists(file)) {
+        await fs3.remove(file);
+        console.log(`Cleaned up file: ${file}`);
+      }
+    } catch (error) {
+      console.error(`Failed to clean up file ${file}:`, error);
+    }
   }
 }
 async function getAvailableComponents() {
@@ -281,8 +344,8 @@ async function add(componentName) {
     }
     componentName = componentName.toLowerCase();
     spinner = ora2(`Fetching ${componentName} component...`).start();
-    const component2 = await getComponent(componentName);
-    if (!component2) {
+    const component = await getComponent(componentName);
+    if (!component) {
       spinner.fail(chalk2.red(`Component "${componentName}" not found`));
       const components = await getAvailableComponents();
       if (components.length > 0) {
@@ -293,18 +356,18 @@ async function add(componentName) {
       }
       process.exit(1);
     }
-    spinner.text = `Installing ${component2.name} component...`;
+    spinner.text = `Installing ${component.name} component...`;
     const projectRoot2 = process.cwd();
     const srcDir = path4.join(projectRoot2, "src");
     if (!await fs4.pathExists(srcDir)) {
       spinner.fail(chalk2.red("Project structure not found. Make sure you're in the correct directory."));
       process.exit(1);
     }
-    if ((_a = component2.dependencies) == null ? void 0 : _a.length) {
-      spinner.text = `Installing dependencies for ${component2.name}...`;
+    if ((_a = component.dependencies) == null ? void 0 : _a.length) {
+      spinner.text = `Installing dependencies for ${component.name}...`;
       try {
         await addDependencies({
-          dependencies: component2.dependencies
+          dependencies: component.dependencies
         });
       } catch (error) {
         spinner.fail(chalk2.red("Failed to install dependencies"));
@@ -312,24 +375,24 @@ async function add(componentName) {
         process.exit(1);
       }
     }
-    spinner.text = `Installing ${component2.name} component files...`;
+    spinner.text = `Installing ${component.name} component files...`;
     try {
-      await installComponent(component2);
+      await installComponent(component);
     } catch (error) {
-      spinner.fail(chalk2.red(`Failed to install ${component2.name} component files`));
+      spinner.fail(chalk2.red(`Failed to install ${component.name} component files`));
       console.error(error);
       process.exit(1);
     }
-    spinner.succeed(chalk2.green(`Successfully added ${component2.name} component`));
+    spinner.succeed(chalk2.green(`Successfully added ${component.name} component`));
     console.log("\nYou can now import the component from:");
     console.log(
       chalk2.cyan(
-        `import { ${component2.name} } from "@/components/ui/${component2.name.toLowerCase()}"`
+        `import { ${component.name} } from "@/components/ui/${component.name.toLowerCase()}"`
       )
     );
-    if (Object.keys(component2.files).length > 1) {
+    if (Object.keys(component.files).length > 1) {
       console.log("\nThis component includes multiple files:");
-      Object.entries(component2.files).forEach(([key, file]) => {
+      Object.entries(component.files).forEach(([key, file]) => {
         console.log(chalk2.cyan(`- ${file.path}`));
       });
     }
@@ -348,7 +411,7 @@ program.name("animation-ui").description("CLI for adding animation-ui components
 program.command("init").description("Initialize animations in your project").option("-y, --yes", "Skip confirmation prompt").action(async (options) => {
   await init(options);
 });
-program.command("add").description("Add a animation component to your project").argument("[component]", "The component to add").action(async (component2) => {
-  await add(component2);
+program.command("add").description("Add a animation component to your project").argument("[component]", "The component to add").action(async (component) => {
+  await add(component);
 });
 program.parse();
