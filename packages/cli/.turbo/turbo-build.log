@@ -7,16 +7,24 @@
 [34mCLI[39m tsup v7.3.0
 [34mCLI[39m Target: node16
 [34mESM[39m Build start
+X [ERROR] No matching export in "src/utils/components.ts" for import "getAvailableComponents"
 
- WARN  [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mUsing direct eval with a bundler is not recommended and may cause problems[0m [direct-eval]
+    src/commands/add.ts:4:23:
+      4 │ import { getComponent, getAvailableComponents, installComponent } f...
+        ╵                        ~~~~~~~~~~~~~~~~~~~~~~
 
-    src/utils/components.ts:80:44:
-[37m      80 │ ...const config: ComponentConfigFile = [32meval[37m(`(${fileInfo.content})`);
-         ╵                                        [32m~~~~[0m
-
-  You can read more about direct eval and bundling here: [4mhttps://esbuild.github.io/link/direct-eval[0m
-
-
-
-[32mESM[39m [1mdist\index.js [22m[32m11.86 KB[39m
-[32mESM[39m ⚡️ Build success in 55ms
+[31mESM[39m [31mBuild failed[39m
+[31mError: Build failed with 1 error:
+src/commands/add.ts:4:23: ERROR: No matching export in "src/utils/components.ts" for import "getAvailableComponents"
+    at failureErrorWithLog (C:\Users\deepaky\Desktop\foss-projects\AnimateUI\node_modules\esbuild\lib\main.js:1651:15)
+    at C:\Users\deepaky\Desktop\foss-projects\AnimateUI\node_modules\esbuild\lib\main.js:1059:25
+    at runOnEndCallbacks (C:\Users\deepaky\Desktop\foss-projects\AnimateUI\node_modules\esbuild\lib\main.js:1486:45)
+    at buildResponseToResult (C:\Users\deepaky\Desktop\foss-projects\AnimateUI\node_modules\esbuild\lib\main.js:1057:7)
+    at C:\Users\deepaky\Desktop\foss-projects\AnimateUI\node_modules\esbuild\lib\main.js:1086:16
+    at responseCallbacks.<computed> (C:\Users\deepaky\Desktop\foss-projects\AnimateUI\node_modules\esbuild\lib\main.js:704:9)
+    at handleIncomingPacket (C:\Users\deepaky\Desktop\foss-projects\AnimateUI\node_modules\esbuild\lib\main.js:764:9)
+    at Socket.readFromStdout (C:\Users\deepaky\Desktop\foss-projects\AnimateUI\node_modules\esbuild\lib\main.js:680:7)
+    at Socket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:559:12)[39m
+ ELIFECYCLE  Command failed with exit code 1.
+ WARN   Local package.json exists, but node_modules missing, did you mean to install?
