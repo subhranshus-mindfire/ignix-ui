@@ -1,22 +1,35 @@
 // utils/tailwind.ts
 import fs from 'fs-extra';
 import path from 'path';
-import type { TailwindConfig } from '../types';
 
 export async function mergeTailwindConfig(
-  config: TailwindConfig,
+  configToMerge: any,
   projectRoot: string = process.cwd()
 ): Promise<void> {
-  const configPath = path.join(projectRoot, 'tailwind.config.js');
+  const configPath = path.join(projectRoot, 'tailwind.config.ts');
+  const jsConfigPath = path.join(projectRoot, 'tailwind.config.js');
   
-  if (!await fs.pathExists(configPath)) {
-    throw new Error('tailwind.config.js not found');
+  // Determine which config file exists
+  const finalConfigPath = await fs.pathExists(configPath) ? configPath : jsConfigPath;
+  
+  if (!await fs.pathExists(finalConfigPath)) {
+    throw new Error('tailwind.config.ts or tailwind.config.js not found');
   }
 
-  let existingConfig = await import(configPath);
+  // Read the existing config file
+  const configContent = await fs.readFile(finalConfigPath, 'utf-8');
+  
+  // Extract the configuration object
+  const configMatch = configContent.match(/module\.exports\s*=\s*({[\s\S]*})/);
+  if (!configMatch) {
+    throw new Error('Invalid Tailwind config format');
+  }
 
-  // Ensure the theme.extend structure exists
-  existingConfig = {
+  // Parse the existing config
+  const existingConfig = eval(`(${configMatch[1]})`);
+
+  // Deep merge the configurations
+  const mergedConfig = {
     ...existingConfig,
     theme: {
       ...existingConfig.theme,
@@ -24,17 +37,20 @@ export async function mergeTailwindConfig(
         ...existingConfig.theme?.extend,
         keyframes: {
           ...existingConfig.theme?.extend?.keyframes,
-          ...config.keyframes,
+          ...configToMerge.keyframes,
         },
         animation: {
           ...existingConfig.theme?.extend?.animation,
-          ...config.animation,
+          ...configToMerge.animation,
         },
       },
     },
   };
 
+  // Create the new config content
+  const newConfigContent = `/** @type {import('tailwindcss').Config} */
+module.exports = ${JSON.stringify(mergedConfig, null, 2)}`;
+
   // Write the updated config
-  const configContent = `module.exports = ${JSON.stringify(existingConfig, null, 2)}`;
-  await fs.writeFile(configPath, configContent);
+  await fs.writeFile(finalConfigPath, newConfigContent);
 }

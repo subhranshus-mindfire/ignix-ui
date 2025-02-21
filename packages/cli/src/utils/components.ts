@@ -77,10 +77,14 @@ export async function installComponent(
     // Handle config files
     if (fileInfo.type === 'config' && fileInfo.content) {
       try {
-        const config: ComponentConfigFile = eval(`(${fileInfo.content})`);
-        if (config.tailwind) {
-          await mergeTailwindConfig(config.tailwind, projectRoot);
-          console.log('Updated Tailwind configuration');
+        // Extract the configuration object using regex
+        const configMatch = fileInfo.content.match(/module\.exports\s*=\s*({[\s\S]*})/);
+        if (configMatch) {
+          const configObject = eval(`(${configMatch[1]})`);
+          if (configObject.theme?.extend) {
+            await mergeTailwindConfig(configObject.theme.extend, projectRoot);
+            console.log('Updated Tailwind configuration');
+          }
         }
       } catch (error) {
         console.error('Error processing config file:', error);
@@ -99,21 +103,5 @@ export async function installComponent(
   if (!indexContent.includes(exportStatement)) {
     await fs.appendFile(indexPath, exportStatement);
     console.log('Updated component index file');
-  }
-}
-
-export async function getAvailableComponents(): Promise<ComponentConfig[]> {
-  try {
-    console.log('Fetching available components...');
-    const { data: registry } = await axios.get<Registry>(`${REGISTRY_BASE_URL}/registry.json`);
-    
-    if (!registry || !registry.components) {
-      throw new Error('Invalid registry format: Missing components object');
-    }
-    
-    return Object.values(registry.components);
-  } catch (error) {
-    console.error('Error loading components from registry:', error);
-    return [];
   }
 }
