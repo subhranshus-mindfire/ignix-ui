@@ -16,7 +16,7 @@ export async function mergeTailwindConfig(
     throw new Error('tailwind.config.ts or tailwind.config.js not found');
   }
 
-  // Read the existing config file
+  // Read and evaluate the existing config file
   const configContent = await fs.readFile(finalConfigPath, 'utf-8');
   
   // Handle both module.exports and export default syntax
@@ -47,13 +47,23 @@ export async function mergeTailwindConfig(
     },
   };
 
-  // Create the new config content, maintaining the original export syntax
+  // Create the new config content while preserving the format
   const isTypeScript = finalConfigPath.endsWith('.ts');
   const configHeader = isTypeScript 
     ? `import type { Config } from 'tailwindcss'\n\nexport default `
     : `/** @type {import('tailwindcss').Config} */\nmodule.exports = `;
   
-  const newConfigContent = `${configHeader}${JSON.stringify(mergedConfig, null, 2)}`;
+  // Convert the config to a string while preserving the format
+  const configString = JSON.stringify(mergedConfig, null, 2)
+    .replace(/"([^"]+)":/g, '$1:') // Remove quotes from property names
+    .replace(/"/g, "'") // Replace double quotes with single quotes
+    .replace(/'([^']*)':/g, '$1:') // Remove quotes from property names (again, for nested objects)
+    .replace(/\[/g, '[\n    ') // Format arrays
+    .replace(/\]/g, '\n  ]')
+    .replace(/\{\n/g, '{\n  ') // Indent object contents
+    .replace(/\n\}/g, '\n  }');
+
+  const newConfigContent = `${configHeader}${configString}`;
 
   // Write the updated config
   await fs.writeFile(finalConfigPath, newConfigContent);

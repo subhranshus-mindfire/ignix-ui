@@ -27,3 +27,9 @@ export interface ComponentConfig {
       };
     };
   }
+
+export interface FileInfo {
+  path: string;
+  type: 'component' | 'types' | 'hook' | 'tailwind-config';
+  content?: string;
+}

@@ -95,9 +95,7 @@ export async function installComponent(
         processedFiles.push(filePath);
 
         // Handle config files
-        if (fileInfo.type === 'tailwind-config') {
-          await processConfigFile(fileInfo.content, projectRoot);
-        }
+        await processFile(fileInfo, fileInfo.content, projectRoot);
       } catch (error) {
         console.error(`Error processing file ${key}:`, error);
         // Cleanup on failure
@@ -115,6 +113,31 @@ export async function installComponent(
     } else {
       throw new Error('Failed to install component: Unknown error');
     }
+  }
+}
+
+async function processFile(
+  fileInfo: any,
+  content: string,
+  projectRoot: string
+): Promise<void> {
+  switch (fileInfo.type) {
+    case 'component':
+    case 'types':
+    case 'hook': {
+      // Handle component files by creating them in the target directory
+      const targetPath = path.join(projectRoot, fileInfo.path);
+      await fs.ensureDir(path.dirname(targetPath));
+      await fs.writeFile(targetPath, content);
+      break;
+    }
+    case 'tailwind-config': {
+      // Only merge the config, don't create a new file
+      await processConfigFile(content, projectRoot);
+      break;
+    }
+    default:
+      throw new Error(`Unknown file type: ${fileInfo.type}`);
   }
 }
 
