@@ -145,7 +145,7 @@ async function mergeTailwindConfig(configToMerge, projectRoot = process.cwd()) {
     throw new Error("tailwind.config.ts or tailwind.config.js not found");
   }
   const configContent = await fs2.readFile(finalConfigPath, "utf-8");
-  const configMatch = configContent.match(/module\.exports\s*=\s*({[\s\S]*})/);
+  const configMatch = configContent.match(/(?:module\.exports|export default)\s*=\s*({[\s\S]*})/);
   if (!configMatch) {
     throw new Error("Invalid Tailwind config format");
   }
@@ -167,8 +167,13 @@ async function mergeTailwindConfig(configToMerge, projectRoot = process.cwd()) {
       }
     }
   };
-  const newConfigContent = `/** @type {import('tailwindcss').Config} */
-module.exports = ${JSON.stringify(mergedConfig, null, 2)}`;
+  const isTypeScript = finalConfigPath.endsWith(".ts");
+  const configHeader = isTypeScript ? `import type { Config } from 'tailwindcss'
+
+export default ` : `/** @type {import('tailwindcss').Config} */
+module.exports = `;
+  const configString = JSON.stringify(mergedConfig, null, 2).replace(/"([^"]+)":/g, "$1:").replace(/"/g, "'").replace(/'([^']*)':/g, "$1:").replace(/\[/g, "[\n    ").replace(/\]/g, "\n  ]").replace(/\{\n/g, "{\n  ").replace(/\n\}/g, "\n  }");
+  const newConfigContent = `${configHeader}${configString}`;
   await fs2.writeFile(finalConfigPath, newConfigContent);
 }
 
@@ -223,16 +228,18 @@ async function installComponent(component, projectRoot2 = process.cwd()) {
     const processedFiles = [];
     for (const [key, fileInfo] of Object.entries(component.files)) {
       try {
-        const filePath = path3.join(componentDir, path3.basename(fileInfo.path));
         if (!fileInfo.content) {
           throw new Error(`Missing content for file: ${fileInfo.path}`);
         }
+        if (fileInfo.type === "tailwind-config") {
+          await processFile(fileInfo, fileInfo.content, projectRoot2);
+          continue;
+        }
+        const filePath = path3.join(componentDir, path3.basename(fileInfo.path));
         await fs3.writeFile(filePath, fileInfo.content);
         console.log(`Written file: ${filePath}`);
         processedFiles.push(filePath);
-        if (fileInfo.type === "config") {
-          await processConfigFile(fileInfo.content, projectRoot2);
-        }
+        await processFile(fileInfo, fileInfo.content, projectRoot2);
       } catch (error) {
         console.error(`Error processing file ${key}:`, error);
         await cleanupFailedInstallation(processedFiles);
@@ -248,16 +255,33 @@ async function installComponent(component, projectRoot2 = process.cwd()) {
     }
   }
 }
+async function processFile(fileInfo, content2, projectRoot2) {
+  switch (fileInfo.type) {
+    case "component":
+    case "types":
+    case "hook": {
+      const targetPath = path3.join(projectRoot2, fileInfo.path);
+      await fs3.ensureDir(path3.dirname(targetPath));
+      await fs3.writeFile(targetPath, content2);
+      break;
+    }
+    case "tailwind-config": {
+      await processConfigFile(content2, projectRoot2);
+      break;
+    }
+    default:
+      throw new Error(`Unknown file type: ${fileInfo.type}`);
+  }
+}
 async function processConfigFile(content, projectRoot) {
-  var _a;
   try {
     const configMatch = content.match(/module\.exports\s*=\s*({[\s\S]*})/);
     if (!configMatch) {
       throw new Error("Invalid config file format");
     }
     const config = eval(`(${configMatch[1]})`);
-    if ((_a = config.theme) == null ? void 0 : _a.extend) {
-      await mergeTailwindConfig(config.theme.extend, projectRoot);
+    if (config.tailwind) {
+      await mergeTailwindConfig(config.tailwind, projectRoot);
       console.log("Updated Tailwind configuration");
     }
   } catch (error) {

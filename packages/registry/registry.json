@@ -49,7 +49,7 @@
         },
         "config": {
           "path": "components/toast/config.ts",
-          "type": "config"
+          "type": "tailwind-config"
         }
       }
     }

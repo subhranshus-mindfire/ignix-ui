@@ -2,7 +2,7 @@ import axios from 'axios';
 import fs from 'fs-extra';
 import path from 'path';
 import { mergeTailwindConfig } from './tailwind';
-import type { ComponentConfig, Registry, ComponentConfigFile } from '../types';
+import type { ComponentConfig, Registry } from '../types';
 
 const REGISTRY_BASE_URL = 'https://raw.githubusercontent.com/lakinmindfire/animate-ui/feature/tailwind-merge-config/packages/registry';
 
@@ -84,20 +84,24 @@ export async function installComponent(
     // Install all component files
     for (const [key, fileInfo] of Object.entries(component.files)) {
       try {
-        const filePath = path.join(componentDir, path.basename(fileInfo.path));
-        
         if (!fileInfo.content) {
           throw new Error(`Missing content for file: ${fileInfo.path}`);
         }
 
+        // Skip writing config files to disk, but still process them
+        if (fileInfo.type === 'tailwind-config') {
+          await processFile(fileInfo, fileInfo.content, projectRoot);
+          continue;
+        }
+
+        // Write other files to disk
+        const filePath = path.join(componentDir, path.basename(fileInfo.path));
         await fs.writeFile(filePath, fileInfo.content);
         console.log(`Written file: ${filePath}`);
         processedFiles.push(filePath);
 
-        // Handle config files
-        if (fileInfo.type === 'config') {
-          await processConfigFile(fileInfo.content, projectRoot);
-        }
+        // Process the file (for non-config files)
+        await processFile(fileInfo, fileInfo.content, projectRoot);
       } catch (error) {
         console.error(`Error processing file ${key}:`, error);
         // Cleanup on failure
@@ -118,6 +122,31 @@ export async function installComponent(
   }
 }
 
+async function processFile(
+  fileInfo: any,
+  content: string,
+  projectRoot: string
+): Promise<void> {
+  switch (fileInfo.type) {
+    case 'component':
+    case 'types':
+    case 'hook': {
+      // Handle component files by creating them in the target directory
+      const targetPath = path.join(projectRoot, fileInfo.path);
+      await fs.ensureDir(path.dirname(targetPath));
+      await fs.writeFile(targetPath, content);
+      break;
+    }
+    case 'tailwind-config': {
+      // Only merge the config, don't create a new file
+      await processConfigFile(content, projectRoot);
+      break;
+    }
+    default:
+      throw new Error(`Unknown file type: ${fileInfo.type}`);
+  }
+}
+
 /**
  * Processes a config file and updates Tailwind configuration
  */
@@ -132,9 +161,9 @@ async function processConfigFile(content: string, projectRoot: string): Promise<
     // Parse the configuration
     const config = eval(`(${configMatch[1]})`);
     
-    // If there's theme configuration, merge it
-    if (config.theme?.extend) {
-      await mergeTailwindConfig(config.theme.extend, projectRoot);
+    // If there's tailwind configuration, merge it
+    if (config.tailwind) {
+      await mergeTailwindConfig(config.tailwind, projectRoot);
       console.log('Updated Tailwind configuration');
     }
   } catch (error) {
