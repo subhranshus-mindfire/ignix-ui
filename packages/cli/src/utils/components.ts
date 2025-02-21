@@ -1,64 +1,207 @@
 import axios from 'axios';
+import fs from 'fs-extra';
+import path from 'path';
+import { mergeTailwindConfig } from './tailwind';
+import type { ComponentConfig, Registry, ComponentConfigFile } from '../types';
 
-interface Component {
-  name: string;
-  content: string;
-  dependencies?: string[];
-}
+const REGISTRY_BASE_URL = 'https://raw.githubusercontent.com/lakinmindfire/animate-ui/feature/tailwind-merge-config/packages/registry';
 
-export async function getComponent(name: string): Promise<Component | null> {
+/**
+ * Fetches component information and files from the registry
+ */
+export async function getComponent(name: string): Promise<ComponentConfig | null> {
   try {
-    // First fetch the registry to get component info
-    const registryUrl = 'https://raw.githubusercontent.com/lakinmindfire/animate-ui/dev/packages/registry/registry.json';
-    const { data: registry } = await axios.get(registryUrl);
+    console.log(`Fetching registry from: ${REGISTRY_BASE_URL}/registry.json`);
     
-    const componentInfo = registry.components[name];
+    // Fetch registry
+    const response = await axios.get<Registry>(`${REGISTRY_BASE_URL}/registry.json`);
+    const registry = response.data;
+    
+    // Validate registry
+    if (!registry || !registry.components) {
+      throw new Error('Invalid registry format: Missing components object');
+    }
+
+    // Look up component (case insensitive)
+    const componentName = name.toLowerCase();
+    const componentInfo = registry.components[componentName];
+    
     if (!componentInfo) {
-      throw new Error(`Component ${name} not found in registry`);
+      throw new Error(`Component "${name}" not found in registry`);
     }
 
-    // Construct the correct raw URL for the component
-    const componentUrl = `https://raw.githubusercontent.com/lakinmindfire/animate-ui/dev/packages/registry/components/${name}/index.tsx`;
-    const { data: content } = await axios.get(componentUrl);
+    console.log(`Fetching files for component: ${name}`);
 
-    return {
-      name,
-      content,
-      dependencies: componentInfo.dependencies
+    // Fetch all component files
+    const files = await Promise.all(
+      Object.entries(componentInfo.files).map(async ([key, fileInfo]) => {
+        try {
+          const fileUrl = `${REGISTRY_BASE_URL}/${fileInfo.path}`;
+          console.log(`Fetching file: ${fileUrl}`);
+          
+          const { data: content } = await axios.get(fileUrl);
+          if (typeof content !== 'string') {
+            throw new Error(`Invalid content type for file: ${fileInfo.path}`);
+          }
+          
+          return [key, { ...fileInfo, content }];
+        } catch (error) {
+          console.error(`Error fetching file ${fileInfo.path}:`, error);
+          throw new Error(`Failed to fetch file: ${fileInfo.path}`);
+        }
+      })
+    );
+
+    const component: ComponentConfig = {
+      ...componentInfo,
+      files: Object.fromEntries(files)
     };
+
+    return component;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      if (error.response?.status === 404) {
-        console.error(`Component ${name} not found in repository`);
-      } else {
-        console.error(`Error fetching component ${name}:`, error.message);
-      }
-    } else {
-      console.error(`Unexpected error:`, error);
-    }
+    console.error(`Error fetching component ${name}:`, error);
     return null;
   }
 }
 
-export async function getAvailableComponents(): Promise<Component[]> {
+/**
+ * Installs a component and its files into the project
+ */
+export async function installComponent(
+  component: ComponentConfig,
+  projectRoot: string = process.cwd()
+): Promise<void> {
   try {
-    const registryUrl = 'https://raw.githubusercontent.com/lakinmindfire/animate-ui/dev/packages/registry/registry.json';
-    const { data: registry } = await axios.get(registryUrl);
+    const componentsDir = path.join(projectRoot, 'src/components/ui');
+    await fs.ensureDir(componentsDir);
 
-    const components = await Promise.all(
-      Object.entries(registry.components).map(async ([name, componentInfo]) => {
-        const componentUrl = `https://raw.githubusercontent.com/lakinmindfire/animate-ui/dev/packages/registry/components/${name}/index.tsx`;
-        const { data: content } = await axios.get(componentUrl);
+    const componentDir = path.join(componentsDir, component.name.toLowerCase());
+    await fs.ensureDir(componentDir);
 
-        return {
-          name,
-          content,
-          dependencies: (componentInfo as any).dependencies
-        };
-      })
-    );
+    // Track processed files for error reporting
+    const processedFiles: string[] = [];
 
-    return components;
+    // Install all component files
+    for (const [key, fileInfo] of Object.entries(component.files)) {
+      try {
+        const filePath = path.join(componentDir, path.basename(fileInfo.path));
+        
+        if (!fileInfo.content) {
+          throw new Error(`Missing content for file: ${fileInfo.path}`);
+        }
+
+        await fs.writeFile(filePath, fileInfo.content);
+        console.log(`Written file: ${filePath}`);
+        processedFiles.push(filePath);
+
+        // Handle config files
+        if (fileInfo.type === 'config') {
+          await processConfigFile(fileInfo.content, projectRoot);
+        }
+      } catch (error) {
+        console.error(`Error processing file ${key}:`, error);
+        // Cleanup on failure
+        await cleanupFailedInstallation(processedFiles);
+        throw error;
+      }
+    }
+
+    // Update index.ts
+    await updateIndexFile(componentsDir, component.name);
+
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`Failed to install component: ${error.message}`);
+    } else {
+      throw new Error('Failed to install component: Unknown error');
+    }
+  }
+}
+
+/**
+ * Processes a config file and updates Tailwind configuration
+ */
+async function processConfigFile(content: string, projectRoot: string): Promise<void> {
+  try {
+    // Find the configuration object in the file content
+    const configMatch = content.match(/module\.exports\s*=\s*({[\s\S]*})/);
+    if (!configMatch) {
+      throw new Error('Invalid config file format');
+    }
+
+    // Parse the configuration
+    const config = eval(`(${configMatch[1]})`);
+    
+    // If there's theme configuration, merge it
+    if (config.theme?.extend) {
+      await mergeTailwindConfig(config.theme.extend, projectRoot);
+      console.log('Updated Tailwind configuration');
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`Error processing config file: ${error.message}`);
+    } else {
+      throw new Error('Error processing config file: Unknown error');
+    }
+  }
+}
+
+/**
+ * Updates the index.ts file with new component exports
+ */
+async function updateIndexFile(componentsDir: string, componentName: string): Promise<void> {
+  const indexPath = path.join(componentsDir, 'index.ts');
+  const exportStatement = `export * from './${componentName.toLowerCase()}';\n`;
+
+  try {
+    // Read existing content or create empty string
+    const indexContent = await fs.pathExists(indexPath)
+      ? await fs.readFile(indexPath, 'utf-8')
+      : '';
+
+    // Only add export if it doesn't exist
+    if (!indexContent.includes(exportStatement)) {
+      await fs.appendFile(indexPath, exportStatement);
+      console.log('Updated component index file');
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`Failed to update index file: ${error.message}`);
+    } else {
+      throw new Error('Failed to update index file: Unknown error');
+    }
+  }
+}
+
+/**
+ * Cleans up files if installation fails
+ */
+async function cleanupFailedInstallation(files: string[]): Promise<void> {
+  for (const file of files) {
+    try {
+      if (await fs.pathExists(file)) {
+        await fs.remove(file);
+        console.log(`Cleaned up file: ${file}`);
+      }
+    } catch (error) {
+      console.error(`Failed to clean up file ${file}:`, error);
+    }
+  }
+}
+
+/**
+ * Gets a list of all available components from the registry
+ */
+export async function getAvailableComponents(): Promise<ComponentConfig[]> {
+  try {
+    console.log('Fetching available components...');
+    const { data: registry } = await axios.get<Registry>(`${REGISTRY_BASE_URL}/registry.json`);
+    
+    if (!registry || !registry.components) {
+      throw new Error('Invalid registry format: Missing components object');
+    }
+    
+    return Object.values(registry.components);
   } catch (error) {
     console.error('Error loading components from registry:', error);
     return [];

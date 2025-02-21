@@ -7,5 +7,27 @@
 [34mCLI[39m tsup v7.3.0
 [34mCLI[39m Target: node16
 [34mESM[39m Build start
-[32mESM[39m [1mdist\index.js [22m[32m6.78 KB[39m
-[32mESM[39m ⚡️ Build success in 123ms
+
+ WARN  [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mUsing direct eval with a bundler is not recommended and may cause problems[0m [direct-eval]
+
+    src/utils/components.ts:133:19:
+[37m      133 │     const config = [32meval[37m(`(${configMatch[1]})`);
+          ╵                    [32m~~~~[0m
+
+  You can read more about direct eval and bundling here: [4mhttps://esbuild.github.io/link/direct-eval[0m
+
+
+
+
+ WARN  [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mUsing direct eval with a bundler is not recommended and may cause problems[0m [direct-eval]
+
+    src/utils/tailwind.ts:29:25:
+[37m      29 │   const existingConfig = [32meval[37m(`(${configMatch[1]})`);
+         ╵                          [32m~~~~[0m
+
+  You can read more about direct eval and bundling here: [4mhttps://esbuild.github.io/link/direct-eval[0m
+
+
+[32mESM[39m [1mdist\index.js [22m[32m14.09 KB[39m
+
+[32mESM[39m ⚡️ Build success in 134ms

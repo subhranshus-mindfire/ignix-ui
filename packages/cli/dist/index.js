@@ -127,27 +127,185 @@ export function cn(...inputs: ClassValue[]) {
 import prompts from "prompts";
 import ora2 from "ora";
 import chalk2 from "chalk";
-import path2 from "path";
-import fs2 from "fs-extra";
 
 // src/utils/components.ts
 import axios from "axios";
-async function getAvailableComponents() {
+import fs3 from "fs-extra";
+import path3 from "path";
+
+// src/utils/tailwind.ts
+import fs2 from "fs-extra";
+import path2 from "path";
+async function mergeTailwindConfig(configToMerge, projectRoot = process.cwd()) {
+  var _a, _b, _c, _d, _e;
+  const configPath = path2.join(projectRoot, "tailwind.config.ts");
+  const jsConfigPath = path2.join(projectRoot, "tailwind.config.js");
+  const finalConfigPath = await fs2.pathExists(configPath) ? configPath : jsConfigPath;
+  if (!await fs2.pathExists(finalConfigPath)) {
+    throw new Error("tailwind.config.ts or tailwind.config.js not found");
+  }
+  const configContent = await fs2.readFile(finalConfigPath, "utf-8");
+  const configMatch = configContent.match(/module\.exports\s*=\s*({[\s\S]*})/);
+  if (!configMatch) {
+    throw new Error("Invalid Tailwind config format");
+  }
+  const existingConfig = eval(`(${configMatch[1]})`);
+  const mergedConfig = {
+    ...existingConfig,
+    theme: {
+      ...existingConfig.theme,
+      extend: {
+        ...(_a = existingConfig.theme) == null ? void 0 : _a.extend,
+        keyframes: {
+          ...(_c = (_b = existingConfig.theme) == null ? void 0 : _b.extend) == null ? void 0 : _c.keyframes,
+          ...configToMerge.keyframes
+        },
+        animation: {
+          ...(_e = (_d = existingConfig.theme) == null ? void 0 : _d.extend) == null ? void 0 : _e.animation,
+          ...configToMerge.animation
+        }
+      }
+    }
+  };
+  const newConfigContent = `/** @type {import('tailwindcss').Config} */
+module.exports = ${JSON.stringify(mergedConfig, null, 2)}`;
+  await fs2.writeFile(finalConfigPath, newConfigContent);
+}
+
+// src/utils/components.ts
+var REGISTRY_BASE_URL = "https://raw.githubusercontent.com/lakinmindfire/animate-ui/feature/tailwind-merge-config/packages/registry";
+async function getComponent(name) {
   try {
-    const registryUrl = "https://raw.githubusercontent.com/lakinmindfire/animate-ui/dev/packages/registry/registry.json";
-    const { data: registry } = await axios.get(registryUrl);
-    const components = await Promise.all(
-      Object.entries(registry.components).map(async ([name, componentInfo]) => {
-        const componentUrl = `https://raw.githubusercontent.com/lakinmindfire/animate-ui/dev/packages/registry/components/${name}/index.tsx`;
-        const { data: content } = await axios.get(componentUrl);
-        return {
-          name,
-          content,
-          dependencies: componentInfo.dependencies
-        };
+    console.log(`Fetching registry from: ${REGISTRY_BASE_URL}/registry.json`);
+    const response = await axios.get(`${REGISTRY_BASE_URL}/registry.json`);
+    const registry = response.data;
+    if (!registry || !registry.components) {
+      throw new Error("Invalid registry format: Missing components object");
+    }
+    const componentName = name.toLowerCase();
+    const componentInfo = registry.components[componentName];
+    if (!componentInfo) {
+      throw new Error(`Component "${name}" not found in registry`);
+    }
+    console.log(`Fetching files for component: ${name}`);
+    const files = await Promise.all(
+      Object.entries(componentInfo.files).map(async ([key, fileInfo]) => {
+        try {
+          const fileUrl = `${REGISTRY_BASE_URL}/${fileInfo.path}`;
+          console.log(`Fetching file: ${fileUrl}`);
+          const { data: content2 } = await axios.get(fileUrl);
+          if (typeof content2 !== "string") {
+            throw new Error(`Invalid content type for file: ${fileInfo.path}`);
+          }
+          return [key, { ...fileInfo, content: content2 }];
+        } catch (error) {
+          console.error(`Error fetching file ${fileInfo.path}:`, error);
+          throw new Error(`Failed to fetch file: ${fileInfo.path}`);
+        }
       })
     );
-    return components;
+    const component = {
+      ...componentInfo,
+      files: Object.fromEntries(files)
+    };
+    return component;
+  } catch (error) {
+    console.error(`Error fetching component ${name}:`, error);
+    return null;
+  }
+}
+async function installComponent(component, projectRoot2 = process.cwd()) {
+  try {
+    const componentsDir = path3.join(projectRoot2, "src/components/ui");
+    await fs3.ensureDir(componentsDir);
+    const componentDir = path3.join(componentsDir, component.name.toLowerCase());
+    await fs3.ensureDir(componentDir);
+    const processedFiles = [];
+    for (const [key, fileInfo] of Object.entries(component.files)) {
+      try {
+        const filePath = path3.join(componentDir, path3.basename(fileInfo.path));
+        if (!fileInfo.content) {
+          throw new Error(`Missing content for file: ${fileInfo.path}`);
+        }
+        await fs3.writeFile(filePath, fileInfo.content);
+        console.log(`Written file: ${filePath}`);
+        processedFiles.push(filePath);
+        if (fileInfo.type === "config") {
+          await processConfigFile(fileInfo.content, projectRoot2);
+        }
+      } catch (error) {
+        console.error(`Error processing file ${key}:`, error);
+        await cleanupFailedInstallation(processedFiles);
+        throw error;
+      }
+    }
+    await updateIndexFile(componentsDir, component.name);
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`Failed to install component: ${error.message}`);
+    } else {
+      throw new Error("Failed to install component: Unknown error");
+    }
+  }
+}
+async function processConfigFile(content, projectRoot) {
+  var _a;
+  try {
+    const configMatch = content.match(/module\.exports\s*=\s*({[\s\S]*})/);
+    if (!configMatch) {
+      throw new Error("Invalid config file format");
+    }
+    const config = eval(`(${configMatch[1]})`);
+    if ((_a = config.theme) == null ? void 0 : _a.extend) {
+      await mergeTailwindConfig(config.theme.extend, projectRoot);
+      console.log("Updated Tailwind configuration");
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`Error processing config file: ${error.message}`);
+    } else {
+      throw new Error("Error processing config file: Unknown error");
+    }
+  }
+}
+async function updateIndexFile(componentsDir, componentName) {
+  const indexPath = path3.join(componentsDir, "index.ts");
+  const exportStatement = `export * from './${componentName.toLowerCase()}';
+`;
+  try {
+    const indexContent = await fs3.pathExists(indexPath) ? await fs3.readFile(indexPath, "utf-8") : "";
+    if (!indexContent.includes(exportStatement)) {
+      await fs3.appendFile(indexPath, exportStatement);
+      console.log("Updated component index file");
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`Failed to update index file: ${error.message}`);
+    } else {
+      throw new Error("Failed to update index file: Unknown error");
+    }
+  }
+}
+async function cleanupFailedInstallation(files) {
+  for (const file of files) {
+    try {
+      if (await fs3.pathExists(file)) {
+        await fs3.remove(file);
+        console.log(`Cleaned up file: ${file}`);
+      }
+    } catch (error) {
+      console.error(`Failed to clean up file ${file}:`, error);
+    }
+  }
+}
+async function getAvailableComponents() {
+  try {
+    console.log("Fetching available components...");
+    const { data: registry } = await axios.get(`${REGISTRY_BASE_URL}/registry.json`);
+    if (!registry || !registry.components) {
+      throw new Error("Invalid registry format: Missing components object");
+    }
+    return Object.values(registry.components);
   } catch (error) {
     console.error("Error loading components from registry:", error);
     return [];
@@ -155,16 +313,28 @@ async function getAvailableComponents() {
 }
 
 // src/commands/add.ts
+import path4 from "path";
+import fs4 from "fs-extra";
 async function add(componentName) {
   var _a;
+  let spinner;
   try {
-    const components = await getAvailableComponents();
     if (!componentName) {
+      const components = await getAvailableComponents();
+      if (!components.length) {
+        console.log(chalk2.red("\nNo components found in registry"));
+        process.exit(1);
+      }
       const response = await prompts({
         type: "select",
         name: "component",
         message: "Select a component to add",
-        choices: components.map((c) => ({ title: c.name, value: c.name }))
+        choices: components.map((c) => ({
+          title: c.name,
+          value: c.name.toLowerCase(),
+          // Ensure lowercase for consistency
+          description: c.description
+        }))
       });
       componentName = response.component;
     }
@@ -172,37 +342,65 @@ async function add(componentName) {
       console.log(chalk2.red("\nNo component selected"));
       process.exit(1);
     }
-    const component = components.find((c) => c.name === componentName);
+    componentName = componentName.toLowerCase();
+    spinner = ora2(`Fetching ${componentName} component...`).start();
+    const component = await getComponent(componentName);
     if (!component) {
-      console.log(chalk2.red(`
-Component "${componentName}" not found`));
-      console.log(
-        "Available components:",
-        components.map((c) => c.name).join(", ")
-      );
+      spinner.fail(chalk2.red(`Component "${componentName}" not found`));
+      const components = await getAvailableComponents();
+      if (components.length > 0) {
+        console.log("\nAvailable components:");
+        components.forEach((c) => {
+          console.log(chalk2.cyan(`- ${c.name}: ${c.description}`));
+        });
+      }
       process.exit(1);
     }
-    const spinner = ora2(`Adding ${component.name} component...`).start();
-    const componentDir = path2.resolve("src/components/ui");
-    await fs2.ensureDir(componentDir);
-    await fs2.writeFile(
-      path2.join(componentDir, `${component.name}.tsx`),
-      component.content
-    );
-    if ((_a = component.dependencies) == null ? void 0 : _a.length) {
-      await addDependencies({
-        dependencies: component.dependencies
-      });
+    spinner.text = `Installing ${component.name} component...`;
+    const projectRoot2 = process.cwd();
+    const srcDir = path4.join(projectRoot2, "src");
+    if (!await fs4.pathExists(srcDir)) {
+      spinner.fail(chalk2.red("Project structure not found. Make sure you're in the correct directory."));
+      process.exit(1);
     }
-    spinner.succeed(chalk2.green(`Added ${component.name} component`));
+    if ((_a = component.dependencies) == null ? void 0 : _a.length) {
+      spinner.text = `Installing dependencies for ${component.name}...`;
+      try {
+        await addDependencies({
+          dependencies: component.dependencies
+        });
+      } catch (error) {
+        spinner.fail(chalk2.red("Failed to install dependencies"));
+        console.error(error);
+        process.exit(1);
+      }
+    }
+    spinner.text = `Installing ${component.name} component files...`;
+    try {
+      await installComponent(component);
+    } catch (error) {
+      spinner.fail(chalk2.red(`Failed to install ${component.name} component files`));
+      console.error(error);
+      process.exit(1);
+    }
+    spinner.succeed(chalk2.green(`Successfully added ${component.name} component`));
     console.log("\nYou can now import the component from:");
     console.log(
       chalk2.cyan(
-        `import { ${component.name} } from "@/components/ui/${component.name}"`
+        `import { ${component.name} } from "@/components/ui/${component.name.toLowerCase()}"`
       )
     );
+    if (Object.keys(component.files).length > 1) {
+      console.log("\nThis component includes multiple files:");
+      Object.entries(component.files).forEach(([key, file]) => {
+        console.log(chalk2.cyan(`- ${file.path}`));
+      });
+    }
   } catch (error) {
-    console.error(chalk2.red("Failed to add component:"), error);
+    if (spinner) {
+      spinner.fail(chalk2.red("Failed to add component"));
+    }
+    console.error("\nError details:", error);
     process.exit(1);
   }
 }
