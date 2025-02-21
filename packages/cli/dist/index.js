@@ -127,27 +127,99 @@ export function cn(...inputs: ClassValue[]) {
 import prompts from "prompts";
 import ora2 from "ora";
 import chalk2 from "chalk";
-import path2 from "path";
-import fs2 from "fs-extra";
 
 // src/utils/components.ts
 import axios from "axios";
-async function getAvailableComponents() {
+import fs3 from "fs-extra";
+import path3 from "path";
+
+// src/utils/tailwind.ts
+import fs2 from "fs-extra";
+import path2 from "path";
+async function mergeTailwindConfig(config2, projectRoot2 = process.cwd()) {
+  var _a, _b, _c, _d, _e;
+  const configPath = path2.join(projectRoot2, "tailwind.config.js");
+  if (!await fs2.pathExists(configPath)) {
+    throw new Error("tailwind.config.js not found");
+  }
+  let existingConfig = await import(configPath);
+  existingConfig = {
+    ...existingConfig,
+    theme: {
+      ...existingConfig.theme,
+      extend: {
+        ...(_a = existingConfig.theme) == null ? void 0 : _a.extend,
+        keyframes: {
+          ...(_c = (_b = existingConfig.theme) == null ? void 0 : _b.extend) == null ? void 0 : _c.keyframes,
+          ...config2.keyframes
+        },
+        animation: {
+          ...(_e = (_d = existingConfig.theme) == null ? void 0 : _d.extend) == null ? void 0 : _e.animation,
+          ...config2.animation
+        }
+      }
+    }
+  };
+  const configContent = `module.exports = ${JSON.stringify(existingConfig, null, 2)}`;
+  await fs2.writeFile(configPath, configContent);
+}
+
+// src/utils/components.ts
+var REGISTRY_BASE_URL = "https://raw.githubusercontent.com/lakinmindfire/animate-ui/dev/packages/registry";
+async function getComponent(name) {
   try {
-    const registryUrl = "https://raw.githubusercontent.com/lakinmindfire/animate-ui/dev/packages/registry/registry.json";
-    const { data: registry } = await axios.get(registryUrl);
-    const components = await Promise.all(
-      Object.entries(registry.components).map(async ([name, componentInfo]) => {
-        const componentUrl = `https://raw.githubusercontent.com/lakinmindfire/animate-ui/dev/packages/registry/components/${name}/index.tsx`;
-        const { data: content } = await axios.get(componentUrl);
-        return {
-          name,
-          content,
-          dependencies: componentInfo.dependencies
-        };
+    const { data: registry } = await axios.get(`${REGISTRY_BASE_URL}/registry.json`);
+    const componentInfo = registry.components[name];
+    if (!componentInfo) {
+      throw new Error(`Component ${name} not found in registry`);
+    }
+    const files = await Promise.all(
+      Object.entries(componentInfo.files).map(async ([key, fileInfo2]) => {
+        const fileUrl = `${REGISTRY_BASE_URL}/${fileInfo2.path}`;
+        const { data: content } = await axios.get(fileUrl);
+        return [key, { ...fileInfo2, content }];
       })
     );
-    return components;
+    return {
+      ...componentInfo,
+      files: Object.fromEntries(files)
+    };
+  } catch (error) {
+    console.error(`Error fetching component ${name}:`, error);
+    return null;
+  }
+}
+async function installComponent(component, projectRoot = process.cwd()) {
+  const componentsDir = path3.join(projectRoot, "src/components/ui");
+  await fs3.ensureDir(componentsDir);
+  const componentDir = path3.join(componentsDir, component.name.toLowerCase());
+  await fs3.ensureDir(componentDir);
+  for (const [_, fileInfo] of Object.entries(component.files)) {
+    const filePath = path3.join(componentDir, path3.basename(fileInfo.path));
+    if (fileInfo.content !== void 0) {
+      await fs3.writeFile(filePath, fileInfo.content);
+    } else {
+      console.warn(`File content for ${filePath} is undefined.`);
+    }
+    if (fileInfo.type === "config" && fileInfo.content) {
+      const config = eval(`(${fileInfo.content})`);
+      if (config.tailwind) {
+        await mergeTailwindConfig(config.tailwind, projectRoot);
+      }
+    }
+  }
+  const indexPath = path3.join(componentsDir, "index.ts");
+  const indexContent = await fs3.pathExists(indexPath) ? await fs3.readFile(indexPath, "utf-8") : "";
+  const exportStatement = `export * from './${component.name.toLowerCase()}';
+`;
+  if (!indexContent.includes(exportStatement)) {
+    await fs3.appendFile(indexPath, exportStatement);
+  }
+}
+async function getAvailableComponents() {
+  try {
+    const { data: registry } = await axios.get(`${REGISTRY_BASE_URL}/registry.json`);
+    return Object.values(registry.components);
   } catch (error) {
     console.error("Error loading components from registry:", error);
     return [];
@@ -158,13 +230,17 @@ async function getAvailableComponents() {
 async function add(componentName) {
   var _a;
   try {
-    const components = await getAvailableComponents();
     if (!componentName) {
+      const components = await getAvailableComponents();
       const response = await prompts({
         type: "select",
         name: "component",
         message: "Select a component to add",
-        choices: components.map((c) => ({ title: c.name, value: c.name }))
+        choices: components.map((c) => ({
+          title: c.name,
+          value: c.name,
+          description: c.description
+        }))
       });
       componentName = response.component;
     }
@@ -172,33 +248,29 @@ async function add(componentName) {
       console.log(chalk2.red("\nNo component selected"));
       process.exit(1);
     }
-    const component = components.find((c) => c.name === componentName);
-    if (!component) {
-      console.log(chalk2.red(`
-Component "${componentName}" not found`));
+    const spinner = ora2(`Fetching ${componentName} component...`).start();
+    const component2 = await getComponent(componentName);
+    if (!component2) {
+      spinner.fail(chalk2.red(`Component "${componentName}" not found`));
+      const components = await getAvailableComponents();
       console.log(
         "Available components:",
         components.map((c) => c.name).join(", ")
       );
       process.exit(1);
     }
-    const spinner = ora2(`Adding ${component.name} component...`).start();
-    const componentDir = path2.resolve("src/components/ui");
-    await fs2.ensureDir(componentDir);
-    await fs2.writeFile(
-      path2.join(componentDir, `${component.name}.tsx`),
-      component.content
-    );
-    if ((_a = component.dependencies) == null ? void 0 : _a.length) {
+    spinner.text = `Installing ${component2.name} component...`;
+    if ((_a = component2.dependencies) == null ? void 0 : _a.length) {
       await addDependencies({
-        dependencies: component.dependencies
+        dependencies: component2.dependencies
       });
     }
-    spinner.succeed(chalk2.green(`Added ${component.name} component`));
+    await installComponent(component2);
+    spinner.succeed(chalk2.green(`Added ${component2.name} component`));
     console.log("\nYou can now import the component from:");
     console.log(
       chalk2.cyan(
-        `import { ${component.name} } from "@/components/ui/${component.name}"`
+        `import { ${component2.name} } from "@/components/ui/${component2.name.toLowerCase()}"`
       )
     );
   } catch (error) {
@@ -213,7 +285,7 @@ program.name("animation-ui").description("CLI for adding animation-ui components
 program.command("init").description("Initialize animations in your project").option("-y, --yes", "Skip confirmation prompt").action(async (options) => {
   await init(options);
 });
-program.command("add").description("Add a animation component to your project").argument("[component]", "The component to add").action(async (component) => {
-  await add(component);
+program.command("add").description("Add a animation component to your project").argument("[component]", "The component to add").action(async (component2) => {
+  await add(component2);
 });
 program.parse();

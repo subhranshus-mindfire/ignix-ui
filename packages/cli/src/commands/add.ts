@@ -1,22 +1,23 @@
+// commands/add.ts
 import prompts from 'prompts';
 import ora from 'ora';
 import chalk from 'chalk';
-import path from 'path';
-import fs from 'fs-extra';
-import { getAvailableComponents } from '../utils/components';
+import { getComponent, getAvailableComponents, installComponent } from '../utils/components';
 import { addDependencies } from '../utils/dependencies';
 
 export async function add(componentName?: string) {
   try {
-    const components = await getAvailableComponents();
-
     if (!componentName) {
-      // Show list of available components
+      const components = await getAvailableComponents();
       const response = await prompts({
         type: 'select',
         name: 'component',
         message: 'Select a component to add',
-        choices: components.map((c) => ({ title: c.name, value: c.name })),
+        choices: components.map((c) => ({
+          title: c.name,
+          value: c.name,
+          description: c.description,
+        })),
       });
       componentName = response.component;
     }
@@ -26,9 +27,12 @@ export async function add(componentName?: string) {
       process.exit(1);
     }
 
-    const component = components.find((c) => c.name === componentName);
+    const spinner = ora(`Fetching ${componentName} component...`).start();
+    
+    const component = await getComponent(componentName);
     if (!component) {
-      console.log(chalk.red(`\nComponent "${componentName}" not found`));
+      spinner.fail(chalk.red(`Component "${componentName}" not found`));
+      const components = await getAvailableComponents();
       console.log(
         'Available components:',
         components.map((c) => c.name).join(', ')
@@ -36,29 +40,24 @@ export async function add(componentName?: string) {
       process.exit(1);
     }
 
-    const spinner = ora(`Adding ${component.name} component...`).start();
+    spinner.text = `Installing ${component.name} component...`;
 
-    // Create component file
-    const componentDir = path.resolve('src/components/ui');
-    await fs.ensureDir(componentDir);
-    await fs.writeFile(
-      path.join(componentDir, `${component.name}.tsx`),
-      component.content
-    );
-
-    // Install dependencies if needed
+    // Install dependencies first
     if (component.dependencies?.length) {
       await addDependencies({
         dependencies: component.dependencies,
       });
     }
 
+    // Install the component
+    await installComponent(component);
+
     spinner.succeed(chalk.green(`Added ${component.name} component`));
 
     console.log('\nYou can now import the component from:');
     console.log(
       chalk.cyan(
-        `import { ${component.name} } from "@/components/ui/${component.name}"`
+        `import { ${component.name} } from "@/components/ui/${component.name.toLowerCase()}"`
       )
     );
   } catch (error) {

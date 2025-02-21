@@ -1,20 +1,56 @@
 {
-    "components": {
-      "slide": {
-        "name": "Slide",
-        "description": "A slide animation component with configurable direction",
-        "dependencies": ["framer-motion"]
+  "components": {
+    "slide": {
+      "name": "Slide",
+      "description": "A slide animation component with configurable direction",
+      "dependencies": ["framer-motion"],
+      "files": {
+        "main": {
+          "path": "components/slide/index.tsx",
+          "type": "component"
+        }
+      }
+    },
+    "accordion": {
+      "name": "Accordion",
+      "description": "An animated accordion component",
+      "dependencies": [
+        "@radix-ui/react-accordion",
+        "lucide-react",
+        "framer-motion"
+      ],
+      "files": {
+        "main": {
+          "path": "components/accordion/index.tsx",
+          "type": "component"
+      }
+    }
+  },
+  "toast": {
+    "name": "Toast",
+    "description": "A toast notification component with animation and different variants",
+    "dependencies": [
+      "@radix-ui/react-toast",
+      "framer-motion",
+      "lucide-react"
+    ],
+    "files": {
+      "main": {
+        "path": "components/toast/index.tsx",
+        "type": "component"
       },
-      "fade": {
-        "name": "Fade",
-        "description": "A fade animation component",
-        "dependencies": ["framer-motion"]
+      "types": {
+        "path": "components/toast/types.ts",
+        "type": "types"
       },
-      "accordion": {
-        "name": "Accordion",
-        "description": "A slide animation component with configurable direction",
-        "dependencies": ["@radix-ui/react-accordion","lucide-react","framer-motion"]
+      "hook": {
+        "path": "components/toast/use-toast.ts",
+        "type": "hook"
+      },
+      "config": {
+        "path": "components/toast/config.ts",
+        "type": "config"
       }
     }
   }
-  
+}
