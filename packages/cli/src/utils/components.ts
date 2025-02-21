@@ -2,7 +2,7 @@ import axios from 'axios';
 import fs from 'fs-extra';
 import path from 'path';
 import { mergeTailwindConfig } from './tailwind';
-import type { ComponentConfig, Registry, ComponentConfigFile } from '../types';
+import type { ComponentConfig, Registry } from '../types';
 
 const REGISTRY_BASE_URL = 'https://raw.githubusercontent.com/lakinmindfire/animate-ui/feature/tailwind-merge-config/packages/registry';
 
@@ -95,7 +95,7 @@ export async function installComponent(
         processedFiles.push(filePath);
 
         // Handle config files
-        if (fileInfo.type === 'config') {
+        if (fileInfo.type === 'tailwind-config') {
           await processConfigFile(fileInfo.content, projectRoot);
         }
       } catch (error) {
@@ -132,9 +132,9 @@ async function processConfigFile(content: string, projectRoot: string): Promise<
     // Parse the configuration
     const config = eval(`(${configMatch[1]})`);
     
-    // If there's theme configuration, merge it
-    if (config.theme?.extend) {
-      await mergeTailwindConfig(config.theme.extend, projectRoot);
+    // If there's tailwind configuration, merge it
+    if (config.tailwind) {
+      await mergeTailwindConfig(config.tailwind, projectRoot);
       console.log('Updated Tailwind configuration');
     }
   } catch (error) {
