@@ -4,6 +4,7 @@ import path from 'path';
 import { DependencyService } from '../services/DependencyService';
 import { PROJECT_PATHS } from '../config/constants';
 import { Logger } from '../utils/logger';
+import { CLIError } from '../errors/CLIError';
 
 export class InitCommand {
   private logger = new Logger();
@@ -13,6 +14,10 @@ export class InitCommand {
     const spinner = ora('Initializing animation-ui...').start();
 
     try {
+      // Validate environment
+      await this.validateEnvironment();
+
+      // Execute initialization steps
       await this.createProjectStructure();
       await this.createConfigFiles();
       await this.installDependencies();
@@ -21,15 +26,42 @@ export class InitCommand {
       this.logger.printInitInstructions();
     } catch (error) {
       spinner.fail();
-      this.logger.error(error instanceof Error ? error.message : 'Unknown error');
+      if (error instanceof CLIError) {
+        this.logger.error(error.message, error.suggestions);
+      } else {
+        this.logger.error(error instanceof Error ? error.message : 'Unknown error');
+      }
       process.exit(1);
+    }
+  }
+
+  /**
+   * Validates the project environment before initialization
+   */
+  private async validateEnvironment(): Promise<void> {
+    // Check if package.json exists
+    const hasPackageJson = await fs.pathExists(
+      path.resolve(PROJECT_PATHS.CONFIG_FILES.PACKAGE_JSON)
+    );
+    if (!hasPackageJson) {
+      throw new CLIError('No package.json found', 'INVALID_ENV', [
+        'Run `npm init` or `yarn init` first',
+      ]);
+    }
+
+    // Check if project structure is valid
+    const hasNodeModules = await fs.pathExists('node_modules');
+    if (!hasNodeModules) {
+      throw new CLIError('node_modules not found', 'INVALID_ENV', [
+        'Run `npm install` or `yarn install` first',
+      ]);
     }
   }
 
   private async createProjectStructure(): Promise<void> {
     const uiDir = path.resolve(PROJECT_PATHS.COMPONENTS_DIR);
     const utilsDir = path.resolve(PROJECT_PATHS.UTILS_DIR);
-    
+
     await fs.ensureDir(uiDir);
     await fs.ensureDir(utilsDir);
   }
@@ -92,7 +124,7 @@ export function cn(...inputs: ClassValue[]) {
   private async installDependencies(): Promise<void> {
     const dependencies = ['framer-motion', 'clsx', 'tailwind-merge'];
     const devDependencies = ['tailwindcss', 'autoprefixer', 'postcss'];
-    
+
     await this.dependencyService.installDependencies(dependencies);
     await this.dependencyService.installDependencies(devDependencies);
   }

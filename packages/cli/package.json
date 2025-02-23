@@ -1,5 +1,5 @@
 {
-  "name": "animation-ui-cli",
+  "name": "@animation-ui/cli",
   "version": "1.0.0",
   "description": "CLI for installing and managing UI components",
   "main": "dist/index.js",
@@ -14,6 +14,9 @@
     "test": "jest",
     "clean": "rimraf dist",
     "prepare": "npm run clean && npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "dist",

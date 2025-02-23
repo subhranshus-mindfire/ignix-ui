@@ -1,3 +1,7 @@
+/**
+ * Service responsible for tracking CLI usage analytics while respecting user privacy
+ * Implements singleton pattern for consistent tracking across the application
+ */
 import os from 'os';
 import path from 'path';
 import fs from 'fs-extra';
@@ -8,11 +12,18 @@ export class TelemetryService {
   private enabled: boolean;
   private userId: string;
 
+  /**
+   * Private constructor to enforce singleton pattern
+   * Initializes telemetry settings and user identification
+   */
   private constructor() {
     this.enabled = process.env.DISABLE_TELEMETRY !== 'true';
     this.userId = this.getUserId();
   }
 
+  /**
+   * Returns singleton instance of TelemetryService
+   */
   static getInstance(): TelemetryService {
     if (!TelemetryService.instance) {
       TelemetryService.instance = new TelemetryService();
@@ -20,24 +31,50 @@ export class TelemetryService {
     return TelemetryService.instance;
   }
 
+  /**
+   * Tracks a CLI event with retry logic and exponential backoff
+   * @param name - Name of the event to track
+   * @param properties - Additional properties to include with the event
+   */
   async trackEvent(name: string, properties?: Record<string, any>): Promise<void> {
     if (!this.enabled) return;
 
-    const event = {
-      name,
-      properties: {
-        ...properties,
-        os: os.platform(),
-        nodeVersion: process.version,
-        timestamp: new Date().toISOString(),
-        userId: this.userId
-      }
-    };
+    const maxRetries = 3;
+    let retryCount = 0;
 
-    // For future implementation
-    console.debug('Telemetry event:', event);
+    while (retryCount < maxRetries) {
+      try {
+        const event = {
+          name,
+          properties: {
+            ...properties,
+            os: os.platform(),
+            nodeVersion: process.version,
+            timestamp: new Date().toISOString(),
+            userId: this.userId,
+            retryCount,
+          },
+        };
+
+        // TODO: Implement actual telemetry sending
+        // For now just log
+        console.debug('Telemetry event:', event);
+        break;
+      } catch (error) {
+        retryCount++;
+        if (retryCount === maxRetries) {
+          console.error('Failed to send telemetry after retries:', error);
+        }
+        // Exponential backoff between retries
+        await new Promise((resolve) => setTimeout(resolve, Math.pow(2, retryCount) * 100));
+      }
+    }
   }
 
+  /**
+   * Retrieves or generates a unique user ID for telemetry tracking
+   * Stores ID in local config file for persistence
+   */
   private getUserId(): string {
     const configPath = path.join(os.homedir(), '.animation-ui', 'config.json');
     try {
@@ -49,4 +86,4 @@ export class TelemetryService {
       return userId;
     }
   }
-} 
+}

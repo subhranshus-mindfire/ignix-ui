@@ -1,26 +1,23 @@
 {
-    "$schema": "https://json.schemastore.org/tsconfig",
-    "display": "Root",
-    "compilerOptions": {
-      "target": "es2022",
-      "lib": ["dom", "dom.iterable", "esnext"],
-      "allowJs": true,
-      "skipLibCheck": true,
-      "strict": true,
-      "forceConsistentCasingInFileNames": true,
-      "noEmit": true,
-      "esModuleInterop": true,
-      "module": "esnext",
-      "moduleResolution": "node",
-      "resolveJsonModule": true,
-      "isolatedModules": true,
-      "incremental": true,
-       "jsx": "react-jsx",
-      "baseUrl": ".",
-      "paths": {
-        "@animation-ui/core/*": ["packages/core/src/*"]
-      }
-    },
-    "exclude": ["node_modules"]
-  }
-  
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "strict": true,
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "sourceMap": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@animation-ui/*": ["packages/*/src"]
+    }
+  },
+  "exclude": ["**/node_modules", "**/dist", "**/coverage"],
+  "references": [{ "path": "packages/cli" }]
+}

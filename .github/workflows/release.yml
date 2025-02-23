@@ -2,39 +2,48 @@ name: Release
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v2
+          registry-url: 'https://registry.npmjs.org'
+          
+      - uses: pnpm/action-setup@v2
         with:
-          version: 8.6.0
+          version: 8
 
-      - name: Install dependencies
-        run: pnpm install
+      - run: pnpm install
 
-      - name: Create Release Pull Request or Publish to npm
+      # This will either create a PR or publish based on changesets
+      - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm run publish-packages
-          commit: "chore(release): version packages"
+          version: pnpm run version
+          commit: "chore(release): version packages [skip ci]"
           title: "chore(release): version packages"
+          publish: pnpm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Build docs
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        run: pnpm docs:build
+
+      - name: Deploy docs
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./apps/docs/dist
