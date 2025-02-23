@@ -1,5 +1,13 @@
 module.exports = {
-    tailwind: {
+  darkMode: ["class"],
+  content: [
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+  ],
+  theme: {
+    extend: {
       keyframes: {
         toastIn: {
           from: {
@@ -27,4 +35,6 @@ module.exports = {
         toastOut: 'toastOut 0.4s ease-in'
       }
     }
-  };
+  },
+  plugins: [],
+}

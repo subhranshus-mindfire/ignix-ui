@@ -1,15 +1,24 @@
 {
     "extends": "../tsconfig/base.json",
-    "include": ["src/**/*.ts"],
-    "exclude": ["dist", "build", "node_modules"],
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist"],
     "compilerOptions": {
-      "rootDir": "src",
-      "outDir": "dist",
-      "jsx": "react-jsx" ,
+      "target": "ES2020",
+      "module": "ESNext",
+      "moduleResolution": "node",
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
       "resolveJsonModule": true,
-      "paths": {
-        "@/*": ["./src/*"]
-      }
+      "declaration": true,
+      "isolatedModules": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noImplicitReturns": true,
+      "noFallthroughCasesInSwitch": true
     }
     
   }
