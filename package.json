@@ -13,18 +13,15 @@
     "prepare": "husky install",
     "release": "changeset publish",
     "version": "changeset version",
-    "changeset": "changeset",
-    "clean": "turbo run clean && pnpm -r exec rm -rf node_modules && rm -rf node_modules",
-    "typecheck": "turbo run typecheck",
     "build:packages": "turbo run build --filter=./packages/*",
     "test:ci": "turbo run test --filter=./packages/*",
     "docs:dev": "turbo run dev --filter=docs",
     "docs:build": "turbo run build --filter=docs",
     "docs:deploy": "turbo run deploy --filter=docs",
-    "generate-changeset": "tsx scripts/generate-changeset.ts"
+    "clean": "turbo run clean && pnpm -r exec rm -rf node_modules && rm -rf node_modules",
+    "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.0",
     "@commitlint/cli": "^17.0.0",
     "@commitlint/config-conventional": "^17.0.0",
     "eslint": "^8.0.0",
@@ -34,7 +31,8 @@
     "turbo": "^1.10.0",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "@changesets/cli": "^2.26.0"
   },
   "packageManager": "pnpm@8.6.0",
   "engines": {
@@ -44,7 +42,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "post-commit": "pnpm generate-changeset"
+      "post-commit": "tsx scripts/auto-changeset.ts"
     }
   }
 }
