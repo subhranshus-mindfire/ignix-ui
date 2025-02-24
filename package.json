@@ -1,43 +1,48 @@
 {
   "name": "animation-ui",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "clean": "turbo run clean && pnpm -r exec rm -rf node_modules && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "changeset": "changeset",
-    "version-packages": "changeset version",
-    "publish-packages": "turbo run build lint test && changeset publish",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release": "changeset publish",
+    "version": "changeset version",
+    "build:packages": "turbo run build --filter=./packages/*",
+    "test:ci": "turbo run test --filter=./packages/*",
+    "docs:dev": "turbo run dev --filter=docs",
+    "docs:build": "turbo run build --filter=docs",
+    "docs:deploy": "turbo run deploy --filter=docs",
+    "clean": "turbo run clean && pnpm -r exec rm -rf node_modules && rm -rf node_modules",
+    "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.2",
-    "@commitlint/cli": "^18.4.0",
-    "@commitlint/config-conventional": "^18.4.0",
-    "@types/react": "^19.0.10",
-    "@typescript-eslint/eslint-plugin": "^5.59.0",
-    "@typescript-eslint/parser": "^5.59.0",
-    "eslint": "^8.38.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
+    "eslint": "^8.0.0",
     "husky": "^8.0.0",
-    "lint-staged": "^15.0.2",
-    "prettier": "^3.0.0",
+    "lint-staged": "^13.0.0",
+    "prettier": "^2.0.0",
     "turbo": "^1.10.0",
-    "typescript": "^5.0.4"
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "typescript": "^5.0.0",
+    "@changesets/cli": "^2.26.0"
   },
   "packageManager": "pnpm@8.6.0",
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,md}": [
-      "prettier --write"
-    ]
+  "engines": {
+    "node": ">=16.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "post-commit": "tsx scripts/auto-changeset.ts"
+    }
   }
 }

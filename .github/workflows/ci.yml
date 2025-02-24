@@ -1,8 +1,10 @@
 name: CI
 
 on:
+  push:
+    branches: [main]
   pull_request:
-    branches: ['main']
+    branches: [main]
 
 jobs:
   build:
@@ -15,19 +17,20 @@ jobs:
         with:
           node-version: 18
           
-      - name: Install PNPM
-        uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v2
         with:
-          version: 8.6.0
+          version: 8
           
-      - name: Install Dependencies
+      - name: Install dependencies
         run: pnpm install
-
-      - name: Lint
-        run: pnpm lint
         
-      - name: Build
-        run: pnpm build
+      # Run tasks in parallel for better performance
+      - name: Run Parallel Tasks
+        run: |
+          pnpm turbo run lint typecheck --parallel
         
       - name: Test
-        run: pnpm test
+        run: pnpm test:ci
+        
+      - name: Build all packages
+        run: pnpm build:packages

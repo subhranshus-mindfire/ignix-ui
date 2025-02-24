@@ -1,15 +1,10 @@
 {
-    "extends": "../tsconfig/base.json",
-    "include": ["src/**/*.ts"],
-    "exclude": ["dist", "build", "node_modules"],
-    "compilerOptions": {
-      "rootDir": "src",
-      "outDir": "dist",
-      "jsx": "react-jsx" ,
-      "resolveJsonModule": true,
-      "paths": {
-        "@/*": ["./src/*"]
-      }
-    }
-    
-  }
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "composite": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "coverage"]
+}

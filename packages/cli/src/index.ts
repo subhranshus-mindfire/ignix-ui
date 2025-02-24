@@ -1,29 +1,35 @@
 #!/usr/bin/env node
+/**
+ * CLI entry point
+ * Sets up command structure and routing
+ */
 import { Command } from 'commander';
-import { init } from './commands/init';
-import { add } from './commands/add';
+import { AddCommand } from './commands/add';
+import { InitCommand } from './commands/init';
 
 const program = new Command();
 
-program
-  .name('animation-ui')
-  .description('CLI for adding animation-ui components')
-  .version('0.1.0');
+// Configure CLI metadata
+program.name('animation-ui').description('CLI for adding animation-ui components').version('0.1.0');
 
+// Initialize command
 program
   .command('init')
   .description('Initialize animations in your project')
   .option('-y, --yes', 'Skip confirmation prompt')
-  .action(async (options) => {
-    await init(options);
+  .action(async () => {
+    const command = new InitCommand();
+    await command.execute();
   });
 
+// Add component command
 program
   .command('add')
-  .description('Add a animation component to your project')
+  .description('Add an animation component to your project')
   .argument('[component]', 'The component to add')
   .action(async (component) => {
-    await add(component);
+    const command = new AddCommand();
+    await command.execute(component);
   });
 
 program.parse();

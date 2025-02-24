@@ -2,39 +2,37 @@ name: Release
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+          
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v2
+          registry-url: 'https://registry.npmjs.org'
+          
+      - uses: pnpm/action-setup@v2
         with:
-          version: 8.6.0
+          version: 8
 
-      - name: Install dependencies
-        run: pnpm install
+      - run: pnpm install
+      
+      - name: Build
+        run: pnpm build:packages
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: pnpm run publish-packages
-          commit: "chore(release): version packages"
-          title: "chore(release): version packages"
+      - name: Version and Publish
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          pnpm version
+          pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
