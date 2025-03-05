@@ -14,11 +14,7 @@
     "accordion": {
       "name": "Accordion",
       "description": "An animated accordion component",
-      "dependencies": [
-        "@radix-ui/react-accordion",
-        "lucide-react",
-        "framer-motion"
-      ],
+      "dependencies": ["@radix-ui/react-accordion", "lucide-react", "framer-motion"],
       "files": {
         "main": {
           "path": "components/accordion/index.tsx",
@@ -26,14 +22,21 @@
         }
       }
     },
+    "button": {
+      "name": "Button",
+      "description": "An animated button component",
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority", "framer-motion"],
+      "files": {
+        "main": {
+          "path": "components/button/index.tsx",
+          "type": "component"
+        }
+      }
+    },
     "toast": {
       "name": "Toast",
       "description": "A toast notification component with animation and different variants",
-      "dependencies": [
-        "@radix-ui/react-toast",
-        "framer-motion",
-        "lucide-react"
-      ],
+      "dependencies": ["@radix-ui/react-toast", "framer-motion", "lucide-react"],
       "files": {
         "main": {
           "path": "components/toast/index.tsx",
