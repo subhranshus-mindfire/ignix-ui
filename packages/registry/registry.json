@@ -33,6 +33,17 @@
         }
       }
     },
+    "slider": {
+      "name": "Slider",
+      "description": "An animated slider component",
+      "dependencies": ["@radix-ui/react-slider", "framer-motion"],
+      "files": {
+        "main": {
+          "path": "components/slider/index.tsx",
+          "type": "component"
+        }
+      }
+    },
     "toast": {
       "name": "Toast",
       "description": "A toast notification component with animation and different variants",
