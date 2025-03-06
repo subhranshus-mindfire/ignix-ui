@@ -44,6 +44,17 @@
         }
       }
     },
+    "switch": {
+      "name": "Switch",
+      "description": "An animated switch component",
+      "dependencies": ["@radix-ui/react-switch", "framer-motion"],
+      "files": {
+        "main": {
+          "path": "components/switch/index.tsx",
+          "type": "component"
+        }
+      }
+    },
     "toast": {
       "name": "Toast",
       "description": "A toast notification component with animation and different variants",
