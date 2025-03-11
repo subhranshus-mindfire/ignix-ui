@@ -1,43 +1,102 @@
-# @animate-ui/registry
+# Animate UI Registry
 
-Component registry for Animate UI - A beautiful, animated component library.
+Core UI component library built on Radix UI primitives with beautiful animations.
 
-## Components
+## Features
 
-### Accordion
+- High-performance animations
+- Accessible components
+- Customizable themes
+- TypeScript support
+- Modern React patterns
 
-A vertically stacked set of interactive headings that each reveal a section of content.
 
 ## Usage
 
-Components are automatically installed when using the `@animate-ui/cli` package. However, you can also install them manually:
+## Available Components
 
-```bash
-# npm
-npm install @animate-ui/core
+### Layout
+- Container
+- Grid
+- Stack
+- Flex
 
-# yarn
-yarn add @animate-ui/core
+### Navigation
+- Menu
+- Tabs
+- Breadcrumb
+- Pagination
 
-# pnpm
-pnpm add @animate-ui/core
+### Forms
+- Button
+- Input
+- Select
+- Checkbox
+- Radio
+- Switch
+
+### Feedback
+- Alert
+- Toast
+- Progress
+- Spinner
+
+### Overlay
+- Modal
+- Drawer
+- Popover
+- Tooltip
+
+### Data Display
+- Table
+- Card
+- List
+- Badge
+
+## Component Structure
+
+Each component follows a consistent structure:
+
 ```
+├── components/
+│   ├── ComponentName/                 # CLI package
+│       ├── index.tsx       # Main component
+│       ├── index.types.ts # types
+│       ├──  useIndex.ts  # hook   
+│       └──config.ts  # tailwind-config              
+└── registry.json  #Info about all component and dependencies
+```
+
+## Tailwind-Config Structure
+### Always add Tailwind-config in below defined Struture
+```tsx
+module.exports = {
+  theme: {
+    extend: {
+      keyframes: {
+        // add keyframes here
+      },
+      animation: {
+      // add animations here
+      },
+    },
+  },
+  plugins: [],
+}
+
+```
+
+## File Types
+
+- component
+- hook
+- types
+- tailwind-config
 
 ## Contributing
 
-Please read our [Contributing Guide](../../CONTRIBUTING.md) before submitting a Pull Request to the project.
-
-### Adding a New Component
-
-1. Create a new directory in `components/` with your component name
-2. Add the following files:
-   - `index.ts` - Component exports
-   - `types.ts` - TypeScript types
-   - `styles.css` - Component styles (if needed)
-   - `README.md` - Component documentation
-3. Update the component registry in `src/registry.ts`
-4. Add tests in `__tests__/`
+See the main [CONTRIBUTING.md](../../CONTRIBUTING.md) for guidelines.
 
 ## License
 
-MIT
+MIT - See [LICENSE](../../LICENSE) for details.

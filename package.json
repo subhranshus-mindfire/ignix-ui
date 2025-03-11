@@ -1,5 +1,5 @@
 {
-  "name": "animation-ui",
+  "name": "ignix-ui",
   "private": true,
   "workspaces": [
     "packages/*"

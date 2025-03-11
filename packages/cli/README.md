@@ -1,160 +1,232 @@
-# Animation UI CLI
+# Ignix UI CLI
 
-A powerful CLI tool for managing UI components in your project. Built with TypeScript and modern best practices.
+Command-line interface for managing and developing Ignix UI components.
 
-## Architecture Overview
+## Overview
 
-### Core Services
+The Ignix UI CLI provides a powerful set of tools for:
 
-#### ComponentService (`src/services/ComponentService.ts`)
+- Creating new components with proper structure and best practices
+- Managing component dependencies
+- Building and testing components
+- Configuring project settings
+- Automating development workflows
 
-Manages component operations with the following key functions:
+## Installation
 
-- `getComponent(name: string)`: Fetches component data from registry
-- `installComponent(component: ComponentConfig)`: Installs component files
-- `mergeTailwindConfig(newConfig: string)`: Safely merges Tailwind configurations
-- `getAvailableComponents()`: Lists available components
+```bash
+# Using pnpm (recommended)
+pnpm add -D @ignix-ui/cli
 
-#### TelemetryService (`src/services/TelemetryService.ts`)
+# Using npm
+npm install --save-dev @ignix-ui/cli
 
-Handles usage analytics with privacy controls:
+# Using yarn
+yarn add -D @ignix-ui/cli
+```
 
-- `trackEvent(name: string, properties?: Record<string, any>)`: Tracks CLI usage
-- `getUserId()`: Manages anonymous user identification
-
-#### DependencyService (`src/services/DependencyService.ts`)
-
-Manages package dependencies:
-
-- `installDependencies(dependencies: string[])`: Installs required packages
-- Supports npm, yarn, pnpm, and bun
-
-### Commands
-
-#### InitCommand (`src/commands/init.ts`)
-
-Project initialization command:
-
-- Creates project structure
-- Sets up Tailwind configuration
-- Installs core dependencies
-
-#### AddCommand (`src/commands/add.ts`)
-
-Component addition command:
-
-- Interactive component selection
-- Dependency installation
-- Configuration merging
-
-### Utilities
-
-#### Logger (`src/utils/logger.ts`)
-
-Consistent logging interface:
-
-- `info(message: string)`: Information messages
-- `success(message: string)`: Success messages
-- `error(message: string, suggestions?: string[])`: Error messages with help
-
-#### Error Handling (`src/errors/CLIError.ts`)
-
-Custom error classes:
-
-- `CLIError`: Base error class with suggestions
-- `ComponentNotFoundError`: Component lookup failures
-- `RegistryError`: Registry operation failures
-
-### Configuration
-
-#### Constants (`src/config/constants.ts`)
-
-Central configuration:
-
-- Registry endpoints
-- Project paths
-- File locations
-
-## Best Practices Implemented
-
-### Performance
-
-- Lazy loading of heavy operations
-- Caching of registry data
-- Efficient file operations
-
-### Security
-
-- Safe config parsing
-- Validated file operations
-- Secure dependency management
-
-### Reliability
-
-- Retry logic for network operations
-- Rollback capabilities for failed operations
-- Comprehensive error handling
-
-### Extensibility
-
-- Modular architecture
-- Service-based design
-- Clear separation of concerns
-
-## Usage Examples
+## Commands
 
 ### Initialize Project
 
+Sets up Ignix UI in your project:
+
 ```bash
-npx animation-ui init
+pnpm ignix-ui init [options]
+
+Options:
+  -y, --yes    Skip confirmation prompts
 ```
+
+This will:
+
+- Add necessary dependencies
+- Create configuration files
+- Set up the component directory structure
+- Configure build tools
 
 ### Add Component
 
+Add a new component to your project:
+
 ```bash
-npx animation-ui add <component-name>
+pnpm ignix-ui add [component-name] [options]
+
+Arguments:
+  component-name    Name of the component to add
+
+Options:
+  --type <type>    Component type (primitive/composite/layout/animation)
+  --path <path>    Custom component path
 ```
 
-### Key Features
+The command will:
 
-- Singleton pattern for services
-- Comprehensive error handling
-- Telemetry with privacy controls
-- Safe configuration merging
-- Multi-package-manager support
+1. Create component directory structure
+2. Generate component files from templates
+3. Add necessary dependencies
+4. Update component registry
+5. Create documentation template
 
-### Error Handling Strategy
+## Component Templates
 
-- Custom error classes with suggestions
-- Graceful degradation
-- Helpful error messages
-- Recovery suggestions
+The CLI provides several component templates:
 
-### Performance Optimizations
+### Primitive Components
 
-- Registry caching
-- Lazy loading
-- Retry logic with exponential backoff
-- Efficient file operations
+Basic building blocks with minimal dependencies:
+
+```
+ComponentName/
+├── index.tsx           # Main component
+├── index.types.ts     # TypeScript types
+├── useComponent.ts    # Component hooks
+└── config.ts          # Tailwind configuration
+```
+
+### Composite Components
+
+Complex components composed of primitives:
+
+```
+ComponentName/
+├── index.tsx
+├── index.types.ts
+├── useComponent.ts
+├── config.ts
+└── components/        # Sub-components
+    ├── Part1.tsx
+    └── Part2.tsx
+```
+
+### Layout Components
+
+Structure and layout components:
+
+```
+ComponentName/
+├── index.tsx
+├── index.types.ts
+├── useComponent.ts
+└── config.ts
+```
+
+### Animation Components
+
+Animation-specific components:
+
+```
+ComponentName/
+├── index.tsx
+├── index.types.ts
+├── useComponent.ts
+├── config.ts
+└── animations/       # Animation definitions
+    └── variants.ts
+```
+
+## Configuration
+
+Create an `.ignixrc.js` file in your project root:
+
+```javascript
+module.exports = {
+  // Component settings
+  components: {
+    path: 'src/components',
+    types: ['primitive', 'composite', 'layout', 'animation'],
+    defaultType: 'primitive',
+  },
+
+  // Build configuration
+  build: {
+    target: 'es2019',
+    formats: ['esm', 'cjs'],
+    minify: true,
+  },
+
+  // Template settings
+  templates: {
+    // Custom template overrides
+    customTemplates: './templates',
+
+    // Default state management
+    useHooks: true,
+    useContext: false,
+  },
+
+  // Tailwind configuration
+  tailwind: {
+    configPath: './tailwind.config.js',
+    // Component-specific Tailwind settings
+  },
+};
+```
+
+## Development Workflow
+
+1. Initialize your project:
+
+   ```bash
+   pnpm ignix-ui init
+   ```
+
+2. Add new components:
+
+   ```bash
+   pnpm ignix-ui add Button --type primitive
+   ```
+
+3. Build components:
+
+   ```bash
+   pnpm ignix-ui build
+   ```
+
+4. Test components:
+   ```bash
+   pnpm ignix-ui test
+   ```
+
+## Project Structure
+
+```
+cli/
+├── src/
+│   ├── commands/          # CLI commands
+│   │   ├── init.ts       # Project initialization
+│   │   ├── add.ts        # Component creation
+│   │   └── build.ts      # Build process
+│   ├── templates/        # Component templates
+│   ├── services/         # Core services
+│   │   ├── component.ts  # Component management
+│   │   └── config.ts     # Configuration
+│   ├── utils/           # Helper utilities
+│   └── types/           # TypeScript types
+├── bin/                 # Executable scripts
+└── dist/               # Compiled output
+```
 
 ## Contributing
 
-### Adding New Features
+See the main [CONTRIBUTING.md](../../CONTRIBUTING.md) for guidelines.
 
-1. Create relevant service/command classes
-2. Implement error handling
-3. Add telemetry tracking
-4. Update documentation
+### Development Setup
 
-### Testing
+```bash
+# Install dependencies
+pnpm install
 
-- Unit tests for services
-- Integration tests for commands
-- E2E tests for workflows
+# Build CLI
+pnpm build
 
-### Code Style
+# Run tests
+pnpm test
 
-- Follow TypeScript best practices
-- Document public APIs
-- Include error handling
-- Add telemetry where appropriate
+# Watch mode
+pnpm dev
+```
+
+## License
+
+MIT - See [LICENSE](../../LICENSE) for details.

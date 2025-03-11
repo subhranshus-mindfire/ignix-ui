@@ -1,10 +1,204 @@
 # Animated UI Kit
 
-A modern, high-performance animated component library built on top of Radix UI. Designed for seamless integration and maximum flexibility.
+A modern, high-performance animated component library built with Radix UI, managed through a pnpm monorepo structure with Turborepo for optimal development experience.
 
 [![pnpm](https://img.shields.io/badge/maintained%20with-pnpm-cc00ff.svg)](https://pnpm.io/)
 [![Turborepo](https://img.shields.io/badge/built%20with-Turborepo-cc00ff.svg)](https://turborepo.org/)
 [![Radix UI](https://img.shields.io/badge/powered%20by-Radix%20UI-blue.svg)](https://www.radix-ui.com/)
+
+## Project Overview
+
+This monorepo contains several key packages and applications that work together to provide a complete UI component development ecosystem:
+
+### Core Packages (`/packages`)
+
+- **Registry (`/packages/registry`)**
+
+  - Core UI component library
+  - Contains all reusable, animated components
+  - Built on top of Radix UI primitives
+  - Includes component source code and tests
+  - TypeScript definitions and documentation
+
+- **CLI (`/packages/cli`)**
+
+  - Command-line tools for component development
+  - Component scaffolding utilities
+  - Build and test automation
+  - Development workflow helpers
+  - Project configuration tools
+
+- **TSConfig (`/packages/tsconfig`)**
+  - Shared TypeScript configurations
+  - Base configurations for different project types
+  - Ensures consistency across packages
+
+### Applications (`/apps`)
+
+- **Documentation (`/apps/docs`)**
+
+  - Built with Docusaurus
+  - Component API documentation
+  - Usage examples and guidelines
+  - Development guides
+  - Interactive component playground
+
+- **POC (`/apps/poc`)**
+  - Development playground
+  - Component testing environment
+  - Integration examples
+  - Performance testing
+
+## Project Structure
+
+```
+animate-ui/
+├── apps/
+│   ├── docs/                 # Docusaurus documentation site
+│   │   ├── docs/            # Documentation content
+│   │   ├── src/             # Site source code
+│   │   └── static/          # Static assets
+│   │
+│   └── poc/                 # Development playground
+│       ├── src/             # Source code
+│       ├── public/          # Static assets
+│       └── components/      # Example implementations
+│
+├── packages/
+│   ├── cli/                 # CLI package
+│   │   ├── src/            # CLI source code
+│   │   ├── bin/            # Executable scripts
+│   │   └── templates/      # Component templates
+│   │
+│   ├── registry/           # Component registry
+│   │   ├── src/           # Component source code
+│   │   ├── styles/        # Base styles and themes
+│   │   └── tests/         # Component tests
+│   │
+│   └── tsconfig/          # Shared TypeScript configs
+│
+├── scripts/               # Build and maintenance scripts
+├── .changeset/           # Changesets for versioning
+├── .github/              # GitHub workflows and templates
+└── .husky/               # Git hooks
+```
+
+## Development Workflow
+
+### Setting Up the Development Environment
+
+1. **Prerequisites**:
+
+   ```bash
+   node -v  # Must be 18+
+   pnpm -v  # Must be 8+
+   ```
+
+2. **Installation**:
+   ```bash
+   git clone https://github.com/yourusername/animate-ui
+   cd animate-ui
+   pnpm install
+   pnpm build
+   ```
+
+### Development Commands
+
+```bash
+# Start all development servers
+pnpm dev
+
+# Start specific applications
+pnpm dev --filter=docs    # Start documentation site
+pnpm dev --filter=poc     # Start development playground
+
+# Build packages
+pnpm build               # Build all packages
+pnpm build --filter=registry  # Build only registry
+
+# Testing
+pnpm test               # Run all tests
+pnpm test:watch        # Run tests in watch mode
+
+# Linting and Formatting
+pnpm lint              # Run ESLint
+pnpm format           # Run Prettier
+```
+
+### Creating a New Component
+
+1. **Use the CLI to scaffold**:
+
+   ```bash
+   pnpm cli create-component MyComponent
+   ```
+
+2. **Component Structure**:
+
+   ```
+   registry/src/components/MyComponent/
+   ├── MyComponent.tsx        # Component code
+   ├── MyComponent.test.tsx   # Tests
+   ├── MyComponent.styles.ts  # Styles
+   └── index.ts              # Exports
+   ```
+
+3. **Development Process**:
+   - Write component code in `registry/src/components`
+   - Add documentation in `apps/docs/docs/components`
+   - Create examples in `apps/poc/src/examples`
+   - Add tests in the component directory
+   - Update the component registry
+
+### Publishing Updates
+
+1. **Create a changeset**:
+
+   ```bash
+   pnpm changeset
+   ```
+
+2. **Version packages**:
+
+   ```bash
+   pnpm version-packages
+   ```
+
+3. **Publish**:
+   ```bash
+   pnpm publish-packages
+   ```
+
+## Configuration Files
+
+- **`turbo.json`**: Turborepo pipeline configuration
+- **`pnpm-workspace.yaml`**: Workspace package definitions
+- **`tsconfig.json`**: Base TypeScript configuration
+- **`.eslintrc.js`**: ESLint rules
+- **`.prettierrc`**: Code formatting rules
+- **`.npmrc`**: npm registry settings
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Make your changes
+4. Run tests (`pnpm test`)
+5. Commit with conventional commits (`git commit -m 'feat: Add amazing feature'`)
+6. Push to your branch (`git push origin feature/AmazingFeature`)
+7. Open a Pull Request
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+- 📚 [Documentation](https://your-docs-url.com)
+- 🐛 [Issue Tracker](https://github.com/yourusername/animate-ui/issues)
+- 💬 [Discussions](https://github.com/yourusername/animate-ui/discussions)
 
 ## Features
 
@@ -28,150 +222,9 @@ pnpm install
 
 ```
 
-## Project Structure
-
-```
-animate-ui/
-├── apps/
-│   ├── docs/           # Documentation site
-│   └── playground/     # Testing app
-│
-│
-├── packages/
-│   ├── cli/            # cli commands & utilities
-│   └── registry/       # registry components
-│
-├── .changeset
-├── .github           # github ci/cd & pr template
-├── .husky            # husky for github pre commit
-├── .commitlintrc.json  # commit lint to mainain commit message
-├── .eslintignore # files tp ignore in eslint
-├── .eslintrc.js  # eslint configs
-├── .gitignore    #ignored files for github
-├── .npmrc  # npm publish configs
-├── .prettierrc  #prettier format configs
-├── CODE_OF_CONDUCT.md  # standard code of conduct
-├── CONTRIBUTING.md   # contribution guidelines
-├── package.json  # package json
-├── .pnpm-workspace.json  # Workspace configuration
-├── README.MD         # documentation
-├── tsconfig.json     # Workspace configuration
-└── turbojson         # Turborepo configuration
-```
-
-## Development Setup
-
-### Prerequisites
-
-- Node.js 18+
-- pnpm 8+
-- Git
-
-### Installation Steps
-
-1. **Setup your development environment**:
-
-   ```bash
-   # Install pnpm if you haven't already
-   npm install -g pnpm
-
-   # Install project dependencies
-   pnpm install
-
-   # Build all packages
-   pnpm build
-   ```
-
-2. **Start the development server**:
-
-   ```bash
-   # Start all development environments
-   pnpm dev
-
-   # Or start specific packages
-   pnpm dev --filter=docs
-   ```
-
-3. **Running tests**:
-
-   ```bash
-   # Run all tests
-   pnpm test
-
-   # Run tests in watch mode
-   pnpm test:watch
-   ```
-
-## Package Commands
-
-- `pnpm dev` - Start development environment
-- `pnpm build` - Build all packages
-- `pnpm test` - Run tests
-- `pnpm lint` - Lint all files
-- `pnpm format` - Format code with Prettier
-- `pnpm clean` - Clean build artifacts
-
 ## Available Components
 
 Our library includes a variety of animated components:
-
-- **Transitions**
-
-  - Fade
-  - Slide
-  - Scale
-  - Flip
-
-- **Interactions**
-
-  - Hover Effects
-  - Click Animations
-  - Focus States
-
-- **Page Transitions**
-  - Route Changes
-  - Modal Transitions
-  - Loading States
-
-## Customization
-
-### Theme Configuration
-
-```typescript
-// theme.config.ts
-import { createTheme } from '@your-library/core';
-
-export const theme = createTheme({
-  animations: {
-    duration: {
-      fast: '150ms',
-      normal: '300ms',
-      slow: '500ms',
-    },
-    easing: {
-      easeOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
-      // Add custom easing functions
-    },
-  },
-});
-```
-
-### Component Customization
-
-```typescript
-import { AnimatedButton } from '@your-library/components';
-
-// Custom animation configuration
-<AnimatedButton
-  animation={{
-    type: 'scale',
-    duration: 300,
-    easing: 'easeOut',
-  }}
->
-  Click Me
-</AnimatedButton>;
-```
 
 ## Documentation
 
@@ -183,32 +236,3 @@ Comprehensive documentation is available at `http://localhost:3000` when running
 - Best Practices
 - Performance Tips
 - Accessibility Guidelines
-
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- [Radix UI](https://www.radix-ui.com/) for the excellent primitive components
-- [Turborepo](https://turborepo.org/) for the build system
-- [pnpm](https://pnpm.io/) for package management
-
-## Bug Reports
-
-Found a bug? Please open an issue with:
-
-- Expected behavior
-- Actual behavior
-- Steps to reproduce
-- Example code (if possible)

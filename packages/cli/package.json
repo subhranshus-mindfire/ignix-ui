@@ -1,7 +1,7 @@
 {
-  "name": "@animate-ui/cli",
+  "name": "@ignix-ui/cli",
   "version": "1.0.0",
-  "description": "CLI tool for Animate UI component library",
+  "description": "CLI tool for Ignix UI component library",
   "type": "commonjs",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -20,7 +20,7 @@
     "lint": "eslint src --ext .ts,.tsx"
   },
   "keywords": [
-    "animate-ui",
+    "ignix-ui",
     "cli",
     "components",
     "ui",
