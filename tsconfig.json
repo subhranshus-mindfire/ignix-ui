@@ -18,6 +18,5 @@
       "@animation-ui/*": ["packages/*/src"]
     }
   },
-  "exclude": ["**/node_modules", "**/dist", "**/coverage"],
-  "references": [{ "path": "packages/cli" }]
+  "exclude": ["**/node_modules", "**/dist", "**/coverage"]
 }

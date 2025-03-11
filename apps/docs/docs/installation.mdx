@@ -1,0 +1,83 @@
+---
+sidebar_position: 2
+---
+
+# Installation
+
+Get started with Animate UI in your project.
+
+## Prerequisites
+
+Animate UI is built for React applications. Make sure you have the following installed:
+
+- Node.js 16 or higher
+- npm 7+ or yarn 1.22+
+
+## Setup
+
+1. Install Animate UI and its peer dependencies:
+
+```bash
+# npm
+npm install @animate-ui/core framer-motion
+
+# yarn
+yarn add @animate-ui/core framer-motion
+
+# pnpm
+pnpm add @animate-ui/core framer-motion
+```
+
+2. Add the following to your `tailwind.config.js`:
+
+```js
+module.exports = {
+  content: [
+    // ...
+    './node_modules/@animate-ui/core/dist/**/*.{js,ts,jsx,tsx}',
+  ],
+  theme: {
+    extend: {
+      keyframes: {
+        // ... your existing keyframes
+      },
+      animation: {
+        // ... your existing animations
+      },
+    },
+  },
+  plugins: [],
+}
+```
+
+3. Import and use components in your project:
+
+```tsx
+import { Accordion } from '@animate-ui/core'
+
+export default function App() {
+  return (
+    <Accordion>
+      <Accordion.Item>
+        <Accordion.Trigger>What is Animate UI?</Accordion.Trigger>
+        <Accordion.Content>
+          Animate UI is a beautiful component library with built-in animations.
+        </Accordion.Content>
+      </Accordion.Item>
+    </Accordion>
+  )
+}
+```
+
+## TypeScript
+
+Animate UI is written in TypeScript and includes type definitions out of the box.
+
+## Next Steps
+
+Now that you have Animate UI installed, check out our components:
+
+- [Accordion](/docs/components/accordion)
+- [Fade](/docs/components/fade)
+- [Slide](/docs/components/slide)
+- [Toast](/docs/components/toast) 

@@ -5,36 +5,43 @@ We welcome and appreciate your contribution to Animate UI. These guidelines will
 ## How To Make Simlink Locally?
 
 ### Step 1: Install dependencies
+
 ```bash
 pnpm i
 ```
 
 ### Step 2: Make build
+
 ```bash
 pnpm build
 ```
 
 ### Step 3: Go to cli file
+
 ```bash
 cd ./packages/cli
 ```
 
 ### Step 4: Link cli package
+
 ```bash
 npm link
 ```
 
 ### Step 5: Go to your demo react app and install cli
+
 ```bash
 npm link @animtion-ui/cli
 ```
 
 ### Step 6: Initialize Cli
+
 ```bash
 npx animation-ui init
 ```
 
 ### Step 7: Add Components
+
 ```bash
 npx animation-ui add <component-name>
 ```

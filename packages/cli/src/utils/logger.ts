@@ -14,7 +14,7 @@ export class Logger {
     console.error(chalk.red(`Error: ${message}`));
     if (suggestions?.length) {
       console.log('\nSuggestions:');
-      suggestions.forEach(suggestion => {
+      suggestions.forEach((suggestion) => {
         console.log(chalk.cyan(`- ${suggestion}`));
       });
     }
@@ -41,4 +41,4 @@ export class Logger {
     console.log('1. Add components using:', chalk.cyan('npx animation-ui add <component>'));
     console.log('2. Start using animations in your project!\n');
   }
-} 
+}

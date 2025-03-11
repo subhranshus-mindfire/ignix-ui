@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Service responsible for managing UI components
  * Handles component fetching, installation, and configuration management
@@ -204,7 +205,9 @@ export class ComponentService {
     } catch (error) {
       if (error instanceof CLIError) throw error;
       throw new CLIError(
-        `Failed to merge tailwind config: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        `Failed to merge tailwind config: ${
+          error instanceof Error ? error.message : 'Unknown error'
+        }`,
         'MERGE_FAILED'
       );
     }
@@ -261,7 +264,9 @@ export class ComponentService {
       return Function(`return ${cleanConfig}`)();
     } catch (error) {
       throw new Error(
-        `Invalid tailwind config format: ${error instanceof Error ? error.message : 'Unknown error'}`
+        `Invalid tailwind config format: ${
+          error instanceof Error ? error.message : 'Unknown error'
+        }`
       );
     }
   }

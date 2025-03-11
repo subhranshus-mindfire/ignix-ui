@@ -33,14 +33,14 @@ pnpm install
 ```
 animate-ui/
 ├── apps/
-│   ├── docs/           # Documentation site       
+│   ├── docs/           # Documentation site
 │   └── playground/     # Testing app
-│   
-│   
+│
+│
 ├── packages/
 │   ├── cli/            # cli commands & utilities
 │   └── registry/       # registry components
-│   
+│
 ├── .changeset
 ├── .github           # github ci/cd & pr template
 ├── .husky            # husky for github pre commit
@@ -70,6 +70,7 @@ animate-ui/
 ### Installation Steps
 
 1. **Setup your development environment**:
+
    ```bash
    # Install pnpm if you haven't already
    npm install -g pnpm
@@ -82,6 +83,7 @@ animate-ui/
    ```
 
 2. **Start the development server**:
+
    ```bash
    # Start all development environments
    pnpm dev
@@ -91,6 +93,7 @@ animate-ui/
    ```
 
 3. **Running tests**:
+
    ```bash
    # Run all tests
    pnpm test
@@ -113,16 +116,18 @@ animate-ui/
 Our library includes a variety of animated components:
 
 - **Transitions**
+
   - Fade
   - Slide
   - Scale
   - Flip
-  
+
 - **Interactions**
+
   - Hover Effects
   - Click Animations
   - Focus States
-  
+
 - **Page Transitions**
   - Route Changes
   - Modal Transitions
@@ -134,7 +139,7 @@ Our library includes a variety of animated components:
 
 ```typescript
 // theme.config.ts
-import { createTheme } from '@your-library/core'
+import { createTheme } from '@your-library/core';
 
 export const theme = createTheme({
   animations: {
@@ -148,13 +153,13 @@ export const theme = createTheme({
       // Add custom easing functions
     },
   },
-})
+});
 ```
 
 ### Component Customization
 
 ```typescript
-import { AnimatedButton } from '@your-library/components'
+import { AnimatedButton } from '@your-library/components';
 
 // Custom animation configuration
 <AnimatedButton
@@ -165,7 +170,7 @@ import { AnimatedButton } from '@your-library/components'
   }}
 >
   Click Me
-</AnimatedButton>
+</AnimatedButton>;
 ```
 
 ## Documentation

@@ -1,4 +1,4 @@
-// utils/tailwind.ts
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import fs from 'fs-extra';
 import path from 'path';
 
@@ -8,17 +8,17 @@ export async function mergeTailwindConfig(
 ): Promise<void> {
   const configPath = path.join(projectRoot, 'tailwind.config.ts');
   const jsConfigPath = path.join(projectRoot, 'tailwind.config.js');
-  
+
   // Determine which config file exists
-  const finalConfigPath = await fs.pathExists(configPath) ? configPath : jsConfigPath;
-  
-  if (!await fs.pathExists(finalConfigPath)) {
+  const finalConfigPath = (await fs.pathExists(configPath)) ? configPath : jsConfigPath;
+
+  if (!(await fs.pathExists(finalConfigPath))) {
     throw new Error('tailwind.config.ts or tailwind.config.js not found');
   }
 
   // Read and evaluate the existing config file
   const configContent = await fs.readFile(finalConfigPath, 'utf-8');
-  
+
   // Handle both module.exports and export default syntax
   const configMatch = configContent.match(/(?:module\.exports|export default)\s*=\s*({[\s\S]*})/);
   if (!configMatch) {
@@ -49,10 +49,10 @@ export async function mergeTailwindConfig(
 
   // Create the new config content while preserving the format
   const isTypeScript = finalConfigPath.endsWith('.ts');
-  const configHeader = isTypeScript 
+  const configHeader = isTypeScript
     ? `import type { Config } from 'tailwindcss'\n\nexport default `
     : `/** @type {import('tailwindcss').Config} */\nmodule.exports = `;
-  
+
   // Convert the config to a string while preserving the format
   const configString = JSON.stringify(mergedConfig, null, 2)
     .replace(/"([^"]+)":/g, '$1:') // Remove quotes from property names

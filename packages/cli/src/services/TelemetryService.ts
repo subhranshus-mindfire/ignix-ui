@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Service responsible for tracking CLI usage analytics while respecting user privacy
  * Implements singleton pattern for consistent tracking across the application
