@@ -1,0 +1,113 @@
+---
+sidebar_position: 1
+---
+
+# Accordion
+
+A vertically stacked set of interactive headings that each reveal a section of content.
+
+## Installation
+
+```bash
+npm install @animate-ui/core
+```
+
+## Usage
+
+```tsx
+import { Accordion } from '@animate-ui/core'
+
+export default function AccordionDemo() {
+  return (
+    <Accordion type="single" collapsible>
+      <Accordion.Item value="item-1">
+        <Accordion.Trigger>Is it accessible?</Accordion.Trigger>
+        <Accordion.Content>
+          Yes. It adheres to the WAI-ARIA design pattern.
+        </Accordion.Content>
+      </Accordion.Item>
+      <Accordion.Item value="item-2">
+        <Accordion.Trigger>Is it animated?</Accordion.Trigger>
+        <Accordion.Content>
+          Yes. It's animated by default, but you can disable it if you prefer.
+        </Accordion.Content>
+      </Accordion.Item>
+    </Accordion>
+  )
+}
+```
+
+## Props
+
+### Accordion
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `type` | `'single' \| 'multiple'` | `'single'` | Determines whether one or multiple items can be opened at the same time. |
+| `collapsible` | `boolean` | `false` | When `type` is `'single'`, allows closing content when clicking trigger. |
+| `defaultValue` | `string \| string[]` | `undefined` | The value of the item(s) to expand by default. |
+| `value` | `string \| string[]` | `undefined` | The controlled value of the item(s) to expand. |
+| `onValueChange` | `(value: string \| string[]) => void` | `undefined` | Event handler called when the expanded state changes. |
+
+### Accordion.Item
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | **Required** | A unique value for the item. |
+| `disabled` | `boolean` | `false` | When `true`, prevents the user from interacting with the item. |
+
+## Animation
+
+The Accordion component uses Framer Motion for smooth expand/collapse animations. You can customize the animation behavior through the following props:
+
+```tsx
+<Accordion.Content
+  initial={{ height: 0 }}
+  animate={{ height: 'auto' }}
+  exit={{ height: 0 }}
+  transition={{ duration: 0.3, ease: 'easeInOut' }}
+>
+  Content
+</Accordion.Content>
+```
+
+## Examples
+
+### Multiple Items
+
+```tsx
+<Accordion type="multiple">
+  <Accordion.Item value="item-1">
+    <Accordion.Trigger>First Item</Accordion.Trigger>
+    <Accordion.Content>First content</Accordion.Content>
+  </Accordion.Item>
+  <Accordion.Item value="item-2">
+    <Accordion.Trigger>Second Item</Accordion.Trigger>
+    <Accordion.Content>Second content</Accordion.Content>
+  </Accordion.Item>
+</Accordion>
+```
+
+### Disabled Item
+
+```tsx
+<Accordion>
+  <Accordion.Item value="item-1">
+    <Accordion.Trigger>Enabled Item</Accordion.Trigger>
+    <Accordion.Content>Enabled content</Accordion.Content>
+  </Accordion.Item>
+  <Accordion.Item value="item-2" disabled>
+    <Accordion.Trigger>Disabled Item</Accordion.Trigger>
+    <Accordion.Content>Disabled content</Accordion.Content>
+  </Accordion.Item>
+</Accordion>
+```
+
+## Accessibility
+
+The Accordion component follows the [WAI-ARIA Accordion Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/). It uses appropriate ARIA roles, states, and properties to ensure accessibility:
+
+- Each trigger has `role="button"`
+- Triggers use `aria-expanded` to indicate the expanded state
+- Content sections use `aria-hidden` when collapsed
+- Keyboard navigation support for Space, Enter, Arrow keys 

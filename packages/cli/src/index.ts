@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * CLI entry point
  * Sets up command structure and routing

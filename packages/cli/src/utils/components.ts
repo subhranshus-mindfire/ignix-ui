@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 import fs from 'fs-extra';
 import path from 'path';
 import { mergeTailwindConfig } from './tailwind';
 import type { ComponentConfig, Registry } from '../types';
 
-const REGISTRY_BASE_URL = 'https://raw.githubusercontent.com/lakinmindfire/animate-ui/feature/tailwind-merge-config/packages/registry';
+const REGISTRY_BASE_URL =
+  'https://raw.githubusercontent.com/lakinmindfire/animate-ui/feature/tailwind-merge-config/packages/registry';
 
 /**
  * Fetches component information and files from the registry
@@ -12,11 +14,11 @@ const REGISTRY_BASE_URL = 'https://raw.githubusercontent.com/lakinmindfire/anima
 export async function getComponent(name: string): Promise<ComponentConfig | null> {
   try {
     console.log(`Fetching registry from: ${REGISTRY_BASE_URL}/registry.json`);
-    
+
     // Fetch registry
     const response = await axios.get<Registry>(`${REGISTRY_BASE_URL}/registry.json`);
     const registry = response.data;
-    
+
     // Validate registry
     if (!registry || !registry.components) {
       throw new Error('Invalid registry format: Missing components object');
@@ -25,7 +27,7 @@ export async function getComponent(name: string): Promise<ComponentConfig | null
     // Look up component (case insensitive)
     const componentName = name.toLowerCase();
     const componentInfo = registry.components[componentName];
-    
+
     if (!componentInfo) {
       throw new Error(`Component "${name}" not found in registry`);
     }
@@ -38,12 +40,12 @@ export async function getComponent(name: string): Promise<ComponentConfig | null
         try {
           const fileUrl = `${REGISTRY_BASE_URL}/${fileInfo.path}`;
           console.log(`Fetching file: ${fileUrl}`);
-          
+
           const { data: content } = await axios.get(fileUrl);
           if (typeof content !== 'string') {
             throw new Error(`Invalid content type for file: ${fileInfo.path}`);
           }
-          
+
           return [key, { ...fileInfo, content }];
         } catch (error) {
           console.error(`Error fetching file ${fileInfo.path}:`, error);
@@ -54,7 +56,7 @@ export async function getComponent(name: string): Promise<ComponentConfig | null
 
     const component: ComponentConfig = {
       ...componentInfo,
-      files: Object.fromEntries(files)
+      files: Object.fromEntries(files),
     };
 
     return component;
@@ -112,7 +114,6 @@ export async function installComponent(
 
     // Update index.ts
     await updateIndexFile(componentsDir, component.name);
-
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(`Failed to install component: ${error.message}`);
@@ -122,11 +123,7 @@ export async function installComponent(
   }
 }
 
-async function processFile(
-  fileInfo: any,
-  content: string,
-  projectRoot: string
-): Promise<void> {
+async function processFile(fileInfo: any, content: string, projectRoot: string): Promise<void> {
   switch (fileInfo.type) {
     case 'component':
     case 'types':
@@ -160,7 +157,7 @@ async function processConfigFile(content: string, projectRoot: string): Promise<
 
     // Parse the configuration
     const config = eval(`(${configMatch[1]})`);
-    
+
     // If there's tailwind configuration, merge it
     if (config.tailwind) {
       await mergeTailwindConfig(config.tailwind, projectRoot);
@@ -184,7 +181,7 @@ async function updateIndexFile(componentsDir: string, componentName: string): Pr
 
   try {
     // Read existing content or create empty string
-    const indexContent = await fs.pathExists(indexPath)
+    const indexContent = (await fs.pathExists(indexPath))
       ? await fs.readFile(indexPath, 'utf-8')
       : '';
 
@@ -225,11 +222,11 @@ export async function getAvailableComponents(): Promise<ComponentConfig[]> {
   try {
     console.log('Fetching available components...');
     const { data: registry } = await axios.get<Registry>(`${REGISTRY_BASE_URL}/registry.json`);
-    
+
     if (!registry || !registry.components) {
       throw new Error('Invalid registry format: Missing components object');
     }
-    
+
     return Object.values(registry.components);
   } catch (error) {
     console.error('Error loading components from registry:', error);
