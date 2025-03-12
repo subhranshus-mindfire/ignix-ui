@@ -11,7 +11,7 @@ const getVersionType = (commitMsg: string): string | null => {
 
 const getPackage = (commitMsg: string): string | null => {
   const scope = commitMsg.match(/\((.*?)\)/)?.[1];
-  return scope ? `@animation-ui/${scope}` : null;
+  return scope === 'cli' ? '@ignix-ui/cli' : null;
 };
 
 const lastCommitMsg = execSync('git log -1 --pretty=%B').toString().trim();
