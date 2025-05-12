@@ -20,7 +20,8 @@
     "docs:build": "turbo run build --filter=docs",
     "docs:deploy": "turbo run deploy --filter=docs",
     "clean": "turbo run clean && pnpm -r exec rm -rf node_modules && rm -rf node_modules",
-    "typecheck": "turbo run typecheck"
+    "typecheck": "turbo run typecheck",
+    "changeset:autogenerate": "node .github/changeset-autogenerate.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.0",
