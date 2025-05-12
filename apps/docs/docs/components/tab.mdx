@@ -1,0 +1,184 @@
+```mdx
+# **Tabs Component Documentation**
+
+A reusable, customizable, and animated tab selector for modern React applications — built with **TypeScript**, **Framer Motion**, **Tailwind CSS**, and **class-variance-authority**.
+
+---
+
+## **✨ Overview**
+
+The `Tabs` component lets you render a row of selectable options styled as tabs. It supports:
+
+- Custom style **variants** (e.g., underline, filled, pill, glass).
+- Optional **themes** for light/dark/glass aesthetics.
+- Three **size** options.
+- Smooth **Framer Motion** animations on hover/tap.
+- Controlled or uncontrolled usage via `selected` and `value` props.
+
+---
+
+## **🚀 Basic Usage**
+
+```tsx
+<Tabs
+  options={["Overview", "Pricing", "Features"]}
+  selected={0}
+  value={(index) => console.log("Tab changed to:", index)}
+  variant="pill"
+  size="lg"
+  theme="glass"
+  className="my-6"
+/>
+```
+
+---
+
+## **⚙️ Component API**
+
+### **`TabsProps`**
+
+```ts
+export interface TabsProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof tabsVariants> {
+  options: string[]; // Tab labels
+  selected?: number; // Optional default selected index
+  value?: (index: number) => void; // Callback when a tab is clicked
+}
+```
+
+| Prop        | Type                          | Description                                           |
+| ----------- | ----------------------------- | ----------------------------------------------------- |
+| `options`   | `string[]`                    | List of tab labels to render. **Required.**          |
+| `selected`  | `number`                      | Index of initially selected tab (for uncontrolled use). |
+| `value`     | `(index: number) => void`     | Callback fired on tab click. Enables controlled behavior. |
+| `variant`   | `underline` \| `filled` \| ...| Visual style variant (see below).                    |
+| `theme`     | `light` \| `dark` \| ...      | Optional visual theme to apply.                      |
+| `size`      | `sm` \| `md` \| `lg`          | Font size of tabs. Default is `md`.                  |
+| `className` | `string`                      | Extra classes for the outer container.               |
+| `...props`  | `HTMLAttributes<HTMLDivElement>` | Any other native `div` props.                       |
+
+---
+
+## **🎨 Variants**
+
+Variants are defined using **class-variance-authority (cva)** and determine the style of the tab buttons.
+
+### **Available `variant` values:**
+
+| Variant    | Description                                   |
+| ---------- | --------------------------------------------- |
+| `underline`| Tabs with underline indicator (default).      |
+| `filled`   | Solid background with white text.             |
+| `pill`     | Rounded full pill style.                      |
+| `outline`  | Border with text color, no background.        |
+| `ghost`    | Transparent tabs, with hover background.      |
+| `shadow`   | Elevated style with drop shadow.              |
+| `gradient` | Background with gradient (blue to purple).    |
+| `glow`     | White tab with glowing blue shadow.           |
+| `block`    | Block-style layout with gray border.          |
+
+🧠 Internally, a background `motion.div` is animated for most styles *except* `underline`, where the underline itself is implied through CSS.
+
+---
+
+## **🌈 Themes**
+
+Themes change the background/text color of the whole component or enhance visual styling (like frosted glass or gradients).
+
+| Theme               | Description                                      |
+| ------------------- | ------------------------------------------------ |
+| `light`            | White background, dark text.                     |
+| `dark`             | Dark background, white text.                     |
+| `glass`            | Transparent white with backdrop blur and white text. |
+| `glassDark`        | Transparent dark blur + white text.              |
+| `glassLight`       | Transparent white blur + dark text.              |
+| `glassGradient`    | Blue → purple gradient with blur and white text. |
+| `glassGradientDark`| Same gradient, but dark blur and black text.     |
+
+---
+
+## **🔠 Sizes**
+
+| Size | Class Applied | Description         |
+| ---- | ------------- | ------------------- |
+| `sm` | `text-sm`     | Small tab labels.   |
+| `md` | `text-md`     | Medium tab labels.  |
+| `lg` | `text-lg`     | Large tab labels.   |
+
+---
+
+## **🔄 Controlled vs Uncontrolled**
+
+- **Uncontrolled**: Use `selected` prop to set the initial tab, internal state manages changes.
+- **Controlled**: Provide a `value` callback and manage state in the parent.
+
+### **🔄 Controlled Example**
+
+Here's how you can use the `Tabs` component in a controlled manner:
+
+```tsx
+import { useState } from "react";
+import { Tabs } from "your-library";
+
+const ControlledTabsExample = () => {
+  const [currentTab, setCurrentTab] = useState(0);
+
+  return (
+    <Tabs
+      options={["A", "B", "C"]}
+      selected={currentTab}
+      value={setCurrentTab}
+    />
+  );
+};
+```
+
+In this example:
+
+- The `currentTab` state determines the active tab.
+- The `setCurrentTab` function updates the state when a tab is clicked.
+- This approach gives you full control over the selected tab.
+
+---
+
+## **✨ Animation Behavior**
+
+Built with **Framer Motion**:
+
+- `whileHover`: Tab scales slightly on hover.
+- `whileTap`: Slight shrink effect on click.
+- `motion.div` with `layoutId` animates the background for styles like `filled`, `pill`, `shadow`, etc.
+
+This makes the transition between tabs **fluid and modern**.
+
+---
+
+## **🧠 Internal Styling Logic**
+
+The core styling logic is handled via:
+
+```ts
+tabsVariants({
+  variant: "pill",
+  size: "lg",
+  theme: "glass"
+});
+```
+
+Which maps to class combinations like:
+
+```css
+"bg-blue-500 text-white rounded-full px-4 py-2 text-lg bg-white/10 backdrop-blur-lg"
+```
+
+These combinations are merged using `class-variance-authority` and `cn()` utility.
+
+---
+
+## **💡 Tips**
+
+- Pair this with routing logic (e.g. React Router) to use tabs as navigational elements.
+- Use dynamic content switching below the tab row for tabbed content UI.
+- You can customize motion transitions or add icons inside the map render if needed.
+```

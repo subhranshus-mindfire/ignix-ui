@@ -1,0 +1,78 @@
+# Dropdown Component
+
+A customizable and animated dropdown component built with Radix UI, Framer Motion, and `class-variance-authority` (CVA).
+
+---
+
+## ✨ Features
+
+- Smooth animations (fade, scale, slide, flip, etc.)
+- Theme and size variants via CVA
+- Customizable trigger and menu items
+
+---
+
+## 🧱 Component API
+
+### `Dropdown`
+
+#### Props
+
+| Prop       | Type                                      | Description                                      | Default    |
+|------------|-------------------------------------------|--------------------------------------------------|------------|
+| `children` | `ReactNode`                               | The dropdown menu content.                       | —          |
+| `trigger`  | `ReactNode`                               | The element that triggers the dropdown.          | —          |
+| `animation`| `"default" \| "fade" \| "scale" \| "slide" \| "flip"` | Animation style applied to dropdown. | `"default"` |
+| `size`     | `"sm" \| "md" \| "lg"`                    | Text size of the dropdown.                       | `"md"`     |
+| `rounded`  | `"none" \| "sm" \| "md" \| "full"`        | Border radius of the dropdown.                   | `"md"`     |
+| `bg`       | `"default" \| "dark" \| "transparent" \| "glass" \| "gradient" \| "primary"` | Background color variant. | `"default"` |
+| `className`| `string`                                  | Additional class names.                          | —          |
+
+---
+
+## 🎬 Animations
+
+Available animation variants:
+
+- `default`: Slight scale + vertical slide + fade
+- `fade`: Simple fade in/out
+- `scale`: Scale with opacity
+- `slide`: Slide down with opacity
+- `flip`: Flip animation
+
+---
+
+## 🔧 Usage
+
+```tsx
+import { Dropdown, DropdownItem } from "@/components/ui/dropdown";
+import { Button } from "@/components/ui/button";
+
+<Dropdown
+  trigger={<Button>Open Menu</Button>}
+  animation="slide"
+  bg="glass"
+  rounded="md"
+>
+  <DropdownItem onSelect={() => alert("Profile")}>Profile</DropdownItem>
+  <DropdownItem onSelect={() => alert("Settings")}>Settings</DropdownItem>
+  <DropdownItem onSelect={() => alert("Logout")}>Logout</DropdownItem>
+</Dropdown>
+```
+
+---
+
+## 🧩 DropdownItem
+
+A wrapper around `@radix-ui/react-dropdown-menu.Item` with styling.
+
+### Props
+
+All props from `DropdownMenu.Item` are passed through.
+
+#### Additional Props
+
+| Prop       | Type        | Description               |
+|------------|-------------|---------------------------|
+| `children` | `ReactNode` | The content inside the item |
+| `className`| `string`    | Optional class overrides  |

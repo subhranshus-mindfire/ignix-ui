@@ -1,0 +1,67 @@
+# **AnimatedInput Component Documentation**
+
+## **Overview**
+
+`AnimatedInput` is a React component that enhances standard text inputs with a wide variety of animation styles using Framer Motion. This component is particularly useful for modern UI/UX experiences that require playful, creative, or polished input transitions.
+
+---
+
+## **Props**
+
+| Prop              | Type                          | Description                                                                 |
+| ------------------ | ----------------------------- | --------------------------------------------------------------------------- |
+| `placeholder`     | `string`                      | The label text that floats above the input when focused or filled.          |
+| `variant`         | `string`                      | Defines the animation style to be applied. Must match a key in `inputVariants`. |
+| `inputClassName`  | `string` *(optional)*         | Additional CSS classes for the input element.                               |
+| `labelClassName`  | `string` *(optional)*         | Additional CSS classes for the label element.                               |
+| `value`           | `string`                      | The input's current value (controlled component).                           |
+| `onChange`        | `(value: string) => void`     | Callback function invoked when the input value changes.                     |
+| `onFocus`         | `() => void` *(optional)*     | Callback function when input receives focus.                                |
+| `onBlur`          | `() => void` *(optional)*     | Callback function when input loses focus.                                   |
+
+---
+
+## **Variants**
+
+`AnimatedInput` supports a rich collection of animation styles. Some examples include:
+
+- `clean`: Simple float label and border highlight.
+- `borderBeam`: SVG border animation using stroke path animation.
+- `particles`: Floating particles above the input on focus.
+- `particleField`: Dynamic, random particles floating in a field.
+- `underline`, `floating`, `shimmer`, `glow`, `wave`, `bounce`, `typewriter`, `glitch`, and more.
+
+Each variant defines its own `label`, `input`, and optionally `extra` animation definitions using Framer Motion Variants.
+
+---
+
+## **Internal Features**
+
+### **1. Focus Handling**
+
+- Internally manages `isFocused` state.
+- Applies animation when input is either focused or has a non-empty value.
+
+### **2. Dynamic Effects**
+
+- For `particleField`, uses DOM manipulation and `setInterval` to create randomized particles.
+- For `borderBeam`, uses an SVG rectangle with animated stroke length.
+- For `particles`, uses mapped motion divs for floating effect.
+
+### **3. Motion Controls**
+
+- Uses `<motion.label>` and `<motion.input>` for animating label and input fields.
+- Applies `variants` and `initial/animate` states dynamically.
+
+---
+
+## **Styling**
+
+- Tailwind CSS utility classes are used for base styles.
+- Supports full customization through `inputClassName` and `labelClassName`.
+- Includes `perspective` styling for 3D animation support (e.g., flip, rotate).
+
+---
+
+## **Example Usage**
+

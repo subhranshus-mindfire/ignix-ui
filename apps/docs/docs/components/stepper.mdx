@@ -1,0 +1,42 @@
+# Stepper Component
+
+A visual stepper UI component that displays a sequence of steps with labels, optional descriptions, and active/completed state styling. Useful for forms, wizards, or multi-stage flows.
+
+## ✨ Features
+
+- Visual indicators for active and completed steps  
+- Optional descriptions per step  
+- Responsive horizontal layout  
+- Light and dark mode styling support
+
+---
+
+## 🧩 Props
+
+### `StepperProps`
+
+| Name         | Type              | Required | Description                                             |  
+|--------------|-------------------|----------|---------------------------------------------------------|  
+| `steps`      | `Step[]`          | ✅       | Array of step objects with labels and optional descriptions |  
+| `activeStep` | `number`          | ✅       | The index (0-based) of the currently active step        |  
+| `className`  | `string`          | ❌       | Optional additional className for container styling     |
+
+### `Step`
+
+| Name           | Type     | Required | Description                           |  
+|----------------|----------|----------|---------------------------------------|  
+| `label`        | `string` | ✅       | The title or name of the step         |  
+| `description`  | `string` | ❌       | Optional subtitle or explanation text |
+
+---
+
+## 🎨 Visual States
+
+- ✅ **Completed steps**: Green background with checkmark (✓)  
+- 🔵 **Active step**: Blue border with step number  
+- ⚪ **Inactive step**: Greyed out styling
+
+---
+
+## 📦 Usage
+
