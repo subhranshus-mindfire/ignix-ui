@@ -1,0 +1,7 @@
+/apps/poc/**/*
+/apps/docs/**/*
+/packages/registry/**/*
+node_modules
+dist
+.next
+build

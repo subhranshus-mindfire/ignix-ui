@@ -1,0 +1,82 @@
+{
+  "components": {
+    "slide": {
+      "name": "Slide",
+      "description": "A slide animation component with configurable direction",
+      "dependencies": ["framer-motion"],
+      "files": {
+        "main": {
+          "path": "components/slide/index.tsx",
+          "type": "component"
+        }
+      }
+    },
+    "accordion": {
+      "name": "Accordion",
+      "description": "An animated accordion component",
+      "dependencies": ["@radix-ui/react-accordion", "lucide-react", "framer-motion"],
+      "files": {
+        "main": {
+          "path": "components/accordion/index.tsx",
+          "type": "component"
+        }
+      }
+    },
+    "button": {
+      "name": "Button",
+      "description": "An animated button component",
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority", "framer-motion"],
+      "files": {
+        "main": {
+          "path": "components/button/index.tsx",
+          "type": "component"
+        }
+      }
+    },
+    "slider": {
+      "name": "Slider",
+      "description": "An animated slider component",
+      "dependencies": ["@radix-ui/react-slider", "framer-motion"],
+      "files": {
+        "main": {
+          "path": "components/slider/index.tsx",
+          "type": "component"
+        }
+      }
+    },
+    "switch": {
+      "name": "Switch",
+      "description": "An animated switch component",
+      "dependencies": ["@radix-ui/react-switch", "framer-motion"],
+      "files": {
+        "main": {
+          "path": "components/switch/index.tsx",
+          "type": "component"
+        }
+      }
+    },
+    "toast": {
+      "name": "Toast",
+      "description": "A toast notification component with animation and different variants",
+      "dependencies": ["@radix-ui/react-toast", "framer-motion", "lucide-react"],
+      "files": {
+        "main": {
+          "path": "components/toast/index.tsx",
+          "type": "component"
+        },
+        "types": {
+          "path": "components/toast/types.ts",
+          "type": "types"
+        },
+        "hook": {
+          "path": "components/toast/use-toast.ts",
+          "type": "hook"
+        },
+        "config": {
+          "path": "components/toast/config.ts",
+          "type": "tailwind-config"
+        }
+      }
+    }
+  }
+}
