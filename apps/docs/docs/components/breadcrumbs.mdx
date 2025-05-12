@@ -1,0 +1,122 @@
+```mdx
+# **`Breadcrumbs` Component Documentation**
+
+The `Breadcrumbs` component provides a flexible and customizable way to display navigation trails, steps, or progress indicators in your application.
+
+---
+
+## **Usage**
+
+```tsx
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+
+<Breadcrumbs
+  items={[
+    { label: "Home", href: "/" },
+    { label: "Products", href: "/products" },
+    { label: "Shoes" },
+  ]}
+/>
+```
+
+---
+
+## **Props**
+
+| Prop           | Type                                      | Description                                                   | Default |
+| -------------- | ----------------------------------------- | ------------------------------------------------------------- | ------- |
+| `items`        | `{ label: string; href?: string }[]`      | List of breadcrumb items. `href` is optional.                 | `[]`    |
+| `separatorIcon`| `React.ElementType`                      | Optional separator icon component between breadcrumb items.   | `/`     |
+| `steps`        | `string[]`                               | List of step names (used in `step` variant).                  | `[]`    |
+| `currentStep`  | `number`                                 | The index of the current active step (used in `step` and `custom` variants). | `0` |
+| `variant`      | `"text" | "step" | "progress"`            | Type of breadcrumb display.                                   | `"text"`|
+| `size`         | `"sm" | "md" | "lg"`                     | Size of the breadcrumbs.                                      | `"md"`  |
+| `shape`        | `"rectangle" | "round" | "pill"`         | Shape of the breadcrumb items (used in `custom` variant).     | `"rectangle"` |
+| `bgColor`      | `"blue" | "gray" | "green"`              | Background color for `custom` variant.                       | `"blue"`|
+| `textColor`    | `"white" | "black" | "gray"`             | Text color for `custom` variant.                             | `"black"`|
+| `className`    | `string`                                 | Additional custom classes.                                    | `-`     |
+| `...props`     | `React.HTMLAttributes<HTMLDivElement>`   | Other `div` props.                                            | `-`     |
+
+---
+
+## **Variants**
+
+### **`text` (default)**
+
+- Basic breadcrumbs with optional links.
+- Displays labels with separators (`/` or a custom separator icon).
+
+### **`step`**
+
+- Step indicator with number badges.
+- Highlights the current and completed steps.
+
+### **`custom`**
+
+- Button-style breadcrumbs.
+- Supports background color, text color, shape customization.
+- Highlights the current and completed steps.
+
+### **`progress`**
+
+- *(Reserved for future expansion)* You can add progress-bar style behavior later if needed.
+
+---
+
+## **Examples**
+
+### **1. Text Breadcrumbs**
+
+```tsx
+<Breadcrumbs
+  items={[
+    { label: "Dashboard", href: "/" },
+    { label: "Settings", href: "/settings" },
+    { label: "Profile" },
+  ]}
+  separatorIcon={() => <ChevronRightIcon />}
+  size="sm"
+/>
+```
+
+### **2. Step Breadcrumbs**
+
+```tsx
+<Breadcrumbs
+  variant="step"
+  steps={["Login", "Shipping", "Payment", "Confirmation"]}
+  currentStep={2}
+/>
+```
+
+### **3. Custom Breadcrumbs**
+
+```tsx
+<Breadcrumbs
+  variant="custom"
+  items={[
+    { label: "Account", href: "/account" },
+    { label: "Billing", href: "/billing" },
+    { label: "Confirm" },
+  ]}
+  currentStep={1}
+  bgColor="green"
+  textColor="white"
+  shape="rectangle"
+/>
+```
+
+---
+
+## **Notes**
+
+- `SeparatorIcon` can be any React element, such as a right arrow icon (`>`) or chevron.
+- `progress` variant is defined but not yet implemented; you can extend it easily.
+
+* `SeparatorIcon` can be any React element, such as a right arrow icon (`>`) or chevron.
+
+* `progress` variant is defined but not yet implemented; you can extend it easily.
+
+* When using `custom` variant, remember to pass `bgColor`, `textColor`, and `shape` for best appearance.
+
+* Accessible, keyboard-focusable, and easily styleable via utility classes.

@@ -1,0 +1,114 @@
+```mdx
+# Sidebar Component Documentation
+
+## Overview
+
+The `Navbar` and `Sidebar` components are customizable and animated navigation UIs built with **React**, **Framer Motion**, and **Tailwind CSS**. They support a variety of animation styles, themes, submenu behaviors, and layout directions.
+
+---
+
+## Sidebar Component
+
+### Overview
+
+The `Sidebar` component is a highly flexible vertical or horizontal sidebar that can be toggled open/closed. It uses variants powered by `class-variance-authority` and supports different positions, themes, and directions.
+
+---
+
+### Usage
+
+```jsx
+<Sidebar  
+  links={navLinks}  
+  brandName="My App"  
+  position="left"  
+  variant="glass"  
+  direction="vertical"  
+  onClose={() => console.log("Sidebar closed")}  
+/>
+```
+
+---
+
+### Props
+
+| Prop         | Type                                                                 | Default     | Description                                                   |
+|--------------|----------------------------------------------------------------------|-------------|---------------------------------------------------------------|
+| `links`      | `LinkItem[]`                                                        | Required    | Array of link items containing label, href, and icon.         |
+| `brandName`  | `string`                                                            | `"Brand"`   | Brand title shown at the top when sidebar is open.           |
+| `position`   | `"left" \| "right" \| "bottomLeft" \| "bottomRight"`                | `"left"`    | Determines the sidebar anchor position.                      |
+| `variant`    | `"default" \| "dark" \| "light" \| "glass"`                         | `"default"` | Theme styling of the sidebar.                                |
+| `direction`  | `"horizontal" \| "vertical"`                                        | `"vertical"`| Layout direction for links.                                  |
+| `onClose`    | `() => void`                                                        | -           | Optional close callback.                                      |
+| `isOpen`     | `boolean`                                                           | `true`      | Initial open/closed state.                                   |
+
+---
+
+### Variants
+
+`sidebarVariants` control the style and layout using CVA:
+
+- **position**: Placement of sidebar on screen.
+- **isOpen**: Width adapts based on open state.
+- **variant**: Theme color and background style.
+- **direction**: Whether links are laid out in a row or column.
+
+---
+
+### Animation
+
+The sidebar slides in from the left or right using `Framer Motion`. Animation transitions are defined for mounting and toggle behavior:
+
+```jsx
+<motion.div  
+  initial={{ x: position === "left" ? "-100%" : "100%" }}  
+  animate={{ x: isOpen ? 0 : position === "left" ? "-300%" : "0%" }}  
+  transition={{ duration: 0.4 }}  
+/>
+```
+
+---
+
+### Link Items
+
+Each item in `links` follows this interface:
+
+```typescript
+interface LinkItem {  
+  label: string;  
+  href: string;  
+  icon: React.ElementType;  
+}
+```
+
+Links are rendered with an icon and optional label based on the sidebar open state.
+
+---
+
+### Customization Tips
+
+- Use the `variant` prop to match your app theme.
+- Combine `position` and `direction` for unique layouts.
+- Extend `sidebarVariants` for new design options.
+- Add additional logic to `onClose` to handle backdrop click, route change, etc.
+
+---
+
+## Styling & Theming
+
+- Tailwind CSS is used for styling.
+- `class-variance-authority` (CVA) enables dynamic variants for size, theme, direction, etc.
+- Internal elements (like `<input>`) are styled using utility classes scoped inside the nav and sidebar.
+
+---
+
+## License
+
+---
+
+## Maintainer
+
+Built with ❤️ by your frontend team.
+
+---
+```

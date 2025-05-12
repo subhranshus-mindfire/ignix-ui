@@ -1,0 +1,75 @@
+# Tooltip Component Documentation
+
+## Overview
+
+The `Tooltip` component is a customizable and animated tooltip built with **Radix UI**, **Framer Motion**, and **class-variance-authority**. It supports multiple animation styles, themes, and border radius variants.
+
+---
+
+## Usage
+
+```tsx
+<Tooltip content="Tooltip text" animation="slideUp" bg="glass" rounded="md">
+  <button>Hover me</button>
+</Tooltip>
+```
+
+---
+
+## Props
+
+| Prop       | Type                        | Description                                                                 |
+|------------|-----------------------------|-----------------------------------------------------------------------------|
+| `content`  | `ReactNode`                 | The tooltip text or content to display.                                    |
+| `children` | `ReactNode`                 | The trigger element over which tooltip will appear.                         |
+| `className`| `string?`                   | Optional additional classes for styling.                                   |
+| `animation`| `"fade" \| "scale" \| "slideUp" \| "slideDown" \| "slideLeft" \| "slideRight"` | Animation variant for showing/hiding the tooltip. |
+| `rounded`  | `"sm" \| "md" \| "full"`  | Controls the border radius.                                                |
+| `bg`       | `"dark" \| "light" \| "slate" \| "default" \| "transparent" \| "glass" \| "gradient" \| "primary"` | Background and text color style variants. |
+
+---
+
+## Animation Variants
+
+| Name        | Description                                |
+|-------------|--------------------------------------------|
+| `fade`      | Fades in/out                               |
+| `scale`     | Scales up while fading                     |
+| `slideUp`   | Slides up into view                        |
+| `slideDown` | Slides down into view                      |
+| `slideLeft` | Slides in from the left                    |
+| `slideRight`| Slides in from the right                   |
+
+---
+
+## Styling
+
+The tooltip styling is handled via `class-variance-authority (cva)` with the following style options:
+
+### `rounded`
+
+- `sm`: Small rounded corners
+- `md`: Medium rounded corners
+- `full`: Fully rounded
+
+### `bg`
+
+- `dark`, `light`, `slate`, `default`, `transparent`, `glass`, `gradient`, `primary`
+
+These variants affect both background color and text color.
+
+---
+
+## Dependencies
+
+- `@radix-ui/react-tooltip`
+- `framer-motion`
+- `class-variance-authority`
+- Custom utility: `cn` (class name merger)
+
+---
+
+## Notes
+
+- Tooltip appears after a delay of 200ms.
+- You can customize transitions by editing the `motionVariants` object.

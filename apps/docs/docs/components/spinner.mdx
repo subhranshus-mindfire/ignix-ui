@@ -1,0 +1,76 @@
+# **Spinner Component Documentation**
+
+## **Overview**
+
+The `Spinner` component is a customizable loading indicator built with Tailwind CSS and Framer Motion. It supports multiple animation variants such as a classic spinner, animated bars, and bouncing dots.
+
+---
+
+## **Props**
+
+| Prop        | Type                                   | Default            | Description                                           |
+|-------------|----------------------------------------|--------------------|-------------------------------------------------------|
+| `size`      | `number`                               | `40`               | Size of the spinner in pixels (width and height).     |
+| `color`     | `string`                               | `'border-gray-500'`| Border or background color depending on the variant.  |
+| `thickness` | `number`                               | `4`                | Thickness of the border or dot size depending on the variant. |
+| `variant`   | `'default' | 'bars' | 'dots-bounce'`   | `'default'`        | Type of loading animation.                            |
+| `className` | `string`                               | `""`               | Additional class names for styling.                  |
+
+---
+
+## **Variants**
+
+### **1. `default`**
+
+A spinning circular loader using border animation.
+
+- The top border is transparent to create a visual spinning effect.
+- Controlled via `size`, `thickness`, and `color`.
+
+### **2. `bars`**
+
+A circular spinner made of 8 bars that fade in and out in sequence.
+
+- Bars are rotated around the center.
+- Opacity animation gives a spinning illusion.
+- Uses `Framer Motion` for animations.
+
+### **3. `dots-bounce`**
+
+A sequential bouncing animation of four dots.
+
+- Each dot scales and fades in a staggered sequence.
+- Good for typing or waiting indicators.
+- `thickness` defines the dot size.
+
+---
+
+## **Usage**
+<Spinner variant="bars" size={50} color="bg-green-500" />  
+<Spinner variant="dots-bounce" thickness={8} color="#10b981" />  
+<Spinner size={60} thickness={6} color="border-blue-500" />
+
+---
+## **Notes**
+
+* `color` acts differently depending on the variant:
+
+    * `default`: used as a Tailwind border color class (e.g., `border-red-500`).
+
+    * `bars`: also Tailwind class (e.g., `bg-gray-400`).
+
+    * `dots-bounce`: treated as a raw color string (e.g., `#10b981`).
+
+---
+
+## **Dependencies**
+
+* `Framer Motion`
+
+* `Tailwind CSS`
+
+* Utility function `cn()` for conditional class merging.
+
+
+
+

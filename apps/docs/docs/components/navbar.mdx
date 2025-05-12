@@ -1,0 +1,120 @@
+```mdx
+# Navbar Component Documentation
+
+## Overview
+
+The `Navbar` component is a customizable and animated navigation bar built with **React**, **Framer Motion**, and **Tailwind CSS**. It supports a variety of animation styles, themes, submenu behaviors, and layout directions.
+
+---
+
+## Usage
+
+```jsx
+<Navbar
+  variant="primary"
+  size="md"
+  animationType="slide"
+  direction="horizontal"
+  header="Main Menu"
+  submenuContent={<SubMenu />}
+>
+  <NavItem />
+</Navbar>
+```
+
+---
+
+## Props
+
+### Core Props
+
+| Prop          | Type                                                                                     | Default      | Description                  |
+| ------------- | ---------------------------------------------------------------------------------------- | ------------ | ---------------------------- |
+| `variant`     | `"default" \| "dark" \| "transparent" \| "glass" \| "gradient" \| "primary"`             | `"default"`  | The theme of the navbar.     |
+| `size`        | `"sm" \| "md" \| "lg" \| "xl"`                                                          | `"md"`       | Height of the navbar.        |
+| `weight`      | `"light" \| "normal" \| "medium" \| "semibold" \| "bold"`                               | `"semibold"` | Font weight for text.        |
+| `align`       | `"left" \| "center" \| "right"`                                                         | `"left"`     | Text alignment.              |
+| `textColor`   | `"default" \| "muted" \| "primary" \| "secondary" \| "accent" \| "white"`               | `-`          | Text color variant.          |
+| `direction`   | `"horizontal" \| "vertical"`                                                            | `"horizontal"` | Layout direction.           |
+
+### Animation Props
+
+| Prop            | Type                                                                                     | Default      | Description                              |
+| --------------- | ---------------------------------------------------------------------------------------- | ------------ | ---------------------------------------- |
+| `animationType` | `"slide" \| "glow" \| "basic" \| "spotlight" \| "hoverSubmenu" \| "clickSubmenu"`        | `"slide"`    | Type of animation to apply to navbar.    |
+| `isOpen`        | `boolean`                                                                               | `true`       | Controls open state of the navbar.       |
+
+### Submenu Props
+
+| Prop            | Type               | Description                                   |
+| --------------- | ------------------ | --------------------------------------------- |
+| `header`        | `string`           | Header text shown in submenu navbars.         |
+| `submenuContent`| `React.ReactNode`  | Component rendered below header for submenu.  |
+
+### HTML & Motion Props
+
+Inherits all props from `motion.nav`, excluding `ref`.
+
+---
+
+## Animation Variants
+
+The navbar supports the following animations:
+
+- **slide**: Slides in from the top.
+- **glow**: Adds a glowing shadow on hover.
+- **basic**: Subtle scaling on hover.
+- **spotlight**: Radial light effect on hover.
+- **hoverSubmenu**: Shows submenu on hover.
+- **clickSubmenu**: Toggles submenu on click.
+
+---
+
+## Submenu Behavior
+
+When `animationType` is `hoverSubmenu` or `clickSubmenu`, the navbar displays a dropdown-style submenu. The content of the submenu is passed via the `submenuContent` prop, and the `header` prop displays a heading above the submenu.
+
+Submenu animations are handled via `AnimatePresence` and `motion.div` with basic fade/slide transitions.
+
+---
+
+## Styling & Theming
+
+- Tailwind CSS is used for styling.
+- `class-variance-authority` (CVA) enables dynamic variants for size, theme, direction, etc.
+- Internal elements (like `<input>`) are styled using utility classes scoped inside the nav.
+
+---
+
+## Customization Tips
+
+- Add new themes by extending `navbarVariants`.
+- Add new animation types by extending `animationVariants`.
+- Compose navbar items using your own `NavItem` components inside `<Navbar>...</Navbar>`.
+
+---
+
+## Example with Submenu
+
+```jsx
+<Navbar
+  variant="dark"
+  animationType="hoverSubmenu"
+  header="My Menu"
+  submenuContent={<div>Dropdown Links</div>}
+>
+  <div>Home</div>
+  <div>Services</div>
+</Navbar>
+```
+
+---
+
+## License
+
+---
+
+## Maintainer
+
+---
+```
