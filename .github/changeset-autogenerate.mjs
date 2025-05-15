@@ -7,8 +7,8 @@ const commitMessage = execSync('git log -1 --format=%s').toString().trim();
 // Define valid scopes
 const validScopes = [
   'cli',
-  'release',
   'docs',
+  'release',
 ];
 
 // Define regex patterns
@@ -47,6 +47,7 @@ if (packageScope) {
   packageScope = packageScope.trim();
   description = description?.trim() || 'No description provided.';
 
+  // Determine the full package name based on scope
   const packageName =
     packageScope === 'cli'
       ? '@mindfiredigital/ignix-ui'
@@ -54,16 +55,16 @@ if (packageScope) {
 
   // Generate changeset content
   const changesetContent = `---
-'${packageName}': ${changeType}
----
-${description}
-`;
+  '${packageName}': ${changeType}
+  ---
+  ${description}
+  `;
 
   // Write to a changeset file
   fs.writeFileSync(`.changeset/auto-${Date.now()}.md`, changesetContent);
   console.log(`✅ Changeset file created for package: ${packageName}`);
 } else {
   console.log(
-    '⚠️ No valid package scope found in commit message. Valid scopes are: core, react, web-component'
+    '⚠️ No valid package scope found in commit message. Valid scopes are: cli , docs , release'
   );
 }
