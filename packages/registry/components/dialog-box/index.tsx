@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { createContext, CSSProperties, useState } from 'react';
+import { createContext, type CSSProperties, useState } from 'react';
 
 // types/dialog.ts
 export interface DialogRef {
@@ -124,7 +124,7 @@ export const DialogProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const anim = animations[options?.animationKey || 'popIn'];
   return (
     <DialogContext.Provider value={{ openDialog, closeDialog }}>
-      {children}
+      <>{children}</>
       <AnimatePresence>
       {isOpen && (
         <div
@@ -139,7 +139,7 @@ export const DialogProvider: React.FC<{ children: React.ReactNode }> = ({ childr
                 <h2 className="text-xl font-bold">{options?.title}</h2>
             </div>
             <div className="p-4 flex-1 overflow-y-auto">
-              {options.children ?? <p>{options.content}</p>}
+              <>{options.children ?? <p>{options.content}</p>}</>
             </div>
             { !options?.defaultButtons && <div className="flex items-center justify-center space-x-4  gap-4 p-4">              
                     {
