@@ -193,9 +193,15 @@ importers:
       chalk:
         specifier: ^4.1.2
         version: 4.1.2
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       commander:
         specifier: ^9.4.1
         version: 9.4.1
+      framer-motion:
+        specifier: ^12.4.10
+        version: 12.4.10(react-dom@19.0.0)(react@19.0.0)
       fs-extra:
         specifier: ^10.1.0
         version: 10.1.0
@@ -205,6 +211,9 @@ importers:
       ora:
         specifier: ^5.4.1
         version: 5.4.1
+      tailwind-merge:
+        specifier: ^3.0.2
+        version: 3.0.2
     devDependencies:
       '@types/fs-extra':
         specifier: ^9.0.13

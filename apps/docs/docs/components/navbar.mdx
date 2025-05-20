@@ -1,5 +1,13 @@
-```mdx
-# Navbar Component Documentation
+import { Navbar } from "../../src/components/UI/navbar"
+import React from 'react';
+import  NavbarDemo  from "../../src/components/UI/navbar/navbarDemo"
+import  InstallationBlock  from "../../src/components/UI/navbar/installation"
+import MDXLayout from "../../src/components/Layouts/MDXLayout"
+
+<MDXLayout >
+
+
+# Navbar
 
 ## Overview
 
@@ -7,18 +15,21 @@ The `Navbar` component is a customizable and animated navigation bar built with 
 
 ---
 
+<div className="not-prose">
+  <NavbarDemo />
+</div>
+
+## Installation
+
+<div className="not-prose">
+  <InstallationBlock />
+</div>
+
 ## Usage
 
 ```jsx
-<Navbar
-  variant="primary"
-  size="md"
-  animationType="slide"
-  direction="horizontal"
-  header="Main Menu"
-  submenuContent={<SubMenu />}
->
-  <NavItem />
+<Navbar animationType="spotlight" variant="dark" className="gap-6">
+    {add your content here}
 </Navbar>
 ```
 
@@ -117,4 +128,5 @@ Submenu animations are handled via `AnimatePresence` and `motion.div` with basic
 ## Maintainer
 
 ---
+</ MDXLayout> 
 ```

@@ -3,7 +3,14 @@
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well with Docusaurus.
  */
+ /* @import "tailwind.css"; */
 
+ /* @import "tailwindcss"; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for the Docusaurus theme */
  :root {
   --ifm-color-primary: #2e8555;
   --ifm-color-primary-dark: #29784c;
