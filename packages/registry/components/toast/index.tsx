@@ -1,7 +1,7 @@
 import React, {useRef, useState, useEffect, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CrossCircledIcon } from '@radix-ui/react-icons';
-import { ToastVariantTypes, ToastAnimationTypes } from './types'; //! might have to replace with the absolute path
+import type { ToastVariantTypes, ToastAnimationTypes } from './types'; //! might have to replace with the absolute path
 
 
 interface ToastContainerData { 

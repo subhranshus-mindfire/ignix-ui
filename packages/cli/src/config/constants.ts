@@ -3,7 +3,8 @@
  * Contains registry endpoints and project paths
  */
 export const REGISTRY_CONFIG = {
-  /** Base URL for the component registry */
+  /** Base URL for the components registry */
+ 
   BASE_URL: 'https://raw.githubusercontent.com/mindfiredigital/ignix-ui/main/packages/registry',
 
   /** Registry path configuration */
