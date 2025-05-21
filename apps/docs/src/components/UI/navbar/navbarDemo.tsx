@@ -106,10 +106,10 @@ export default function NavbarDemo() {
     const [tab4, setTab4] = useState<'preview4' | 'code4'>('preview4');
 
     return (
-    <div className="w-full max-w-4xl mx-auto rounded-xl border border-gray-200 shadow-sm">
+    <div className="w-full max-w-4xl mx-auto rounded-xl border border-gray-200 shadow-sm text-black dark:bg-gray-900 dark:text-white ">
 
         {/* === Section 1: Spotlight === */}
-        <div className="flex items-center border-b bg-gray-50 px-4">
+        <div className="flex items-center border-t border-b bg-gray-50 px-4">
         <button
             onClick={() => setTab2('preview2')}
             className={`px-4 py-2 text-sm font-medium ${
@@ -134,7 +134,7 @@ export default function NavbarDemo() {
         <LiveProvider code={demo1} scope={{ Navbar, Home, Heart, Plus, User, Settings, React }}>
         <div className="p-4">
             {tab2 === 'preview2' ? (
-            <div className="">
+            <div className="p-4 bg-white rounded-lg shadow-inner">
                 <LivePreview />
             </div>
             ) : (

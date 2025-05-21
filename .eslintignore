@@ -3,3 +3,5 @@ dist
 .next
 build
 .turbo
+tailwind.config.js
+postcss.config.js

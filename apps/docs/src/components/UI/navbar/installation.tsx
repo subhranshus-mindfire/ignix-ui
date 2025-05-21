@@ -3,16 +3,33 @@ import { Tabs } from "../tab";
 import { Copy } from "lucide-react";
 
 export default function InstallationBlock() {
-  const cliCommands = {
-    pnpm: `pnpm dlx shadcn@latest add "https://magicui.design/i/navbar"`,
-    npm: `npx shadcn@latest add "https://magicui.design/i/navbar"`,
-    yarn: `yarn dlx shadcn@latest add "https://magicui.design/i/navbar"`,
-    bun: `bunx shadcn@latest add "https://magicui.design/i/navbar"`,
-  };
+const cliCommands = {
+    pnpm: 
+    `pnpm add @mindfiredigital/ignix-ui
 
-  const manualCode = `
+npx animation-ui init 
 
-"use client";
+npx ignix-ui add <component-name>`,
+    npm: 
+    `npm i @mindfiredigital/ignix-ui 
+
+npx animation-ui init 
+
+npx ignix-ui add <component-name> `,
+    yarn: 
+    `yarn add @mindfiredigital/ignix-ui
+
+npx animation-ui init 
+
+npx ignix-ui add <component-name>`,
+    bun: `bun add @mindfiredigital/ignix-ui
+
+npx animation-ui init
+
+npx ignix-ui add <component-name>`,};
+
+const manualCode = 
+`"use client";
 
 import { motion, HTMLMotionProps, AnimatePresence } from "framer-motion";
 import * as React from "react";
@@ -307,8 +324,8 @@ export { Navbar, navbarVariants };
           />
 
           {/* CLI Code Block */}
-          <div className="relative mt-4 bg-zinc-900  rounded-lg p-4 text-sm font-mono overflow-x-auto">
-            <code>{selectedCliCommand}</code>
+          <div className="relative bg-zinc-900 text-white rounded-lg p-4 text-sm font-mono overflow-x-auto whitespace-pre-wrap ">
+            <>{selectedCliCommand}</>
             <button
               onClick={() => handleCopy(selectedCliCommand)}
               className="absolute top-2 right-2  text-white bg-zinc-700 hover:bg-zinc-600"
@@ -331,8 +348,8 @@ export { Navbar, navbarVariants };
             </button>
         </div>
         <h1 className="text-lg font-semibold mt-6">2. Set up Tailwind CSS</h1>
-        <p className="text-sm text-gray-700 mt-1">
-            Make sure Tailwind CSS is installed and configured in your <code>tailwind.config.js</code>.
+        <p className="text-sm text-grey-700 mt-2 mb-4 dark:bg-gray-900 dark:text-white">
+           Make sure Tailwind CSS is installed and configured in your <code className="bg-gray-200 px-1 rounded text-black dark:bg-gray-900 dark:text-white">tailwind.config.js</code>.
         </p>
       
         {/* Step 2: Paste Code */}
@@ -354,7 +371,7 @@ export { Navbar, navbarVariants };
           4. Update the import paths to match your project setup.
         </h2>
         <h2 className="text-lg font-semibold mb-2">
-          5. Import the <code className="bg-gray-200 px-1 rounded">Navbar</code> component in your file.
+          5. Import the <code className="bg-gray-200 px-1 rounded text-black dark:bg-gray-900 dark:text-white">Navbar</code> component in your file.
         </h2>
       </>
       
