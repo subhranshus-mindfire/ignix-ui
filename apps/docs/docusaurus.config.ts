@@ -41,10 +41,10 @@ const config: Config = {
     },
     image: 'img/social-card.jpg',
     navbar: {
-      title: 'Animate UI',
+      title: 'Ignix UI',
       logo: {
-        alt: 'Animate UI Logo',
-        src: 'img/logo.svg',
+        alt: 'Ignix UI Logo',
+        src: 'img/logo.png',
       },
       items: [
         {

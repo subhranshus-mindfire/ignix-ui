@@ -17,7 +17,7 @@ Badges are small status descriptors that can be used to highlight specific infor
 
 <Tabs defaultValue="preview">
   <TabItem value="preview" label="Preview" default>
-    <div className="flex items-center gap-8 p-4">
+    <div className="flex items-center gap-8 border rounded-lg p-4">
       <div className="relative inline-flex items-center">
         <Mail className="h-6 w-6" />
         <Badge text="3" type="primary" />
@@ -57,17 +57,17 @@ Badges are small status descriptors that can be used to highlight specific infor
 <Tabs>
   <TabItem value="npm" label="npm" default>
     ```bash
-    npm install ignix-ui add badge
+    npx @mindfiredigital/ignix-ui add badge
     ```
   </TabItem>
   <TabItem value="yarn" label="Yarn">
     ```bash
-    yarn add ignix-ui add badge
+    yarn @mindfiredigital/ignix-ui add badge
     ```
   </TabItem>
   <TabItem value="pnpm" label="pnpm">
     ```bash
-    pnpm add ignix-ui add badge
+    pnpm @mindfiredigital/ignix-ui add badge
     ```
   </TabItem>
 </Tabs>
@@ -175,27 +175,42 @@ The Badge component supports different visual types to indicate various states.
 <Tabs>
   <TabItem value="primary" label="Primary" default>
     <div className="p-4 border rounded-lg my-4">
-      <Badge text="Primary" type="primary" />
+      <div className="relative inline-flex items-center">
+        <Mail className="h-6 w-6" />
+        <Badge text="Primary" type="primary" />
+      </div>
     </div>
   </TabItem>
   <TabItem value="secondary" label="Secondary">
     <div className="p-4 border rounded-lg my-4">
-      <Badge text="Secondary" type="secondary" />
+      <div className="relative inline-flex items-center">
+        <Mail className="h-6 w-6" />
+        <Badge text="Secondary" type="secondary" />
+      </div>
     </div>
   </TabItem>
   <TabItem value="success" label="Success">
     <div className="p-4 border rounded-lg my-4">
-      <Badge text="Success" type="success" />
+      <div className="relative inline-flex items-center">
+        <Mail className="h-6 w-6" />
+        <Badge text="Success" type="success" />
+      </div>
     </div>
   </TabItem>
   <TabItem value="warning" label="Warning">
     <div className="p-4 border rounded-lg my-4">
-      <Badge text="Warning" type="warning" />
+      <div className="relative inline-flex items-center">
+        <Mail className="h-6 w-6" />
+        <Badge text="Warning" type="warning" />
+      </div>
     </div>
   </TabItem>
   <TabItem value="error" label="Error">
     <div className="p-4 border rounded-lg my-4">
-      <Badge text="Error" type="error" />
+      <div className="relative inline-flex items-center">
+        <Mail className="h-6 w-6" />
+        <Badge text="Error" type="error" />
+      </div>
     </div>
   </TabItem>
 </Tabs>
