@@ -9,6 +9,7 @@ import { Slider } from '../UI/slider';
 import { Switch } from '../UI/switch';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../UI/accordion';
 import Link from '@docusaurus/Link';
+import { motion, useInView } from 'framer-motion';
 
 // A small wrapper for the toast demo to use the useToast hook correctly
 const ToastDemo = () => {
@@ -32,6 +33,7 @@ const ToastDemo = () => {
 
 const ComponentShowcase = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '-20% 0px' });
 
   const showcaseItems = [
     {
@@ -148,7 +150,16 @@ const ComponentShowcase = () => {
   };
 
   return (
-    <section ref={sectionRef} className="px-4 relative overflow-hidden">
+    <motion.section 
+      ref={sectionRef} 
+      className="px-4 relative overflow-hidden"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ 
+        opacity: isInView ? 1 : 0,
+        y: isInView ? 0 : 20,
+        transition: { duration: 0.8, ease: "easeOut" }
+      }}
+    >
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse-slow"></div>
@@ -164,7 +175,11 @@ const ComponentShowcase = () => {
         </div>
         
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-fr max-w-6xl mx-auto">
+        <motion.div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-fr max-w-6xl mx-auto"
+        initial={{ y: 20 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 1, ease: "easeInOut", delay: 0.2 }}
+        >
           {showcaseItems.map((item, index) => (
             <Card 
               key={item.id}
@@ -196,7 +211,7 @@ const ComponentShowcase = () => {
               <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-purple-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Card>
           ))}
-        </div>
+        </motion.div>
         
         {/* Call to Action */}
         <div className="text-center mt-16">
@@ -209,7 +224,7 @@ const ComponentShowcase = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

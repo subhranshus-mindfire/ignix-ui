@@ -90,7 +90,7 @@ function HomepageHeader() {
                 scale: [1, 1, 1],
                 y: 0 
               }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
 
             >
               Ignix
@@ -109,7 +109,7 @@ function HomepageHeader() {
                 scale: [1, 1, 1],
                 y: 0 
               }}
-              transition={{ duration: 1.6, ease: "easeInOut" }}
+              transition={{ duration: 1.4, ease: "easeInOut" }}
             >
               A modern, lightweight library of animated React components.
               <br />
@@ -135,17 +135,17 @@ function HomepageHeader() {
                 scale: [1, 1, 1],
                 y: 0 
               }}
-              transition={{ duration: 1.7, ease: "easeInOut" }}
+              transition={{ duration: 1.6, ease: "easeInOut" }}
             >
               <Link to="/docs/introduction">
-                <Button variant="primary" size="xl">
+                <Button variant="primary" size="xl" className='hover:cursor-pointer'>
                   Get Started
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
 
               <Link to="https://github.com/mindfiredigital/ignix-ui">
-                <Button variant="outline" size="xl">
+                <Button variant="outline" size="xl" className='hover:cursor-pointer'>
                   <Github className="mr-2 h-5 w-5" />
                   GitHub
                 </Button>
