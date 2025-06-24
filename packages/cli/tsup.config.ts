@@ -8,8 +8,8 @@ export default defineConfig({
   target: 'node14',
   tsconfig: './tsconfig.json',
   splitting: false,
-  sourcemap: true,
-  minify: false,
+  sourcemap: false,
+  minify: true,
   treeshake: true,
   noExternal: ['commander', 'inquirer', 'chalk', 'ora', '@antfu/ni', 'fs-extra', 'axios'],
   banner: {
