@@ -2,7 +2,7 @@ import { defineConfig } from 'tsup';
 
 export default defineConfig({
   entry: ['src/index.ts'],
-  format: ['cjs'], // Only use CommonJS format for now
+  format: ['cjs'],
   dts: true,
   clean: true,
   target: 'node14',
@@ -22,7 +22,6 @@ export default defineConfig({
     options.conditions = ['import', 'require'];
     options.bundle = true;
     options.outdir = 'dist';
-    // Remove TypeScript-specific options that esbuild doesn't support
     delete (options as any).incremental;
   },
 });
