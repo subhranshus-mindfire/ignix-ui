@@ -55,37 +55,14 @@ const config: Config = {
         },
         {
           href: 'https://github.com/mindfiredigital/ignix-ui',
-          label: 'GitHub',
+          className: 'header--github-link',
+          "aria-label": 'GitHub repository',
           position: 'right',
         },
       ],
     },
     footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Getting Started',
-              to: '/docs/introduction',
-            },
-            {
-              label: 'Components',
-              to: '/docs/components/accordion',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/mindfiredigital/ignix-ui',
-            },
-          ],
-        },
-      ],
+      style: 'light',
       copyright: `Copyright © ${new Date().getFullYear()} Ignix UI.`,
     },
     prism: {

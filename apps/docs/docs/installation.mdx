@@ -3,91 +3,54 @@ sidebar_position: 2
 ---
 # Installation
 
-Get started with Ignix UI in your project.
+Add Ignix UI to your React project in a few simple steps.
 
-## Prerequisites
+## Install Package
 
-Ignix UI is built for React applications. Make sure you have the following installed:
+```bash
+# npm
+npm install @mindfiredigital/ignix-ui
 
-- Node.js 16 or higher
-- npm 7+ or yarn 1.22+ or pnpm
+# yarn
+yarn add @mindfiredigital/ignix-ui
+
+# pnpm
+pnpm add @mindfiredigital/ignix-ui
+```
 
 ## Setup
 
-1. Install Ignix UI and its peer dependencies:
-
-```bash
-# Using npm
-npm i @mindfiredigital/ignix-ui framer-motion
-
-# Using yarn
-yarn add @mindfiredigital/ignix-ui framer-motion
-
-# Using pnpm
-pnpm add @mindfiredigital/ignix-ui framer-motion
-```
-
-2. Initialize the package:
-
+1. Initialize the package:
 ```bash
 npx @mindfiredigital/ignix-ui init
 ```
 
-3. Add components as needed:
-
-```bash
-npx @mindfiredigital/ignix-ui add <component-name>
-```
-
-## Configuration
-
-Add the following to your `tailwind.config.js`:
-
+2. Update your `tailwind.config.js`:
 ```js
 module.exports = {
   content: [
     // ...
     './node_modules/@mindfiredigital/ignix-ui/dist/**/*.{js,ts,jsx,tsx}',
   ],
-  theme: {
-    extend: {
-      keyframes: {
-        // ... your existing keyframes
-      },
-      animation: {
-        // ... your existing animations
-      },
-    },
-  },
-  plugins: [],
+  // ...
 }
 ```
 
-3. Import and use components in your project:
+## Basic Usage
+
+Import and use components:
 
 ```tsx
-import { Accordion } from '@mindfiredigital/ignix-ui'
+import { Button } from '@mindfiredigital/ignix-ui';
 
-export default function App() {
-  return (
-    <Accordion>
-      <Accordion.Item>
-        <Accordion.Trigger>What is Ignix UI?</Accordion.Trigger>
-        <Accordion.Content>
-          Ignix UI is a beautiful component library with built-in animations.
-        </Accordion.Content>
-      </Accordion.Item>
-    </Accordion>
-  )
+function App() {
+  return <Button>Click me</Button>;
 }
 ```
-
-## TypeScript
-
-Ignix UI is written in TypeScript and includes type definitions out of the box.
 
 ## Next Steps
 
-Now that you have Ignix UI installed, check out our components:
-
+Explore available components:
+- [Button](/docs/components/button)
 - [Accordion](/docs/components/accordion)
+- [More Components](/docs/category/components)
