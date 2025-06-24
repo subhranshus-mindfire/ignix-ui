@@ -15,6 +15,7 @@ export default defineConfig({
   banner: {
     js: '#!/usr/bin/env node',
   },
+  outDir: 'dist',
   esbuildOptions(options) {
     options.platform = 'node';
     options.mainFields = ['module', 'main'];
