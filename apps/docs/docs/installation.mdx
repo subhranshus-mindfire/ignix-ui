@@ -3,89 +3,54 @@ sidebar_position: 2
 ---
 # Installation
 
-Get started with Animate UI in your project.
+Add Ignix UI to your React project in a few simple steps.
 
-## Prerequisites
-
-Animate UI is built for React applications. Make sure you have the following installed:
-
-- Node.js 16 or higher
-- npm 7+ or yarn 1.22+
-
-## Setup
-
-1. Install Animate UI and its peer dependencies:
+## Install Package
 
 ```bash
 # npm
-
-npm i @mindfiredigital/ignix-ui framer-motion
+npm install @mindfiredigital/ignix-ui
 
 # yarn
-
-yarn add @mindfiredigital/ignix-ui framer-motion
+yarn add @mindfiredigital/ignix-ui
 
 # pnpm
-
-pnpm add @mindfiredigital/ignix-ui framer-motion
-
-# initialize package
-
-npx animation-ui init 
-
-npx ignix-ui add <component-name>
+pnpm add @mindfiredigital/ignix-ui
 ```
 
-2. Add the following to your `tailwind.config.js`:
+## Setup
 
+1. Initialize the package:
+```bash
+npx @mindfiredigital/ignix-ui init
+```
+
+2. Update your `tailwind.config.js`:
 ```js
 module.exports = {
   content: [
     // ...
-    './node_modules/@animate-ui/core/dist/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@mindfiredigital/ignix-ui/dist/**/*.{js,ts,jsx,tsx}',
   ],
-  theme: {
-    extend: {
-      keyframes: {
-        // ... your existing keyframes
-      },
-      animation: {
-        // ... your existing animations
-      },
-    },
-  },
-  plugins: [],
+  // ...
 }
 ```
 
-3. Import and use components in your project:
+## Basic Usage
+
+Import and use components:
 
 ```tsx
-import { Accordion } from '@animate-ui/core'
+import { Button } from '@mindfiredigital/ignix-ui';
 
-export default function App() {
-  return (
-    <Accordion>
-      <Accordion.Item>
-        <Accordion.Trigger>What is Animate UI?</Accordion.Trigger>
-        <Accordion.Content>
-          Animate UI is a beautiful component library with built-in animations.
-        </Accordion.Content>
-      </Accordion.Item>
-    </Accordion>
-  )
+function App() {
+  return <Button>Click me</Button>;
 }
 ```
-
-## TypeScript
-
-Animate UI is written in TypeScript and includes type definitions out of the box.
 
 ## Next Steps
 
-Now that you have Animate UI installed, check out our components:
-
+Explore available components:
+- [Button](/docs/components/button)
 - [Accordion](/docs/components/accordion)
-- [Fade](/docs/components/fade)
-- [Slide](/docs/components/slide)
-- [Toast](/docs/components/toast) 
+- [More Components](/docs/category/components)
