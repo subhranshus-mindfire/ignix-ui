@@ -51,10 +51,15 @@
 
 .heroSubtitle {
   font-size: 1.25rem;
-  color: hsl(var(--muted-foreground));
   max-width: 650px;
   margin: 0 auto 2.5rem;
   line-height: 1.6;
+  color: #99000d;
+
+  [data-theme='dark'] {
+    color: hsl(var(--primary));
+    color: #fb6a4a;
+  }
 }
 
 .buttons {
