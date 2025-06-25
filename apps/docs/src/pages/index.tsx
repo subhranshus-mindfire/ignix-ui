@@ -23,31 +23,33 @@ function HomepageHeader() {
               animate={{ 
                 opacity: [0.6, 0.8, 0.6],
                 scale: [2, 1.1, 1],
-                y: 0 
+                y: 0,
+                x: [0, -10, 0]
               }}
               transition={{ 
-                duration: 8, 
+                duration: 4, 
                 ease: "easeInOut",
                 repeat: Infinity,
                 repeatType: "reverse"
               }}
-              className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl"
+              className="absolute top-1/4 left-1/4 w-72 h-72 bg-red-500/30 rounded-full blur-3xl"
             />
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ 
                 opacity: [0.5, 0.7, 0.5],
                 scale: [1, 1.15, 1],
-                y: 0 
+                y: 0,
+                x: [0, 10, 0] 
               }}
               transition={{ 
-                duration: 10, 
+                duration: 6, 
                 ease: "easeInOut",
                 delay: 2,
                 repeat: Infinity,
                 repeatType: "reverse"
               }}
-              className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl"
+              className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-500/30 rounded-full blur-3xl"
             />
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -62,7 +64,7 @@ function HomepageHeader() {
                 repeat: Infinity,
                 repeatType: "loop"
               }}
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-conic from-purple-500/10 via-pink-500/10 to-purple-500/10 rounded-full blur-3xl"
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-conic from-purple-500/30 via-pink-500/30 to-purple-500/30 rounded-full blur-3xl"
             />
           </div>
 
@@ -95,7 +97,7 @@ function HomepageHeader() {
             >
               Ignix
               <span 
-                className="block bg-gradient-to-r ml-2 from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent"
+                className="block bg-gradient-to-r ml-2 from-red-600 to-red-500 bg-clip-text text-transparent"
               >
                 UI
               </span>
@@ -114,13 +116,13 @@ function HomepageHeader() {
               A modern, lightweight library of animated React components.
               <br />
               <span 
-                className="text-purple-400"
+                className="text-red-400"
               >
                 Beautiful by default
               </span>
               ,
               <span 
-                className="text-pink-400"
+                className="text-red-400"
               >
                 customizable by design
               </span>
@@ -138,7 +140,7 @@ function HomepageHeader() {
               transition={{ duration: 1.6, ease: "easeInOut" }}
             >
               <Link to="/docs/introduction">
-                <Button variant="primary" size="xl" className='hover:cursor-pointer'>
+                <Button variant="primary" size="xl" className='hover:cursor-pointer bg-red-500 hover:bg-red-600 hover:text-white'>
                   Get Started
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -177,7 +179,7 @@ function HomepageHeader() {
 
               <div className="text-left font-mono text-sm">
                 <div className="text-gray-500">// Import and use</div>
-                <div className="text-purple-400">
+                <div className="text-red-400">
                   import <span className="text-white">{'{ Button }'}</span> from{' '}
                   <span className="text-green-400">'@mindfiredigital/ignix-ui'</span>
                 </div>
@@ -220,7 +222,7 @@ function HomepageHeader() {
           </div>
 
           {/* Floating Elements */}
-          <motion.div className="absolute top-20 left-10 w-4 h-4 bg-purple-400 rounded-full animate-bounce-slow opacity-60"
+          <motion.div className="absolute top-20 left-10 w-4 h-4 bg-red-500 rounded-full animate-bounce-slow opacity-60"
              initial={{ opacity: 0, y: 20 }}
              animate={{ 
                opacity: [0.6, 0.8, 0.6],
@@ -236,7 +238,7 @@ function HomepageHeader() {
              }}
           ></motion.div>
           <motion.div
-            className="absolute top-40 right-16 w-6 h-6 bg-pink-400 rounded-full animate-float opacity-60"
+            className="absolute top-40 right-16 w-6 h-6 bg-orange-500 rounded-full animate-float opacity-60"
             initial={{ opacity: 0, x: 20 }}
             animate={{ 
               opacity: [0.6, 0.8, 0.6],
@@ -252,7 +254,7 @@ function HomepageHeader() {
             }}
           ></motion.div>
           <motion.div
-            className="absolute bottom-32 left-16 w-3 h-3 bg-blue-400 rounded-full animate-bounce-slow opacity-60"
+            className="absolute bottom-32 left-16 w-3 h-3 bg-orange-500 rounded-full animate-bounce-slow opacity-60"
             initial={{ opacity: 0, y: 20 }}
             animate={{ 
               opacity: [0.6, 0.8, 0.6],
@@ -267,7 +269,7 @@ function HomepageHeader() {
             }}
           ></motion.div>
           <motion.div
-            className="absolute bottom-20 right-20 w-5 h-5 bg-green-400 rounded-full animate-float opacity-60"
+            className="absolute bottom-20 right-20 w-5 h-5 bg-red-500 rounded-full animate-float opacity-60"
             initial={{ opacity: 0, y: 20 }}
             animate={{ 
               opacity: [0.6, 0.8, 0.6],

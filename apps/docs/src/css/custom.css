@@ -212,13 +212,13 @@ html[data-theme='dark'] .header--github-link:before {
    --radius: 0.5rem;
  
    --ifm-color-primary: hsl(var(--primary));
-   --ifm-color-primary-dark: hsl(262.1, 83.3%, 52.8%);
-   --ifm-color-primary-darker: hsl(262.1, 83.3%, 47.8%);
-   --ifm-color-primary-darkest: hsl(262.1, 83.3%, 42.8%);
-   --ifm-color-primary-light: hsl(262.1, 83.3%, 62.8%);
-   --ifm-color-primary-lighter: hsl(262.1, 83.3%, 67.8%);
-   --ifm-color-primary-lightest: hsl(262.1, 83.3%, 72.8%);
-   --docusaurus-highlighted-code-line-bg: hsla(var(--primary), 0.1);
+   --ifm-color-primary: #99000d;
+   --ifm-color-primary-dark: #8a000c;
+   --ifm-color-primary-darker: #82000b;
+   --ifm-color-primary-darkest: #6b0009;
+   --ifm-color-primary-light: #a8000e;
+   --ifm-color-primary-lighter: #b0000f;
+   --ifm-color-primary-lightest: #c70011;
  }
  
  [data-theme='dark'] {
@@ -228,7 +228,7 @@ html[data-theme='dark'] .header--github-link:before {
    --card-foreground: 210 20% 98%;
    --popover: 224 71.4% 4.1%;
    --popover-foreground: 210 20% 98%;
-   --primary: 262 77% 59%;
+   --primary: #fc9272;
    --primary-foreground: 210 20% 98%;
    --secondary: 215 27.9% 16.9%;
    --secondary-foreground: 210 20% 98%;
@@ -242,13 +242,13 @@ html[data-theme='dark'] .header--github-link:before {
    --input: 215 27.9% 16.9%;
    --ring: 262.1 83.3% 57.8%;
 
-   --ifm-color-primary: hsl(262, 67%, 70%);
-   --ifm-color-primary-dark: hsl(262, 77%, 59%);
-   --ifm-color-primary-darker: hsl(262, 73%, 55%);
-   --ifm-color-primary-darkest: hsl(262, 70%, 51%);
-   --ifm-color-primary-light: hsl(262, 65%, 68%);
-   --ifm-color-primary-lighter: hsl(262, 73%, 79%);
-   --ifm-color-primary-lightest: hsl(261, 70%, 84%);
+   --ifm-color-primary: #fb6a4a;
+   --ifm-color-primary-dark: #fa502a;
+   --ifm-color-primary-darker: #fa431a;
+   --ifm-color-primary-darkest: #df2c05;
+   --ifm-color-primary-light: #fc846a;
+   --ifm-color-primary-lighter: #fc917a;
+   --ifm-color-primary-lightest: #fdb9a9;
  }
  
  .navbar {
