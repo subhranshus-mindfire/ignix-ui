@@ -162,14 +162,14 @@ const ComponentShowcase = () => {
     >
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-full px-4 py-2 mb-6 animate-fade-up">
-            <Layers className="h-4 w-4 text-purple-400" />
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500/20 to-red-500/20 border border-red-500/30 rounded-full px-4 py-2 mb-6 animate-fade-up">
+            <Layers className="h-4 w-4 text-red-400" />
             <span className="text-sm">Interactive Showcase</span>
           </div>
         </div>
@@ -183,13 +183,13 @@ const ComponentShowcase = () => {
           {showcaseItems.map((item, index) => (
             <Card 
               key={item.id}
-              className={`${getBentoSize(item.size)} border-gray-700/50 hover:border-purple-500/50 transition-all duration-500 group animate-fade-up backdrop-blur-sm relative overflow-hidden min-h-[200px]`}
+              className={`${getBentoSize(item.size)} border-gray-700/50 hover:border-red-500/50 transition-all duration-500 group animate-fade-up backdrop-blur-sm relative overflow-hidden min-h-[200px]`}
               style={{ 
                 animationDelay: `${index * 0.1}s`,
               }}
             >
               {/* Hover Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 via-transparent to-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
               <CardContent className="p-6 h-full flex flex-col relative z-10">
                 <div className="flex-1 flex items-center justify-center mb-4">
@@ -208,7 +208,7 @@ const ComponentShowcase = () => {
               </CardContent>
               
               {/* Corner Accent */}
-              <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-purple-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-red-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Card>
           ))}
         </motion.div>
@@ -216,11 +216,11 @@ const ComponentShowcase = () => {
         {/* Call to Action */}
         <div className="text-center mt-16">
           <div className="inline-flex items-center gap-4 border border-gray-700/50 rounded-2xl px-8 py-4 backdrop-blur-sm animate-fade-up" style={{ animationDelay: '0.8s' }}>
-            <Palette className="h-5 w-5 text-purple-400" />
+            <Palette className="h-5 w-5 text-red-400" />
             <Link to="/docs/installation">
             <span >Get started with 50+ more components with endless customization possibilities</span>
             </Link>
-            <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-500 rounded-full animate-pulse"></div>
           </div>
         </div>
       </div>
