@@ -7,7 +7,7 @@ const config: Config = {
   tagline: 'Beautiful, animated UI components for modern web applications',
   favicon: 'img/favicon.ico',
   url: 'https://your-docusaurus-site.com',
-  baseUrl: '/',
+  baseUrl: '/ignix-ui/',
   organizationName: 'mindfiredigital',
   projectName: 'ignix-ui',
   onBrokenLinks: 'throw',
