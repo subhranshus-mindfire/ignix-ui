@@ -253,6 +253,8 @@ export function Table({
 		>
 			<Flex
 				direction="column"
+				align="center"
+				justify="center"
 				gap="2"
 			>
 				{tableComponent}
