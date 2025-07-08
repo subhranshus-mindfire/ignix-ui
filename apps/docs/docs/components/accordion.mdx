@@ -4,6 +4,7 @@ title: Accordion
 description: A vertically stacked set of interactive headings that each reveal a section of content.
 ---
 
+import AccordionDemo from '@site/src/components/Demo/Accordion';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@site/src/components/UI/accordion';
@@ -113,29 +114,6 @@ export function AccordionDemo() {
 }
 ```
 
-## Animation Variants
+## Variants
 
-The AccordionContent component supports different animation variants:
-
-- `fade` (default): Simple fade in/out
-- `slideDown`: Slides down from above
-- `slideUp`: Slides up from below
-- `scaleIn`: Scales in from smaller to larger
-- `rotate`: Rotates in 3D space
-- `bounce`: Bouncy spring animation
-- `flip`: Card flip animation
-- `zoomIn`: Zooms in from center
-- `elastic`: Elastic spring animation
-- `springy`: Springy slide down
-
-Example with custom animation:
-
-```tsx
-<AccordionItem value="item-1">
-  <AccordionTrigger>Custom Animation</AccordionTrigger>
-  <AccordionContent variant="bounce">
-    This content will bounce in when expanded.
-  </AccordionContent>
-</AccordionItem>
-```
- 
+<AccordionDemo />
