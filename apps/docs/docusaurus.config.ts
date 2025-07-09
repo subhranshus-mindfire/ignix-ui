@@ -54,6 +54,13 @@ const config: Config = {
           label: 'Documentation',
         },
         {
+          type: 'docsVersionDropdown',
+          position: 'right',
+          versions: {
+            '1.0.0': {label: 'Version 1.0'},
+          },
+        },
+        {
           href: 'https://github.com/mindfiredigital/ignix-ui',
           className: 'header--github-link',
           "aria-label": 'GitHub repository',
