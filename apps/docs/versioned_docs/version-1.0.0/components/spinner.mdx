@@ -1,0 +1,101 @@
+---
+sidebar_position: 13
+title: Spinner
+description: A flexible and animated spinner component for displaying loading states.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { Spinner } from '@site/src/components/UI/spinner';
+
+## Overview
+
+The Spinner component is a versatile loading indicator that comes with multiple variants and customization options. Built with Framer Motion, it provides smooth animations and various styles to indicate loading states in your application.
+
+## Preview
+
+<Tabs defaultValue="preview">
+  <TabItem value="preview" label="Preview" default>
+    <div className="w-full p-8 space-y-8 border rounded-lg">
+      <div className=" p-6 rounded-lg">
+        <div className="flex items-center justify-center gap-8">
+          <Spinner size={40} color="border-orange-500" />
+          <Spinner size={40} variant="bars" color="bg-orange-500" />
+          <Spinner size={40} variant="dots-bounce" color="bg-orange-500" />
+        </div>
+      </div>
+    </div>
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    import { Spinner } from '@mindfiredigital/ignix-ui';
+
+    function SpinnerDemo() {
+      return (
+        <div className="flex items-center gap-8">
+          <Spinner size={40} color="border-orange-500" />
+          <Spinner size={40} variant="bars" color="bg-orange-500" />
+          <Spinner size={40} variant="dots-bounce" color="bg-orange-500" />
+        </div>
+      );
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    ```bash
+    npx @mindfiredigital/ignix-ui add spinner
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    ```bash
+    yarn @mindfiredigital/ignix-ui add spinner
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```bash
+    pnpm @mindfiredigital/ignix-ui add spinner
+    ```
+  </TabItem>
+</Tabs>
+
+## Usage
+
+Import the component:
+
+```tsx
+import { Spinner } from '@mindfiredigital/ignix-ui';
+```
+
+### Basic Usage
+
+```tsx
+function BasicSpinner() {
+  return <Spinner size={40} color="border-orange-500" />;
+}
+```
+
+import SpinnerDemo from '@site/src/components/Demo/SpinnerDemo';
+
+## Variants
+
+<SpinnerDemo />
+
+## Customization
+
+### Custom Styling
+
+You can customize the appearance using Tailwind CSS classes:
+
+```tsx
+<Spinner
+  className="my-4"
+  size={50}
+  color="border-indigo-500"
+  thickness={6}
+/>
+```

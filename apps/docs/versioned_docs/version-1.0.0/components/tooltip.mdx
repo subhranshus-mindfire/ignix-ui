@@ -1,0 +1,82 @@
+---
+sidebar_position: 20
+title: Tooltip
+description: A flexible tooltip component for displaying additional information on hover.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { Tooltip } from '@site/src/components/UI/tooltip';
+
+## Overview
+
+The Tooltip component provides additional information when users hover over or focus on an element. Built with Radix UI and Framer Motion, it supports various animations, themes, and appearance styles.
+
+## Preview
+
+<Tabs defaultValue="preview">
+  <TabItem value="preview" label="Preview" default>
+    <div className="w-full p-8 rounded-lg border flex items-center justify-center">
+      <Tooltip content="This is a tooltip">
+        <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+          Hover me
+        </button>
+      </Tooltip>
+    </div>
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    import { Tooltip } from '@mindfiredigital/ignix-ui';
+
+    function TooltipDemo() {
+      return (
+        <Tooltip content="This is a tooltip">
+          <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+            Hover me
+          </button>
+        </Tooltip>
+      );
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    ```bash
+    npx @mindfiredigital/ignix-ui add tooltip
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    ```bash
+    yarn @mindfiredigital/ignix-ui add tooltip
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```bash
+    pnpm @mindfiredigital/ignix-ui add tooltip
+    ```
+  </TabItem>
+</Tabs>
+
+## Usage
+
+```tsx
+import { Tooltip } from '@mindfiredigital/ignix-ui';
+
+function MyComponent() {
+  return (
+    <Tooltip content="Additional information">
+      <button>Hover me</button>
+    </Tooltip>
+  );
+}
+```
+
+import TooltipDemo from '@site/src/components/Demo/TooltipDemo';
+
+## Features
+
+<TooltipDemo />

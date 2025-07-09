@@ -1,0 +1,100 @@
+---
+sidebar_position: 17
+title: Textarea
+description: A flexible and animated textarea component for displaying content and capturing user input.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import AnimatedTextarea from '@site/src/components/UI/textarea';
+import { useState } from 'react';
+
+## Overview
+
+The Textarea component is an enhanced version of the standard HTML textarea with beautiful animations and interactive features. Built with Framer Motion, it provides various animation variants, auto-expanding capabilities, and interactive effects.
+
+## Preview
+
+<Tabs defaultValue="preview">
+  <TabItem value="preview" label="Preview" default>
+    <div className="w-full p-8 space-y-8 rounded-lg border">
+      <div className="p-6 rounded-lg">
+        <AnimatedTextarea
+          placeholder="Type something..."
+          variant="clean"
+          value=""
+          onChange={() => {}}
+        />
+      </div>
+    </div>
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    import { AnimatedTextarea } from '@mindfiredigital/ignix-ui';
+
+    function TextareaDemo() {
+      const [value, setValue] = useState('');
+      
+      return (
+        <AnimatedTextarea
+          placeholder="Type something..."
+          variant="clean"
+          value={value}
+          onChange={setValue}
+        />
+      );
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    ```bash
+    npx @mindfiredigital/ignix-ui add textarea
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    ```bash
+    yarn @mindfiredigital/ignix-ui add textarea
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```bash
+    pnpm @mindfiredigital/ignix-ui add textarea
+    ```
+  </TabItem>
+</Tabs>
+
+## Usage
+
+Import the component:
+
+```tsx
+import { AnimatedTextarea } from '@mindfiredigital/ignix-ui';
+```
+
+### Basic Usage
+
+```tsx
+function BasicTextarea() {
+  const [value, setValue] = useState('');
+  
+  return (
+    <AnimatedTextarea
+      placeholder="Enter your message"
+      variant="clean"
+      value={value}
+      onChange={setValue}
+    />
+  );
+}
+```
+
+import TextareaDemo from '@site/src/components/Demo/TextareaDemo';
+
+## Animation Variants
+
+<TextareaDemo />

@@ -1,0 +1,77 @@
+---
+sidebar_position: 4
+title: Button
+description: A customizable button component with variants, sizes, and animations.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { Button } from '@site/src/components/UI/button';
+import { Mail, ArrowRight, Loader2 } from 'lucide-react';
+
+## Overview
+
+Buttons allow users to take actions with a single tap. They can be customized with different styles, sizes, and animations.
+
+## Preview
+
+<Tabs defaultValue="preview">
+  <TabItem value="preview" label="Preview" default>
+    <div className="p-4 border rounded-lg">
+      <Button>Click me</Button>
+    </div>
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    import { Button } from '@mindfiredigital/ignix-ui';
+
+    function MyComponent() {
+      return <Button>Click me</Button>;
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    ```bash
+    npx @mindfiredigital/ignix-ui add button
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    ```bash
+    yarn @mindfiredigital/ignix-ui add button
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```bash
+    pnpm @mindfiredigital/ignix-ui add button
+    ```
+  </TabItem>
+</Tabs>
+
+## Usage
+
+Import the component:
+
+```tsx
+import { Button } from '@mindfiredigital/ignix-ui';
+```
+
+### Basic Usage
+
+```tsx
+function BasicButton() {
+  return (
+    <Button>Click me</Button>
+  );
+}
+```
+
+import ButtonDemo from '@site/src/components/Demo/ButtonDemo';
+
+## Variants
+
+<ButtonDemo />

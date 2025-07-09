@@ -1,0 +1,90 @@
+---
+sidebar_position: 16
+title: Tab
+description: A flexible and animated tab component for displaying content and capturing user input.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { Tabs as TabsComponent } from '@site/src/components/UI/tab';
+
+## Overview
+
+The Tabs component is a versatile navigation interface that allows users to switch between different views within the same context. Built with Framer Motion for smooth animations and powered by Class Variance Authority for flexible styling, it provides multiple variants and themes for different design needs.
+
+## Preview
+
+<Tabs defaultValue="preview">
+  <TabItem value="preview" label="Preview" default>
+    <div className="w-full p-8 space-y-8 rounded-lg border shadow-lg">
+      <div className="p-6 rounded-lg">
+        <TabsComponent
+          options={["Home", "Profile", "Settings", "About"]}
+          selected={0}
+        />
+      </div>
+    </div>
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    import { Tabs } from '@mindfiredigital/ignix-ui';
+
+    function TabsDemo() {
+      return (
+        <Tabs
+          options={["Home", "Profile", "Settings", "About"]}
+          selected={0}
+        />
+      );
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    ```bash
+    npx @mindfiredigital/ignix-ui add tab
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    ```bash
+    yarn @mindfiredigital/ignix-ui add tab
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```bash
+    pnpm @mindfiredigital/ignix-ui add tab
+    ```
+  </TabItem>
+</Tabs>
+
+## Usage
+
+Import the component:
+
+```tsx
+import { Tabs } from '@mindfiredigital/ignix-ui';
+```
+
+### Basic Usage
+
+```tsx
+function BasicTabs() {
+  return (
+    <Tabs
+      options={["Tab 1", "Tab 2", "Tab 3"]}
+      selected={0}
+      value={(index) => console.log(`Selected tab: ${index}`)}
+    />
+  );
+}
+```
+
+import TabDemo from '@site/src/components/Demo/TabDemo';
+
+## Variants
+
+<TabDemo />

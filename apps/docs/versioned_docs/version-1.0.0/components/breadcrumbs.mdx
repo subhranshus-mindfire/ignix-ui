@@ -1,0 +1,102 @@
+---
+sidebar_position: 2
+title: Breadcrumbs
+description: A navigational aid that shows the user's current location within a website's hierarchy.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { Breadcrumbs } from '@site/src/components/UI/breadcrumbs';
+import { ChevronRight } from 'lucide-react';
+
+## Overview
+
+Breadcrumbs provide users with a way to navigate back to previous pages or sections in a hierarchical structure. They help users understand their current location within the website and provide quick access to parent pages.
+
+## Preview
+
+<Tabs defaultValue="preview">
+  <TabItem value="preview" label="Preview" default>
+    <div className="p-4 border rounded-lg">
+      <Breadcrumbs 
+        items={[
+          { label: 'Home', href: '#' },
+          { label: 'Products', href: '#' },
+          { label: 'Electronics', href: '#' },
+          { label: 'Smartphones' }
+        ]}
+        separatorIcon={ChevronRight}
+      />
+    </div>
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    import { Breadcrumbs } from '@mindfiredigital/ignix-ui';
+    import { ChevronRight } from 'lucide-react';
+
+    function BreadcrumbDemo() {
+      return (
+        <Breadcrumbs 
+          items={[
+            { label: 'Home', href: '#' },
+            { label: 'Products', href: '#' },
+            { label: 'Electronics', href: '#' },
+            { label: 'Smartphones' }
+          ]}
+          separatorIcon={ChevronRight}
+        />
+      );
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    ```bash
+    npx @mindfiredigital/ignix-ui add breadcrumbs
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    ```bash
+    yarn @mindfiredigital/ignix-ui add breadcrumbs
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```bash
+    pnpm @mindfiredigital/ignix-ui add breadcrumbs
+    ```
+  </TabItem>
+</Tabs>
+
+## Usage
+
+Import the component:
+
+```tsx
+import { Breadcrumbs } from '@mindfiredigital/ignix-ui';
+```
+
+### Basic Usage
+
+```tsx
+function BasicBreadcrumb() {
+  return (
+    <Breadcrumbs
+      items={[
+        { label: 'Home', href: '/' },
+        { label: 'Products', href: '/products' },
+        { label: 'Current Page' }
+      ]}
+    />
+  );
+}
+```
+
+import BreadcrumbsDemo from '@site/src/components/Demo/BreadcrumbsDemo';
+
+## Variants
+
+<BreadcrumbsDemo />
