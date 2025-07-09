@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 
 const dropdownAnimations = ['default', 'fade', 'scale', 'slide', 'flip'];
-const dropdownBgs = ['default', 'dark', 'glass'];
+const dropdownBgs = ['default', 'dark', 'glass', 'transparent', 'gradient', 'primary'];
 
 const DropdownDemo = () => {
   const [animation, setAnimation] = useState('default');
@@ -42,8 +42,8 @@ const DropdownDemo = () => {
           <div className="p-4 border rounded-lg mt-4">
             <Dropdown
               trigger={<Button>Open Menu</Button>}
-              animation={animation}
-              bg={bg}
+              animation={animation as any}
+              bg={bg as any}
             >
               <DropdownItem>Profile</DropdownItem>
               <DropdownItem>Settings</DropdownItem>

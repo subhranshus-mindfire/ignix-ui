@@ -64,8 +64,8 @@ const SliderDemo = () => {
                 defaultValue={[50]}
                 max={100}
                 step={1}
-                variant={variant}
-                animationType={animation}
+                variant={variant as any}
+                animationType={animation as any}
                 showValue
                 valueSuffix="%"
               />

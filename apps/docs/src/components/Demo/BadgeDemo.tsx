@@ -39,7 +39,7 @@ const BadgeDemo = () => {
           <div className="flex items-center gap-8 border rounded-lg p-4 mt-4">
             <div className="relative inline-flex items-center">
               <Mail className="h-6 w-6" />
-              <Badge text="3" type={type} variant={variant} />
+              <Badge text="3" type={type as any} variant={variant as any} />
             </div>
           </div>
         </TabItem>

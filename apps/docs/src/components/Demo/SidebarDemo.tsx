@@ -62,8 +62,8 @@ const SidebarDemo = () => {
                   { label: 'Help', href: '#', icon: HelpCircle },
                 ]}
                 brandName="Demo App"
-                variant={variant}
-                position={position}
+                variant={variant as any}
+                position={position as any}
               />
             </div>
           </div>

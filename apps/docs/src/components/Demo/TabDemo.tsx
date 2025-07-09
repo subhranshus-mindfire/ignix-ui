@@ -50,8 +50,8 @@ const TabDemo = () => {
               <TabsComponent
                 options={["Home", "Profile", "Settings", "About"]}
                 selected={0}
-                variant={variant}
-                theme={theme}
+                variant={variant as any}
+                theme={theme as any}
               />
             </div>
           </div>

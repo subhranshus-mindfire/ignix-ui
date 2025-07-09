@@ -59,7 +59,7 @@ const SwitchDemo = () => {
           <div className="w-full p-8 space-y-8 border rounded-lg mt-4">
             <div className="p-6 rounded-lg">
               <div className="flex items-center gap-4">
-                <Switch variant={variant} animation={animation} defaultChecked />
+                <Switch variant={variant as any} animation={animation as any} defaultChecked />
               </div>
             </div>
           </div>

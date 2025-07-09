@@ -35,10 +35,10 @@ toast.addToast({
   const showToast = () => {
     toast.addToast({
       message: 'Hello from Toast!',
-      variant: variant,
-      animation: animation,
-      appearance: appearance,
-      mode: mode,
+      variant: variant as any,
+      animation: animation as any,
+      appearance: appearance as any,
+      mode: mode as any,
       icon: <InfoCircledIcon className="w-5 h-5" />,
     });
   };

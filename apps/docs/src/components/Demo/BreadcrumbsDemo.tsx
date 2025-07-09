@@ -43,7 +43,7 @@ const BreadcrumbsDemo = () => {
                 { label: 'Smartphones' },
               ]}
               separatorIcon={ChevronRight}
-              variant={variant}
+              variant={variant as any}
             />
           </div>
         </TabItem>

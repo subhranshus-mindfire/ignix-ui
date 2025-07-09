@@ -49,9 +49,9 @@ const TooltipDemo = () => {
           <div className="w-full p-8 rounded-lg border flex items-center justify-center mt-4">
             <Tooltip
               content="This is a tooltip"
-              animation={animation}
-              bg={bg}
-              rounded={rounded}
+              animation={animation as any}
+              bg={bg as any}
+              rounded={rounded as any}
             >
               <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
                 Hover me
