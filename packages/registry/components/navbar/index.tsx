@@ -3,7 +3,7 @@
 import { motion, HTMLMotionProps, AnimatePresence } from "framer-motion";
 import * as React from "react";
 import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "../../../cli/src/utils/cn";
+import { cn } from "../../../utils/cn";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 export interface NavbarProps
