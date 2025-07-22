@@ -30,15 +30,16 @@
 
 .navbar {
   background: hsl(var(--background) / 0.1);
-  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  -moz-backdrop-filter: blur(10px);
   border-bottom-color: hsl(var(--border));
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-
+  backdrop-filter: blur(10px);
+  
   @media (min-width: 1024px) {
     padding: 2rem 2rem;
   }

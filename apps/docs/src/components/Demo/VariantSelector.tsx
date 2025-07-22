@@ -17,7 +17,7 @@ const VariantSelector: React.FC<VariantSelectorProps> = ({
 }) => {
   return (
     <div className="flex sm:justify-end justify-start mb-4 ">
-      <Dropdown animation='default' className='max-h-[500px] overflow-y-scroll' trigger={<Button variant="outline" className='text-black'>Select {type}: {selectedVariant}</Button>}>
+      <Dropdown animation='default' className='max-h-[500px] overflow-y-scroll' bg='default' trigger={<Button variant="outline" className='text-black'>Select {type}: {selectedVariant}</Button>}>
         {variants.map((v) => (
           <DropdownItem key={v} onClick={() => onSelectVariant(v)}>
             {v}
