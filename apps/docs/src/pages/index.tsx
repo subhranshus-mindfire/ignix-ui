@@ -9,6 +9,7 @@ import styles from './index.module.css';
 import { ArrowRight, Code, Download, Github } from 'lucide-react';
 import { Button } from '../components/UI/button';
 import { ToastProvider } from '../components/UI/toast';
+import '../css/custom.css';
 
 function HomepageHeader() {
   return (

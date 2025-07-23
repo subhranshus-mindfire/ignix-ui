@@ -23,12 +23,21 @@ const SpinnerDemo = () => {
         onSelectVariant={setVariant}
         type="Variant"
       />
+
       <Tabs>
         <TabItem value="preview" label="Preview">
           <div className="w-full p-8 space-y-8 border rounded-lg mt-4">
             <div className="p-6 rounded-lg">
               <div className="flex items-center justify-center gap-8">
-                <Spinner size={40} variant={variant as any} color="border-orange-500" />
+                {variant === 'default' && (
+                  <Spinner size={40} variant={variant as any} color="border-orange-500" />
+                )}
+                {variant === 'bars' && (
+                  <Spinner size={40} variant="bars" color="bg-orange-500" />
+                )}
+                {variant === 'dots-bounce' && (
+                  <Spinner size={40} variant="dots-bounce" color="bg-orange-500" />
+                )}
               </div>
             </div>  
           </div>
