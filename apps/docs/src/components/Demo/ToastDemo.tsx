@@ -45,26 +45,26 @@ toast.addToast({
 
   return (
     <div className="flex flex-col space-y-4 mb-8">
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-4 sm:justify-end justify-start">
         <VariantSelector
           variants={toastVariants}
           selectedVariant={variant}
           onSelectVariant={setVariant}
-          type="variant"
+          type="Variant"
         />
         <VariantSelector
           variants={toastAnimations}
           selectedVariant={animation}
           onSelectVariant={setAnimation}
-          type="animation"
+          type="Animation"
         />
         <VariantSelector
           variants={toastAppearances}
           selectedVariant={appearance}
           onSelectVariant={setAppearance}
-          type="appearance"
+          type="Appearance"
         />
-        <VariantSelector variants={toastModes} selectedVariant={mode} onSelectVariant={setMode} type="mode" />
+        <VariantSelector variants={toastModes} selectedVariant={mode} onSelectVariant={setMode} type="Mode" />
       </div>
       <Tabs>
         <TabItem value="preview" label="Preview">

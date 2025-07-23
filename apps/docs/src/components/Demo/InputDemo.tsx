@@ -58,11 +58,12 @@ const InputDemo = () => {
 `;
 
   return (
-    <div className="flex flex-col space-y-4 mb-8">
+    <div className="flex flex-col space-y-4 mb-8 sm:justify-end justify-start">
       <VariantSelector
         variants={inputVariants}
         selectedVariant={variant}
         onSelectVariant={setVariant}
+        type="Variant"
       />
       <Tabs>
         <TabItem value="preview" label="Preview">

@@ -30,18 +30,19 @@ const TooltipDemo = () => {
 
   return (
     <div className="flex flex-col space-y-4 mb-8">
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-4 sm:justify-end justify-start">
         <VariantSelector
           variants={tooltipAnimations}
           selectedVariant={animation}
           onSelectVariant={setAnimation}
+          type="Animation"
         />
-        <VariantSelector variants={tooltipBgs} selectedVariant={bg} onSelectVariant={setBg} type="bg" />
+        <VariantSelector variants={tooltipBgs} selectedVariant={bg} onSelectVariant={setBg} type="Bg" />
         <VariantSelector
           variants={tooltipRounded}
           selectedVariant={rounded}
           onSelectVariant={setRounded}
-          type="rounded"
+          type="Rounded"
         />
       </div>
       <Tabs>

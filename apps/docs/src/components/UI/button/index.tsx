@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, HTMLMotionProps } from 'framer-motion';
+import { motion } from 'framer-motion';
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
@@ -10,7 +10,8 @@ export interface ButtonProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onDrag'>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
-  animationVariant?: keyof typeof animations;
+  animationVariant?: string;
+  children?: React.ReactNode;
 }
 
 const buttonVariants = cva(
@@ -307,46 +308,66 @@ const ninaBeforeVariants = {
 };
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, animationVariant, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, animationVariant, children, ...props }, ref) => {
     const animationProps = animationVariant ? animations[animationVariant] || {} : {};
 
     const slotProps = asChild ? { ...props } : {};
     const motionProps = !asChild ? { ...props, ...animationProps } : {};
 
-    return asChild ? (
-      <Slot className={cn(buttonVariants({ variant, size }), className)} ref={ref} {...slotProps} />
-    ) : animationVariant === 'nina' ? (
-      <>
-        <motion.button
-          className={cn(buttonVariants({ variant, size }), className)}
-          ref={ref}
-          {...(motionProps as HTMLMotionProps<'button'>)}
-          initial="initial"
-          whileHover="hover"
-        >
+    const renderNinaVariant = () => {
+      const content = typeof children === 'string' ? (
+        <>
           <motion.span
             className="absolute inset-0 flex items-center justify-center"
             variants={ninaBeforeVariants}
           >
-            {props.children}
+            {children}
           </motion.span>
           <motion.div className="relative flex gap-1" initial="initial" whileHover="hover">
-            {props.children &&
-              typeof props.children === 'string' &&
-              props.children.split('').map((char, i) => (
-                <motion.span key={i} custom={i} variants={ninaTextVariants}>
-                  {char}
-                </motion.span>
-              ))}
+            {children.split('').map((char, i) => (
+              <motion.span key={i} custom={i} variants={ninaTextVariants}>
+                {char}
+              </motion.span>
+            ))}
           </motion.div>
+        </>
+      ) : (
+        <span>{children}</span>
+      );
+
+      return (
+        <motion.button
+          className={cn(buttonVariants({ variant, size }), className, 'relative overflow-hidden')}
+          ref={ref}
+          {...(motionProps as any)}
+          initial="initial"
+          whileHover="hover"
+        >
+          {content}
         </motion.button>
-      </>
-    ) : (
+      );
+    };
+
+    if (asChild) {
+      return (
+        <Slot className={cn(buttonVariants({ variant, size }), className)} ref={ref} {...slotProps}>
+          {children}
+        </Slot>
+      );
+    }
+
+    if (animationVariant === 'nina') {
+      return renderNinaVariant();
+    }
+
+    return (
       <motion.button
         className={cn(buttonVariants({ variant, size }), className)}
         ref={ref}
-        {...(motionProps as HTMLMotionProps<'button'>)}
-      />
+        {...(motionProps as any)}
+      >
+        {children}
+      </motion.button>
     );
   }
 );

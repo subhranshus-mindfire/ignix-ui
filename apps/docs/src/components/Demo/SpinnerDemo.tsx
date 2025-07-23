@@ -21,6 +21,7 @@ const SpinnerDemo = () => {
         variants={spinnerVariants}
         selectedVariant={variant}
         onSelectVariant={setVariant}
+        type="Variant"
       />
       <Tabs>
         <TabItem value="preview" label="Preview">
@@ -29,7 +30,7 @@ const SpinnerDemo = () => {
               <div className="flex items-center justify-center gap-8">
                 <Spinner size={40} variant={variant as any} color="border-orange-500" />
               </div>
-            </div>
+            </div>  
           </div>
         </TabItem>
         <TabItem value="code" label="Code">

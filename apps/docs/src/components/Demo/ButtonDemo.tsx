@@ -87,7 +87,7 @@ const ButtonDemo = () => {
 
   return (
     <div className="space-y-6 mb-8">
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-4 justify-start sm:justify-end">
         <div className="space-y-2">
           <VariantSelector
             variants={buttonVariants.map(v => v.value)}
