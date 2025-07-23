@@ -42,6 +42,14 @@ const inputVariants = [
   'glitch',
   'hologram',
   'cosmic',
+  'premiumGradient',
+  'premiumGlass',
+  'glassmorphism',
+  'holographic3D',
+  'quantumParticles',
+  'luxuryShimmer',
+  'materialRipple',
+  'cosmicField',
 ];
 
 const InputDemo = () => {
