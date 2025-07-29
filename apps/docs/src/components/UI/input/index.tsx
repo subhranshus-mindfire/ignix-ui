@@ -61,8 +61,8 @@ const createEnhancedParticles = (container: HTMLElement, count = 8) => {
     const particle = document.createElement("div");
     particle.className = cn(
       "absolute rounded-full pointer-events-none",
-      "bg-gradient-to-r from-blue-400 to-cyan-400",
-      "shadow-lg shadow-blue-400/50"
+      "bg-gradient-to-r from-[var(--color-input-particle-from)] to-[var(--color-input-particle-to)]",
+      "shadow-lg shadow-[var(--color-input-particle-shadow)]/50"
     );
     
     const size = Math.random() * 4 + 2;
@@ -70,7 +70,7 @@ const createEnhancedParticles = (container: HTMLElement, count = 8) => {
     particle.style.height = `${size}px`;
     particle.style.left = `${Math.random() * 100}%`;
     particle.style.top = `${Math.random() * 100}%`;
-    particle.style.boxShadow = `0 0 ${size * 2}px rgba(59, 130, 246, 0.6)`;
+    particle.style.boxShadow = `0 0 ${size * 2}px rgba(var(--color-input-particle-shadow), 0.6)`;
     
     // Enhanced animation
     particle.style.animation = `particleFloat ${Math.random() * 3 + 2}s ease-in-out infinite`;

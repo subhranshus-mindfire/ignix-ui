@@ -11,7 +11,7 @@ type SpinnerProps = {
 
 export const Spinner = ({
   size = 40,
-  color = "border-gray-500",
+  color = "primary",
   thickness = 4,
   variant = "default",
   className = "",
@@ -95,7 +95,7 @@ export const Spinner = ({
               "rounded-full shadow-lg backdrop-blur-sm",
               color.startsWith('bg-') 
                 ? color 
-                : `bg-current text-${color}`
+                : `bg-primary text-primary`
             )}
             style={{
               width: dotSize,

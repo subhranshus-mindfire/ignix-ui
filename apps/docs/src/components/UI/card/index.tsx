@@ -265,10 +265,10 @@ const cardTitleVariants = cva(
       },
       gradient: {
         none: "",
-        blue: "bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent",
+        blue: "bg-gradient-to-r from-primary to-cyan-600 bg-clip-text text-transparent",
         purple: "bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent",
-        green: "bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent",
-        gold: "bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent"
+        green: "bg-gradient-to-r from-success to-green-600 bg-clip-text text-transparent",
+        gold: "bg-gradient-to-r from-warning to-orange-600 bg-clip-text text-transparent"
       }
     },
     defaultVariants: {
@@ -468,9 +468,9 @@ const StatCard = React.forwardRef<HTMLDivElement, StatCardProps>(
         {trend && trendValue && (
           <div className={cn(
             "text-xs font-medium",
-            trend === "up" && "text-emerald-600",
-            trend === "down" && "text-red-600", 
-            trend === "neutral" && "text-gray-600"
+            trend === "up" && "text-success",
+            trend === "down" && "text-destructive", 
+            trend === "neutral" && "text-muted-foreground"
           )}>
             {trend === "up" && "↗ "}
             {trend === "down" && "↘ "}

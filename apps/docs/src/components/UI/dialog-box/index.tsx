@@ -398,52 +398,52 @@ interface DialogProps {
 
 const typeConfig = {
   success: {
-    gradient: 'from-emerald-400 via-emerald-500 to-emerald-600',
+    gradient: 'from-success-light via-success to-success-dark',
     icon: Check,
-    iconBg: 'bg-emerald-500/20',
-    iconColor: 'text-emerald-600',
-    borderColor: 'border-emerald-500/30',
-    shadowColor: 'shadow-emerald-500/25',
+    iconBg: 'bg-success/20',
+    iconColor: 'text-success-dark',
+    borderColor: 'border-success/30',
+    shadowColor: 'shadow-success/25',
   },
   confirm: {
-    gradient: 'from-blue-400 via-blue-500 to-blue-600',
+    gradient: 'from-primary-light via-primary to-primary-dark',
     icon: Info,
-    iconBg: 'bg-blue-500/20',
-    iconColor: 'text-blue-600',
-    borderColor: 'border-blue-500/30',
-    shadowColor: 'shadow-blue-500/25',
+    iconBg: 'bg-primary/20',
+    iconColor: 'text-primary-dark',
+    borderColor: 'border-primary/30',
+    shadowColor: 'shadow-primary/25',
   },
   error: {
-    gradient: 'from-red-400 via-red-500 to-red-600',
+    gradient: 'from-destructive-light via-destructive to-destructive-dark',
     icon: XCircle,
-    iconBg: 'bg-red-500/20',
-    iconColor: 'text-red-600',
-    borderColor: 'border-red-500/30',
-    shadowColor: 'shadow-red-500/25',
+    iconBg: 'bg-destructive/20',
+    iconColor: 'text-destructive-dark',
+    borderColor: 'border-destructive/30',
+    shadowColor: 'shadow-destructive/25',
   },
   alert: {
-    gradient: 'from-yellow-300 via-yellow-400 to-yellow-500',
+    gradient: 'from-warning-light via-warning to-warning-dark',
     icon: AlertTriangle,
-    iconBg: 'bg-yellow-500/20',
-    iconColor: 'text-yellow-600',
-    borderColor: 'border-yellow-500/30',
-    shadowColor: 'shadow-yellow-500/25',
+    iconBg: 'bg-warning/20',
+    iconColor: 'text-warning-dark',
+    borderColor: 'border-warning/30',
+    shadowColor: 'shadow-warning/25',
   },
   info: {
-    gradient: 'from-cyan-400 via-cyan-500 to-cyan-600',
+    gradient: 'from-info-light via-info to-info-dark',
     icon: Info,
-    iconBg: 'bg-cyan-500/20',
-    iconColor: 'text-cyan-600',
-    borderColor: 'border-cyan-500/30',
-    shadowColor: 'shadow-cyan-500/25',
+    iconBg: 'bg-info/20',
+    iconColor: 'text-info-dark',
+    borderColor: 'border-info/30',
+    shadowColor: 'shadow-info/25',
   },
   warning: {
-    gradient: 'from-orange-400 via-orange-500 to-orange-600',
+    gradient: 'from-warning-light via-warning to-warning-dark',
     icon: AlertTriangle,
-    iconBg: 'bg-orange-500/20',
-    iconColor: 'text-orange-600',
-    borderColor: 'border-orange-500/30',
-    shadowColor: 'shadow-orange-500/25',
+    iconBg: 'bg-warning/20',
+    iconColor: 'text-warning-dark',
+    borderColor: 'border-warning/30',
+    shadowColor: 'shadow-warning/25',
   },
 };
 
@@ -522,7 +522,7 @@ export const DialogProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
             {/* Subtle animated background pattern */}
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 animate-pulse" />
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 animate-pulse" />
             </div>
 
             <motion.div
@@ -623,7 +623,7 @@ export const DialogProvider: React.FC<{ children: React.ReactNode }> = ({ childr
               >
                 <div className="prose prose-sm max-w-none dark:prose-invert">
                   {options.children ?? (
-                    <p className="text-muted-foreground dark:text-white leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed">
                       {options.content}
                     </p>
                   )}
@@ -643,10 +643,10 @@ export const DialogProvider: React.FC<{ children: React.ReactNode }> = ({ childr
                       onClick={() => handleClose(true)}
                       className="
                         relative px-6 py-3 font-semibold text-white rounded-xl overflow-hidden
-                        bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700
-                        hover:from-blue-600 hover:via-blue-700 hover:to-blue-800
-                        shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40
-                        border border-blue-400/20 backdrop-blur-sm
+                        bg-gradient-to-br from-primary via-primary-dark to-primary-darker
+                        hover:from-primary-dark hover:via-primary-darker hover:to-primary-darkest
+                        shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40
+                        border border-primary/20 backdrop-blur-sm
                         transition-all duration-300 group transform-gpu
                         hover:scale-105 active:scale-95
                         before:absolute before:inset-0 before:bg-gradient-to-t 
@@ -668,12 +668,10 @@ export const DialogProvider: React.FC<{ children: React.ReactNode }> = ({ childr
                     onClick={() => handleClose(false)}
                     className="
                       relative px-6 py-3 font-semibold rounded-xl overflow-hidden
-                      bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 text-slate-900
-                      dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 dark:text-slate-100
-                      hover:from-slate-200 hover:via-slate-300 hover:to-slate-400
-                      dark:hover:from-slate-700 dark:hover:via-slate-600 dark:hover:to-slate-500
-                      shadow-lg shadow-slate-500/20 hover:shadow-xl hover:shadow-slate-500/30
-                      border border-slate-300/30 dark:border-slate-6this is 00/30 backdrop-blur-sm
+                      bg-gradient-to-br from-muted via-muted-dark to-muted-darker text-muted-foreground
+                      hover:from-muted-dark hover:via-muted-darker hover:to-muted-darkest
+                      shadow-lg shadow-muted/20 hover:shadow-xl hover:shadow-muted/30
+                      border border-muted/30 backdrop-blur-sm
                       transition-all duration-300 group transform-gpu
                       hover:scale-105 active:scale-95
                     "

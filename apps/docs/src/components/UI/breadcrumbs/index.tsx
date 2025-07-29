@@ -35,17 +35,17 @@ const breadcrumbsVariants = cva("w-full", {
       custom: "flex flex-wrap items-center gap-2 p-3 rounded-2xl shadow-xl",
     },
     bgColor: {
-      blue: "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-lg shadow-blue-500/25",
-      gray: "bg-gradient-to-r from-slate-500 to-slate-600 hover:from-slate-600 hover:to-slate-700 shadow-lg shadow-slate-500/25",
-      green: "bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 shadow-lg shadow-emerald-500/25",
-      red: "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg shadow-red-500/25",
+      primary: "bg-gradient-to-r from-primary to-primary/80 hover:from-primary/80 hover:to-primary shadow-lg shadow-primary/25",
+      secondary: "bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/80 hover:to-secondary shadow-lg shadow-secondary/25",
+      success: "bg-gradient-to-r from-success to-success/80 hover:from-success/80 hover:to-success shadow-lg shadow-success/25",
+      destructive: "bg-gradient-to-r from-destructive to-destructive/80 hover:from-destructive/80 hover:to-destructive shadow-lg shadow-destructive/25",
       transparent: "bg-transparent",
     },
     textColor: {
-      white: "text-white",
-      black: "text-foreground",
-      gray: "text-muted-foreground",
-      blue: "text-primary",
+      primary: "text-primary-foreground",
+      secondary: "text-secondary-foreground",
+      muted: "text-muted-foreground",
+      accent: "text-accent-foreground",
     },
   },
   defaultVariants: {
@@ -264,8 +264,8 @@ const StepIndicator: React.FC<{
           "relative flex items-center justify-center rounded-full font-bold transition-all duration-500",
           sizeClasses[size].circle,
           "border-2 backdrop-blur-sm",
-          isCompleted && "bg-gradient-to-br from-emerald-500 to-emerald-600 border-emerald-500 text-white shadow-lg shadow-emerald-500/25",
-          isActive && "bg-gradient-to-br from-blue-500 to-blue-600 border-blue-500 text-white shadow-lg shadow-blue-500/25 ring-4 ring-blue-500/20",
+          isCompleted && "bg-gradient-to-br from-success to-success/80 border-success text-white shadow-lg shadow-success/25",
+          isActive && "bg-gradient-to-br from-primary to-primary/80 border-primary text-white shadow-lg shadow-primary/25 ring-4 ring-primary/20",
           isFuture && "bg-muted/50 border-border text-muted-foreground"
         )}
         whileHover={{
@@ -274,9 +274,9 @@ const StepIndicator: React.FC<{
         }}
         animate={isActive ? {
           boxShadow: [
-            "0 0 0 0 rgba(59, 130, 246, 0.4)",
-            "0 0 0 8px rgba(59, 130, 246, 0.1)",
-            "0 0 0 0 rgba(59, 130, 246, 0)"
+            "0 0 0 0 hsl(var(--primary) / 0.4)",
+            "0 0 0 8px hsl(var(--primary) / 0.1)",
+            "0 0 0 0 hsl(var(--primary) / 0)"
           ]
         } : {}}
         transition={{
@@ -316,7 +316,7 @@ const StepIndicator: React.FC<{
 
         {isActive && (
           <motion.div
-            className="absolute inset-0 rounded-full border-2 border-blue-400"
+            className="absolute inset-0 rounded-full border-2 border-primary/50"
             animate={{
               scale: [1, 1.3, 1],
               opacity: [1, 0, 1]
@@ -334,8 +334,8 @@ const StepIndicator: React.FC<{
         className={cn(
           "font-medium transition-colors duration-300 truncate max-w-[100px] sm:max-w-[150px] lg:max-w-none",
           sizeClasses[size].text,
-          isCompleted && "text-emerald-600 dark:text-emerald-400",
-          isActive && "text-blue-600 dark:text-blue-400 font-semibold",
+          isCompleted && "text-success-foreground",
+          isActive && "text-primary font-semibold",
           isFuture && "text-muted-foreground"
         )}
         animate={isActive ? {
@@ -366,7 +366,7 @@ const ProgressBreadcrumbs: React.FC<{
       <div className="relative mb-6 sm:mb-8">
         <div className="h-3 bg-gradient-to-r from-muted/30 to-muted/50 rounded-full overflow-hidden backdrop-blur-sm border border-border/30 shadow-inner">
           <motion.div
-            className="h-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-sm relative overflow-hidden"
+            className="h-full bg-gradient-to-r from-primary via-primary/80 to-primary shadow-sm relative overflow-hidden"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.8, ease: "easeInOut" }}

@@ -11,14 +11,12 @@ import { useToast } from '../UI/toast/use-toast';
 
 const toastVariants = ['success', 'error', 'warning', 'info', 'default'];
 const toastAnimations = ['slide', 'fade', 'bounce', 'pop'];
-const toastAppearances = ['glow', 'gradient'];
-const toastModes = ['light', 'dark'];
+const toastAppearances = ['glow', 'gradient', 'glassmorphism', 'premium', 'neon'];
 
 const ToastDemo = () => {
   const [variant, setVariant] = useState('info');
   const [animation, setAnimation] = useState('slide');
   const [appearance, setAppearance] = useState('glow');
-  const [mode, setMode] = useState('light');
   const toast = useToast();
 
   const codeString = `
@@ -27,7 +25,6 @@ toast.addToast({
   variant: "${variant}",
   animation: "${animation}",
   appearance: "${appearance}",
-  mode: "${mode}",
   icon: <InfoCircledIcon className="w-5 h-5" />
 });
 `;
@@ -38,7 +35,6 @@ toast.addToast({
       variant: variant as any,
       animation: animation as any,
       appearance: appearance as any,
-      mode: mode as any,
       icon: <InfoCircledIcon className="w-5 h-5" />,
     });
   };
@@ -64,7 +60,6 @@ toast.addToast({
           onSelectVariant={setAppearance}
           type="Appearance"
         />
-        <VariantSelector variants={toastModes} selectedVariant={mode} onSelectVariant={setMode} type="Mode" />
       </div>
       <Tabs>
         <TabItem value="preview" label="Preview">

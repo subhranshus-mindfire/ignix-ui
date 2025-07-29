@@ -27,12 +27,12 @@ const navbarVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-white text-gray-900",
-        dark: "bg-gray-900 text-white",
+        default: "bg-background text-foreground",
+        dark: "bg-card text-card-foreground",
         transparent: "bg-transparent text-transparent",
-        glass: "bg-white/10 backdrop-blur-lg text-blue-200",
-        gradient: "bg-gradient-to-r from-blue-500 to-purple-500 text-white",
-        primary: "bg-blue-400 text-white",
+        glass: "bg-white/10 backdrop-blur-lg text-[var(--color-navbar-glass-text)]",
+        gradient: "bg-gradient-to-r from-[var(--color-navbar-gradient-from)] to-[var(--color-navbar-gradient-to)] text-white",
+        primary: "bg-primary text-primary-foreground",
       },
       size: {
         sm: "h-12",
@@ -87,7 +87,7 @@ const animationVariants: Record<string, Partial<HTMLMotionProps<"nav">>> = {
   },
   glow: {
     whileHover: {
-      boxShadow: "0 0 25px 8px rgba(0, 123, 255, 0.7)",
+      boxShadow: "0 0 10px 2px var(--primary)",
       transition: { duration: 0.5 },
     },
   },
@@ -231,9 +231,9 @@ const Navbar: React.FC<NavbarProps> = ({
               variants={submenuVariants}
               transition={{ duration: 0.3 }}
               className={cn(
-                "top-full left-0 right-0 bg-white  w-full px-6 py-4 border-t z-50",
-                variant === "dark" ? "bg-gray-900 text-white" : "",
-                variant === "primary" ? "bg-blue-400 text-white" : ""
+                "top-full left-0 right-0 bg-background  w-full px-6 py-4 border-t z-50",
+                variant === "dark" ? "bg-card text-card-foreground" : "",
+                variant === "primary" ? "bg-primary text-primary-foreground" : ""
               )}
             >
               {props.submenuContent}

@@ -117,7 +117,7 @@ const ButtonDemo = () => {
 
       <Tabs>
         <TabItem value="preview" label="Preview">
-          <div className="p-6 border rounded-lg mt-4 bg-white dark:bg-gray-800">
+          <div className="p-6 border rounded-lg mt-4 ">
             <div className="flex flex-wrap gap-4 items-center justify-center p-4">
               <Button 
                 variant={variant as any} 

@@ -12,7 +12,7 @@ const SpinnerDemo = () => {
   const [variant, setVariant] = useState('default');
 
   const codeString = `
-<Spinner size={40} variant="${variant}" color="border-orange-500" />
+<Spinner size={40} variant="${variant}" color="border-primary" />
 `;
 
   return (
@@ -30,13 +30,13 @@ const SpinnerDemo = () => {
             <div className="p-6 rounded-lg">
               <div className="flex items-center justify-center gap-8">
                 {variant === 'default' && (
-                  <Spinner size={40} variant={variant as any} color="border-orange-500" />
+                  <Spinner size={40} variant={variant as any} color="border-primary" />
                 )}
                 {variant === 'bars' && (
-                  <Spinner size={40} variant="bars" color="bg-orange-500" />
+                  <Spinner size={40} variant="bars" color="bg-primary" />
                 )}
                 {variant === 'dots-bounce' && (
-                  <Spinner size={40} variant="dots-bounce" color="bg-orange-500" />
+                  <Spinner size={40} variant="dots-bounce" color="bg-primary" />
                 )}
               </div>
             </div>  
