@@ -19,8 +19,8 @@ const ToastDemo = () => {
           variant="default"
           size="lg"
           onClick={() => toast.addToast({
-              message: "Notification from Ignix UI!",
-              variant: 'info',
+              message: "Hello from Ignix UI!",
+              variant: 'error',
               animation: 'slide',
               icon: <InfoCircledIcon className="w-5 h-5" />
           })}
