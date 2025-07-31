@@ -18,8 +18,8 @@ The Tooltip component provides additional information when users hover over or f
 <Tabs defaultValue="preview">
   <TabItem value="preview" label="Preview" default>
     <div className="w-full p-8 rounded-lg border flex items-center justify-center">
-      <Tooltip content="This is a tooltip">
-        <Button>
+      <Tooltip content="Hi, I am a tooltip">
+        <Button className="flex items-center gap-2 justify-center">
           Hover me
         </Button>
       </Tooltip>
@@ -32,7 +32,7 @@ The Tooltip component provides additional information when users hover over or f
 
     function TooltipDemo() {
       return (
-        <Tooltip content="This is a tooltip">
+        <Tooltip content="Hi, I am a tooltip">
           <Button>
             Hover me
           </Button>

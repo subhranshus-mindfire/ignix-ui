@@ -134,14 +134,14 @@ function ColumnTable(props: TableProps) {
   );
 
   return (
-    <div className="relative w-full rounded-lg overflow-hidden shadow-md bg-white dark:bg-gray-900">
+    <div className="relative w-full rounded-lg overflow-hidden shadow-md">
       {glow && (
-        <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-300 to-indigo-600 opacity-30 blur-lg pointer-events-none animate-pulse" />
+        <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary to-primary opacity-30 blur-lg pointer-events-none animate-pulse" />
       )}
       <RadixTable.Root
         className={cn(
           "w-full border-collapse",
-          variant === "ghost" ? "border border-transparent" : "border border-gray-200 dark:border-gray-700"
+          variant === "ghost" ? "border border-transparent" : "border border-primary dark:border-gray-700"
         )}
       >
         <RadixTable.Header className="bg-gray-50 dark:bg-gray-800">
@@ -160,7 +160,7 @@ function ColumnTable(props: TableProps) {
                   config.headingFontSize,
                   "border-r last:border-r-0 text-gray-700 dark:text-gray-300",
                   showHoverEffects && hoveredColumn === key ? "bg-gray-100 dark:bg-gray-700" : "",
-                  glow ? "text-indigo-600" : "",
+                  glow ? "text-primary" : "",
                   showBorders && "border-gray-300 dark:border-gray-600"
                 )}
               >
@@ -168,9 +168,9 @@ function ColumnTable(props: TableProps) {
                   <div className="truncate">{label}</div>
                   <div className="flex items-center gap-1 shrink-0">
                     {sort === "asc" ? (
-                      <TriangleUpIcon className="w-4 h-4 text-indigo-600" />
+                      <TriangleUpIcon className="w-4 h-4 text-primary" />
                     ) : (
-                      <TriangleDownIcon className="w-4 h-4 text-indigo-600" />
+                      <TriangleDownIcon className="w-4 h-4 text-primary" />
                     )}
                   </div>
                 </Flex>
@@ -193,7 +193,7 @@ function ColumnTable(props: TableProps) {
                   className={cn(
                     "cursor-default",
                     showStripes && index % 2 === 1 ? "bg-gray-50 dark:bg-gray-800" : "",
-                    showHoverEffects ? "hover:bg-indigo-50 dark:hover:bg-indigo-900" : "",
+                    showHoverEffects ? "hover:bg-primary dark:hover:bg-primary" : "",
                     showBorders ? "border-b border-gray-200 dark:border-gray-700" : ""
                   )}
                   onMouseEnter={() => setHoveredRow(index)}

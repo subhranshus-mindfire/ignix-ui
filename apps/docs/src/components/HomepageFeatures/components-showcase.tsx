@@ -89,7 +89,7 @@ const ComponentShowcase = () => {
       description: "Customizable reveal animations",
       size: 'large',
       demo: (
-        <div className="w-full h-full p-4 flex items-center justify-center">
+        <div className="w-full min-h-[400px] p-4 flex items-center justify-center">
         <Accordion type="single" collapsible className="w-full text-foreground">
             <AccordionItem value="item-1">
                 <AccordionTrigger>Is it animated?</AccordionTrigger>

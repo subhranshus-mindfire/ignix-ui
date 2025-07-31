@@ -61,8 +61,8 @@ const createEnhancedParticles = (container: HTMLElement, count = 8) => {
     const particle = document.createElement("div");
     particle.className = cn(
       "absolute rounded-full pointer-events-none",
-      "bg-gradient-to-r from-[var(--color-input-particle-from)] to-[var(--color-input-particle-to)]",
-      "shadow-lg shadow-[var(--color-input-particle-shadow)]/50"
+      "bg-primary",
+      "shadow-lg shadow-primary/50"
     );
     
     const size = Math.random() * 4 + 2;
@@ -70,7 +70,7 @@ const createEnhancedParticles = (container: HTMLElement, count = 8) => {
     particle.style.height = `${size}px`;
     particle.style.left = `${Math.random() * 100}%`;
     particle.style.top = `${Math.random() * 100}%`;
-    particle.style.boxShadow = `0 0 ${size * 2}px rgba(var(--color-input-particle-shadow), 0.6)`;
+    particle.style.boxShadow = `0 0 ${size * 2}px rgba(var(--color-background), 0.6)`;
     
     // Enhanced animation
     particle.style.animation = `particleFloat ${Math.random() * 3 + 2}s ease-in-out infinite`;
@@ -302,11 +302,11 @@ export const AnimatedInput: React.FC<AnimatedInputProps> = ({
                 x2="100%"
                 y2="100%"
               >
-                <stop offset="0%" stopColor="#3b82f6" />
-                <stop offset="25%" stopColor="#8b5cf6" />
-                <stop offset="50%" stopColor="#06b6d4" />
-                <stop offset="75%" stopColor="#3b82f6" />
-                <stop offset="100%" stopColor="#8b5cf6" />
+                <stop offset="0%" stopColor="var(--primary)" />
+                <stop offset="25%" stopColor="var(--primary)" />
+                <stop offset="50%" stopColor="var(--primary)" />
+                <stop offset="75%" stopColor="var(--primary)" />
+                <stop offset="100%" stopColor="var(--primary)" />
               </linearGradient>
             </defs>
           </svg>
@@ -318,7 +318,7 @@ export const AnimatedInput: React.FC<AnimatedInputProps> = ({
             {[...Array(8)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full shadow-lg shadow-blue-400/50"
+                className="absolute w-2 h-2 bg-primary rounded-full shadow-lg shadow-primary/50"
                 style={{
                   left: `${15 + i * 10}%`,
                   top: "50%",
@@ -347,7 +347,7 @@ export const AnimatedInput: React.FC<AnimatedInputProps> = ({
               ease: "easeOut",
             }}
             style={{
-              background: "radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)"
+              background: "radial-gradient(circle, var(--primary) 0%, transparent 70%)"
             }}
           />
         )}
@@ -409,11 +409,11 @@ const inputVariants: Record<string, InputVariant> = {
       animate: { scale: 1.005 },
     },
     label: {
-      initial: { y: 0, scale: 1, color: "#6b7280" },
+      initial: { y: 0, scale: 1, color: "var(--primary)" },
       animate: { 
         y: -32, 
         scale: 0.85, 
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { type: "spring", stiffness: 300, damping: 20 }
       },
     },
@@ -423,18 +423,17 @@ const inputVariants: Record<string, InputVariant> = {
         boxShadow: "0 1px 3px rgba(0,0,0,0.1)"
       },
       animate: { 
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 0 0 3px rgba(59, 130, 246, 0.1), 0 4px 12px rgba(59,130,246,0.1)"
+        borderColor: "var(--primary)",
       },
     },
   },
 
   underline: {
     label: {
-      initial: { y: 0, color: "#6b7280" },
+      initial: { y: 0, color: "var(--primary)" },
       animate: { 
         y: -32, 
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { type: "spring", stiffness: 300, damping: 20 }
       },
     },
@@ -446,20 +445,20 @@ const inputVariants: Record<string, InputVariant> = {
         background: "rgba(0, 0, 0, 0.02)"
       },
       animate: { 
-        borderColor: "rgb(59, 130, 246)",
-        background: "rgba(59, 130, 246, 0.02)",
-        boxShadow: "0 2px 0 0 rgba(59, 130, 246, 0.4)"
+        borderColor: "var(--primary)",
+        background: "rgba(var(--primary), 0.02)",
+        boxShadow: "0 2px 0 0 rgba(var(--primary), 0.4)"
       },
     },
   },
 
   floating: {
     label: {
-      initial: { y: 0, scale: 1, color: "#6b7280" },
+      initial: { y: 0, scale: 1, color: "var(--primary)" },
       animate: {
         y: -32,
         scale: 0.85,
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { type: "spring", stiffness: 400, damping: 25 },
       },
     },
@@ -480,18 +479,18 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { y: 0, color: "#6b7280" },
       animate: { 
         y: -32, 
-        color: "#3b82f6",
-        textShadow: "0 0 12px rgba(59, 130, 246, 0.6)"
+        color: "var(--primary)",
+        textShadow: "0 0 12px var(--primary)"
       },
     },
     input: {
       initial: { 
-        boxShadow: "0 0 0 0 rgba(59, 130, 246, 0)",
+        boxShadow: "0 0 0 0 rgba(var(--primary), 0)",
         borderColor: "rgb(226, 232, 240)"
       },
       animate: { 
-        boxShadow: "0 0 0 3px rgba(59, 130, 246, 0.3), 0 0 20px rgba(59, 130, 246, 0.2)",
-        borderColor: "rgb(59, 130, 246)"
+        boxShadow: "0 0 0 3px rgba(246, 134, 59, 0.3), 0 0 20px rgba(246, 134, 59, 0.2)",
+        borderColor: "var(--primary)"
       },
     },
   },
@@ -502,8 +501,8 @@ const inputVariants: Record<string, InputVariant> = {
       animate: { 
         y: -32, 
         opacity: 0.9, 
-        color: "#3b82f6",
-        textShadow: "0 0 12px rgba(59, 130, 246, 0.4)"
+        color: "var(--primary)",
+        textShadow: "0 0 12px var(--primary)"
       },
     },
     input: {
@@ -513,9 +512,9 @@ const inputVariants: Record<string, InputVariant> = {
       },
       animate: {
         backgroundPosition: "-200% 0",
-        backgroundImage: "linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.15) 50%, transparent 100%)",
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 4px 12px rgba(59, 130, 246, 0.1)",
+        backgroundImage: "linear-gradient(90deg, transparent 0%, var(--primary) 50%, transparent 100%)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 4px 12px var(--primary)",
         transition: { 
           backgroundPosition: { repeat: Infinity, duration: 2, ease: "linear" },
           borderColor: { duration: 0.3 },
@@ -530,15 +529,15 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { y: 0, color: "#6b7280" },
       animate: { 
         y: -32, 
-        color: "#3b82f6",
-        textShadow: "0 0 8px rgba(59, 130, 246, 0.3)"
+        color: "var(--primary)",
+        textShadow: "0 0 8px var(--primary)"
       },
     },
     input: {
       initial: { borderColor: "rgb(226, 232, 240)" },
       animate: { 
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 0 20px rgba(59, 130, 246, 0.2)"
+        borderColor: "var(--primary)",
+        boxShadow: "0 0 20px var(--primary)"
       },
     },
     extra: {
@@ -564,35 +563,35 @@ const inputVariants: Record<string, InputVariant> = {
 
   slide: {
     label: {
-      initial: { x: 0, y: 0, color: "#6b7280" },
+      initial: { x: 0, y: 0, color: "var(--primary)" },
       animate: { 
         x: 0, 
         y: -32, 
         scale: 0.85, 
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { type: "spring", stiffness: 300, damping: 20 }
       },
     },
     input: {
       initial: { 
-        borderColor: "#6b7280",
+        borderColor: "var(--primary)",
         transform: "translateX(0px)"
       },
       animate: { 
-        borderColor: "#3b82f6",
+        borderColor: "var(--primary)",
         transform: "translateX(3px)",
-        boxShadow: "0 4px 15px rgba(59, 130, 246, 0.15)"
+        boxShadow: "0 4px 15px var(--primary)"
       },
     },
   },
 
   scale: {
     label: {
-      initial: { scale: 1, y: 0, color: "#6b7280" },
+      initial: { scale: 1, y: 0, color: "var(--primary)" },
       animate: { 
         scale: 0.85, 
         y: -32, 
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { type: "spring", stiffness: 400, damping: 25 }
       },
     },
@@ -600,20 +599,20 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { scale: 1 },
       animate: { 
         scale: 1.02,
-        boxShadow: "0 8px 25px rgba(59, 130, 246, 0.15)",
-        borderColor: "rgb(59, 130, 246)"
+        boxShadow: "0 8px 25px var(--primary)",
+        borderColor: "var(--primary)"
       },
     },
   },
 
   rotate: {
     label: {
-      initial: { rotate: 0, y: 0, color: "#6b7280" },
+      initial: { rotate: 0, y: 0, color: "var(--primary)" },
       animate: { 
         rotate: -8, 
         y: -32, 
         scale: 0.85, 
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { type: "spring", stiffness: 300, damping: 20 }
       },
     },
@@ -621,18 +620,18 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { rotate: 0 },
       animate: { 
         rotate: 1,
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 4px 15px rgba(59, 130, 246, 0.15)"
+        borderColor: "var(--primary)",
+        boxShadow: "0 4px 15px var(--primary)"
       },
     },
   },
 
   bounce: {
     label: {
-      initial: { y: 0, color: "#6b7280" },
+      initial: { y: 0, color: "var(--primary)" },
       animate: {
         y: -32,
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { type: "spring", stiffness: 400, damping: 15 },
       },
     },
@@ -640,8 +639,8 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { y: 0 },
       animate: {
         y: [0, -8, 0],
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 4px 15px rgba(59, 130, 246, 0.15)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 4px 15px var(--primary)",
         transition: { 
           y: { repeat: Infinity, duration: 1.5, ease: "easeInOut" } 
         },
@@ -651,12 +650,12 @@ const inputVariants: Record<string, InputVariant> = {
 
   elastic: {
     label: {
-      initial: { x: 0, y: 0, color: "#6b7280" },
+      initial: { x: 0, y: 0, color: "var(--primary)" },
       animate: {
         x: [-15, 15, -8, 8, 0],
         y: -32,
         scale: 0.85,
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { type: "spring", stiffness: 500, damping: 15 },
       },
     },
@@ -664,8 +663,8 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { scaleX: 1 },
       animate: {
         scaleX: [1, 1.08, 0.95, 1.03, 1],
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 4px 15px rgba(59, 130, 246, 0.15)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 4px 15px var(--primary)",
         transition: { duration: 0.8 },
       },
     },
@@ -673,31 +672,31 @@ const inputVariants: Record<string, InputVariant> = {
 
   glow: {
     label: {
-      initial: { y: 0, opacity: 1, color: "#6b7280" },
+      initial: { y: 0, opacity: 1, color: "var(--primary)" },
       animate: { 
         y: -32, 
         opacity: 0.9, 
-        color: "#3b82f6",
-        textShadow: "0 0 15px rgba(59, 130, 246, 0.6)"
+        color: "var(--primary)",
+        textShadow: "0 0 15px var(--primary)"
       },
     },
     input: {
-      initial: { boxShadow: "0 0 0 rgba(59, 130, 246, 0)" },
+      initial: { boxShadow: "0 0 0 var(--primary)" },
       animate: { 
-        boxShadow: "0 0 25px rgba(59, 130, 246, 0.7), 0 0 50px rgba(59, 130, 246, 0.3)",
-        borderColor: "rgb(59, 130, 246)"
+        boxShadow: "0 0 25px var(--primary), 0 0 50px var(--primary)",
+        borderColor: "var(--primary)"
       },
     },
   },
 
   shake: {
     label: {
-      initial: { x: 0, y: 0, color: "#6b7280" },
+      initial: { x: 0, y: 0, color: "var(--primary)" },
       animate: {
         x: [-3, 3, -2, 2, 0],
         y: -32,
         scale: 0.85,
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { 
           x: { duration: 0.5, ease: "easeInOut" },
           y: { type: "spring", stiffness: 300, damping: 15 },
@@ -710,8 +709,8 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { x: 0 },
       animate: {
         x: [-2, 2, -1, 1, 0],
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 4px 15px rgba(59, 130, 246, 0.15)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 4px 15px var(--primary)",
         transition: {
           x: { 
             repeat: Infinity, 
@@ -728,10 +727,10 @@ const inputVariants: Record<string, InputVariant> = {
 
   wave: {
     label: {
-      initial: { y: 0, color: "#6b7280" },
+      initial: { y: 0, color: "var(--primary)" },
       animate: (i: number) => ({
         y: -32,
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: {
           delay: i * 0.03,
           type: "spring",
@@ -744,8 +743,8 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { y: 0 },
       animate: {
         y: [0, -5, 0, 5, 0],
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 4px 15px rgba(59, 130, 246, 0.15)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 4px 15px var(--primary)",
         transition: {
           y: { repeat: Infinity, duration: 2.5, ease: "easeInOut" },
         },
@@ -755,13 +754,13 @@ const inputVariants: Record<string, InputVariant> = {
 
   typewriter: {
     label: {
-      initial: { width: "100%", x: 0, y: 0, color: "#6b7280" },
+      initial: { width: "100%", x: 0, y: 0, color: "var(--primary)" },
       animate: { 
         width: 0, 
         x: -60, 
         y: -32, 
         scale: 0.85,
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { duration: 0.6, ease: "easeInOut" } 
       },
     },
@@ -769,8 +768,8 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { width: 0 },
       animate: { 
         width: "100%", 
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 4px 15px rgba(59, 130, 246, 0.15)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 4px 15px var(--primary)",
         transition: { delay: 0.6, duration: 0.6, ease: "easeOut" } 
       },
     },
@@ -778,11 +777,11 @@ const inputVariants: Record<string, InputVariant> = {
 
   magnetic: {
     label: {
-      initial: { y: 0, color: "#6b7280" },
+      initial: { y: 0, color: "var(--primary)" },
       animate: { 
         y: -32, 
-        color: "#3b82f6",
-        textShadow: "0 0 12px rgba(59, 130, 246, 0.4)"
+        color: "var(--primary)",
+        textShadow: "0 0 12px var(--primary)"
       },
     },
     input: {
@@ -790,8 +789,8 @@ const inputVariants: Record<string, InputVariant> = {
       animate: {
         backgroundPosition: "100% 50%",
         backgroundImage: "linear-gradient(90deg, transparent 30%, rgba(59, 130, 246, 0.1) 50%, transparent 70%)",
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 4px 15px rgba(59, 130, 246, 0.15)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 4px 15px var(--primary)",
         transition: {
           backgroundPosition: { repeat: Infinity, duration: 1.5, ease: "linear" },
         },
@@ -801,11 +800,11 @@ const inputVariants: Record<string, InputVariant> = {
 
   pulse: {
     label: {
-      initial: { scale: 1, y: 0, color: "#6b7280" },
+      initial: { scale: 1, y: 0, color: "var(--primary)" },
       animate: { 
         scale: 0.85, 
         y: -32, 
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { type: "spring", stiffness: 300, damping: 20 }
       },
     },
@@ -813,11 +812,11 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { scale: 1 },
       animate: {
         scale: [1, 1.02, 1],
-        borderColor: "rgb(59, 130, 246)",
+        borderColor: "var(--primary)",
         boxShadow: [
-          "0 4px 15px rgba(59, 130, 246, 0.15)",
-          "0 4px 20px rgba(59, 130, 246, 0.25)",
-          "0 4px 15px rgba(59, 130, 246, 0.15)"
+          "0 4px 15px var(--primary)",
+          "0 4px 20px var(--primary)",
+          "0 4px 15px var(--primary)"
         ],
         transition: { 
           scale: { repeat: Infinity, duration: 2, ease: "easeInOut" },
@@ -829,12 +828,12 @@ const inputVariants: Record<string, InputVariant> = {
 
   flip: {
     label: {
-      initial: { rotateX: 0, y: 0, color: "#6b7280" },
+      initial: { rotateX: 0, y: 0, color: "var(--primary)" },
       animate: { 
         rotateX: 180, 
         y: -32, 
         scale: 0.85,
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { duration: 0.6, ease: "easeInOut" }
       },
     },
@@ -842,8 +841,8 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { rotateX: 0 },
       animate: { 
         rotateX: [0, 180, 360], 
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 4px 15px rgba(59, 130, 246, 0.15)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 4px 15px var(--primary)",
         transition: { duration: 1.2, ease: "easeInOut" } 
       },
     },
@@ -851,12 +850,12 @@ const inputVariants: Record<string, InputVariant> = {
 
   morph: {
     label: {
-      initial: { borderRadius: "0%", y: 0, color: "#6b7280" },
+      initial: { borderRadius: "0%", y: 0, color: "var(--primary)" },
       animate: { 
         borderRadius: "50%", 
         y: -32, 
         scale: 0.85, 
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { duration: 0.6, ease: "easeInOut" }
       },
     },
@@ -864,8 +863,8 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { borderRadius: "12px" },
       animate: {
         borderRadius: ["12px", "30px", "12px"],
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 4px 15px rgba(59, 130, 246, 0.15)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 4px 15px var(--primary)",
         transition: { 
           borderRadius: { repeat: Infinity, duration: 2.5, ease: "easeInOut" } 
         },
@@ -875,11 +874,11 @@ const inputVariants: Record<string, InputVariant> = {
 
   spotlight: {
     label: {
-      initial: { y: 0, filter: "brightness(1)", color: "#6b7280" },
+      initial: { y: 0, filter: "brightness(1)", color: "var(--primary)" },
       animate: { 
         y: -32, 
         filter: "brightness(1.3) drop-shadow(0 0 8px rgba(59, 130, 246, 0.5))", 
-        color: "#3b82f6"
+        color: "var(--primary)"
       },
     },
     input: {
@@ -887,8 +886,8 @@ const inputVariants: Record<string, InputVariant> = {
       animate: {
         backgroundPosition: "100% 50%",
         backgroundImage: "linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.1) 50%, transparent 100%)",
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 4px 15px rgba(59, 130, 246, 0.15)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 4px 15px var(--primary)",
         transition: { 
           backgroundPosition: { repeat: Infinity, duration: 2, ease: "linear" }
         },
@@ -909,10 +908,10 @@ const inputVariants: Record<string, InputVariant> = {
 
   liquid: {
     label: {
-      initial: { y: 0, color: "#6b7280" },
+      initial: { y: 0, color: "var(--primary)" },
       animate: { 
         y: -32, 
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { type: "spring", stiffness: 300, damping: 20 }
       },
     },
@@ -920,8 +919,8 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { borderRadius: "12px" },
       animate: {
         borderRadius: ["12px", "25px", "12px"],
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 4px 15px rgba(59, 130, 246, 0.15)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 4px 15px var(--primary)",
         transition: { 
           borderRadius: { repeat: Infinity, duration: 2.5, ease: "easeInOut" } 
         },
@@ -931,18 +930,18 @@ const inputVariants: Record<string, InputVariant> = {
 
   neon: {
     label: {
-      initial: { textShadow: "0 0 0px #fff", color: "#6b7280" },
+      initial: { textShadow: "0 0 0px #fff", color: "var(--primary)" },
       animate: {
-        textShadow: "0 0 12px #fff, 0 0 24px #3b82f6, 0 0 36px #3b82f6",
+        textShadow: "0 0 12px #fff, 0 0 24px var(--primary), 0 0 36px var(--primary)",
         y: -32,
-        color: "#3b82f6",
+        color: "var(--primary)",
       },
     },
     input: {
       initial: { boxShadow: "0 0 0px #fff" },
       animate: {
-        boxShadow: "0 0 8px #3b82f6, 0 0 16px #3b82f6, 0 0 24px #3b82f6, 0 0 32px #3b82f6",
-        borderColor: "#3b82f6",
+        boxShadow: "0 0 8px var(--primary), 0 0 16px var(--primary), 0 0 24px var(--primary), 0 0 32px var(--primary)",
+        borderColor: "var(--primary)",
         transition: {
           boxShadow: { repeat: Infinity, duration: 2, repeatType: "reverse" as const },
         },
@@ -952,12 +951,12 @@ const inputVariants: Record<string, InputVariant> = {
 
   origami: {
     label: {
-      initial: { rotateY: 0, y: 0, color: "#6b7280" },
+      initial: { rotateY: 0, y: 0, color: "var(--primary)" },
       animate: { 
         rotateY: 180, 
         y: -32, 
         scale: 0.85,
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { duration: 0.8, ease: "easeInOut" }
       },
     },
@@ -965,8 +964,8 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { rotateY: 0 },
       animate: {
         rotateY: [0, -90, 0],
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 4px 15px rgba(59, 130, 246, 0.15)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 4px 15px var(--primary)",
         transition: {
           rotateY: { repeat: Infinity, duration: 3, repeatDelay: 1.5 },
         },
@@ -976,12 +975,12 @@ const inputVariants: Record<string, InputVariant> = {
 
   glitch: {
     label: {
-      initial: { skew: 0, y: 0, color: "#6b7280" },
+      initial: { skew: 0, y: 0, color: "var(--primary)" },
       animate: {
         skew: [-8, 8, -4, 4, 0],
         y: -32,
         scale: 0.85,
-        color: "#3b82f6",
+        color: "var(--primary)",
         textShadow: "2px 0 #ff0000, -2px 0 #00ff00",
         transition: { 
           skew: { repeat: Infinity, duration: 0.6, repeatDelay: 2 },
@@ -993,8 +992,8 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { skew: 0 },
       animate: {
         skew: [0, -3, 3, -2, 2, 0],
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "2px 0 8px rgba(255,0,0,0.3), -2px 0 8px rgba(0,255,0,0.3)",
+        borderColor: "var(--primary)",
+        boxShadow: "2px 0 8px var(--primary), -2px 0 8px var(--primary)",
         transition: { 
           skew: { repeat: Infinity, duration: 0.6, repeatDelay: 2 } 
         },
@@ -1004,13 +1003,13 @@ const inputVariants: Record<string, InputVariant> = {
 
   hologram: {
     label: {
-      initial: { opacity: 1, y: 0, color: "#6b7280" },
+      initial: { opacity: 1, y: 0, color: "var(--primary)" },
       animate: {
         opacity: [1, 0.6, 1],
         y: -32,
         scale: 0.85,
-        color: "#3b82f6",
-        textShadow: "0 0 15px rgba(59, 130, 246, 0.6)",
+        color: "var(--primary)",
+        textShadow: "0 0 15px var(--primary)",
         transition: { 
           opacity: { repeat: Infinity, duration: 2.5, ease: "easeInOut" } 
         },
@@ -1020,8 +1019,8 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { opacity: 0.8 },
       animate: {
         opacity: [0.8, 1, 0.8],
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 0 20px rgba(59, 130, 246, 0.4), inset 0 0 20px rgba(59, 130, 246, 0.1)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 0 20px var(--primary), inset 0 0 20px var(--primary)",
         transition: { 
           opacity: { repeat: Infinity, duration: 2.5, ease: "easeInOut" } 
         },
@@ -1038,13 +1037,13 @@ const inputVariants: Record<string, InputVariant> = {
 
   cosmic: {
     label: {
-      initial: { scale: 1, y: 0, rotate: 0, color: "#6b7280" },
+      initial: { scale: 1, y: 0, rotate: 0, color: "var(--primary)" },
       animate: {
         scale: 0.85,
         y: -32,
         rotate: 360,
-        color: "#8b5cf6",
-        textShadow: "0 0 15px rgba(139, 92, 246, 0.6)",
+        color: "var(--primary)",
+        textShadow: "0 0 15px var(--primary)",
         transition: { 
           rotate: { duration: 3, repeat: Infinity, ease: "linear" } 
         },
@@ -1055,8 +1054,8 @@ const inputVariants: Record<string, InputVariant> = {
       animate: {
         backgroundPosition: "100% 50%",
         backgroundImage: "linear-gradient(45deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1), rgba(139, 92, 246, 0.1))",
-        borderColor: "rgb(139, 92, 246)",
-        boxShadow: "0 0 25px rgba(139, 92, 246, 0.3)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 0 25px var(--primary)",
         transition: { 
           backgroundPosition: { repeat: Infinity, duration: 4, ease: "linear" } 
         },
@@ -1066,11 +1065,11 @@ const inputVariants: Record<string, InputVariant> = {
 
   borderBeam: {
     label: {
-      initial: { y: 0, color: "#6b7280" },
+      initial: { y: 0, color: "var(--primary)" },
       animate: { 
         y: -32, 
-        color: "#3b82f6",
-        textShadow: "0 0 12px rgba(59, 130, 246, 0.4)"
+        color: "var(--primary)",
+        textShadow: "0 0 12px var(--primary)"
       },
     },
     input: {
@@ -1088,10 +1087,10 @@ const inputVariants: Record<string, InputVariant> = {
 
   gradientBorder: {
     label: {
-      initial: { y: 0, color: "#6b7280" },
+      initial: { y: 0, color: "var(--primary)" },
       animate: { 
         y: -32, 
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { type: "spring", stiffness: 300, damping: 20 }
       },
     },
@@ -1100,7 +1099,7 @@ const inputVariants: Record<string, InputVariant> = {
         border: "2px solid transparent",
         backgroundImage: `
           linear-gradient(white, white),
-          linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6)
+          linear-gradient(90deg, var(--primary), var(--primary), var(--primary))
         `,
         backgroundClip: "padding-box, border-box",
         backgroundOrigin: "padding-box, border-box",
@@ -1119,18 +1118,18 @@ const inputVariants: Record<string, InputVariant> = {
 
   ripple: {
     label: {
-      initial: { y: 0, color: "#6b7280" },
+      initial: { y: 0, color: "var(--primary)" },
       animate: { 
         y: -32, 
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { type: "spring", stiffness: 300, damping: 20 }
       },
     },
     input: {
       initial: { borderColor: "rgb(226, 232, 240)" },
       animate: { 
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 4px 15px rgba(59, 130, 246, 0.15)"
+        borderColor: "var(--primary)",
+        boxShadow: "0 4px 15px var(--primary)"
       },
     },
   },
@@ -1153,9 +1152,9 @@ const inputVariants: Record<string, InputVariant> = {
         background: "rgba(0, 0, 0, 0.04)",
       },
       animate: {
-        borderColor: "rgb(59, 130, 246)",
-        background: "rgba(59, 130, 246, 0.04)",
-        boxShadow: "0 2px 0 0 rgba(59, 130, 246, 0.4)",
+        borderColor: "var(--primary)",
+        background: "var(--primary)",
+        boxShadow: "0 2px 0 0 rgba(var(--primary), 0.4)",
         transition: { type: "spring", stiffness: 300, damping: 20 },
       },
     },
@@ -1163,26 +1162,26 @@ const inputVariants: Record<string, InputVariant> = {
 
   neonPulse: {
     label: {
-      initial: { y: 0, color: "#6b7280" },
+      initial: { y: 0, color: "var(--primary)" },
       animate: { 
         y: -32, 
-        color: "#3b82f6",
-        textShadow: "0 0 15px rgba(59, 130, 246, 0.6)"
+        color: "var(--primary)",
+        textShadow: "0 0 15px var(--primary)"
       },
     },
     input: {
       initial: {
-        boxShadow: "0 0 0 rgba(59, 130, 246, 0)",
+        boxShadow: "0 0 0 var(--primary)",
         borderColor: "rgb(226, 232, 240)",
       },
       animate: {
         boxShadow: [
-          "0 0 8px rgba(59, 130, 246, 0.5)",
-          "0 0 16px rgba(59, 130, 246, 0.3)",
-          "0 0 24px rgba(59, 130, 246, 0.2)",
-          "0 0 8px rgba(59, 130, 246, 0.5)",
+          "0 0 8px var(--primary)",
+          "0 0 16px var(--primary)",
+          "0 0 24px var(--primary)",
+          "0 0 8px var(--primary)",
         ],
-        borderColor: "rgb(59, 130, 246)",
+        borderColor: "var(--primary)",
         transition: {
           boxShadow: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
         },
@@ -1192,11 +1191,11 @@ const inputVariants: Record<string, InputVariant> = {
 
   typewriterReveal: {
     label: {
-      initial: { y: 0, opacity: 0, color: "#6b7280" },
+      initial: { y: 0, opacity: 0, color: "var(--primary)" },
       animate: {
         y: -32,
         opacity: 1,
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { type: "spring", stiffness: 400, damping: 25 },
       },
     },
@@ -1204,8 +1203,8 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { width: "0%" },
       animate: {
         width: "100%",
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 4px 15px rgba(59, 130, 246, 0.15)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 4px 15px var(--primary)",
         transition: { duration: 0.8, ease: "easeOut" },
       },
     },
@@ -1213,11 +1212,11 @@ const inputVariants: Record<string, InputVariant> = {
 
   morphing: {
     label: {
-      initial: { y: 0, borderRadius: "4px", color: "#6b7280" },
+      initial: { y: 0, borderRadius: "4px", color: "var(--primary)" },
       animate: { 
         y: -32, 
         borderRadius: "16px", 
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { duration: 0.6, ease: "easeInOut" }
       },
     },
@@ -1225,8 +1224,8 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { borderRadius: "12px" },
       animate: {
         borderRadius: ["12px", "20px", "12px"],
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 4px 15px rgba(59, 130, 246, 0.15)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 4px 15px var(--primary)",
         transition: { 
           borderRadius: { repeat: Infinity, duration: 2.5, ease: "easeInOut" } 
         },
@@ -1236,10 +1235,10 @@ const inputVariants: Record<string, InputVariant> = {
 
   liquidBorder: {
     label: {
-      initial: { y: 0, color: "#6b7280" },
+      initial: { y: 0, color: "var(--primary)" },
       animate: { 
         y: -32, 
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { type: "spring", stiffness: 300, damping: 20 }
       },
     },
@@ -1247,8 +1246,8 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { borderRadius: "12px" },
       animate: {
         borderRadius: ["12px", "20px 8px 20px 8px", "8px 20px 8px 20px", "12px"],
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 4px 15px rgba(59, 130, 246, 0.15)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 4px 15px var(--primary)",
         transition: { 
           borderRadius: { repeat: Infinity, duration: 3.5, ease: "easeInOut" } 
         },
@@ -1261,18 +1260,18 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { y: 0, color: "#6b7280" },
       animate: { 
         y: -32, 
-        color: "#3b82f6",
-        textShadow: "0 0 12px rgba(59, 130, 246, 0.4)"
+        color: "var(--primary)",
+        textShadow: "0 0 12px var(--primary)"
       },
     },
     input: {
       initial: {
-        borderColor: "rgb(226, 232, 240)",
-        boxShadow: "0 0 0 rgba(59, 130, 246, 0)",
+        borderColor: "var(--border)",
+        boxShadow: "0 0 0 var(--primary)",
       },
       animate: {
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 0 20px rgba(59, 130, 246, 0.3)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 0 20px var(--primary)",
       },
     },
     extra: {
@@ -1290,11 +1289,11 @@ const inputVariants: Record<string, InputVariant> = {
       animate: { backdropFilter: "blur(20px)" },
     },
     label: {
-      initial: { y: 0, scale: 1, color: "#6b7280" },
+      initial: { y: 0, scale: 1, color: "var(--primary)" },
       animate: {
         y: -28,
         scale: 0.85,
-        color: "#3b82f6",
+        color: "var(--primary)",
         transition: { type: "spring", stiffness: 300 },
       },
     },
@@ -1306,7 +1305,7 @@ const inputVariants: Record<string, InputVariant> = {
       },
       animate: {
         background: "rgba(255, 255, 255, 0.15)",
-        borderColor: "rgba(59, 130, 246, 0.3)",
+        borderColor: "var(--primary)",
         backdropFilter: "blur(20px)",
         boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
       },
@@ -1322,7 +1321,7 @@ const inputVariants: Record<string, InputVariant> = {
       initial: { 
         y: 0, 
         scale: 1, 
-        color: "#6b7280",
+        color: "var(--primary)",
         textShadow: "none"
       },
       animate: {
@@ -1334,12 +1333,12 @@ const inputVariants: Record<string, InputVariant> = {
     },
     input: {
       initial: {
-        borderColor: "rgb(226, 232, 240)",
-        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        borderColor: "var(--border)",
+        boxShadow: "0 4px 6px var(--primary)",
       },
       animate: {
-        borderColor: "rgb(59, 130, 246)",
-        boxShadow: "0 0 20px rgba(59, 130, 246, 0.3), 0 8px 16px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 0 20px var(--primary), 0 8px 16px var(--primary), inset 0 1px 0 var(--primary)",
         transform: "translateZ(10px)",
       },
     },
@@ -1347,11 +1346,11 @@ const inputVariants: Record<string, InputVariant> = {
 
   quantumParticles: {
     label: {
-      initial: { y: 0, color: "#6b7280" },
+      initial: { y: 0, color: "var(--primary)" },
       animate: {
         y: -28,
-        color: "#8b5cf6",
-        textShadow: "0 0 8px rgba(139, 92, 246, 0.5)",
+        color: "var(--primary)",
+        textShadow: "0 0 8px var(--primary)",
       },
     },
     input: {
@@ -1360,9 +1359,9 @@ const inputVariants: Record<string, InputVariant> = {
         background: "linear-gradient(45deg, transparent 0%, rgba(139, 92, 246, 0.05) 50%, transparent 100%)"
       },
       animate: {
-        borderColor: "rgb(139, 92, 246)",
-        boxShadow: "0 0 20px rgba(139, 92, 246, 0.3)",
-        background: "linear-gradient(45deg, rgba(139, 92, 246, 0.05) 0%, rgba(236, 72, 153, 0.05) 50%, rgba(139, 92, 246, 0.05) 100%)",
+        borderColor: "var(--primary)",
+        boxShadow: "0 0 20px var(--primary)",
+        background: "linear-gradient(45deg, rgba(var(--primary), 0.05) 0%, rgba(236, 72, 153, 0.05) 50%, rgba(var(--primary), 0.05) 100%)",
       },
     },
     extra: {
