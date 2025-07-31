@@ -227,7 +227,7 @@
       "dependencies": ["@radix-ui/themes", "@radix-ui/react-icons", "react-responsive"],
       "files": {
         "main": {
-          "path": "components/pagination/index.tsx",
+          "path": "components/table/pagination/index.tsx",
           "type": "component"
         }
       }
