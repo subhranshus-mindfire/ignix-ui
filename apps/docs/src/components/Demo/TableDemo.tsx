@@ -14,9 +14,6 @@ const TableDemo = () => {
   const [animationVariant, setAnimationVariant] = useState('fade');
   const [size, setSize] = useState('md');
   const [variant, setVariant] = useState('surface');
-  const [showHoverEffects, setShowHoverEffects] = useState(true);
-  const [showStripes, setShowStripes] = useState(true);
-  const [showBorders, setShowBorders] = useState(true);
 
   const [sortConfig, setSortConfig] = useState({ key: 'name', direction: 'asc' as const });
   const [currentPage, setCurrentPage] = useState(1);
@@ -66,8 +63,6 @@ const TableDemo = () => {
   applySort={handleSort}
   size="${size}"
   animationVariant="${animationVariant}"
-  showHoverEffects={${showHoverEffects}}
-  showStripes={${showStripes}}
   variant="${variant}"
   currentPage={currentPage}
   totalPages={totalPages}
@@ -77,7 +72,7 @@ const TableDemo = () => {
 
   return (
     <div className="flex flex-col space-y-4 mb-8">
-      <div className="flex flex-wrap gap-4 justify-start md:justify-end">
+      <div className="flex flex-wrap gap-4 justify-start md:justify-end ">
         <VariantSelector
           variants={animationVariants}
           selectedVariant={animationVariant}
@@ -97,32 +92,6 @@ const TableDemo = () => {
           type="Variant"
         />
       </div>
-      <div className="flex flex-wrap gap-4 justify-start md:justify-end">
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={showHoverEffects}
-            onChange={() => setShowHoverEffects(!showHoverEffects)}
-          />
-          Hover Effects
-        </label>
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={showStripes}
-            onChange={() => setShowStripes(!showStripes)}
-          />
-          Stripes
-        </label>
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={showBorders}
-            onChange={() => setShowBorders(!showBorders)}
-          />
-          Borders
-        </label>
-      </div>
       <Tabs>
         <TabItem value="preview" label="Preview">
           <div className="flex items-center justify-center border rounded-lg p-4 mt-4">
@@ -132,9 +101,6 @@ const TableDemo = () => {
               applySort={handleSort}
               size={size as any}
               animationVariant={animationVariant as any}
-              showHoverEffects={showHoverEffects}
-              showStripes={showStripes}
-              showBorders={showBorders}
               variant={variant as any}
               currentPage={currentPage}
               totalPages={totalPages}

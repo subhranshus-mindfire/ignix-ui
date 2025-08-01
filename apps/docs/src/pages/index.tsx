@@ -146,7 +146,7 @@ function HomepageHeader() {
               }}
               transition={{ duration: 1.8, ease: 'easeInOut' }}
             >
-              <Switch variant='square' animation='bounce' className='scale-200 hover:scale-220' />
+              <Switch variant='square' animation='bounce' className='scale-200 hover:scale-220' checked />
             </motion.div>
 
             {/* Quick Stats */}

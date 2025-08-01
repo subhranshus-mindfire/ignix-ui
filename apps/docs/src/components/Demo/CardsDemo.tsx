@@ -201,7 +201,7 @@ const FeatureCardDemo = () => {
 
 const StatCardDemo = () => {
   const codeString = `
-<StatCard value="99.9%" label="Uptime" trend="up" trendValue="+2.1%" variant="success" />
+<StatCard value="99.9%" label="Uptime" trend="up" trendValue="+2.1%"/>
 `;
   return (
     <div className="p-6 border rounded-lg mt-4">
@@ -213,7 +213,6 @@ const StatCardDemo = () => {
               label="Uptime"
               trend="up"
               trendValue="+2.1%"
-              variant="success"
             />
           </div>
         </TabItem>
