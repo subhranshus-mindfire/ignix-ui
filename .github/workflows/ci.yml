@@ -1,7 +1,10 @@
-name: Deployment Workflow Ignix-UI
+name: CI Workflow Ignix-UI
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
   workflow_dispatch:
@@ -11,10 +14,8 @@ jobs:
     name: '@mindfiredigital/ignix-ui'
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      packages: write
-      pull-requests: write
-      actions: write
+      contents: read
+      packages: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -35,22 +36,8 @@ jobs:
       - name: 'Build application'
         run: pnpm run build
 
-      - name: 'Set Git user name and email'
-        run: |
-          git config --local user.email "github-actions@github.com"
-          git config --local user.name "GitHub Actions"
+      - name: 'Run typecheck'
+        run: pnpm run typecheck
 
-      - name: Generate Changeset from commit messages
-        run: pnpm changeset:autogenerate
-
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1.4.1
-        with:
-          commit: 'chore(release): version packages'
-          title: 'chore(release): version packages'
-          version: node .github/changeset-version.js
-          publish: npx changeset publish
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 'Run lint'
+        run: pnpm run lint
