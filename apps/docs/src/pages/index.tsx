@@ -14,8 +14,11 @@ import DarkVeil from '../components/UI/darkveil';
 import LightVeil from '../components/UI/darkveil/lightveil';
 import { Switch } from '../components/UI/switch';
 
-const getTheme = () => {
-  return document.documentElement.getAttribute('data-theme') || 'light';
+const getTheme = (): string => {
+  if (typeof window === 'undefined') {
+    return 'dark'; // Default theme during SSR
+  }
+  return document.documentElement.getAttribute('data-theme') || 'dark';
 };
 
 function HomepageHeader() {
