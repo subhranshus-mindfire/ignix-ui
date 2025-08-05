@@ -15,7 +15,7 @@ const TableDemo = () => {
   const [size, setSize] = useState('md');
   const [variant, setVariant] = useState('surface');
 
-  const [sortConfig, setSortConfig] = useState({ key: 'name', direction: 'asc' as const });
+    const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' }>({ key: 'name', direction: 'asc' });
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 2;
 

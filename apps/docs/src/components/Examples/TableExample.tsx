@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { Table } from '../UI/table';
 
 export function TableExample() {
-  const [sortConfig, setSortConfig] = useState({ key: 'name', direction: 'asc' as const });
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 2;
+    const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' }>({ key: 'name', direction: 'asc' });
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = 2;
 
-  const [data, setData] = useState([
+    const [data, setData] = useState([
     { id: 1, name: 'John Doe', email: 'john@example.com', status: 'Active' },
     { id: 2, name: 'Jane Smith', email: 'jane@example.com', status: 'Inactive' },
     { id: 3, name: 'Bob Johnson', email: 'bob@example.com', status: 'Active' },
