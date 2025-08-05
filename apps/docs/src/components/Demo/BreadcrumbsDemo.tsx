@@ -80,8 +80,8 @@ const BreadcrumbsDemo = () => {
                 separatorIcon={ChevronRight}
                 variant={variant as any}
                 currentStep={1}
-                bgColor={variant === 'custom' ? 'blue' : undefined}
-                textColor={variant === 'custom' ? 'white' : undefined}
+                bgColor={variant === 'custom' ? 'primary' : undefined}
+                textColor={variant === 'custom' ? 'primary' : undefined}
                 shape={variant === 'custom' ? 'pill' : undefined}
               />
             )}

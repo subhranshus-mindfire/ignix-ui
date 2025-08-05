@@ -1,6 +1,6 @@
-import { cn } from "@site/src/utils/cn"
+import { cn } from '../../../utils/cn';
 import * as React from "react"
-import { motion } from "framer-motion"
+import { HTMLMotionProps, motion } from "framer-motion"
 import { cva, type VariantProps } from "class-variance-authority"
 
 // Card Animation Variants
@@ -152,10 +152,14 @@ const cardVariants = cva(
   }
 );
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardVariants> {
-  asChild?: boolean;
-  animation?: AnimationVariant;
-}
+type CardProps = React.PropsWithChildren<
+  HTMLMotionProps<"div"> &
+  VariantProps<typeof cardVariants> &
+  {
+    asChild?: boolean;
+    animation?: AnimationVariant;
+  }
+>;
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant, size, interactive, animation = "none", asChild = false, children, ...props }, ref) => {
@@ -163,13 +167,13 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     
     if (asChild) {
       return (
-        <div
+        <motion.div
           ref={ref}
           className={cn(cardVariants({ variant, size, interactive }), className)}
           {...props}
         >
           {children}
-        </div>
+        </motion.div>
       );
     }
 
@@ -206,7 +210,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
           />
         )}
         
-        {/* FIXED: Properly typed children */}
+        {/* Properly typed children */}
         <div className="relative z-10">
           {children}
         </div>
@@ -234,7 +238,8 @@ const cardHeaderVariants = cva(
   }
 );
 
-interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardHeaderVariants> {}
+type CardHeaderProps = React.PropsWithChildren<HTMLMotionProps<"div"> & VariantProps<typeof cardHeaderVariants>>;
+
 
 const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
   ({ className, variant, children, ...props }, ref) => (
@@ -278,9 +283,7 @@ const cardTitleVariants = cva(
   }
 );
 
-interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement>, VariantProps<typeof cardTitleVariants> {
-  children?: React.ReactNode; // FIXED: Explicit ReactNode typing
-}
+type CardTitleProps = React.PropsWithChildren<HTMLMotionProps<"h3"> & VariantProps<typeof cardTitleVariants>>;
 
 const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
   ({ className, size, gradient, children, ...props }, ref) => (
@@ -299,9 +302,7 @@ const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
 CardTitle.displayName = "CardTitle";
 
 // Enhanced Card Description - FIXED: Proper typing
-interface CardDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {
-  children?: React.ReactNode; // FIXED: Explicit ReactNode typing
-}
+type CardDescriptionProps = React.PropsWithChildren<HTMLMotionProps<"p"> & VariantProps<typeof cardHeaderVariants>>;
 
 const CardDescription = React.forwardRef<HTMLParagraphElement, CardDescriptionProps>(
   ({ className, children, ...props }, ref) => (
@@ -338,9 +339,9 @@ const cardContentVariants = cva(
   }
 );
 
-interface CardContentProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardContentVariants> {
-  children?: React.ReactNode; // FIXED: Explicit ReactNode typing
-}
+type CardContentProps = React.PropsWithChildren<
+  HTMLMotionProps<"div"> & VariantProps<typeof cardContentVariants>
+>;
 
 const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
   ({ className, variant, children, ...props }, ref) => (
@@ -384,9 +385,9 @@ const cardFooterVariants = cva(
   }
 );
 
-interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardFooterVariants> {
-  children?: React.ReactNode; // FIXED: Explicit ReactNode typing
-}
+type CardFooterProps = React.PropsWithChildren<
+  HTMLMotionProps<"div"> & VariantProps<typeof cardFooterVariants>
+>;
 
 const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
   ({ className, variant, justify, children, ...props }, ref) => (
@@ -407,8 +408,7 @@ CardFooter.displayName = "CardFooter";
 // Special Card Components - FIXED: Proper typing
 interface FeatureCardProps extends CardProps {
   icon?: React.ReactNode;
-  children?: React.ReactNode;
-}
+  }
 
 const FeatureCard = React.forwardRef<HTMLDivElement, FeatureCardProps>(
   ({ icon, children, className, ...props }, ref) => (
@@ -422,14 +422,16 @@ const FeatureCard = React.forwardRef<HTMLDivElement, FeatureCardProps>(
     >
       {icon && (
         <CardHeader variant="spacious">
-          <motion.div
-            className="mx-auto w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mb-4"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            transition={{ type: "spring", stiffness: 400, damping: 15 }}
-          >
-            {icon}
-          </motion.div>
-          {children}
+          <>
+            <motion.div
+              className="mx-auto w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mb-4"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ type: "spring", stiffness: 400, damping: 15 }}
+            >
+              {icon}
+            </motion.div>
+            {children}
+          </>
         </CardHeader>
       )}
     </Card>
