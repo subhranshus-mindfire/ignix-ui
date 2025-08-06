@@ -290,3 +290,6 @@ html[data-theme='dark'] .header--github-link:before {
     no-repeat;
   }
 
+h1{
+  margin: 0.5rem;
+}

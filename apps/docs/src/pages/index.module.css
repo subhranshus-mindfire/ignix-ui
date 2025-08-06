@@ -1,18 +1,9 @@
 .heroBanner {
-  padding: 4rem 1rem;
   text-align: center;
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid hsl(var(--border));
   background: transparent;
 
-  @media (min-width: 640px) {
-    padding: 6rem 1.5rem;
-  }
-  
-  @media (min-width: 1024px) {
-    padding: 6rem 2rem;
-  }
 }
 
 .heroContent {
@@ -36,14 +27,8 @@
 
 .heroTitle {
   font-size: 4.5rem;
-  font-weight: 800;
-  line-height: 1.2;
   letter-spacing: -0.05em;
-  background: linear-gradient(120deg, hsl(var(--primary)), hsl(var(--primary)));
-  -webkit-background-clip: text;
   background-clip: text;
-  margin-bottom: 1rem;
-  padding: 0 1rem;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -6,7 +6,7 @@ import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import { motion } from 'framer-motion';
 
 import styles from './index.module.css';
-import { ArrowRight, Briefcase, Github, Layers, Palette } from 'lucide-react';
+import { ArrowRight, Briefcase, Code, Download, Github, Layers, Palette } from 'lucide-react';
 import { Button } from '../components/UI/button';
 import { ToastProvider } from '../components/UI/toast';
 import '../css/custom.css';
@@ -32,14 +32,13 @@ function HomepageHeader(): ReactElement {
             
             {/* Logo and Title */}
             <motion.div
-              className="mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className="group inline-flex items-center gap-2 hover:gap-4 transition-all duration-300">
                 <div className="relative">
-                  <div className="relative backdrop-blur-lg rounded-2xl px-5 py-4 border border-red-500/20 shadow-xl group-hover:scale-105 transition-all duration-300">
+                  <div className="relative rounded-2xl px-5 py-4 group-hover:scale-105 transition-all duration-300">
                     <img
                       src="img/logo.png"
                       alt="Ignix UI"
@@ -51,10 +50,13 @@ function HomepageHeader(): ReactElement {
                 </div>
                 <h1 className={clsx(
                   styles.heroTitle,
-                  'font-black text-5xl md:text-7xl tracking-tight leading-none'
+                  'text-4xl md:text-5xl p-0'
                 )}>
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-orange-600">
-                    Ignix UI
+                  <span className="bg-clip-text text-transparent bg-primary mr-2 font-medium">
+                  Ignix
+                  </span>
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/10 ml-2 font-bold">
+                    UI
                   </span>
                 </h1>
               </div>
@@ -62,22 +64,22 @@ function HomepageHeader(): ReactElement {
 
             {/* Tagline */}
             <motion.div
-              className="max-w-3xl mx-auto mb-12 text-center"
+              className="max-w-3xl mx-auto mb-6 text-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <h1 className="text-2xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-neutral-700 to-neutral-900 dark:from-neutral-200 dark:to-white">
+              <span className="text-2xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-700 to-neutral-900 dark:from-neutral-200 dark:to-white">
                 Ship your vision, not your components
-              </h1>
-              <p className="text-lg md:text-xl">
-                Build stunning UIs faster with a powerful, versatile component library
+              </span>
+              <p className="text-lg md:text-xl ">
+                build stunning UIs faster with our powerful, versatile component library
               </p>
             </motion.div>
 
             {/* Quick Stats */}
-            {/* <motion.div
-              className="flex flex-wrap justify-center gap-6 mb-12"
+            <motion.div
+              className="flex flex-wrap justify-center gap-6 mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
@@ -90,11 +92,11 @@ function HomepageHeader(): ReactElement {
                 <Code className="h-5 w-5 text-orange-500" />
                 <span className="text-sm font-mono">typescript ready</span>
               </div>
-            </motion.div> */}
+            </motion.div>
 
             {/* CTA Buttons */}
             <motion.div
-              className="flex flex-wrap justify-center gap-4"
+              className="flex flex-wrap justify-center gap-4 mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
@@ -159,7 +161,7 @@ const ValuePropsSection = () => {
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="p-8 bg-white/5 dark:bg-black/5 backdrop-blur-lg shadow-lg"
+              className="p-8 bg-white/5 dark:bg-black/5 backdrop-blur-lg shadow-lg rounded-xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -167,11 +169,11 @@ const ValuePropsSection = () => {
               <ShineBorder shineColor="#fa431a, #fc917a" className='rounded-xl' />
 
               <div className="relative z-10 flex flex-col items-center text-center">
-                <div className="mb-4 p-3 rounded-full bg-white/10 dark:bg-black/10 backdrop-blur-sm">
+                <div className="p-3 rounded-full">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                <p className="text-neutral-600 dark:text-neutral-400">{feature.description}</p>
+                <p className="text-neutral-600 ">{feature.description}</p>
               </div>
             </motion.div>
           ))}
