@@ -29,9 +29,6 @@
   font-size: 4.5rem;
   letter-spacing: -0.05em;
   background-clip: text;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .heroSubtitle {

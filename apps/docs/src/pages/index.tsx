@@ -14,6 +14,12 @@ import DarkVeil from '../components/UI/darkveil';
 import LightVeil from '../components/UI/darkveil/lightveil';
 import { ShineBorder } from '../components/UI/shimmercard';
 
+const Footer = () => (
+  <footer className="text-center text-sm text-neutral-500">
+    <p>By the developers, for the developers ❤️</p>
+  </footer>
+);
+
 const getTheme = (): string => {
   if (typeof window === 'undefined') {
     return 'dark';
@@ -23,7 +29,7 @@ const getTheme = (): string => {
 
 function HomepageHeader(): ReactElement {
   return (
-    <header className={clsx(styles.heroBanner, "flex items-center")}>
+    <header className={clsx(styles.heroBanner, "flex items-center min-h-[calc(100vh-4rem)]")}>
       <div className={clsx(styles.heroContent, "w-full relative overflow-hidden")}>
 
         
@@ -38,7 +44,7 @@ function HomepageHeader(): ReactElement {
             >
               <div className="group inline-flex items-center gap-2 hover:gap-4 transition-all duration-300">
                 <div className="relative">
-                  <div className="relative rounded-2xl px-5 py-4 group-hover:scale-105 transition-all duration-300">
+                  <div className="relative rounded-2xl py-4 group-hover:scale-105 transition-all duration-300">
                     <img
                       src="img/logo.png"
                       alt="Ignix UI"
@@ -50,7 +56,7 @@ function HomepageHeader(): ReactElement {
                 </div>
                 <h1 className={clsx(
                   styles.heroTitle,
-                  'text-4xl md:text-5xl p-0'
+                  'text-3xl sm:text-4xl md:text-5xl p-0'
                 )}>
                   <span className="bg-clip-text text-transparent bg-primary mr-2 font-medium">
                   Ignix
@@ -64,12 +70,12 @@ function HomepageHeader(): ReactElement {
 
             {/* Tagline */}
             <motion.div
-              className="max-w-3xl mx-auto mb-6 text-center"
+              className="max-w-5xl mx-auto mb-6 text-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <span className="text-2xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-700 to-neutral-900 dark:from-neutral-200 dark:to-white">
+              <span className="text-5xl md:text-5xl font-bold">
                 Ship your vision, not your components
               </span>
               <p className="text-lg md:text-xl ">
@@ -104,7 +110,7 @@ function HomepageHeader(): ReactElement {
               <Link to="/docs/introduction">
                 <Button
                   size="xl"
-                  className="px-8 py-3 transition-all duration-300"
+                  className="px-8 py-3 transition-all duration-300 cursor-pointer"
                 >
                   Get Started
                   <ArrowRight className="ml-2 h-5 w-5" strokeWidth={2.5} />
@@ -115,7 +121,7 @@ function HomepageHeader(): ReactElement {
                 <Button
                   variant="outline"
                   size="xl"
-                  className="px-8 py-3 border-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors duration-300"
+                  className="px-8 py-3 border-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors duration-300 cursor-pointer"
                 >
                   <Github className="mr-2 h-5 w-5" strokeWidth={2.5} />
                   GitHub
@@ -124,7 +130,7 @@ function HomepageHeader(): ReactElement {
             </motion.div>
           </div>
           <ValuePropsSection />
-          <HomepageFeatures />
+          {/* <HomepageFeatures /> */}
 
         </section>
       </div>
@@ -135,22 +141,19 @@ function HomepageHeader(): ReactElement {
 const ValuePropsSection = () => {
   const features = [
     {
-      icon: <Layers className="h-8 w-8 mb-4 text-red-500" />,
-      title: '100+ Components, Infinite Variations',
-      description:
-        'A vast library of components with unique designs and animations. Stop fiddling with CSS and start shipping features.',
+      icon: <Layers className="h-6 w-6 text-red-500" />,
+      title: '100+ Components',
+      description: 'Pre-built, customizable components with infinite variations for React and Next.js. Stop fiddling with CSS and start shipping features.',
     },
     {
-      icon: <Briefcase className="h-8 w-8 mb-4 text-orange-500" />,
-      title: 'Domain-Specific Kits (Coming Soon)',
-      description:
-        'Specialized component sets for industries like healthcare and fintech, helping you launch in record time.',
+      icon: <Briefcase className="h-6 w-6 text-red-500" />,
+      title: 'Domain-Specific Kits',
+      description: '(Coming Soon) Specialized component kits for healthcare, fintech, and more. Launch faster with domain-specific UI patterns.',
     },
     {
-      icon: <Palette className="h-8 w-8 mb-4 text-red-500" />,
-      title: 'Designed for You',
-      description:
-        'Create amazing user experiences without the design debt. Get all the power and flexibility you need.',
+      icon: <Palette className="h-6 w-6 text-red-500" />,
+      title: 'Custom Theming',
+      description: 'Fully themeable components that adapt to your brand. No design debt, just beautiful UIs that scale.',
     },
   ];
 
@@ -161,19 +164,21 @@ const ValuePropsSection = () => {
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="p-8 bg-white/5 dark:bg-black/5 backdrop-blur-lg shadow-lg rounded-xl"
+              className="p-4 bg-white/5 dark:bg-black/5 backdrop-blur-lg shadow-lg rounded-xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <ShineBorder shineColor="#fa431a, #fc917a" className='rounded-xl' />
 
-              <div className="relative z-10 flex flex-col items-center text-center">
-                <div className="p-3 rounded-full">
-                  {feature.icon}
+              <div className="relative z-10 flex flex-col items-start text-left ">
+                <div className='flex items-center gap-2'>
+                  <div className='p-2 rounded-full'>
+                  {feature.icon} 
+                  </div>
+                  <p className="text-xl font-medium text-left">{feature.title}</p>
                 </div>
-                <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                <p className="text-neutral-600 ">{feature.description}</p>
+                <p className="text-neutral-600 text-left">{feature.description}</p>
               </div>
             </motion.div>
           ))}
@@ -238,11 +243,12 @@ export default function Home(): ReactElement {
             </div>
           )}
           {/* Content */}
-          <div style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ position: 'relative', zIndex: 1, minHeight: 'calc(100vh - 4rem)' }} className="flex flex-col">
             <HomepageHeader />
-            {/* <main>
+            <main className="flex-grow">
               <HomepageFeatures />
-            </main> */}
+            </main>
+            <Footer />
           </div>
         </div>
       </ToastProvider>

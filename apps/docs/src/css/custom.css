@@ -71,6 +71,8 @@
   --info-dark: #0e7490; /* cyan-600 */
   --info-foreground: #ffffff;
 
+
+  --ifm-paragraph-margin-bottom: 0rem;
   
 }
 
@@ -224,7 +226,6 @@
 }
 
 .theme-code-block {
-  background: #10642c;
   font-size: 1.1rem;
 }
 
@@ -236,9 +237,9 @@
   background: hsl(var(--background) / 0.1);
   -webkit-backdrop-filter: blur(10px);
   -moz-backdrop-filter: blur(10px);
-  border-bottom-color: hsl(var(--border));
   width: 100%;
   display: flex;
+  box-shadow: none;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
