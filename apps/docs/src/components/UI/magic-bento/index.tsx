@@ -554,11 +554,10 @@ const MagicBento: React.FC<BentoProps> = ({
             
             .card-responsive {
               display: grid;
-              grid-template-columns: repeat(12, 1fr);
+              grid-template-columns: repeat(6, 1fr);
               grid-auto-rows: 120px;
               gap: 0.75rem;
-              width: 120%;
-              margin: 0 -10%;
+              width: 100%;
               grid-auto-flow: dense;
               grid-column: span 2;
               grid-row: span 2;

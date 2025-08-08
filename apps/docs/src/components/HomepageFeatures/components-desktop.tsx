@@ -13,7 +13,7 @@ const ComponentDesktop = () => {
   return (
     <motion.section
       ref={sectionRef}
-      className="px-4 relative overflow-visible"
+      className="px-4 relative overflow-visible max-w-7xl mx-auto"
       initial={{ opacity: 0, y: 20 }}
       animate={{
         opacity: isInView ? 1 : 0,

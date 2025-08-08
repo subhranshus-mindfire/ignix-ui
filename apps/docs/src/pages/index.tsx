@@ -61,7 +61,7 @@ function HomepageHeader(): ReactElement {
                   <span className="bg-clip-text text-transparent bg-primary mr-2 font-medium">
                   Ignix
                   </span>
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/10 ml-2 font-bold">
+                  <span className="bg-clip-text text-primary ml-2 font-bold">
                     UI
                   </span>
                 </h1>
@@ -78,8 +78,8 @@ function HomepageHeader(): ReactElement {
               <span className="text-5xl md:text-5xl font-bold">
                 Ship your vision, not your components
               </span>
-              <p className="text-lg md:text-xl ">
-                build stunning UIs faster with our powerful, versatile component library
+              <p className="text-lg md:text-xl pt-2">
+                build stunning UIs faster with our powerful & versatile component library
               </p>
             </motion.div>
 
