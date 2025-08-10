@@ -129,6 +129,9 @@ importers:
       framer-motion:
         specifier: ^12.4.10
         version: 12.4.10(react-dom@19.0.0)(react@19.0.0)
+      gsap:
+        specifier: ^3.13.0
+        version: 3.13.0
       lucide-react:
         specifier: ^0.511.0
         version: 0.511.0(react@19.0.0)
@@ -10495,6 +10498,10 @@ packages:
       kind-of: 6.0.3
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
+    dev: false
+
+  /gsap@3.13.0:
+    resolution: {integrity: sha512-QL7MJ2WMjm1PHWsoFrAQH/J8wUeqZvMtHO58qdekHpCfhvhSL4gSiz6vJf5EeMP0LOn3ZCprL2ki/gjED8ghVw==}
     dev: false
 
   /gzip-size@6.0.0:

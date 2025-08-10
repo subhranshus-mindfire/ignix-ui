@@ -13,6 +13,7 @@ import '../css/custom.css';
 import DarkVeil from '../components/UI/darkveil';
 import LightVeil from '../components/UI/darkveil/lightveil';
 import { ShineBorder } from '../components/UI/shimmercard';
+import FloatingComponents from './floating-components';
 
 const Footer = () => (
   <footer className="text-center text-sm text-neutral-500">
@@ -29,18 +30,20 @@ const getTheme = (): string => {
 
 function HomepageHeader(): ReactElement {
   return (
-    <header className={clsx(styles.heroBanner, "flex items-center min-h-[calc(100vh-4rem)]")}>
-      <div className={clsx(styles.heroContent, "w-full relative overflow-hidden")}>
+    <header className={clsx(styles.heroBanner, "flex items-center justify-start min-h-[calc(100vh-4rem)]")}>
+      <div className={clsx(styles.heroContent, "w-full relative overflow-auto")}>
 
         
         <section className="relative">
-          <div className="relative z-10 max-w-7xl mx-auto px-4">
+          <div className="z-10 max-w-7xl flex justify-between pb-20 items-center">
             
-            {/* Logo and Title */}
-            <motion.div
+            {/* Logo and Title - Left Aligned */}
+            <div>
+              <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="w-full flex justify-start"
             >
               <div className="group inline-flex items-center gap-2 hover:gap-4 transition-all duration-300">
                 <div className="relative">
@@ -56,36 +59,40 @@ function HomepageHeader(): ReactElement {
                 </div>
                 <h1 className={clsx(
                   styles.heroTitle,
-                  'text-3xl sm:text-4xl md:text-5xl p-0'
+                  'text-3xl sm:text-4xl md:text-5xl p-0 text-left'
                 )}>
-                  <span className="bg-clip-text text-transparent bg-primary mr-2 font-medium">
-                  Ignix
+                  <span className="bg-clip-text text-transparent bg-red-primary mr-2 font-medium">
+                    Ignix
                   </span>
-                  <span className="bg-clip-text text-primary ml-2 font-bold">
+                  <span className="bg-clip-text text-red-primary ml-2 font-bold">
                     UI
                   </span>
                 </h1>
               </div>
             </motion.div>
+            <div>
 
             {/* Tagline */}
             <motion.div
-              className="max-w-5xl mx-auto mb-6 text-center"
+              className="max-w-5xl mb-6 text-left flex flex-col gap-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <span className="text-5xl md:text-5xl font-bold">
-                Ship your vision, not your components
+                Ship your <span className="text-red-primary">vision</span>,
               </span>
-              <p className="text-lg md:text-xl pt-2">
+              <span className="text-5xl md:text-5xl font-bold">
+                not your components
+              </span>
+              <p className="text-lg md:text-xl">
                 build stunning UIs faster with our powerful & versatile component library
               </p>
             </motion.div>
 
             {/* Quick Stats */}
             <motion.div
-              className="flex flex-wrap justify-center gap-6 mb-6"
+              className="flex flex-wrap justify-start gap-6 mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
@@ -102,7 +109,7 @@ function HomepageHeader(): ReactElement {
 
             {/* CTA Buttons */}
             <motion.div
-              className="flex flex-wrap justify-center gap-4 mb-6"
+              className="flex flex-wrap justify-start gap-4 mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
@@ -128,11 +135,17 @@ function HomepageHeader(): ReactElement {
                 </Button>
               </Link>
             </motion.div>
+            </div>
+            </div>
+
+            <div className='hidden sm:block'>
+            <FloatingComponents />     
+            </div>
           </div>
-          <ValuePropsSection />
           {/* <HomepageFeatures /> */}
 
         </section>
+          <ValuePropsSection />
       </div>
     </header>
   );

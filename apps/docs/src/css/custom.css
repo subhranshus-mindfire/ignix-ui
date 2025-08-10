@@ -70,7 +70,7 @@
   --info-light: #22d3ee; /* cyan-400 */
   --info-dark: #0e7490; /* cyan-600 */
   --info-foreground: #ffffff;
-
+  --red-primary: #f12828; /* red-400 */
 
   --ifm-paragraph-margin-bottom: 0rem;
   
@@ -124,6 +124,8 @@
   --error: var(--ifm-color-error);
   --error-foreground: var(--ifm-color-error-foreground);
 
+  --red-primary: var(--ifm-color-primary);
+
   --primary-light: var(--ifm-color-primary-light);
   --primary-dark: var(--ifm-color-primary-dark);
   --destructive-light: #ef4444; /* red-400 */
@@ -176,6 +178,7 @@
   --color-warning-foreground: var(--warning-foreground);
   --color-success-foreground: var(--success-foreground);
   --color-error-foreground: var(--error-foreground);
+  --color-red-primary: var(--red-primary);
 
   --color-primary-light: var(--primary-light);
   --color-primary-dark: var(--primary-dark);

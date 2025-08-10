@@ -13,6 +13,19 @@ export interface BentoCardProps {
 }
 
 export interface BentoProps {
+  // Interactive component props
+  sliderValue?: number;
+  onSliderChange?: (value: number) => void;
+  isSwitchOn?: boolean;
+  onSwitchToggle?: (checked: boolean) => void;
+  buttonText?: string;
+  onButtonClick?: () => void;
+  badgeCount?: number;
+  onBadgeIncrement?: () => void;
+  currentStep?: number;
+  onStepClick?: (step: number) => void;
+  
+  // Existing props
   textAutoHide?: boolean;
   enableStars?: boolean;
   enableSpotlight?: boolean;
@@ -520,6 +533,19 @@ const useMobileDetection = () => {
 };
 
 const MagicBento: React.FC<BentoProps> = ({
+    // Interactive props
+    sliderValue,
+    onSliderChange,
+    isSwitchOn,
+    onSwitchToggle,
+    buttonText,
+    onButtonClick,
+    badgeCount,
+    onBadgeIncrement,
+    currentStep,
+    onStepClick,
+    
+    // Existing props
     enableSpotlight = true,
     enableBorderGlow = true,
     disableAnimations = false,
@@ -695,7 +721,24 @@ const MagicBento: React.FC<BentoProps> = ({
                   enableMagnetism={enableMagnetism}
                 >
                   <div className="w-full h-full flex items-center justify-center p-4">
-                    {demo.demo}
+                    {typeof demo.demo === 'function' ? (
+                      // For components that accept props
+                      demo.demo({
+                        sliderValue,
+                        onSliderChange,
+                        isSwitchOn,
+                        onSwitchToggle,
+                        buttonText,
+                        onButtonClick,
+                        count: badgeCount,
+                        onIncrement: onBadgeIncrement,
+                        currentStep,
+                        onStepClick,
+                      })
+                    ) : (
+                      // For static components
+                      demo.demo
+                    )}
                   </div>
                 </ParticleCard>
               );

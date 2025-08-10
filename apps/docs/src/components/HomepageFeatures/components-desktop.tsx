@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import MagicBento from '../UI/magic-bento';
 import { SparklesText } from '../UI/sparkle-text';
@@ -9,6 +9,45 @@ import Link from '@docusaurus/Link';
 const ComponentDesktop = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-20% 0px' });
+  
+  // State for interactive components
+  const [sliderValue, setSliderValue] = useState(30);
+  const [isSwitchOn, setIsSwitchOn] = useState(true);
+  const [buttonText, setButtonText] = useState('Click Me!');
+  const [badgeCount, setBadgeCount] = useState(3);
+  const [currentStep, setCurrentStep] = useState(0);
+
+  // Auto-animate components
+  useEffect(() => {
+    if (!isInView) return;
+    
+    // Slider animation
+    const sliderInterval = setInterval(() => {
+      setSliderValue(prev => (prev >= 100 ? 10 : prev + 10));
+    }, 2000);
+    
+    // Switch toggle
+    const switchInterval = setInterval(() => {
+      setIsSwitchOn(prev => !prev);
+    }, 3000);
+    
+    // Button text animation
+    const buttonInterval = setInterval(() => {
+      setButtonText(prev => prev === 'Click Me!' ? 'Try Me!' : 'Click Me!');
+    }, 2500);
+    
+    // Step animation
+    const stepInterval = setInterval(() => {
+      setCurrentStep(prev => (prev + 1) % 3);
+    }, 3500);
+    
+    return () => {
+      clearInterval(sliderInterval);
+      clearInterval(switchInterval);
+      clearInterval(buttonInterval);
+      clearInterval(stepInterval);
+    };
+  }, [isInView]);
 
   return (
     <motion.section
@@ -54,7 +93,19 @@ const ComponentDesktop = () => {
                   'linear-gradient(to bottom, black 0%, black 90%, transparent 100%)',
               }}
             >
-              <MagicBento spotlightRadius={300} />
+              <MagicBento 
+                sliderValue={sliderValue}
+                onSliderChange={setSliderValue}
+                isSwitchOn={isSwitchOn}
+                onSwitchToggle={setIsSwitchOn}
+                buttonText={buttonText}
+                onButtonClick={() => setButtonText('Clicked!')}
+                badgeCount={badgeCount}
+                onBadgeIncrement={() => setBadgeCount(prev => prev + 1)}
+                currentStep={currentStep}
+                onStepClick={setCurrentStep}
+                spotlightRadius={300} 
+              />
             </div>
           </div>
         </div>
