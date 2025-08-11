@@ -1,42 +1,23 @@
-import { useEffect, useState, type ReactElement } from 'react';
+import { type ReactElement } from 'react';
 import Layout from '@theme/Layout';
 import { ToastProvider } from '../components/UI/toast';
 import '../css/custom.css';
-const getTheme = (): string => {
-  if (typeof window === 'undefined') {
-    return 'dark';
-  }
-  return document.documentElement.getAttribute('data-theme') || 'dark';
-};
+
 
 import React from 'react';
 import { HeroSection } from '../components/Homepage/hero';
 import { CTASection } from '../components/Homepage/cta';
 import FeaturedComponents from '@site/src/components/Homepage/components-showcase';
 import { WhyIgnixSection } from '../components/Homepage/why-ignix';
+import Footer from '../components/Homepage/footer';
 
-const Footer = () => (
-  <footer className="text-center text-sm text-neutral-500 bottom-0 w-full h-16 z-50">
-    <p>© {new Date().getFullYear()} Mindfire Solutions FOSS</p>
-  </footer>
-);
+// const Footer = () => (
+//   <footer className="text-center text-sm text-neutral-500 bottom-0 w-full h-16 z-50">
+//     <p>© {new Date().getFullYear()} Mindfire Solutions Digital LLP FOSS</p>
+//   </footer>
+// );
 
 export default function Home(): ReactElement {
-  // Usage in component
-  const [theme, setTheme] = useState(() => getTheme());
-
-  useEffect(() => {
-    const observer = new MutationObserver(() => {
-      setTheme(getTheme());
-    });
-
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme'],
-    });
-
-    return () => observer.disconnect();
-  }, []);
   // const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
@@ -49,11 +30,26 @@ export default function Home(): ReactElement {
         <div style={{ position: 'relative', zIndex: 1 }}>
           {/* <HomepageHeader /> */}
           <HeroSection />
+          <section className="relative rounded-t-3xl border border-border/60 backdrop-blur p-4 overflow-hidden
+        bg-[linear-gradient(to_bottom_right,_color-mix(in_oklab,var(--background),_transparent_30%),_color-mix(in_oklab,var(--background),_transparent_10%))]
+        after:content-[''] after:absolute after:inset-0 after:pointer-events-none after:rounded-3xl
+        after:bg-[radial-gradient(1200px_600px_at_50%_40%,_transparent_35%,_rgba(0,0,0,0.08)_85%)]
+        after:opacity-60
+        before:content-[''] before:absolute before:-inset-[35%] before:pointer-events-none before:blur-[70px]
+        before:mix-blend-screen before:opacity-55
+        before:bg-[radial-gradient(700px_360px_at_20%_15%,_color-mix(in_oklab,var(--primary),_transparent),_transparent),radial-gradient(700px_360px_at_80%_20%,_color-mix(in_oklab,var(--primary),_transparent),_transparent),radial-gradient(520px_260px_at_50%_110%,_color-mix(in_oklab,var(--primary),_transparent),_transparent)]
+        motion-safe:before:animate-[meshFloat_22s_ease-in-out_infinite_alternate]
+        motion-safe:animate-[none]
+        [@keyframes_meshFloat]{0%{transform:translate3d(-2%,-1%,0)_scale(1)}100%{transform:translate3d(2%,1%,0)_scale(1.03)}}
+      "
+
+          >
           <FeaturedComponents />
           <WhyIgnixSection />
           <CTASection />
           <Footer />
-        </div>
+          </section>
+          </div>
         {/* </div> */}
       </ToastProvider>
     </Layout>

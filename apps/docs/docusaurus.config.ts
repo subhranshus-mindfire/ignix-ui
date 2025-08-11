@@ -69,10 +69,6 @@ const config: Config = {
         },
       ],
     },
-    footer: {
-      style: 'light',
-      copyright: `Copyright © ${new Date().getFullYear()} Ignix UI.`,
-    },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,

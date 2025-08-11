@@ -8,13 +8,20 @@
 /* Custom styles for the Docusaurus theme */
 
 :root {
-  --ifm-color-primary: #99000d;
+  /* --ifm-color-primary: #99000d;
   --ifm-color-primary-dark: #8a000c;
   --ifm-color-primary-darker: #82000b;
   --ifm-color-primary-darkest: #6b0009;
   --ifm-color-primary-light: #a8000e;
   --ifm-color-primary-lighter: #b0000f;
-  --ifm-color-primary-lightest: #c70011;
+  --ifm-color-primary-lightest: #c70011; */
+  --ifm-color-primary: #e30613;
+  --ifm-color-primary-dark: #cc0511;
+  --ifm-color-primary-darker: #b70510;
+  --ifm-color-primary-darkest: #99040d;
+  --ifm-color-primary-light: #f01622;
+  --ifm-color-primary-lighter: #f33a45;
+  --ifm-color-primary-lightest: #f7777f;
   --ifm-background-color: #ffffff;
 
 
@@ -37,7 +44,7 @@
   --secondary: var(--ifm-color-emphasis-200, #f5f5f5);
   --secondary-foreground: var(--ifm-color-emphasis-800, #3e3e3e);
   --muted: var(--ifm-color-emphasis-300, #e0e0e0);
-  --muted-foreground: var(--ifm-color-emphasis-600, #757575);
+  --muted-foreground: var(#3e3e3e);
   --accent: var(--ifm-color-emphasis-200, #f5f5f5);
   --accent-foreground: var(--ifm-color-emphasis-800, #3e3e3e);
   --destructive: var(--ifm-color-danger, #d93636);
@@ -91,9 +98,16 @@
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #fb6a4a;
+  /* --ifm-color-primary: #fb6a4a;
   --ifm-color-primary-dark: #fa502a;
   --ifm-color-primary-darker: #fa431a;
+  --ifm-color-primary-darkest: #df2c05;
+  --ifm-color-primary-light: #fc846a;
+  --ifm-color-primary-lighter: #fc917a;
+  --ifm-color-primary-lightest: #fdb9a9; */
+  --ifm-color-primary: #ff3a46;
+  --ifm-color-primary-dark: #e7333e;
+  --ifm-color-primary-darker: #c92b3c;
   --ifm-color-primary-darkest: #df2c05;
   --ifm-color-primary-light: #fc846a;
   --ifm-color-primary-lighter: #fc917a;
@@ -231,6 +245,8 @@
   --hero-primary: hsl(var(--primary));
   --hero-accent: hsl(var(--secondary));
   --hero-muted: hsl(var(--muted));
+  
+  --animate-shine: shine var(--duration) infinite linear;
 
   @keyframes shine {
     0% {

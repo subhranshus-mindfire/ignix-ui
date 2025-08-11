@@ -1,3 +1,5 @@
+import { ShineBorder } from "../UI/shine-border";
+
 export function SectionTitleCapsule({
     children,
     highlight,
@@ -29,7 +31,8 @@ export function SectionTitleCapsule({
     // Split and interleave with highlighted spans
     const parts: React.ReactNode[] = [];
     let start = 0;
-    while (true) {
+    const i=1;
+    while (i>0) {
       const idx = haystack.indexOf(needle, start);
       if (idx === -1) {
         parts.push(source.slice(start));
@@ -44,15 +47,17 @@ export function SectionTitleCapsule({
       parts.push(
         <span
           key={`h-${idx}`}
-          className="
-            mx-1 inline-flex items-center rounded-full
-            px-3 py-1
+          className="relative mx-1 inline-flex items-center rounded-full px-3 py-1
             bg-[color-mix(in_oklab,var(--primary)_10%,_transparent)]
-            ring-1 ring-[color-mix(in_oklab,var(--primary)_35%,_transparent)]
-            text-[var(--primary)]
-          "
+            text-[var(--primary)] overflow-hidden"
         >
-          {match}
+          <ShineBorder 
+            shineColor="var(--primary)"
+            className="rounded-full"
+            borderWidth={1}
+            duration={8}
+          />
+          <span className="relative z-10">{match}</span>
         </span>
       );
       start = idx + highlight.length;
