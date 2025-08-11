@@ -57,7 +57,7 @@ export function HeroSection() {
           )}
         </div>
 
-        <header className={clsx(styles.heroBanner, 'flex items-center mb-16')}>
+        <header className={clsx(styles.heroBanner, 'flex items-center mb-32 mt-16')}>
           <div className={clsx(styles.heroContent, 'w-full relative overflow-hidden')}>
             <section className="relative">
               <div className="relative z-10 max-w-7xl mx-auto">
@@ -67,9 +67,9 @@ export function HeroSection() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <div className="group inline-flex items-center gap-2 hover:gap-4 transition-all duration-300">
+                  <div className="group inline-flex items-center hover:gap-1 transition-all duration-300">
                     <div className="relative">
-                      <div className="relative rounded-2xl px-5 py-4 group-hover:scale-105 transition-all duration-300">
+                      <div className="relative rounded-2xl px-2 py-2 group-hover:scale-105 transition-all duration-300">
                         <img
                           src="img/logo.png"
                           alt="Ignix UI"
@@ -79,7 +79,7 @@ export function HeroSection() {
                         />
                       </div>
                     </div>
-                    <h1 className={clsx(styles.heroTitle, 'text-4xl md:text-5xl p-0')}>
+                    <h1 className={clsx(styles.heroTitle, 'text-4xl md:text-5xl')}>
                       <AuroraText
                         colors={[
                           'var(--primary-lighter)',
@@ -126,7 +126,7 @@ export function HeroSection() {
 
                 {/* Quick Stats */}
                 <motion.div
-                  className="flex flex-wrap justify-center gap-6 mb-6"
+                  className="flex flex-wrap justify-center gap-2 sm:gap-6 mb-6"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.6 }}

@@ -292,6 +292,7 @@ function FeatureCard({
                         bottom: 0,
                         left: 0,
                         right: 0,
+                        margin: '-0.5rem 0',
                         height: '3px',
                         background: 'linear-gradient(90deg, var(--primary), transparent)',
                         borderRadius: '0 0 1.5rem 1.5rem'
