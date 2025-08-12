@@ -196,8 +196,8 @@ function InlineDemo({ id }: { id: string }) {
         <Switch
           variant="square"
           animation="bounce"
-          checked={!checked}
-          onCheckedChange={(c) => setChecked(!c)}
+          checked={checked}
+          onCheckedChange={(c) => setChecked(c)}
         />
       </div>
     );

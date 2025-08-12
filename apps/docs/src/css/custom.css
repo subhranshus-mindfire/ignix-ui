@@ -105,13 +105,13 @@
   --ifm-color-primary-light: #fc846a;
   --ifm-color-primary-lighter: #fc917a;
   --ifm-color-primary-lightest: #fdb9a9; */
-  --ifm-color-primary: #ff3a46;
+  --ifm-color-primary: oklch(0.637 0.237 25.331); 
   --ifm-color-primary-dark: #e7333e;
-  --ifm-color-primary-darker: #c92b3c;
-  --ifm-color-primary-darkest: #df2c05;
-  --ifm-color-primary-light: #fc846a;
-  --ifm-color-primary-lighter: #fc917a;
-  --ifm-color-primary-lightest: #fdb9a9;
+  --ifm-color-primary-darker: #c92b34; /* active/pressed */
+  --ifm-color-primary-darkest: #a4232a; /* deepest accents */
+  --ifm-color-primary-light: #ff5a64; /* subtle fills */
+  --ifm-color-primary-lighter: #ff8087; /* badges/pills */
+  --ifm-color-primary-lightest: #ffb3b7; /* soft tints */
   /* Theme Colors */
   --radius: 0.625rem;
   --background: var(--ifm-background-color, #000000);

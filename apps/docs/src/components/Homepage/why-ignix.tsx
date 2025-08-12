@@ -129,14 +129,14 @@ export function WhyIgnixSection() {
                         icon={<Paintbrush style={{ width: '20px', height: '20px', color: 'var(--primary)' }} />}
                         title="Custom Theming"
                         desc="Fully themeable components that adapt to your brand. No design debt, just beautiful UIs that scale with your vision."
-                        gradient="linear-gradient(135deg, color-mix(in oklab, var(--secondary) 8%, transparent), transparent)"
+                        gradient="linear-gradient(135deg, color-mix(in oklab, var(--primary) 8%, transparent), transparent)"
                     />
 
                     <FeatureCard
                         icon={<Layers style={{ width: '20px', height: '20px', color: 'var(--primary)' }} />}
                         title="Domain-Specific Kits"
                         desc="Specialized component kits for healthcare, fintech, and more. Launch faster with industry-specific UI patterns."
-                        gradient="linear-gradient(135deg, color-mix(in oklab, var(--muted) 8%, transparent), transparent)"
+                        gradient="linear-gradient(135deg, color-mix(in oklab, var(--primary) 8%, transparent), transparent)"
                     />
                 </div>
 

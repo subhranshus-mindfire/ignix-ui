@@ -49,7 +49,7 @@ export function SectionTitleCapsule({
           key={`h-${idx}`}
           className="relative mx-1 inline-flex items-center rounded-full px-3 py-1
             bg-[color-mix(in_oklab,var(--primary)_10%,_transparent)]
-            text-[var(--primary)] overflow-hidden"
+            text-primary overflow-hidden"
         >
           <ShineBorder 
             shineColor="var(--primary)"
