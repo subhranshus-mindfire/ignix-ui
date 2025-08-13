@@ -39,7 +39,7 @@
   color: #99000d;
 
   [data-theme='dark'] {
-    color: hsl(var(--primary));
+    color: var(--primary);
     color: #fb6a4a;
   }
 }

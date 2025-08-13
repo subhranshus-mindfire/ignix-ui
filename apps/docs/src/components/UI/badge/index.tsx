@@ -47,11 +47,11 @@ const Badge: React.FC<BadgeProps> = ({
 
     const getAnimationShadows = (type: string) => {
         const shadowColors = {
-            primary: "hsl(var(--primary))",
-            secondary: "hsl(var(--secondary))",
-            success: "hsl(var(--success))",
-            warning: "hsl(var(--warning))",
-            error: "hsl(var(--destructive))",
+            primary: "var(--primary)",
+            secondary: "var(--secondary)",
+            success: "var(--success)",
+            warning: "var(--warning)",
+            error: "var(--destructive)",
         };
         return shadowColors[type as keyof typeof shadowColors] || shadowColors.primary;
     };
