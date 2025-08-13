@@ -67,7 +67,7 @@ export function HeroSection() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <div className="group inline-flex items-center hover:gap-1 transition-all duration-300">
+                  <div className="group inline-flex items-center hover:gap-1 transition-all duration-300 mb-4">
                     <div className="relative">
                       <div className="relative rounded-2xl px-2 py-2 group-hover:scale-105 transition-all duration-300">
                         <img
