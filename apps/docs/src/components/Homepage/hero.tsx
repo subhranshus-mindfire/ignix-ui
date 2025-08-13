@@ -109,13 +109,12 @@ export function HeroSection() {
                       colors={['#f7777f', '#f33a45', '#f01622', '#e30613']}
                       className="mx-2"
                     > */}
-                    <span className="mx-2 text-primary">
+                    <span className="text-primary">
                       <TextType
                         text={['Components', 'Templates', 'Boilerplate', 'Headaches']}
-                        typingSpeed={75}
+                        typingSpeed={90}
                         pauseDuration={1500}
                         showCursor={true}
-                        loop={true}
                         cursorBlinkDuration={0.5}
                         className="mx-2"
                         cursorCharacter="|"
@@ -134,7 +133,7 @@ export function HeroSection() {
                       >
                         faster
                       </GradientText>
-                      <span>with our powerful, versatile component library</span>
+                      <span>with our powerful & versatile components library.</span>
                     </span>
                   </div>
                 </motion.div>
