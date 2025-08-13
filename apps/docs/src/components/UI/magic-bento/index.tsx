@@ -623,7 +623,6 @@ const MagicBento: React.FC<BentoProps> = ({
               height: 100%;
               background: rgba(255, 255, 255, 0.05);
               backdrop-filter: blur(12px);
-              -webkit-backdrop-filter: blur(12px);
               border: 2px solid rgba(255, 255, 255, 0.1);
               box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
               transition: all 0.3s ease;
