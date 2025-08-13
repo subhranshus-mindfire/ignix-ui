@@ -114,7 +114,6 @@ export function HeroSection() {
                         typingSpeed={90}
                         pauseDuration={1500}
                         showCursor={true}
-                        loop={true}
                         cursorBlinkDuration={0.5}
                         className="mx-2"
                         cursorCharacter="|"
