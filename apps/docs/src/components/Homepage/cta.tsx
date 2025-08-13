@@ -1,6 +1,7 @@
 import Link from '@docusaurus/Link';
 import { Button } from '../UI/button';
 import { ShineBorder } from '../UI/shine-border';
+import { SectionTitleCapsule } from './section-title';
 
 export function CTASection() {
   return (
@@ -35,39 +36,11 @@ export function CTASection() {
         {/* Content */}
         <div className="relative z-10 flex flex-col justify-start items-center gap-8 max-w-4xl mx-auto">
           <div className="flex flex-col justify-start items-center gap-6 text-center">
-            <h2
-              className="
-              text-foreground text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight
-            "
-            >
-              Ready to{' '}
-              <span className="bg-primary bg-clip-text text-transparent motion-safe:animate-pulse [animation-duration:3s]">
-                Ignite
-              </span>{' '}
-              your next{' '}
-              <span className="relative">
-                project
-                <div
-                  className="absolute -inset-1 rounded-lg
-                  bg-[linear-gradient(90deg,_color-mix(in_oklab,_var(--primary)_18%,_transparent),_transparent)]
-                  blur-lg opacity-70
-                "
-                />
-              </span>
-              ?
-            </h2>
+            <SectionTitleCapsule highlight='Ignite'>
+              Ready to Ignite your next project?
+            </SectionTitleCapsule>
             <p className="text-foreground text-lg md:text-xl font-medium leading-relaxed max-w-3xl">
-              Join{' '}
-              <span
-                className="text-white font-semibold px-2 py-1 rounded-md
-                bg-[color-mix(in_oklab,var(--primary),_transparent)]
-              "
-              >
-                thousands of developers
-              </span>{' '}
-              who are building faster, shipping sooner, and creating{' '}
-              <span className="text-[var(--primary)] font-semibold">better user experiences</span>{' '}
-              with Ignix UI.
+              Join thousands of developers who are building faster, shipping sooner, and creating better user experiences with Ignix UI.
             </p>
           </div>
 
@@ -89,30 +62,6 @@ export function CTASection() {
                 size="lg"
               >
                 Start building
-              </Button>
-            </Link>
-
-            <Link to="/docs/introduction">
-              <Button
-                variant="outline"
-                className="
-                  px-8 py-3 rounded-full text-lg font-semibold
-                  border-2
-                  border-[color-mix(in_oklab,var(--primary),_transparent)]
-                  text-white
-                  hover:text-white
-                  bg-[color-mix(in_oklab,var(--primary),_transparent)]
-                  hover:border-[color-mix(in_oklab,var(--primary),_transparent)]
-                  hover:bg-[color-mix(in_oklab,var(--primary),_transparent)]
-                  shadow-[0_0_0_1px_rgba(255,255,255,0.06)]
-                  hover:shadow-[0_0_0_1px_rgba(255,255,255,0.12),0_8px_24px_rgba(0,0,0,0.18)]
-                  transition-all duration-300 ease-out
-                  hover:scale-[1.03] active:scale-95
-                  backdrop-blur-sm
-                "
-                size="lg"
-              >
-                View docs
               </Button>
             </Link>
           </div>
