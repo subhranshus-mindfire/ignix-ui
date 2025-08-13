@@ -23,7 +23,7 @@ const Footer = () => (
     >
       {/* Left: copyright */}
       <p style={{ margin: 0 }}>
-        © {new Date().getFullYear()} Mindfire Solutions Digital LLP FOSS
+        © {new Date().getFullYear()} Mindfire FOSS
       </p>
     </div>
   </footer>

@@ -105,14 +105,13 @@ export function HeroSection() {
                 >
                   <span className="text-4xl md:text-5xl font-bold space-y-4">
                     <span className="">Ship Your Vision, Not Your</span>
-                    {/* <AuroraText
+                    <AuroraText
                       colors={['#f7777f', '#f33a45', '#f01622', '#e30613']}
                       className="mx-2"
-                    > */}
-                    <span className="mx-2 text-primary">
+                    >
                       <TextType
                         text={['Components', 'Templates', 'Boilerplate', 'Headaches']}
-                        typingSpeed={75}
+                        typingSpeed={90}
                         pauseDuration={1500}
                         showCursor={true}
                         loop={true}
@@ -120,8 +119,7 @@ export function HeroSection() {
                         className="mx-2"
                         cursorCharacter="|"
                       />
-                    </span>
-                    {/* </AuroraText> */}
+                    </AuroraText>
                   </span>
                   <div className="text-xl md:text-2xl text-center font-medium whitespace-nowrap overflow-hidden mt-2">
                     <span className="inline-flex flex-wrap justify-center items-baseline">
@@ -134,7 +132,7 @@ export function HeroSection() {
                       >
                         faster
                       </GradientText>
-                      <span>with our powerful, versatile component library</span>
+                      <span>with our powerful & versatile components library.</span>
                     </span>
                   </div>
                 </motion.div>

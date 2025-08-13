@@ -50,16 +50,13 @@ export function SectionTitleCapsule({
         className="relative inline-flex items-center rounded-full py-1
             text-primary overflow-hidden"
       >
-        {/* <ShineBorder 
-            shineColor="var(--primary)"
-            className="rounded-full"
-            borderWidth={1}
-            duration={8}
-          /> */}
-        <AuroraText colors={
-          ['#f7777f', '#f33a45', '#f01622', '#e30613']
-        } speed={1} className='relative z-10'>{match}</AuroraText>
-        {/* <span className="relative z-10">{match}</span> */}
+        <AuroraText
+          colors={['#f7777f', '#f33a45', '#f01622', '#e30613']}
+          speed={1}
+          className="relative z-10"
+        >
+          {match}
+        </AuroraText>
       </span>
     );
     start = idx + highlight.length;
