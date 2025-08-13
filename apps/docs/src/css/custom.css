@@ -211,11 +211,11 @@
 
   --animate-shine: shine var(--duration) infinite linear;
 
-  --hero-bg: hsl(var(--background));
-  --hero-fg: hsl(var(--foreground));
-  --hero-primary: hsl(var(--primary));
-  --hero-accent: hsl(var(--secondary));
-  --hero-muted: hsl(var(--muted));
+  --hero-bg: var(--background);
+  --hero-fg: var(--foreground);
+  --hero-primary: var(--primary);
+  --hero-accent: var(--secondary);
+  --hero-muted: var(--muted);
 
   --animate-shine: shine var(--duration) infinite linear;
 
@@ -303,7 +303,7 @@
 }
 
 .navbar {
-  background: hsl(var(--background) / 0.1);
+  background: var(--background) / 0.1;
   -webkit-backdrop-filter: blur(10px);
   -moz-backdrop-filter: blur(10px);
   width: 100%;
@@ -321,7 +321,7 @@
 
 .footer {
   background: transparent;
-  border-top-color: hsl(var(--border));
+  border-top-color: var(--border);
 }
 
 .header--github-link {
@@ -386,7 +386,7 @@ html[data-theme='dark'] .header--github-link:before {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in oklab, hsl(var(--primary)) 20%, transparent), transparent 70%);
+  background: radial-gradient(circle, color-mix(in oklab, var(--primary) 20%, transparent), transparent 70%);
   transform: translate(-50%, -50%);
   transition: width 0.6s ease, height 0.6s ease;
 }
@@ -406,14 +406,14 @@ h1 {
   position: relative;
   overflow: hidden;
   border-radius: 24px;
-  border: 1px solid color-mix(in oklab, hsl(var(--foreground)) 8%, transparent);
+  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
   background: linear-gradient(
     to bottom right,
-    color-mix(in oklab, hsl(var(--background)) 96%, transparent),
-    color-mix(in oklab, hsl(var(--background)) 92%, transparent)
+    color-mix(in oklab, var(--background) 96%, transparent),
+    color-mix(in oklab, var(--background) 92%, transparent)
   );
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 color-mix(in oklab, hsl(var(--foreground)) 8%, transparent);
+    inset 0 1px 0 color-mix(in oklab, var(--foreground) 8%, transparent);
   isolation: isolate;
 }
 
@@ -433,17 +433,17 @@ h1 {
 .ctaCard::before {
   background: radial-gradient(
       600px 320px at 20% 15%,
-      color-mix(in oklab, hsl(var(--primary)) 22%, transparent),
+      color-mix(in oklab, var(--primary) 22%, transparent),
       transparent 70%
     ),
     radial-gradient(
       700px 360px at 80% 20%,
-      color-mix(in oklab, hsl(var(--secondary)) 20%, transparent),
+      color-mix(in oklab, var(--secondary) 20%, transparent),
       transparent 72%
     ),
     radial-gradient(
       500px 260px at 50% 110%,
-      color-mix(in oklab, hsl(var(--muted)) 16%, transparent),
+      color-mix(in oklab, var(--muted) 16%, transparent),
       transparent 72%
     );
 }
@@ -452,10 +452,10 @@ h1 {
 .ctaCard::after {
   background: conic-gradient(
     from 160deg at 50% 50%,
-    color-mix(in oklab, hsl(var(--primary)) 10%, transparent),
-    color-mix(in oklab, hsl(var(--secondary)) 10%, transparent),
-    color-mix(in oklab, hsl(var(--muted)) 10%, transparent),
-    color-mix(in oklab, hsl(var(--primary)) 10%, transparent)
+    color-mix(in oklab, var(--primary) 10%, transparent),
+    color-mix(in oklab, var(--secondary) 10%, transparent),
+    color-mix(in oklab, var(--muted) 10%, transparent),
+    color-mix(in oklab, var(--primary) 10%, transparent)
   );
   opacity: 0.22;
 }

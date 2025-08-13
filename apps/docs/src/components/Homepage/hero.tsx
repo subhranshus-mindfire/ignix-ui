@@ -195,9 +195,9 @@ export function HeroSection() {
                         padding: '0.375rem',
                         borderRadius: '0.375rem',
                         border:
-                          '1px solid color-mix(in oklab, hsl(var(--primary)) 20%, transparent)',
-                        background: 'color-mix(in oklab, hsl(var(--primary)) 8%, transparent)',
-                        color: 'hsl(var(--primary))',
+                          '1px solid color-mix(in oklab, var(--primary) 20%, transparent)',
+                        background: 'color-mix(in oklab, var(--primary) 8%, transparent)',
+                        color: 'var(--primary)',
                         cursor: 'pointer',
                         transition: 'all 0.2s ease',
                         display: 'inline-flex',
@@ -247,16 +247,16 @@ function CopyButton({ text, style }) {
       style={style}
       onMouseEnter={(e) => {
         e.currentTarget.style.background =
-          'color-mix(in oklab, hsl(var(--primary)) 12%, transparent)';
+          'color-mix(in oklab, var(--primary) 12%, transparent)';
         e.currentTarget.style.borderColor =
-          'color-mix(in oklab, hsl(var(--primary)) 30%, transparent)';
+          'color-mix(in oklab, var(--primary) 30%, transparent)';
         e.currentTarget.style.transform = 'scale(1.05)';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.background =
-          'color-mix(in oklab, hsl(var(--primary)) 8%, transparent)';
+          'color-mix(in oklab, var(--primary) 8%, transparent)';
         e.currentTarget.style.borderColor =
-          'color-mix(in oklab, hsl(var(--primary)) 20%, transparent)';
+          'color-mix(in oklab, var(--primary) 20%, transparent)';
         e.currentTarget.style.transform = 'scale(1)';
       }}
       aria-label={copied ? 'Copied to clipboard' : 'Copy to clipboard'}

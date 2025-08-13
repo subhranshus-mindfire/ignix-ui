@@ -274,9 +274,9 @@ const StepIndicator: React.FC<{
         }}
         animate={isActive ? {
           boxShadow: [
-            "0 0 0 0 hsl(var(--primary) / 0.4)",
-            "0 0 0 8px hsl(var(--primary) / 0.1)",
-            "0 0 0 0 hsl(var(--primary) / 0)"
+            "0 0 0 0 var(--primary) / 0.4",
+            "0 0 0 8px var(--primary) / 0.1",
+            "0 0 0 0 var(--primary) / 0"
           ]
         } : {}}
         transition={{
