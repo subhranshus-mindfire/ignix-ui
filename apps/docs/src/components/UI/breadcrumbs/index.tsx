@@ -364,7 +364,7 @@ const ProgressBreadcrumbs: React.FC<{
     <>
       {/* Enhanced progress bar with gradient */}
       <div className="relative mb-6 sm:mb-8">
-        <div className="h-3 bg-gradient-to-r from-muted/30 to-muted/50 rounded-full overflow-hidden backdrop-blur-sm border border-border/30 shadow-inner">
+        <div className="bg-gradient-to-r from-muted/30 to-muted/50 rounded-full overflow-hidden backdrop-blur-sm border border-border/30 shadow-inner">
           <motion.div
             className="h-full bg-gradient-to-r from-primary via-primary/80 to-primary shadow-sm relative overflow-hidden"
             initial={{ width: 0 }}
@@ -399,7 +399,7 @@ const ProgressBreadcrumbs: React.FC<{
       </div>
 
       {/* Steps with progress variant styling */}
-      <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+      <div className="flex flex-wrap items-center ">
         {steps.map((step, index) => (
           <React.Fragment key={step}>
             <StepIndicator 
