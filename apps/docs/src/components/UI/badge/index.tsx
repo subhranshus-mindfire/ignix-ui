@@ -79,30 +79,31 @@ const Badge: React.FC<BadgeProps> = ({
         },
         bounce: {
             initial: { 
-                y: -50, 
-                opacity: 0,
-                rotate: -15,
-                scale: 0.5 
+                y: 0,
+                opacity: 1,
+                rotate: 0,
+                scale: 1 
             },
             animate: {
-                y: [-50, 0, -20, 0, -8, 0, -3, 0],
-                opacity: 1,
-                rotate: [-15, 0, -5, 0, -2, 0],
-                scale: [0.5, 1.2, 0.9, 1.1, 0.95, 1],
+                y: [0, -70, 0, 50, 0, 0, 0],
+                rotate: [0, -5, 0, -2, 0, -1, 0],
+                scale: [1, 1.2, 0.95, 1.1, 0.98, 1.05, 1],
                 transition: {
                     duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: 'loop',
                     ease: "easeOut",
-                    times: [0, 0.2, 0.35, 0.5, 0.65, 0.8, 0.9, 1]
+                    times: [0, 0.2, 0.4, 0.6, 0.75, 0.9, 1]
                 },
             },
         },
         tinypop: {
             initial: { scale: 1 },
-            animate: { 
-                scale: [1, 1.15, 1],
+            animate: {
+                scale: [1, 1.5, 1],
                 rotate: [0, 2, -2, 0],
-                transition: { 
-                    duration: 2.5,
+                transition: {
+                    duration: 2,
                     repeat: Infinity,
                     ease: "easeInOut",
                     times: [0, 0.3, 1]
