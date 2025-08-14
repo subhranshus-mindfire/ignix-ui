@@ -34,4 +34,5 @@ export const PROJECT_PATHS = {
     /** Package configuration file */
     PACKAGE_JSON: 'package.json',
   },
+  LLMS_TXT: 'llms.txt',
 } as const;

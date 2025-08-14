@@ -68,7 +68,7 @@ export function HeroSection() {
             ></div>
           ) : (
             <Aurora
-              colorStops={['#DA1F05', 'rgb(51, 17, 12)', '#F33C04', '#FE650D']}
+              colorStops={['#DA1F05', '#000000', '#F33C04', '#FE650D']}
               speed={0.4}
               blend={1}
             />
