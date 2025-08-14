@@ -46,6 +46,7 @@ export class InitCommand {
       'style.css',
       'src/style.css',
       'globals.css',
+      'App.css',
     ];
 
     let targetPath: string | null = null;
