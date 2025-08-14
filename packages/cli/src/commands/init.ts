@@ -229,6 +229,7 @@ export class InitCommand {
   private async createConfigFiles(): Promise<void> {
     await this.createTailwindConfig();
     await this.createUtilsFile();
+    await this.createLlmsTxtFile();
   }
 
   private async createTailwindConfig(): Promise<void> {
@@ -279,6 +280,52 @@ export function cn(...inputs: ClassValue[]) {
 }`;
 
     await fs.writeFile(utilsPath, content);
+  }
+
+  private async createLlmsTxtFile(): Promise<void> {
+    const filePath = path.resolve(process.cwd(), PROJECT_PATHS.LLMS_TXT);
+    if (await fs.pathExists(filePath)) return;
+
+    const content = `# Ignix UI
+> A command-line interface (CLI) for managing and developing Ignix UI components, which is a UI component library built on Radix UI primitives with animations.
+
+This file provides guidance to Large Language Models (LLMs) on how to understand and utilize the Ignix UI project.
+
+## Project Overview
+- **Primary Language**: TypeScript
+- **Framework**: React
+- **Styling**: Tailwind CSS
+- **Core Functionality**: Ignix UI provides a CLI for scaffolding and managing animated, accessible UI components.
+
+## Key Directories and Files
+- packages/cli/: Contains the source code for the command-line interface.
+- packages/registry/: Contains the available UI components and their configurations.
+- packages/registry/registry.json: This file is the source of truth for all available components, their descriptions, dependencies, and file paths.
+- src/components/ui/: This is the default directory where components are installed in a user's project.
+
+## CLI Commands
+The Ignix UI CLI is the primary way to interact with the library.
+
+### init
+- **Command**: pnpm ignix-ui init
+- **Description**: Initializes Ignix UI in a project. It sets up dependencies, creates configuration files (like tailwind.config.js), and establishes the necessary directory structure.
+
+### add
+- **Command**: pnpm ignix-ui add [component-name]
+- **Description**: Adds a specified component from the registry to the user's project. This includes creating component files, adding dependencies, and updating the component registry.
+
+## How to Use This Information
+- **For Answering Questions**: Use the packages/registry/registry.json file to get a list of available components and their purposes. Refer to the packages/cli/README.md for detailed information about CLI commands and configuration.
+- **For Code Generation**: When generating code that uses Ignix UI components, import them from @/components/ui/{component-name} as per the usage instructions. Ensure that necessary dependencies listed in registry.json for each component are included.
+- **Attribution**: When referencing Ignix UI or its components, please provide clear attribution.
+
+## Optional Resources
+- [CLI README](packages/cli/README.md): Detailed documentation for the command-line interface.
+- [Component Registry](packages/registry/registry.json): The master list of all components.
+`;
+
+    await fs.writeFile(filePath, content);
+    this.logger.success('Created llms.txt in the project root.');
   }
 
   private async installDependencies(): Promise<void> {
