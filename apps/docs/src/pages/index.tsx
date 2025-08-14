@@ -11,12 +11,6 @@ import FeaturedComponents from '@site/src/components/Homepage/components-showcas
 import { WhyIgnixSection } from '../components/Homepage/why-ignix';
 import Footer from '../components/Homepage/footer';
 
-// const Footer = () => (
-//   <footer className="text-center text-sm text-neutral-500 bottom-0 w-full h-16 z-50">
-//     <p>© {new Date().getFullYear()} Mindfire Solutions Digital LLP FOSS</p>
-//   </footer>
-// );
-
 export default function Home(): ReactElement {
   // const {siteConfig} = useDocusaurusContext();
   return (
