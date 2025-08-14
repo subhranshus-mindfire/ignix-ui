@@ -262,6 +262,29 @@ export default function ComponentShowcase() {
           {/* Demo Display */}
           <div className="order-2 lg:order-1">
             <div className="h-80 relative overflow-hidden bg-gradient-to-br from-primary/5 via-background/30 to-primary/5 dark:from-primary/10 dark:via-background/40 dark:to-primary/10 border border-border/20 rounded-xl shadow-lg">
+              <div className="absolute inset-0" />
+              {/* Title Bar */}
+              <div className="absolute top-0 left-0 right-0 h-10 flex items-center px-4">
+                <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                  {React.createElement(demoComponents[activeDemo].icon, { className: "h-4 w-4" })}
+                  <span>{demoComponents[activeDemo].title}</span>
+                </div>
+              </div>
+              {/* Demo Content */}
+              <div className="absolute inset-0 flex items-center justify-center p-4 pt-14">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeDemo}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-full h-full flex items-center justify-center"
+                  >
+                    {demoComponents[activeDemo].demo}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
               <div className="absolute top-4 right-4 z-20">
                 <Button
                   variant="ghost"
@@ -271,21 +294,6 @@ export default function ComponentShowcase() {
                 >
                   <PlayIcon className={`h-4 w-4 ${isPlaying ? 'animate-pulse' : ''}`} />
                 </Button>
-              </div>
-
-              <div className="h-full flex items-center justify-center p-4">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeDemo}
-                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                    transition={{ duration: 0.4, ease: 'easeInOut' }}
-                    className="w-full"
-                  >
-                    {demoComponents[activeDemo].demo}
-                  </motion.div>
-                </AnimatePresence>
               </div>
             </div>
           </div>
