@@ -22,11 +22,6 @@ export function WhyIgnixSection() {
           position: 'absolute',
           inset: 0,
           zIndex: -1,
-          background: `
-                        radial-gradient(800px 400px at 20% 10%, color-mix(in oklab, var(--primary) 14%, transparent), transparent 65%),
-                        radial-gradient(900px 450px at 80% 15%, color-mix(in oklab, var(--secondary) 12%, transparent), transparent 65%),
-                        radial-gradient(600px 300px at 50% 90%, color-mix(in oklab, var(--muted) 10%, transparent), transparent 70%)
-                    `,
           opacity: 0.7,
         }}
       />

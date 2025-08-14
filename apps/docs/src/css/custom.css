@@ -351,36 +351,11 @@ html[data-theme='dark'] .header--github-link:before {
     no-repeat;
 }
 
-.clean-btn {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
 .clean-btn:hover {
   transform: translateY(-1px) scale(1.08);
   opacity: 1;
   background: none;
 }
-
-.clean-btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in oklab, var(--primary) 20%, transparent), transparent 70%);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
-}
-
-.clean-btn:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
 
 h1 {
   margin: 0.5rem;
