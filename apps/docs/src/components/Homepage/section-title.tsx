@@ -47,7 +47,7 @@ export function SectionTitleCapsule({
     parts.push(
       <span
         key={`h-${idx}`}
-        className="relative inline-flex items-center rounded-full py-1
+        className="relative inline-flex items-center py-1
             text-primary overflow-hidden"
       >
         <AuroraText

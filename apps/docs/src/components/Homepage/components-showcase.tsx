@@ -50,13 +50,13 @@ const AnimatedButtons = () => {
     <div className="w-full h-full flex items-center justify-center">
       <div className="flex flex-wrap items-center justify-center gap-4">
         <Button
-          variant={activeButton === 0 ? 'primary' : 'outline'}
+          variant={activeButton === 0 ? 'default' : 'outline'}
           animationVariant={activeButton === 0 ? 'wobble' : 'none'}
         >
           {activeButton === 0 ? 'Active' : 'Inactive'}
         </Button>
         <Button
-          variant={activeButton === 1 ? 'primary' : 'outline'}
+          variant={activeButton === 1 ? 'default' : 'outline'}
           animationVariant={activeButton === 1 ? 'pulse' : 'none'}
         >
           {activeButton === 1 ? 'Active' : 'Inactive'}
@@ -187,7 +187,6 @@ export default function ComponentShowcase() {
   const [activeDemo, setActiveDemo] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  // Auto-rotate demos
   useEffect(() => {
     if (!isPlaying) return;
     const interval = setInterval(() => {
@@ -198,7 +197,7 @@ export default function ComponentShowcase() {
 
   return (
     <>
-      {/* Injecting necessary styles directly for portability */}
+      {/* Keep your existing helper styles exactly as-is */}
       <style>{`
         .text-gradient-primary {
           background: linear-gradient(to right, var(--ifm-color-primary-light), var(--ifm-color-primary-dark));
@@ -209,142 +208,151 @@ export default function ComponentShowcase() {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-20px); }
         }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
         @keyframes glow-pulse {
           0%, 100% { box-shadow: 0 0 10px var(--ifm-color-primary-light); }
           50% { box-shadow: 0 0 20px var(--ifm-color-primary); }
         }
-        .animate-glow-pulse {
-          animation: glow-pulse 3s ease-in-out infinite;
-        }
+        .animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
         @keyframes rotate-slow {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
-        .animate-rotate-slow {
-          animation: rotate-slow 20s linear infinite;
-        }
-        .showcase-glow {
-          box-shadow: 0 0 30px var(--ifm-color-primary-lightest);
-        }
+        .animate-rotate-slow { animation: rotate-slow 20s linear infinite; }
+        .showcase-glow { box-shadow: 0 0 30px var(--ifm-color-primary-lightest); }
         .bg-gradient-showcase {
           background: linear-gradient(to right, var(--ifm-color-primary-light), var(--ifm-color-primary));
         }
       `}</style>
 
-      <section
-        className="relative rounded-3xl mb-16 bg-transparent p-4 lg:px-24"
-        aria-label="Featured components"
-      >
-        <header className="mb-8">
-          <SectionTitleCapsule highlight="components" align="center" caseInsensitive>
-            Featured Components
-          </SectionTitleCapsule>
-          <p className="text-center text-muted-foreground">
-            Explore our collection of high-quality, ready-to-use components.
-          </p>
-        </header>
+      {/* Spacing/container adjusted to match the example; colors unchanged */}
+      <section className="relative py-8 px-4 overflow-hidden" aria-label="Featured components">
+        {/* Optional background floaters (kept neutral; remove if not needed) */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-black/0 rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-1/4 right-1/3 w-80 h-80 bg-black/0 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-black/0 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }} />
+        </div>
 
-        {/* Mobile Component Selector */}
-        <ComponentSelector
-          components={demoComponents.map(({ id, title, icon }) => ({
-            id,
-            title,
-            icon,
-          }))}
-          activeIndex={activeDemo}
-          onSelect={setActiveDemo}
-        />
-        {/* Main Showcase */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Demo Display */}
-          <div className="order-2 lg:order-1">
-            <div className="h-80 relative overflow-hidden bg-gradient-to-br from-primary/5 via-background/30 to-primary/5 dark:from-primary/10 dark:via-background/40 dark:to-primary/10 border border-border/20 rounded-xl shadow-lg">
-              <div className="absolute inset-0" />
-              {/* Title Bar */}
-              <div className="absolute top-0 left-0 right-0 h-10 flex items-center px-4">
-                <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                  {React.createElement(demoComponents[activeDemo].icon, { className: "h-4 w-4" })}
-                  <span>{demoComponents[activeDemo].title}</span>
-                </div>
-              </div>
-              {/* Demo Content */}
-              <div className="absolute inset-0 flex items-center justify-center p-4 pt-14">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeDemo}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                    className="w-full h-full flex items-center justify-center"
-                  >
-                    {demoComponents[activeDemo].demo}
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-              <div className="absolute top-4 right-4 z-20">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setIsPlaying(!isPlaying)}
-                  className="bg-background/10 hover:bg-background/20 backdrop-blur-sm"
-                >
-                  <PlayIcon className={`h-4 w-4 ${isPlaying ? 'animate-pulse' : ''}`} />
-                </Button>
-              </div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Header spacing only */}
+          {/* <section
+            className="relative rounded-3xl mb-16 bg-transparent p-4 lg:px-24"
+            aria-label="Featured components"
+          > */}
+            <header className="mb-8">
+              <SectionTitleCapsule highlight="components" align="center" caseInsensitive>
+                Featured Components
+              </SectionTitleCapsule>
+              <p className="text-center text-muted-foreground">
+                Explore our collection of high-quality, ready-to-use components.
+              </p>
+            </header>
+
+            {/* Mobile selector with margin to breathe */}
+            <div className="mb-10">
+              <ComponentSelector
+                components={demoComponents.map(({ id, title, icon }) => ({ id, title, icon }))}
+                activeIndex={activeDemo}
+                onSelect={setActiveDemo}
+              />
             </div>
-          </div>
 
-          {/* Desktop Component List */}
-          <div className="hidden lg:block order-1 lg:order-2 space-y-4">
-            {demoComponents.map((component, index) => (
-              <Card
-                key={component.id}
-                className={cn(
-                  'cursor-pointer transition-all duration-500',
-                  activeDemo === index
-                    ? 'border border-primary/50 bg-background/10 scale-105'
-                    : 'hover:border-white/30'
-                )}
-                onClick={() => setActiveDemo(index)}
-              >
-                <CardContent className="p-4">
-                  <div className="flex items-center gap-4">
-                    <div className={cn(
-                      'p-3 rounded-xl transition-all duration-300',
-                      activeDemo === index
-                        ? 'bg-gradient-showcase text-white'
-                        : 'bg-background/10 text-muted-foreground'
-                    )}>
-                      <component.icon className="h-5 w-5" />
-                    </div>
-                    <div className="flex-1">
-                      <span className={cn(
-                        'font-semibold transition-colors duration-300',
-                        activeDemo === index ? 'text-primary-light' : ''
-                      )}>
-                        {component.title}
-                      </span>
-                      <p className="text-sm text-muted-foreground">
-                        {component.description}
-                      </p>
-                    </div>
-                    <div className={cn(
-                      'transition-all duration-300',
-                      activeDemo === index ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
-                    )}>
-                      <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+            {/* Main grid spacing only (gap-12, items-center, order retained) */}
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Demo Display */}
+              <div className="order-2 lg:order-1">
+                <div className="group h-96 relative overflow-hidden bg-gradient-to-br from-primary/5 via-background/30 to-primary/5 dark:from-primary/10 dark:via-background/40 dark:to-primary/10 border border-border/20 rounded-2xl shadow-lg transition-all duration-500 hover:shadow-xl hover:-translate-y-1 hover:border-primary/30">
+                  {/* Animated gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0" />
+                  {/* Title Bar */}
+                  <div className="absolute top-0 left-0 right-0 h-10 flex items-center px-4">
+                    <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                      {React.createElement(demoComponents[activeDemo].icon, { className: 'h-4 w-4' })}
+                      <span>{demoComponents[activeDemo].title}</span>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  {/* Demo Content with p-8 and pt-14 for bar clearance */}
+                  <div className="absolute inset-0 flex items-center justify-center p-8 pt-14">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={activeDemo}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.3 }}
+                        className="w-full h-full flex items-center justify-center"
+                      >
+                        {demoComponents[activeDemo].demo}
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+                  <div className="absolute top-4 right-4 z-20">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setIsPlaying(!isPlaying)}
+                      className="bg-background/10 hover:bg-background/20 backdrop-blur-sm"
+                    >
+                      <PlayIcon className={`h-4 w-4 ${isPlaying ? 'animate-pulse' : ''}`} />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Desktop Component List - spacing only (space-y-4, p-6, rounded-2xl) */}
+              <div className="hidden lg:block order-1 lg:order-2 space-y-4">
+                {demoComponents.map((component, index) => (
+                  <Card
+                    key={component.id}
+                    className={cn(
+                      'cursor-pointer transition-all duration-500 rounded-2xl',
+                      activeDemo === index
+                        ? 'border border-primary/50 bg-background/10 scale-105'
+                        : 'hover:border-white/30'
+                    )}
+                    onClick={() => setActiveDemo(index)}
+                  >
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-4">
+                        <div
+                          className={cn(
+                            'p-3 rounded-xl transition-all duration-300',
+                            activeDemo === index
+                              ? 'bg-gradient-showcase text-white'
+                              : 'bg-background/10 text-muted-foreground'
+                          )}
+                        >
+                          <component.icon className="h-5 w-5" />
+                        </div>
+                        <div className="flex-1">
+                          <span
+                            className={cn(
+                              'font-semibold transition-colors duration-300',
+                              activeDemo === index ? 'text-primary-light' : ''
+                            )}
+                          >
+                            {component.title}
+                          </span>
+                          <p className="text-sm text-muted-foreground">{component.description}</p>
+                        </div>
+                        <div
+                          className={cn(
+                            'transition-all duration-300',
+                            activeDemo === index ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
+                          )}
+                        >
+                          <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
         </div>
-      </section >
+      </section>
     </>
   );
 }
