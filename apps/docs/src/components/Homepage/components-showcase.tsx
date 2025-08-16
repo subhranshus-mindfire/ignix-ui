@@ -1,254 +1,358 @@
-import React, { useMemo } from 'react';
-import { Button } from '@site/src/components/UI/button';
-import { Slider } from '@site/src/components/UI/slider';
-import { Switch } from '@site/src/components/UI/switch';
-import { Breadcrumbs } from '@site/src/components/UI/breadcrumbs';
-import { InfoCircledIcon } from '@radix-ui/react-icons';
-import { useToast } from '@site/src/components/UI/toast/use-toast';
-import { Marquee } from '@site/src/components/UI/marquee'; // <-- your Marquee component
-import Link from '@docusaurus/Link';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Component1Icon,
+  DrawingPinIcon,
+  MagicWandIcon,
+  MixIcon,
+  RocketIcon,
+  PlayIcon,
+} from '@radix-ui/react-icons';
+import { Button } from '../UI/button';
+import { Card, CardContent } from '../UI/card';
+import { Slider } from '../UI/slider';
+import { Switch } from '../UI/switch';
+import { Breadcrumbs } from '../UI/breadcrumbs';
+import { cn } from '@site/src/utils/cn';
 import { SectionTitleCapsule } from './section-title';
-import { Spinner } from '../UI/spinner';
-import { Tooltip } from '../UI/tooltip';
-import { Mail } from 'lucide-react';
-import { Badge } from '../UI/badge';
+import { ComponentSelector } from './ComponentSelector';
 
-type CardDef = {
-  id: string;
-  title: string;
-  desc: string;
-  docHref: string; // route to docs
+const AnimatedBreadcrumb = () => {
+  const [currentStep, setCurrentStep] = useState(0);
+  const steps = ['Payment', 'Shipping', 'Done'];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentStep((prev) => (prev + 1) % steps.length);
+    }, 1500);
+    return () => clearInterval(interval);
+  }, [steps.length]);
+
+  return (
+    <div className="w-full h-full flex items-center justify-center">
+      <Breadcrumbs steps={steps} currentStep={currentStep} variant="step" />
+    </div>
+  );
 };
 
-const CARDS: CardDef[] = [
-  {
-    id: 'button1',
-    title: 'Buttons',
-    desc: 'Variants and motion.',
-    docHref: '/docs/components/button',
-  },
-  {
-    id: 'button2',
-    title: 'Buttons',
-    desc: 'Variants and motion.',
-    docHref: '/docs/components/button',
-  },
-  {
-    id: 'slider',
-    title: 'Slider',
-    desc: 'Glow & value display.',
-    docHref: '/docs/components/slider',
-  },
-  { id: 'badge', title: 'Badge', desc: 'Variants and motion.', docHref: '/docs/components/badge' },
-  { id: 'switch1', title: 'Switch', desc: 'Tactile toggles.', docHref: '/docs/components/switch' },
-  { id: 'switch2', title: 'Switch', desc: 'Square toggles.', docHref: '/docs/components/switch' },
-  {
-    id: 'breadcrumbs',
-    title: 'Breadcrumbs',
-    desc: 'Progress steps.',
-    docHref: '/docs/components/breadcrumbs',
-  },
-  { id: 'toast', title: 'Toast', desc: 'Animated alerts.', docHref: '/docs/components/toast' },
-  {
-    id: 'spinner',
-    title: 'Spinner',
-    desc: 'Variants and motion.',
-    docHref: '/docs/components/spinner',
-  },
-];
+// Data for the components to be showcased, using your components
+const AnimatedButtons = () => {
+  const [activeButton, setActiveButton] = useState(0);
 
-// Optional: duplicate to make each row feel sufficiently long
-function buildRow(cards: CardDef[], repeat = 2) {
-  return Array.from({ length: repeat })
-    .fill(0)
-    .flatMap(() => cards);
-}
-
-export default function FeaturedComponents() {
-  // Split into two sets (interleave to mix visuals)
-  const firstRow = useMemo(
-    () => buildRow([CARDS[0], CARDS[2], CARDS[4], CARDS[3], CARDS[5]], 2),
-    []
-  );
-  const secondRow = useMemo(() => buildRow([CARDS[1], CARDS[6], CARDS[7], CARDS[8]], 2), []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveButton(prev => (prev + 1) % 2);
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <section
-      className=" relative rounded-3xl
-      "
-      aria-label="Featured components"
-    >
-      <header className="px-2 pb-4">
-        <SectionTitleCapsule highlight="components" align="center" caseInsensitive>
-          Featured Components
-        </SectionTitleCapsule>
-        <p className="text-center text-muted-foreground mt-2">
-          Explore our collection of high-quality, ready-to-use components.
-        </p>
-      </header>
-
-      <div className="space-y-4">
-        <Marquee className="rounded-xl" pauseOnHover repeat={3}>
-          {firstRow.map((card, i) => (
-            <Card key={`${card.id}-${i}`} card={card} />
-          ))}
-        </Marquee>
-
-        {/* Row 2: right-to-left (reverse) */}
-        <Marquee className="rounded-xl" reverse pauseOnHover repeat={3}>
-          {secondRow.map((card, i) => (
-            <Card key={`${card.id}-${i}`} card={card} />
-          ))}
-        </Marquee>
-      </div>
-    </section>
-  );
-}
-
-function Card({ card }: { card: CardDef }) {
-  return (
-    <div
-      className="mx-2 w-[280px] md:w-[320px] flex-shrink-0 rounded-2xl border border-border/60 bg-background/70 backdrop-blur p-4 shadow-sm
-                 hover:shadow-md transition-shadow"
-      role="group"
-      aria-label={card.title}
-    >
-      <div className="mb-3">
-        <div className="flex items-center justify-between">
-          <h4 className="text-base md:text-lg font-semibold">{card.title}</h4>
-        </div>
-        <p className="text-sm text-muted-foreground">{card.desc}</p>
-      </div>
-
-      <div className="rounded-xl p-2">
-        <InlineDemo id={card.id} />
-      </div>
-
-      <div className="mt-3 flex items-center justify-between">
-        <Link
-          to={card.docHref}
-          className="text-xs rounded-full border px-3 py-1 hover:bg-accent"
-          aria-label={`Go to ${card.title} docs`}
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="flex flex-wrap items-center justify-center gap-4">
+        <Button
+          variant={activeButton === 0 ? 'default' : 'outline'}
+          animationVariant={activeButton === 0 ? 'wobble' : 'none'}
         >
-          Try
-        </Link>
-        <div className="flex gap-1 opacity-70">
-          <Dot />
-          <Dot />
-          <Dot />
-        </div>
+          {activeButton === 0 ? 'Active' : 'Inactive'}
+        </Button>
+        <Button
+          variant={activeButton === 1 ? 'default' : 'outline'}
+          animationVariant={activeButton === 1 ? 'pulse' : 'none'}
+        >
+          {activeButton === 1 ? 'Active' : 'Inactive'}
+        </Button>
       </div>
     </div>
   );
-}
+};
 
-function Dot() {
-  return <span className="h-1.5 w-1.5 rounded-full bg-muted inline-block" />;
-}
+const AnimatedSlider = () => {
+  const [value, setValue] = useState(30);
+  const [isIncreasing, setIsIncreasing] = useState(true);
 
-function InlineDemo({ id }: { id: string }) {
-  const toast = useToast();
-  const [value, setValue] = React.useState(60);
-  const [checked, setChecked] = React.useState(true);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setValue(prev => {
+        if (prev >= 90) {
+          setIsIncreasing(false);
+          return 89;
+        } else if (prev <= 10) {
+          setIsIncreasing(true);
+          return 11;
+        }
+        return isIncreasing ? prev + 10 : prev - 10;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [isIncreasing]);
 
-  if (id === 'button1') {
-    return (
-      <div className="flex flex-wrap items-center justify-center gap-2">
-        <Button variant="outline" animationVariant="wobble">
-          Outline
-        </Button>
-      </div>
-    );
-  }
-
-  if (id === 'button2') {
-    return (
-      <div className="flex flex-wrap items-center justify-center gap-2">
-        <Button animationVariant="pulse">Primary</Button>
-      </div>
-    );
-  }
-
-  if (id === 'slider') {
-    return (
+  return (
+    <div className="w-full max-w-sm">
       <Slider
         value={[value]}
-        onValueChange={(v) => setValue(v[0])}
+        onValueChange={([v]) => setValue(v)}
         animationType="breathe"
         showValue
         valueSuffix="%"
         glowEffect
       />
-    );
-  }
+      <Slider
+        value={[value]}
+        onValueChange={([v]) => setValue(v)}
+        animationType="breathe"
+        showValue
+        valueSuffix="%"
+        glowEffect
+        variant="retro"
+      />
+    </div>
+  );
+};
 
-  if (id === 'switch1') {
-    return (
-      <div className="flex items-center justify-center gap-4">
-        <Switch variant="ios" animation="bounce" checked={checked} onCheckedChange={setChecked} />
+const AnimatedSwitches = () => {
+  const [activeSwitch, setActiveSwitch] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSwitch(prev => (prev + 1) % 2);
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="flex items-center justify-center gap-8 p-4">
+      <Switch
+        variant="ios"
+        animation={activeSwitch === 0 ? 'bounce' : 'default'}
+        checked={activeSwitch === 0}
+      />
+      <Switch
+        variant="square"
+        animation={activeSwitch === 1 ? 'jelly' : 'default'}
+        checked={activeSwitch === 1}
+      />
+    </div>
+  );
+};
+
+const demoComponents = [
+  {
+    id: 'buttons',
+    title: 'Animated Buttons',
+    description: 'Engage users with interactive, animated buttons for every occasion.',
+    icon: Component1Icon,
+    href: '/docs/components/button',
+    demo: <AnimatedButtons />,
+  },
+  {
+    id: 'sliders',
+    title: 'Interactive Sliders',
+    description: 'Allow users to select values with our sleek and customizable sliders.',
+    icon: MixIcon,
+    href: '/docs/components/slider',
+    demo: (
+      <div className="w-full h-full flex items-center justify-center">
+        <AnimatedSlider />
       </div>
-    );
-  }
-
-  if (id === 'switch2') {
-    return (
-      <div className="flex items-center justify-center gap-4">
-        <Switch
-          variant="square"
-          animation="bounce"
-          checked={checked}
-          onCheckedChange={(c) => setChecked(c)}
-        />
+    ),
+  },
+  {
+    id: 'switches',
+    title: 'Tactile Switches',
+    description: 'Modern, satisfying toggle switches with built-in animations.',
+    icon: MagicWandIcon,
+    href: '/docs/components/switch',
+    demo: (
+      <div className="w-full h-full flex items-center justify-center">
+        <AnimatedSwitches />
       </div>
-    );
-  }
+    ),
+  },
+  {
+    id: 'breadcrumbs',
+    title: 'Breadcrumbs',
+    description: 'Guide and inform users with stylish status indicators and navigation aids.',
+    icon: DrawingPinIcon,
+    href: '/docs/components/breadcrumb',
+    demo: (
+      <div className="flex flex-col items-center justify-center gap-4 p-2 w-full h-full">
+        <AnimatedBreadcrumb />
+      </div>
+    ),
+  },
+];
 
-  if (id === 'breadcrumbs') {
-    return <Breadcrumbs steps={['Start', 'End']} currentStep={1} variant="step" />;
-  }
+// Main Component
+export default function ComponentShowcase() {
+  const [activeDemo, setActiveDemo] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
 
-  if (id === 'toast') {
-    return (
-      <Button
-        onClick={() =>
-          toast.addToast({
-            message: 'Hello from Ignix UI!',
-            variant: 'success',
-            animation: 'slide',
-            icon: <InfoCircledIcon className="w-5 h-5" />,
-          })
+  useEffect(() => {
+    if (!isPlaying) return;
+    const interval = setInterval(() => {
+      setActiveDemo((prev) => (prev + 1) % demoComponents.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [isPlaying]);
+
+  return (
+    <>
+      {/* Keep your existing helper styles exactly as-is */}
+      <style>{`
+        .text-gradient-primary {
+          background: linear-gradient(to right, var(--ifm-color-primary-light), var(--ifm-color-primary-dark));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
         }
-      >
-        Show Toast
-      </Button>
-    );
-  }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        @keyframes glow-pulse {
+          0%, 100% { box-shadow: 0 0 10px var(--ifm-color-primary-light); }
+          50% { box-shadow: 0 0 20px var(--ifm-color-primary); }
+        }
+        .animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+        @keyframes rotate-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-rotate-slow { animation: rotate-slow 20s linear infinite; }
+        .showcase-glow { box-shadow: 0 0 30px var(--ifm-color-primary-lightest); }
+        .bg-gradient-showcase {
+          background: linear-gradient(to right, var(--ifm-color-primary-light), var(--ifm-color-primary));
+        }
+      `}</style>
 
-  if (id === 'spinner') {
-    return (
-      <div className="flex items-center justify-center">
-        <Spinner size={40} color="border-primary" />
-      </div>
-    );
-  }
+      {/* Spacing/container adjusted to match the example; colors unchanged */}
+      <section className="relative py-8 px-4 overflow-hidden" aria-label="Featured components">
+        {/* Optional background floaters (kept neutral; remove if not needed) */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-black/0 rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-1/4 right-1/3 w-80 h-80 bg-black/0 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-black/0 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }} />
+        </div>
 
-  if (id === 'badge') {
-    return (
-      <div className="flex items-center justify-center gap-4">
-        <Tooltip content="You have new notifications!" animation="slideUp">
-          <div className="relative inline-flex items-center cursor-pointer">
-            <Mail className="h-8 w-8 text-gray-400 hover:text-primary transition-colors" />
-            <Badge
-              text="3"
-              type="primary"
-              variant="bounce"
-              className="absolute -top-2 -right-2 w-6 h-6 flex items-center justify-center"
-            />
-          </div>
-        </Tooltip>
-      </div>
-    );
-  }
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Header spacing only */}
+          {/* <section
+            className="relative rounded-3xl mb-16 bg-transparent p-4 lg:px-24"
+            aria-label="Featured components"
+          > */}
+            <header className="mb-8">
+              <SectionTitleCapsule highlight="components" align="center" caseInsensitive>
+                Featured Components
+              </SectionTitleCapsule>
+              <p className="text-center text-muted-foreground">
+                Explore our collection of high-quality, ready-to-use components.
+              </p>
+            </header>
 
-  return null;
+            {/* Mobile selector with margin to breathe */}
+            <div className="mb-10">
+              <ComponentSelector
+                components={demoComponents.map(({ id, title, icon }) => ({ id, title, icon }))}
+                activeIndex={activeDemo}
+                onSelect={setActiveDemo}
+              />
+            </div>
+
+            {/* Main grid spacing only (gap-12, items-center, order retained) */}
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Demo Display */}
+              <div className="order-2 lg:order-1">
+                <div className="group h-96 relative overflow-hidden bg-gradient-to-br from-primary/5 via-background/30 to-primary/5 dark:from-primary/10 dark:via-background/40 dark:to-primary/10 border border-border/20 rounded-2xl shadow-lg transition-all duration-500 hover:shadow-xl hover:-translate-y-1 hover:border-primary/30">
+                  {/* Animated gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0" />
+                  {/* Title Bar */}
+                  <div className="absolute top-0 left-0 right-0 h-10 flex items-center px-4">
+                    <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                      {React.createElement(demoComponents[activeDemo].icon, { className: 'h-4 w-4' })}
+                      <span>{demoComponents[activeDemo].title}</span>
+                    </div>
+                  </div>
+                  {/* Demo Content with p-8 and pt-14 for bar clearance */}
+                  <div className="absolute inset-0 flex items-center justify-center p-8 pt-14">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={activeDemo}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.3 }}
+                        className="w-full h-full flex items-center justify-center"
+                      >
+                        {demoComponents[activeDemo].demo}
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+                  <div className="absolute top-4 right-4 z-20">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setIsPlaying(!isPlaying)}
+                      className="bg-background/10 hover:bg-background/20 backdrop-blur-sm"
+                    >
+                      <PlayIcon className={`h-4 w-4 ${isPlaying ? 'animate-pulse' : ''}`} />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Desktop Component List - spacing only (space-y-4, p-6, rounded-2xl) */}
+              <div className="hidden lg:block order-1 lg:order-2 space-y-4">
+                {demoComponents.map((component, index) => (
+                  <Card
+                    key={component.id}
+                    className={cn(
+                      'cursor-pointer transition-all duration-500 rounded-2xl',
+                      activeDemo === index
+                        ? 'border border-primary/50 bg-background/10 scale-105'
+                        : 'hover:border-white/30'
+                    )}
+                    onClick={() => setActiveDemo(index)}
+                  >
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-4">
+                        <div
+                          className={cn(
+                            'p-3 rounded-xl transition-all duration-300',
+                            activeDemo === index
+                              ? 'bg-gradient-showcase text-white'
+                              : 'bg-background/10 text-muted-foreground'
+                          )}
+                        >
+                          <component.icon className="h-5 w-5" />
+                        </div>
+                        <div className="flex-1">
+                          <span
+                            className={cn(
+                              'font-semibold transition-colors duration-300',
+                              activeDemo === index ? 'text-primary-light' : ''
+                            )}
+                          >
+                            {component.title}
+                          </span>
+                          <p className="text-sm text-muted-foreground">{component.description}</p>
+                        </div>
+                        <div
+                          className={cn(
+                            'transition-all duration-300',
+                            activeDemo === index ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
+                          )}
+                        >
+                          <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+        </div>
+      </section>
+    </>
+  );
 }

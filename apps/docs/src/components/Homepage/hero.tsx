@@ -11,9 +11,9 @@ import { Button } from '../UI/button';
 import { AuroraText } from '../UI/aurora-text';
 import GradientText from '../UI/gradient-text';
 import { ShineBorder } from '../UI/shine-border';
-import FlameAnimation from '../UI/flames';
-import Aurora from '../UI/aurora';
 import TextType from '../UI/type-text';
+import LightVeil from '../UI/darkveil/lightveil';
+import DarkVeil from '../UI/darkveil';
 
 const getTheme = (): string => {
   if (typeof window === 'undefined') {
@@ -54,24 +54,32 @@ export function HeroSection() {
         >
           {theme === 'light' ? (
             <div
+              className="display-component-display"
               style={{
-                position: 'absolute',
+                position: 'fixed',
                 top: 0,
                 left: 0,
-                right: 0,
-                height: '500px',
-                background:
-                  'radial-gradient(ellipse at 20% 20%, rgba(218, 31, 5, 0.08), transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(254, 101, 13, 0.08), transparent 60%)',
+                width: '100%',
+                height: '100%',
                 zIndex: 0,
-                pointerEvents: 'none',
               }}
-            ></div>
+            >
+              <LightVeil speed={0.6} hueShift={50} warpAmount={1.4} />
+            </div>
           ) : (
-            <Aurora
-              colorStops={['#DA1F05', '#000000', '#F33C04', '#FE650D']}
-              speed={0.4}
-              blend={1}
-            />
+            <div
+              className="display-component-display"
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                zIndex: 0,
+              }}
+            >
+              <DarkVeil speed={0.6} hueShift={234} warpAmount={1.4} />
+            </div>
           )}
         </div>
         <header className={clsx(styles.heroBanner, 'flex items-center mb-32 mt-8')}>
@@ -84,11 +92,15 @@ export function HeroSection() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <div className="group inline-flex items-end hover:gap-1 transition-all duration-300 mb-8">
-                    <div className="relative rounded-2xl px-2 py-1 group-hover:scale-105 transition-all duration-300">
-                      <div className="w-16">
-                        <FlameAnimation />
-                      </div>
+                  <div className="group inline-flex items-end hover:gap-1 transition-all duration-300 mb-8 gap-2">
+                    <div className="relative rounded-2xl group-hover:scale-105 transition-all duration-300">
+                      <img
+                        src="img/logo.png"
+                        alt="Ignix UI"
+                        width={32}
+                        height={32}
+                        className="group-hover:scale-110 transition-transform duration-300"
+                      />
                     </div>
                     <div className={clsx(styles.heroTitle, 'text-5xl md:text-6xl font-bold')}>
                       <AuroraText colors={['#f7777f', '#f01622', '#e30613']}>Ignix UI</AuroraText>
@@ -105,10 +117,6 @@ export function HeroSection() {
                 >
                   <span className="text-4xl md:text-5xl font-bold space-y-4">
                     <span className="">Ship Your Vision, Not Your</span>
-                    {/* <AuroraText
-                      colors={['#f7777f', '#f33a45', '#f01622', '#e30613']}
-                      className="mx-2"
-                    > */}
                     <span className="text-primary">
                       <TextType
                         text={['Components', 'Templates', 'Boilerplate', 'Headaches']}
@@ -120,7 +128,6 @@ export function HeroSection() {
                         cursorCharacter="|"
                       />
                     </span>
-                    {/* </AuroraText> */}
                   </span>
                   <div className="text-xl md:text-2xl text-center font-medium whitespace-nowrap overflow-hidden mt-2">
                     <span className="inline-flex flex-wrap justify-center items-baseline">
@@ -194,8 +201,7 @@ export function HeroSection() {
                       style={{
                         padding: '0.375rem',
                         borderRadius: '0.375rem',
-                        border:
-                          '1px solid color-mix(in oklab, var(--primary) 20%, transparent)',
+                        border: '1px solid color-mix(in oklab, var(--primary) 20%, transparent)',
                         background: 'color-mix(in oklab, var(--primary) 8%, transparent)',
                         color: 'var(--primary)',
                         cursor: 'pointer',
@@ -246,17 +252,13 @@ function CopyButton({ text, style }) {
       onClick={handleCopy}
       style={style}
       onMouseEnter={(e) => {
-        e.currentTarget.style.background =
-          'color-mix(in oklab, var(--primary) 12%, transparent)';
-        e.currentTarget.style.borderColor =
-          'color-mix(in oklab, var(--primary) 30%, transparent)';
+        e.currentTarget.style.background = 'color-mix(in oklab, var(--primary) 12%, transparent)';
+        e.currentTarget.style.borderColor = 'color-mix(in oklab, var(--primary) 30%, transparent)';
         e.currentTarget.style.transform = 'scale(1.05)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.background =
-          'color-mix(in oklab, var(--primary) 8%, transparent)';
-        e.currentTarget.style.borderColor =
-          'color-mix(in oklab, var(--primary) 20%, transparent)';
+        e.currentTarget.style.background = 'color-mix(in oklab, var(--primary) 8%, transparent)';
+        e.currentTarget.style.borderColor = 'color-mix(in oklab, var(--primary) 20%, transparent)';
         e.currentTarget.style.transform = 'scale(1)';
       }}
       aria-label={copied ? 'Copied to clipboard' : 'Copy to clipboard'}
