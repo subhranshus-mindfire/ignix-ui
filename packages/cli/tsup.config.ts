@@ -11,7 +11,7 @@ export default defineConfig({
   sourcemap: false,
   minify: true,
   treeshake: true,
-  noExternal: ['commander', 'inquirer', 'chalk', 'ora', '@antfu/ni', 'fs-extra', 'axios'],
+  noExternal: ['commander', 'chalk', 'ora', '@antfu/ni', 'fs-extra', 'axios'],
   banner: {
     js: '#!/usr/bin/env node',
   },

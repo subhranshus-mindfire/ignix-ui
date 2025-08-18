@@ -5,7 +5,6 @@ import {
   DrawingPinIcon,
   MagicWandIcon,
   MixIcon,
-  RocketIcon,
   PlayIcon,
 } from '@radix-ui/react-icons';
 import { Button } from '../UI/button';
@@ -15,9 +14,9 @@ import { Switch } from '../UI/switch';
 import { Breadcrumbs } from '../UI/breadcrumbs';
 import { cn } from '@site/src/utils/cn';
 import { SectionTitleCapsule } from './section-title';
-import { ComponentSelector } from './ComponentSelector';
+import { ComponentSelector } from './component-selector';
 
-const AnimatedBreadcrumb = () => {
+const AnimatedBreadcrumb = React.lazy(() => Promise.resolve({ default: () => {
   const [currentStep, setCurrentStep] = useState(0);
   const steps = ['Payment', 'Shipping', 'Done'];
 
@@ -33,10 +32,9 @@ const AnimatedBreadcrumb = () => {
       <Breadcrumbs steps={steps} currentStep={currentStep} variant="step" />
     </div>
   );
-};
+}}));
 
-// Data for the components to be showcased, using your components
-const AnimatedButtons = () => {
+const AnimatedButtons = React.lazy(() => Promise.resolve({ default: () => {
   const [activeButton, setActiveButton] = useState(0);
 
   useEffect(() => {
@@ -50,23 +48,23 @@ const AnimatedButtons = () => {
     <div className="w-full h-full flex items-center justify-center">
       <div className="flex flex-wrap items-center justify-center gap-4">
         <Button
-          variant={activeButton === 0 ? 'default' : 'outline'}
           animationVariant={activeButton === 0 ? 'wobble' : 'none'}
+          className={cn(activeButton === 0 ? 'bg-green-500' : 'bg-red-500')}
         >
           {activeButton === 0 ? 'Active' : 'Inactive'}
         </Button>
         <Button
-          variant={activeButton === 1 ? 'default' : 'outline'}
           animationVariant={activeButton === 1 ? 'pulse' : 'none'}
+          className={cn(activeButton === 1 ? 'bg-green-500' : 'bg-red-500')}
         >
           {activeButton === 1 ? 'Active' : 'Inactive'}
         </Button>
       </div>
     </div>
   );
-};
+}}));
 
-const AnimatedSlider = () => {
+const AnimatedSlider = React.lazy(() => Promise.resolve({ default: () => {
   const [value, setValue] = useState(30);
   const [isIncreasing, setIsIncreasing] = useState(true);
 
@@ -107,9 +105,9 @@ const AnimatedSlider = () => {
       />
     </div>
   );
-};
+}}));
 
-const AnimatedSwitches = () => {
+const AnimatedSwitches = React.lazy(() => Promise.resolve({ default: () => {
   const [activeSwitch, setActiveSwitch] = useState(0);
 
   useEffect(() => {
@@ -133,7 +131,7 @@ const AnimatedSwitches = () => {
       />
     </div>
   );
-};
+}}));
 
 const demoComponents = [
   {
