@@ -54,8 +54,8 @@ const cardVariants = cva(
         default: cn(
           "rounded-xl bg-background/80 backdrop-blur-sm text-foreground",
           "border border-border/60 shadow-lg shadow-black/5",
-          "dark:shadow-white/5 hover:shadow-xl hover:shadow-black/10",
-          "dark:hover:shadow-white/10 hover:border-border/80",
+          "hover:shadow-xl hover:shadow-black/10",
+          "hover:border-border/80",
           "before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/5 before:to-transparent before:pointer-events-none"
         ),
         elevated: cn(
@@ -89,7 +89,7 @@ const cardVariants = cva(
           "rounded-xl bg-transparent text-foreground",
           "border-2 border-border/60 hover:border-border",
           "hover:bg-muted/30 backdrop-blur-sm",
-          "shadow-sm hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-white/5"
+          "shadow-sm hover:shadow-lg hover:shadow-black/5"
         ),
         minimal: cn(
           "rounded-lg bg-transparent text-foreground",

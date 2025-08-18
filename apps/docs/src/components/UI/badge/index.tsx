@@ -121,7 +121,7 @@ const Badge: React.FC<BadgeProps> = ({
                 animate="animate"
                 className={cn(
                     "absolute -top-1 -right-1 sm:-top-2 sm:-right-2",
-                    "min-w-5 h-5 sm:min-w-6 sm:h-6",
+                    "min-w-2 h-2 sm:min-w-6 sm:h-6",
                     "rounded-full flex items-center justify-center",
                     "text-xs sm:text-sm font-bold tracking-tight",
                     "backdrop-blur-sm",

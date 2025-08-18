@@ -14,9 +14,9 @@ const BreadcrumbsDemo = () => {
   const [currentStep, setCurrentStep] = useState(1);
 
   const items = [
-    { label: 'Home', href: '#', icon: Home },
-    { label: 'Products', href: '#' },
-    { label: 'Electronics', href: '#' },
+    { label: 'Home', href: '', icon: Home },
+    { label: 'Products', href: '' },
+    { label: 'Electronics', href: '' },
     { label: 'Smartphones' }
   ];
 

@@ -288,7 +288,7 @@ export function cn(...inputs: ClassValue[]) {
     if (await fs.pathExists(filePath)) return;
 
     const content = `# Ignix UI
-> A command-line interface (CLI) for managing and developing Ignix UI components, which is a UI component library built on Radix UI primitives with animations.
+A command-line interface (CLI) for managing and developing Ignix UI components, which is a UI component library built on Radix UI primitives with animations.
 
 This file provides guidance to Large Language Models (LLMs) on how to understand and utilize the Ignix UI project.
 

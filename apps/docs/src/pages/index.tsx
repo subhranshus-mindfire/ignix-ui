@@ -10,6 +10,8 @@ import { CTASection } from '../components/Homepage/cta';
 import FeaturedComponents from '@site/src/components/Homepage/components-showcase';
 import { WhyIgnixSection } from '../components/Homepage/why-ignix';
 import Footer from '../components/Homepage/footer';
+import LazyLoadSection from '../utils/LazyLoadSection';
+// import ComponentShowcaseGrid from '../components/Homepage/components-showcase-1';
 
 export default function Home(): ReactElement {
   // const {siteConfig} = useDocusaurusContext();
@@ -38,10 +40,21 @@ export default function Home(): ReactElement {
       "
 
           >
+          <LazyLoadSection>
           <FeaturedComponents />
+          </LazyLoadSection>
+          {/* <LazyLoadSection>
+          <ComponentShowcaseGrid />
+          </LazyLoadSection> */}
+          <LazyLoadSection>
           <WhyIgnixSection />
+          </LazyLoadSection>
+          <LazyLoadSection>
           <CTASection />
+          </LazyLoadSection>
+          <LazyLoadSection>
           <Footer />
+          </LazyLoadSection>
           </section>
           </div>
         {/* </div> */}
