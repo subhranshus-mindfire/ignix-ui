@@ -17,7 +17,7 @@ exec('npx changeset version', (error, stdout, stderr) => {
   console.log('✅ Changeset version completed');
 
   console.log('🔄 Running pnpm install to update lockfile...');
-  exec('pnpm install --frozen-lockfile', (error, stdout, stderr) => {
+  exec('pnpm install --no-frozen-lockfile', (error, stdout, stderr) => {
     if (error) {
       console.error('❌ Error running pnpm install:', error);
       process.exit(1);
