@@ -1,4 +1,4 @@
-import { AuroraText } from '../UI/aurora-text';
+// import { AuroraText } from '../UI/aurora-text';
 
 export function SectionTitleCapsule({
   children,
@@ -50,13 +50,13 @@ export function SectionTitleCapsule({
         className="relative inline-flex items-center py-1
             text-primary overflow-hidden"
       >
-        <AuroraText
+        {/* <AuroraText
           colors={['#f7777f', '#f33a45', '#f01622', '#e30613']}
           speed={1}
           className="relative z-10"
         >
-          {match}
-        </AuroraText>
+        </AuroraText> */}
+        {match}
       </span>
     );
     start = idx + highlight.length;
