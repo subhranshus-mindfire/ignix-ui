@@ -1,6 +1,6 @@
 {
   "name": "@mindfiredigital/ignix-ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI tool for Ignix UI component library",
   "type": "commonjs",
   "main": "./dist/index.js",
@@ -40,13 +40,11 @@
     "commander": "^9.4.1",
     "framer-motion": "^12.4.10",
     "fs-extra": "^10.1.0",
-    "inquirer": "^8.2.4",
     "ora": "^5.4.1",
     "tailwind-merge": "^3.0.2"
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.13",
-    "@types/inquirer": "^8.2.1",
     "@types/node": "^18.11.9",
     "rimraf": "^3.0.2",
     "tsup": "^6.5.0",

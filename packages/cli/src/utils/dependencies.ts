@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { execSync } from 'child_process';
 
 interface DependencyOptions {
