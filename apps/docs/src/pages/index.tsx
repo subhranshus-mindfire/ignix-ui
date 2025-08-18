@@ -46,15 +46,9 @@ export default function Home(): ReactElement {
           <LazyLoadSection>
           <ComponentShowcaseGrid />
           </LazyLoadSection>
-          <LazyLoadSection>
           <WhyIgnixSection />
-          </LazyLoadSection>
-          <LazyLoadSection>
           <CTASection />
-          </LazyLoadSection>
-          <LazyLoadSection>
           <Footer />
-          </LazyLoadSection>
           </section>
           </div>
         {/* </div> */}
