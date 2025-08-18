@@ -1,5 +1,5 @@
 import { Zap, Paintbrush, Layers, ArrowUpRight } from 'lucide-react';
-import { SectionTitleCapsule } from './section-title';
+// import { SectionTitleCapsule } from './section-title';
 import Link from '@docusaurus/Link';
 
 export function WhyIgnixSection() {
@@ -85,9 +85,10 @@ export function WhyIgnixSection() {
             Why developers love Ignix UI
           </div>
 
-          <SectionTitleCapsule highlight="developers">
+          {/* <SectionTitleCapsule highlight="developers">
             Built by developers, for developers
-          </SectionTitleCapsule>
+          </SectionTitleCapsule> */}
+          <h1 className="font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl leading-[1.08] text-foreground text-center">Built by <span className="text-primary">developers</span>, for <span className="text-primary">developers</span></h1>
 
           <p
             style={{

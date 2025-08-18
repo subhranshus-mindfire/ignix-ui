@@ -13,7 +13,7 @@ import { Slider } from '../UI/slider';
 import { Switch } from '../UI/switch';
 import { Breadcrumbs } from '../UI/breadcrumbs';
 import { cn } from '@site/src/utils/cn';
-import { SectionTitleCapsule } from './section-title';
+// import { SectionTitleCapsule } from './section-title';
 import { ComponentSelector } from './component-selector';
 
 const AnimatedBreadcrumb = React.lazy(() => Promise.resolve({ default: () => {
@@ -239,9 +239,10 @@ export default function ComponentShowcase() {
             aria-label="Featured components"
           > */}
             <header className="mb-8">
-              <SectionTitleCapsule highlight="components" align="center" caseInsensitive>
+              {/* <SectionTitleCapsule highlight="components" align="center" caseInsensitive>
                 Featured Components
-              </SectionTitleCapsule>
+              </SectionTitleCapsule> */}
+              <h1 className="font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl leading-[1.08] text-foreground text-center">Featured <span className="text-primary">Components</span></h1>
               <p className="text-center text-muted-foreground">
                 Explore our collection of high-quality, ready-to-use components.
               </p>
