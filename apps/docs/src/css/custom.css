@@ -279,14 +279,6 @@
   }
 }
 
-.theme-code-block {
-  font-size: 1.1rem;
-}
-
-.theme-code-block-highlighted-line {
-  background-color: #ffeeba;
-}
-
 .navbar {
   background: var(--background) / 0.1;
   -webkit-backdrop-filter: blur(10px);
@@ -297,7 +289,6 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  backdrop-filter: blur(10px);
 
   @media (min-width: 1024px) {
     padding: 2rem 2rem;
@@ -359,104 +350,4 @@ html[data-theme='dark'] .header--github-link:before {
 
 h1 {
   margin: 0.5rem;
-}
-
-/* Theme-driven gradient card */
-.ctaCard {
-  position: relative;
-  overflow: hidden;
-  border-radius: 24px;
-  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
-  background: linear-gradient(
-    to bottom right,
-    color-mix(in oklab, var(--background) 96%, transparent),
-    color-mix(in oklab, var(--background) 92%, transparent)
-  );
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 color-mix(in oklab, var(--foreground) 8%, transparent);
-  isolation: isolate;
-}
-
-/* Soft mesh blobs */
-.ctaCard::before,
-.ctaCard::after {
-  content: '';
-  position: absolute;
-  inset: -30%;
-  pointer-events: none;
-  filter: blur(60px);
-  mix-blend-mode: screen;
-  opacity: 0.55;
-}
-
-/* Primary/secondary color blobs */
-.ctaCard::before {
-  background: radial-gradient(
-      600px 320px at 20% 15%,
-      color-mix(in oklab, var(--primary) 22%, transparent),
-      transparent 70%
-    ),
-    radial-gradient(
-      700px 360px at 80% 20%,
-      color-mix(in oklab, var(--secondary) 20%, transparent),
-      transparent 72%
-    ),
-    radial-gradient(
-      500px 260px at 50% 110%,
-      color-mix(in oklab, var(--muted) 16%, transparent),
-      transparent 72%
-    );
-}
-
-/* Sheen sweep */
-.ctaCard::after {
-  background: conic-gradient(
-    from 160deg at 50% 50%,
-    color-mix(in oklab, var(--primary) 10%, transparent),
-    color-mix(in oklab, var(--secondary) 10%, transparent),
-    color-mix(in oklab, var(--muted) 10%, transparent),
-    color-mix(in oklab, var(--primary) 10%, transparent)
-  );
-  opacity: 0.22;
-}
-
-/* Subtle inner veil to improve text contrast */
-.ctaVeil {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(1200px 600px at 50% 35%, transparent 30%, rgba(0, 0, 0, 0.07) 80%),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.06));
-  opacity: 0.6;
-}
-
-/* Micro motion */
-@media (prefers-reduced-motion: no-preference) {
-  .ctaCard::before {
-    animation: ctaFloat 24s ease-in-out infinite alternate;
-  }
-
-  .ctaCard::after {
-    animation: ctaRoll 36s linear infinite;
-  }
-
-  @keyframes ctaFloat {
-    0% {
-      transform: translate3d(-2%, -1%, 0) scale(1);
-    }
-
-    100% {
-      transform: translate3d(2%, 1%, 0) scale(1.03);
-    }
-  }
-
-  @keyframes ctaRoll {
-    0% {
-      transform: rotate(0deg) scale(1.02);
-    }
-
-    100% {
-      transform: rotate(360deg) scale(1.02);
-    }
-  }
 }
