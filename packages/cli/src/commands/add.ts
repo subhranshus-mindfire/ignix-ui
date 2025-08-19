@@ -72,6 +72,7 @@ export class AddCommand {
         error: error instanceof Error ? error.message : 'Unknown error',
       });
 
+      // Log error
       if (error instanceof CLIError) {
         this.logger.error(error.message, error.suggestions);
       } else {
