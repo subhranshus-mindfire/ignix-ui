@@ -77,11 +77,6 @@ if (packageScope) {
   packageScope = packageScope.trim();
   description = description?.trim() || 'No description provided.';
 
-  if (packageScope === 'release') {
-    console.log('Release detected');
-    return;
-  }
-
   // Determine the full package name based on scope
   const packageName =
     packageScope === 'cli'
