@@ -15,12 +15,12 @@ jobs:
       packages: write
       pull-requests: write
       actions: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -32,6 +32,9 @@ jobs:
 
       - name: 'Install dependencies with pnpm'
         run: pnpm install
+
+      - name: 'Build application'
+        run: pnpm turbo run build
 
       - name: Generate Changeset from commit messages
         run: pnpm changeset:autogenerate
@@ -65,9 +68,3 @@ jobs:
         if: steps.changeset-check.outputs.changesets == 'false'
         run: |
           echo "No changeset files found. Skipping release."
-          echo "To create a release, make sure your commits follow the conventional commit format:"
-          echo "- feat(scope): description"
-          echo "- fix(scope): description"
-          echo "- docs(scope): description"
-          echo "- chore(scope): description"
-          echo "Valid scopes: cli, docs, release, registry, poc" 
