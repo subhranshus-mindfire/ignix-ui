@@ -79,7 +79,7 @@ if (packageScope) {
 
   // Determine the full package name based on scope
   const packageName =
-    packageScope === 'cli'
+    packageScope === 'cli' || packageScope === 'release'
       ? '@mindfiredigital/ignix-ui'
       : `@mindfiredigital/ignix-ui-${packageScope}`;
 
