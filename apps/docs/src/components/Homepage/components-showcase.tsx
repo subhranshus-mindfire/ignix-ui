@@ -7,7 +7,6 @@ import {
   PlayIcon,
 } from '@radix-ui/react-icons';
 import { Button } from '../UI/button';
-import { Card, CardContent } from '../UI/card';
 import { Slider } from '../UI/slider';
 import { Switch } from '../UI/switch';
 import { Breadcrumbs } from '../UI/breadcrumbs';
@@ -212,27 +211,6 @@ export default function ComponentShowcase() {
     <>
       {/* Keep your existing helper styles exactly as-is */}
       <style>{`
-        .text-gradient-primary {
-          background: linear-gradient(to right, var(--ifm-color-primary-light), var(--ifm-color-primary-dark));
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        @keyframes glow-pulse {
-          0%, 100% { box-shadow: 0 0 10px var(--ifm-color-primary-light); }
-          50% { box-shadow: 0 0 20px var(--ifm-color-primary); }
-        }
-        .animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
-        @keyframes rotate-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        .animate-rotate-slow { animation: rotate-slow 20s linear infinite; }
-        .showcase-glow { box-shadow: 0 0 30px var(--ifm-color-primary-lightest); }
         .bg-gradient-showcase {
           background: linear-gradient(to right, var(--ifm-color-primary-light), var(--ifm-color-primary));
         }
@@ -317,7 +295,7 @@ export default function ComponentShowcase() {
             {/* Desktop Component List - spacing only (space-y-4, p-6, rounded-2xl) */}
             <div className="hidden lg:block order-1 lg:order-2 space-y-4">
               {demoComponents.map((component, index) => (
-                <Card
+                <div
                   key={component.id}
                   className={cn(
                     'cursor-pointer transition-all duration-500 rounded-2xl',
@@ -327,7 +305,7 @@ export default function ComponentShowcase() {
                   )}
                   onClick={() => setActiveDemo(index)}
                 >
-                  <CardContent className="p-6">
+                  <div className="p-6">
                     <div className="flex items-center gap-4">
                       <div
                         className={cn(
@@ -359,8 +337,8 @@ export default function ComponentShowcase() {
                         <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
