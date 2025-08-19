@@ -1,5 +1,11 @@
 # @mindfiredigital/ignix-ui
 
+## 1.0.4
+
+### Patch Changes
+
+- remove changeset.yml and keep release.yml
+
 ## 1.0.3
 
 ### Patch Changes
