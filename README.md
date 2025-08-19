@@ -73,7 +73,7 @@ ignix-ui/
 │   ├── registry/           # Component registry
 │   │   ├── src/           # Component source code
 │   │   ├── styles/        # Base styles and themes
-│   │   └── tests/         # Component tests
+│   │
 │   │
 │   └── tsconfig/          # Shared TypeScript configs
 │
