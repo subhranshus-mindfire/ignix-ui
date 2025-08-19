@@ -26,34 +26,6 @@ export function WhyIgnixSection() {
         }}
       />
 
-      {/* Animated floating elements */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '10%',
-          left: '5%',
-          width: '6px',
-          height: '6px',
-          borderRadius: '50%',
-          background: 'var(--primary)',
-          opacity: 0.4,
-          animation: 'float1 6s ease-in-out infinite',
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          top: '20%',
-          right: '8%',
-          width: '4px',
-          height: '4px',
-          borderRadius: '50%',
-          background: 'var(--secondary)',
-          opacity: 0.3,
-          animation: 'float2 8s ease-in-out infinite',
-        }}
-      />
-
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
         {/* Enhanced Header */}
         <header style={{ textAlign: 'center', maxWidth: '768px', margin: '0 auto 3.5rem auto' }}>
@@ -211,9 +183,7 @@ function FeatureCard({
       style={{
         position: 'relative',
         borderRadius: '1.5rem',
-        border: '1px solid color-mix(in oklab, var(--foreground) 8%, transparent)',
         background: 'color-mix(in oklab, var(--background) 95%, transparent)',
-        backdropFilter: 'blur(10px)',
         padding: '2rem',
         boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
         transition: 'all 0.4s ease',
