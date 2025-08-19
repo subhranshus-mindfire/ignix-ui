@@ -128,16 +128,6 @@ export function WhyIgnixSection() {
                 transition: 'all 0.3s ease',
                 boxShadow: '0 4px 20px color-mix(in oklab, var(--primary) 25%, transparent)',
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow =
-                  '0 8px 30px color-mix(in oklab, var(--primary) 35%, transparent)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow =
-                  '0 4px 20px color-mix(in oklab, var(--primary) 25%, transparent)';
-              }}
             >
               Explore Components
               <ArrowUpRight style={{ width: '16px', height: '16px' }} />
@@ -187,19 +177,7 @@ function FeatureCard({
         padding: '2rem',
         boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
         transition: 'all 0.4s ease',
-        cursor: 'pointer',
         overflow: 'hidden',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-8px)';
-        e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.12)';
-        e.currentTarget.style.borderColor = 'color-mix(in oklab, var(--primary) 25%, transparent)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.05)';
-        e.currentTarget.style.borderColor =
-          'color-mix(in oklab, var(--foreground) 8%, transparent)';
       }}
     >
       {/* Background gradient overlay */}
