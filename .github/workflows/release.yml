@@ -39,6 +39,16 @@ jobs:
       - name: Generate Changeset from commit messages
         run: pnpm changeset:autogenerate
 
+      - name: Commit changeset files if present
+        run: |
+          if [ -d ".changeset" ] && [ "$(ls -A .changeset/*.md 2>/dev/null | wc -l)" -gt 0 ]; then
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add .changeset/*.md
+            git commit -m "ci: autogen changeset [skip ci]" || echo "No changes to commit"
+            git push origin HEAD:main
+          fi
+
       - name: Check for changeset files
         id: changeset-check
         run: |
