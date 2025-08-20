@@ -32,6 +32,14 @@
         "components/toast",
         "components/tooltip"
       ]
+    },
+    {
+      "type": "category",
+      "label": "Contribution Guide",
+      "items": [
+        "contribution-guide/how-to-contribute",
+        "contribution-guide/code-of-conduct"
+      ]
     }
   ]
 }
