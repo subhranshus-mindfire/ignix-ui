@@ -1,5 +1,11 @@
 # @mindfiredigital/ignix-ui
 
+## 1.0.7
+
+### Patch Changes
+
+- [#145](https://github.com/mindfiredigital/ignix-ui/pull/145) [`75a4634`](https://github.com/mindfiredigital/ignix-ui/commit/75a4634b820dfadf963f5330d88bbdb0c1c07951) Thanks [@jyotiprakashmfsi](https://github.com/jyotiprakashmfsi)! - update cicd files
+
 ## 1.0.6
 
 ### Patch Changes
