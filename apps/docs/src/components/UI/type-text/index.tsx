@@ -86,7 +86,7 @@ const TextType = ({
         duration: cursorBlinkDuration,
         repeat: -1,
         yoyo: true,
-        ease: 'power2.inOut',
+        ease: 'power5.inOut',
       });
     }
   }, [showCursor, cursorBlinkDuration]);
