@@ -1,6 +1,6 @@
 /**
  * Service responsible for managing package dependencies
- * Handles installation across multiple package managers (npm, yarn, pnpm, bun)
+ * Handles installation across multiple package managers (npm, yarn, pnpm)
  */
 import { execSync } from 'child_process';
 import { getPackageManager } from '../utils/getPackageManager';
