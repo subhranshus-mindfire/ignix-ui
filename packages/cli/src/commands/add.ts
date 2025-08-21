@@ -67,7 +67,7 @@ export class AddCommand {
     } catch (error) {
       spinner.fail();
 
-      // Track failure
+      // Track failures
       await telemetry.trackEvent('add_command_error', {
         error: error instanceof Error ? error.message : 'Unknown error',
       });
