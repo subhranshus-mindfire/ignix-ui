@@ -1,5 +1,11 @@
 # @mindfiredigital/ignix-ui
 
+## 1.0.8
+
+### Patch Changes
+
+- [#157](https://github.com/mindfiredigital/ignix-ui/pull/157) [`abad979`](https://github.com/mindfiredigital/ignix-ui/commit/abad97948adf7725278f1d4be685f93c0eb896e1) Thanks [@jyotiprakashmfsi](https://github.com/jyotiprakashmfsi)! - update components with theming and improved animations
+
 ## 1.0.7
 
 ### Patch Changes
