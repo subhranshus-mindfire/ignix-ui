@@ -6,6 +6,7 @@ export function WhyIgnixSection() {
   return (
     <section
       aria-labelledby="why-ignix-title"
+      className='bg-primary/5'
       style={{
         position: 'relative',
         width: '100%',
@@ -64,12 +65,11 @@ export function WhyIgnixSection() {
 
           <p
             style={{
-              marginTop: '1.5rem',
               fontSize: '1.125rem',
               lineHeight: '1.75rem',
               color: 'var(--muted-foreground)',
               maxWidth: '600px',
-              margin: '1.5rem auto 0',
+              margin: '0 auto 0',
             }}
           >
             Every component is crafted with performance, accessibility, and developer experience in
@@ -90,21 +90,21 @@ export function WhyIgnixSection() {
           <FeatureCard
             icon={<Zap style={{ width: '20px', height: '20px', color: 'var(--primary)' }} />}
             title="100+ Components"
-            desc="From basic buttons to complex data tables. Every component you need to build modern applications, with infinite customization possibilities."
+            desc="Explore a vast collection of components, from buttons to data tables, designed for modern applications with endless customization options."
             gradient="linear-gradient(135deg, color-mix(in oklab, var(--primary) 8%, transparent), transparent)"
           />
 
           <FeatureCard
             icon={<Paintbrush style={{ width: '20px', height: '20px', color: 'var(--primary)' }} />}
             title="Custom Theming"
-            desc="Fully themeable components that adapt to your brand. No design debt, just beautiful UIs that scale with your vision."
+            desc="Our fully themeable components adapt seamlessly to your brand, eliminating design debt and ensuring your UIs scale with your vision."
             gradient="linear-gradient(135deg, color-mix(in oklab, var(--primary) 8%, transparent), transparent)"
           />
 
           <FeatureCard
             icon={<Layers style={{ width: '20px', height: '20px', color: 'var(--primary)' }} />}
             title="Domain-Specific Kits"
-            desc="Specialized component kits for healthcare, fintech, and more. Launch faster with industry-specific UI patterns."
+            desc="Launch faster with specialized component kits for industries like healthcare and fintech, providing ready-to-use, domain-specific UI patterns."
             gradient="linear-gradient(135deg, color-mix(in oklab, var(--primary) 8%, transparent), transparent)"
           />
         </div>

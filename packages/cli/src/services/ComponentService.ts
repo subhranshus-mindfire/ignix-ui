@@ -105,7 +105,7 @@ export class ComponentService {
       for (const [, fileInfo] of Object.entries(component.files)) {
         if (!fileInfo.content) {
           throw new CLIError(`Missing content for file: ${fileInfo.path}`, 'INVALID_COMPONENT', [
-            'Try updating the CLI to the latest version',
+            'Try updating CLI to the latest version',
           ]);
         }
 
