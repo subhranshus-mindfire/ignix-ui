@@ -1,274 +1,219 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import { motion } from 'framer-motion';
-
 import styles from './index.module.css';
 import { ArrowRight, Check, Code, Copy, Github } from 'lucide-react';
 import '../../css/custom.css';
 import { Button } from '../UI/button';
-import { AuroraText } from '../UI/aurora-text';
-import GradientText from '../UI/gradient-text';
 import { ShineBorder } from '../UI/shine-border';
 import TextType from '../UI/type-text';
 import LightVeil from '../UI/darkveil/lightveil';
 import DarkVeil from '../UI/darkveil';
 
 const getTheme = (): string => {
-  if (typeof window === 'undefined') {
-    return 'dark';
-  }
+  if (typeof window === 'undefined') return 'dark';
   return document.documentElement.getAttribute('data-theme') || 'dark';
 };
 
 export function HeroSection() {
   const [theme, setTheme] = useState(() => getTheme());
+  const spotlightRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const observer = new MutationObserver(() => {
-      setTheme(getTheme());
-    });
-
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme'],
-    });
-
+    const observer = new MutationObserver(() => setTheme(getTheme()));
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     return () => observer.disconnect();
   }, []);
+
+  // Parallax spotlight
+  useEffect(() => {
+    const handle = (e: MouseEvent) => {
+      if (!spotlightRef.current) return;
+      // subtle movement
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 14;
+      spotlightRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    };
+
+    // Respect reduced motion
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!mq.matches) window.addEventListener('mousemove', handle);
+    return () => window.removeEventListener('mousemove', handle);
+  }, []);
+
   return (
-    <section>
-      <div style={{ position: 'relative', overflow: 'hidden' }}>
-        <div
-          className="display-component-display"
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: 0,
-            pointerEvents: 'none',
-          }}
-        >
-          {theme === 'light' ? (
-            <div
-              className="display-component-display"
-              style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                zIndex: 0,
-              }}
-            >
-              <LightVeil speed={0.6} hueShift={50} warpAmount={1.4} />
-            </div>
-          ) : (
-            <div
-              className="display-component-display"
-              style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                zIndex: 0,
-              }}
-            >
-              <DarkVeil speed={0.6} hueShift={234} warpAmount={1.4} />
-            </div>
-          )}
-        </div>
-        <header className={clsx(styles.heroBanner, 'flex items-center mb-32 mt-8')}>
-          <div className={clsx(styles.heroContent, 'w-full relative overflow-hidden')}>
-            <section className="relative">
-              <div className="relative z-10 max-w-7xl mx-auto">
-                {/* Logo and Title */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  <div className="group inline-flex items-end hover:gap-1 transition-all duration-300 mb-8 gap-2">
-                    <div className="relative rounded-2xl group-hover:scale-105 transition-all duration-300">
-                      <img
-                        src="img/logo.png"
-                        alt="Ignix UI"
-                        width={32}
-                        height={32}
-                        className="group-hover:scale-110 transition-transform duration-300"
-                      />
-                    </div>
-                    <div className={clsx(styles.heroTitle, 'text-5xl md:text-6xl font-bold')}>
-                      <AuroraText colors={['#f7777f', '#f01622', '#e30613']}>Ignix UI</AuroraText>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Tagline */}
-                <motion.div
-                  className="mx-auto mb-8 text-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                >
-                  <span className="text-4xl md:text-5xl font-bold space-y-4">
-                    <span className="">Ship Your Vision, Not Your</span>
-                    <span className="text-primary">
-                      <TextType
-                        text={['Components', 'Templates', 'Boilerplate', 'Headaches']}
-                        typingSpeed={90}
-                        pauseDuration={1500}
-                        showCursor={true}
-                        cursorBlinkDuration={0.5}
-                        className="mx-2"
-                        cursorCharacter="|"
-                      />
-                    </span>
-                  </span>
-                  <div className="text-xl md:text-2xl text-center font-medium whitespace-nowrap overflow-hidden mt-2">
-                    <span className="inline-flex flex-wrap justify-center items-baseline">
-                      <span>Build stunning UIs </span>
-                      <GradientText
-                        colors={['#f7777f', '#f33a45', '#f01622', '#e30613']}
-                        animationSpeed={6}
-                        showBorder={false}
-                        className="mx-1.5"
-                      >
-                        faster
-                      </GradientText>
-                      <span>with our powerful & versatile components library.</span>
-                    </span>
-                  </div>
-                </motion.div>
-
-                {/* CTA Buttons */}
-                <motion.div
-                  className="flex flex-wrap justify-center gap-4 mb-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
-                >
-                  <Link to="/docs/introduction">
-                    <Button
-                      size="xl"
-                      className="px-8 py-3 transition-all duration-300 bg-[linear-gradient(90deg,_var(--primary)_0%,_color-mix(in_oklab,_var(--primary)_55%,_transparent)_100%)]
-                  shadow-[0_0_0_1px_color-mix(in_oklab,_var(--primary-foreground)_15%,_transparent),0_8px_24px_color-mix(in_oklab,_var(--primary)_30%,_transparent)]
-                  hover:shadow-[0_0_0_1px_color-mix(in_oklab,_var(--primary-foreground)_25%,_transparent),0_12px_36px_color-mix(in_oklab,_var(--primary)_42%,_transparent)]
-                  transition-all duration-300 ease-out
-                  hover:scale-[1.03] active:scale-95
-                  relative overflow-hidden
-                  before:absolute before:inset-0
-                  before:bg-[linear-gradient(90deg,_transparent,_rgba(255,255,255,0.16),_transparent)]
-                  before:translate-x-[-120%] hover:before:translate-x-[120%] before:transition-transform before:duration-700"
-                    >
-                      Get Started
-                      <ArrowRight className="ml-2 h-5 w-5" strokeWidth={2.5} />
-                    </Button>
-                  </Link>
-
-                  <Link to="https://github.com/mindfiredigital/ignix-ui">
-                    <Button
-                      variant="outline"
-                      size="xl"
-                      className="px-8 py-3 border-2 transition-colors duration-300"
-                    >
-                      <Github className="mr-2 h-5 w-5" strokeWidth={2.5} />
-                      GitHub
-                    </Button>
-                  </Link>
-                </motion.div>
-
-                {/* Quick Stats */}
-                <motion.div
-                  className="flex flex-wrap justify-center gap-2 sm:gap-6 mb-6 mt-14"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                >
-                  <div className="p-2 px-4 flex items-center gap-3 rounded-full backdrop-blur-sm">
-                    <ShineBorder
-                      shineColor="var(--primary)"
-                      className="rounded-full"
-                      borderWidth={1}
-                      duration={8}
-                    />
-                    <CopyButton
-                      text="npm i @mindfiredigital/ignix-ui"
-                      style={{
-                        padding: '0.375rem',
-                        borderRadius: '0.375rem',
-                        border: '1px solid color-mix(in oklab, var(--primary) 20%, transparent)',
-                        background: 'color-mix(in oklab, var(--primary) 8%, transparent)',
-                        color: 'var(--primary)',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    />
-
-                    <span className="text-lg font-mono">npm i @mindfiredigital/ignix-ui</span>
-                  </div>
-                  <div className="flex items-center gap-3 p-2 px-4 rounded-full backdrop-blur-sm">
-                    <ShineBorder
-                      shineColor="var(--primary)"
-                      className="rounded-full"
-                      borderWidth={1}
-                      duration={8}
-                    />
-                    <Code className="h-5 w-5 text-orange-500" />
-                    <span className="text-lg font-mono">typescript ready</span>
-                  </div>
-                </motion.div>
-              </div>
-            </section>
+    <section aria-label="Hero" className="relative overflow-hidden">
+      {/* Background veil (already in your code) */}
+      <div
+        className="display-component-display fixed inset-0 pointer-events-none -z-10"
+        aria-hidden
+      >
+        {theme === 'light' ? (
+          <div className="fixed inset-0">
+            <LightVeil speed={0.6} hueShift={50} warpAmount={1.4} />
           </div>
-        </header>
+        ) : (
+          <div className="fixed inset-0">
+            <DarkVeil speed={0.6} hueShift={234} warpAmount={1.4} />
+          </div>
+        )}
+        {/* Spotlight + noise overlay */}
+        <div
+          ref={spotlightRef}
+          className="hero-spotlight -z-20"
+          aria-hidden
+          style={{ willChange: 'transform' }}
+        />
+        <div className="hero-noise -z-10" aria-hidden />
       </div>
+
+      <header className={clsx(styles.heroBanner, 'flex items-center justify-center py-24')}>
+        <div className={clsx(styles.heroContent, 'w-full relative z-10')}>
+          <div className="max-w-7xl mx-auto px-6 text-center md:text-left">
+            {/* avatars + count */}
+            <motion.div
+              className="flex items-center justify-center gap-3 mb-6"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+            >
+              <div className="flex -space-x-3">
+                {[{ id: '1', mood: 'happy' }, { id: '2', mood: 'shades' }, { id: '3', mood: 'laughing' }].map((u, i) => (
+                  <div
+                    key={u.id}
+                    className="w-8 h-8 rounded-full overflow-hidden border-2 border-background"
+                    style={{ zIndex: 5 - i }}
+                  >
+                    <img
+                      src={`https://api.dicebear.com/7.x/adventurer/svg?seed=${u.id}&flip=true&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&mood=${u.mood}`}
+                      alt=""
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                      width={32}
+                      height={32}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="text-sm text-muted-foreground">
+                <span className="font-medium text-foreground">1k+</span> happy developers
+              </div>
+            </motion.div>
+
+            {/* headline */}
+            <motion.div
+              className="mx-auto mb-6 text-center"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <h1
+                className="hero-h1 font-extrabold leading-tight tracking-tight"
+                style={{ lineHeight: 0.95 }}
+              >
+                <span className="block">Ship Your Vision,</span>
+                <span className="block">
+                  Not Your{' '}
+                  <span className="gradient-anim emphasis inline-block">
+                    <TextType
+                      text={['Components', 'Templates', 'Boilerplate', 'Headaches']}
+                      typingSpeed={85}
+                      pauseDuration={1400}
+                      showCursor={true}
+                      cursorCharacter="|"
+                      className="inline"
+                    />
+                  </span>
+                </span>
+              </h1>
+
+              <span className="mt-4 max-w-3xl text-lg md:text-xl text-foreground mx-auto text-center">
+                Build stunning UIs <span className="text-primary font-semibold">faster</span> with our powerful &amp; versatile components library.
+              </span>
+            </motion.div>
+
+            {/* CTAs */}
+            <motion.div
+              className="flex flex-wrap justify-center gap-4 mt-8"
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.75 }}
+            >
+              <Link to="/docs/introduction" aria-label="Get started - Documentation">
+                <Button
+                  size="xl"
+                  className="btn-primary px-8 py-3 rounded-2xl focus-visible:ring focus-visible:ring-primary/40"
+                >
+                  Get Started <ArrowRight className="ml-2 h-5 w-5" strokeWidth={2.5} />
+                </Button>
+              </Link>
+
+              <Link to="https://github.com/mindfiredigital/ignix-ui" aria-label="View on GitHub">
+                <Button
+                  variant="outline"
+                  size="xl"
+                  className="btn-glass px-8 py-3 rounded-2xl focus-visible:ring focus-visible:ring-primary/20"
+                >
+                  <Github className="mr-2 h-5 w-5" strokeWidth={2.5} /> GitHub
+                </Button>
+              </Link>
+            </motion.div>
+
+            {/* quick info / pills */}
+            <motion.div
+              className="flex flex-wrap justify-center gap-3 mt-10"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.95 }}
+            >
+              <div className="code-pill inline-flex items-center gap-3 px-4 py-2 rounded-full backdrop-blur-sm min-w-[280px] max-w-full overflow-hidden">
+                <ShineBorder shineColor="var(--primary)" className="rounded-full" borderWidth={1} duration={8} />
+                <CopyButton text="npm i @mindfiredigital/ignix-ui"/>
+                <span className="text-mono ml-1 truncate">npm i @mindfiredigital/ignix-ui</span>
+              </div>
+
+              <div className="code-pill inline-flex items-center gap-3 px-4 py-2 rounded-full backdrop-blur-sm">
+                <ShineBorder shineColor="var(--primary)" className="rounded-full" borderWidth={1} duration={8} />
+                <Code className="h-5 w-5 text-orange-500" />
+                <span className="text-mono">typescript ready</span>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </header>
     </section>
   );
 }
 
-function CopyButton({ text, style }) {
+/* CopyButton improved: uses state and accessible attributes */
+function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    if (!copied) return;
+    const t = setTimeout(() => setCopied(false), 2000);
+    return () => clearTimeout(t);
+  }, [copied]);
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy text: ', err);
+    } catch {
+      // fallback: select + execCommand could be added if needed
+      setCopied(false);
     }
   };
 
   return (
     <button
       onClick={handleCopy}
-      style={style}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.background = 'color-mix(in oklab, var(--primary) 12%, transparent)';
-        e.currentTarget.style.borderColor = 'color-mix(in oklab, var(--primary) 30%, transparent)';
-        e.currentTarget.style.transform = 'scale(1.05)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = 'color-mix(in oklab, var(--primary) 8%, transparent)';
-        e.currentTarget.style.borderColor = 'color-mix(in oklab, var(--primary) 20%, transparent)';
-        e.currentTarget.style.transform = 'scale(1)';
-      }}
-      aria-label={copied ? 'Copied to clipboard' : 'Copy to clipboard'}
-      title={copied ? 'Copied!' : 'Copy command'}
+      className={clsx('copy-btn inline-flex items-center justify-center rounded px-2 py-1', copied && 'copied')}
+      aria-pressed={copied}
+      aria-label={copied ? 'Copied' : 'Copy install command'}
+      title={copied ? 'Copied!' : 'Copy'}
     >
-      {copied ? (
-        <Check style={{ width: '16px', height: '16px' }} />
-      ) : (
-        <Copy style={{ width: '16px', height: '16px' }} />
-      )}
+      {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
     </button>
   );
 }

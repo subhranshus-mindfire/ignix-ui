@@ -10,11 +10,8 @@ import { CTASection } from '../components/Homepage/cta';
 import FeaturedComponents from '@site/src/components/Homepage/components-showcase';
 import { WhyIgnixSection } from '../components/Homepage/why-ignix';
 import Footer from '../components/Homepage/footer';
-// import LazyLoadSection from '../utils/LazyLoadSection';
-// import ComponentShowcaseGrid from '../components/Homepage/components-showcase-1';
 
 export default function Home(): ReactElement {
-  // const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
       title={`Home`}
@@ -24,9 +21,8 @@ export default function Home(): ReactElement {
 
         {/* Content */}
         <div style={{ position: 'relative', zIndex: 1 }}>
-          {/* <HomepageHeader /> */}
           <HeroSection />
-          <section className="relative rounded-t-3xl border border-border/60 backdrop-blur p-4 overflow-hidden
+          <section className="relative rounded-t-3xl border border-border/60 backdrop-blur overflow-hidden
         bg-[linear-gradient(to_bottom_right,_color-mix(in_oklab,var(--background),_transparent_30%),_color-mix(in_oklab,var(--background),_transparent_10%))]
         after:bg-[radial-gradient(1200px_600px_at_50%_40%,_transparent_35%,_rgba(0,0,0,0.08)_85%)]
         after:opacity-60
@@ -36,18 +32,12 @@ export default function Home(): ReactElement {
       "
 
           >
-          {/* <LazyLoadSection> */}
           <FeaturedComponents />
-          {/* </LazyLoadSection> */}
-          {/* <LazyLoadSection>
-          <ComponentShowcaseGrid />
-          </LazyLoadSection> */}
           <WhyIgnixSection />
           <CTASection />
           <Footer />
           </section>
           </div>
-        {/* </div> */}
       </ToastProvider>
     </Layout>
   );
