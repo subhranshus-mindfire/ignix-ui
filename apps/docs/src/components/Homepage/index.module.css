@@ -59,9 +59,6 @@
 }
 
 @media (max-width: 768px) {
-  .heroBanner {
-    padding: 1rem;
-  }
   .heroTitle {
     font-size: 3.5rem;
   }
