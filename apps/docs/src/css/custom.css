@@ -72,6 +72,7 @@
 }
 
 [data-theme='dark'] {
+  --ifm-background-color: #000000;
   --ifm-color-primary: #ff0000;
   --ifm-color-primary-dark: #e7333e;
   --ifm-color-primary-darker: #c92b34;
@@ -79,7 +80,6 @@
   --ifm-color-primary-light: #ff5a64;
   --ifm-color-primary-lighter: #ff8087;
   --ifm-color-primary-lightest: #ffb3b7;
-  --ifm-background-color: #000000;
   --radius: 0.625rem;
   --background: var(--ifm-background-color, #000000);
   --foreground: var(--ifm-font-color-base, #ffffff);
@@ -142,6 +142,10 @@
   /* cyan-600 */
   --info-foreground: #ffffff;
 }
+
+/* html[data-theme='dark'] {
+  --ifm-background-color: #000000;
+} */
 
 @theme inline {
   --color-primary: var(--primary);
@@ -458,4 +462,59 @@ h1 {
 /* respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .gradient-anim, .hero-spotlight { animation: none !important; transition: none !important; }
+}
+
+
+/* Keyframes for all animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+
+/* Applying the animations to the component's elements */
+
+.glass-card {
+  position: relative;
+  width: 96px; /* w-24 */
+  height: 96px; /* h-24 */
+  margin: auto;
+}
+
+.glass-card-floater {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glass-card-logo {
+  width: 32px; /* w-8 */
+  height: 100%;
+}
+
+/* Hover effect for the logo */
+.glass-card:hover .glass-card-logo {
+  transform: scale(1.1);
+}
+
+.glass-card-surface {
+  position: absolute;
+  inset: 0;
 }

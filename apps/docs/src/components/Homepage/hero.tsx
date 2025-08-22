@@ -10,6 +10,7 @@ import { ShineBorder } from '../UI/shine-border';
 import TextType from '../UI/type-text';
 import LightVeil from '../UI/darkveil/lightveil';
 import DarkVeil from '../UI/darkveil';
+import { AuroraText } from '../UI/aurora-text';
 
 const getTheme = (): string => {
   if (typeof window === 'undefined') return 'dark';
@@ -22,7 +23,10 @@ export function HeroSection() {
 
   useEffect(() => {
     const observer = new MutationObserver(() => setTheme(getTheme()));
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
     return () => observer.disconnect();
   }, []);
 
@@ -30,7 +34,6 @@ export function HeroSection() {
   useEffect(() => {
     const handle = (e: MouseEvent) => {
       if (!spotlightRef.current) return;
-      // subtle movement
       const x = (e.clientX / window.innerWidth - 0.5) * 20;
       const y = (e.clientY / window.innerHeight - 0.5) * 14;
       spotlightRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
@@ -71,37 +74,9 @@ export function HeroSection() {
       <header className={clsx(styles.heroBanner, 'flex items-center justify-center py-24')}>
         <div className={clsx(styles.heroContent, 'w-full relative z-10')}>
           <div className="max-w-7xl mx-auto px-6 text-center md:text-left">
-            {/* avatars + count */}
-            <motion.div
-              className="flex items-center justify-center gap-3 mb-6"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-            >
-              <div className="flex -space-x-3">
-                {[{ id: '1', mood: 'happy' }, { id: '2', mood: 'shades' }, { id: '3', mood: 'laughing' }].map((u, i) => (
-                  <div
-                    key={u.id}
-                    className="w-8 h-8 rounded-full overflow-hidden border-2 border-background"
-                    style={{ zIndex: 5 - i }}
-                  >
-                    <img
-                      src={`https://api.dicebear.com/7.x/adventurer/svg?seed=${u.id}&flip=true&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&mood=${u.mood}`}
-                      alt=""
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                      width={32}
-                      height={32}
-                    />
-                  </div>
-                ))}
-              </div>
-              <div className="text-sm text-muted-foreground">
-                <span className="font-medium text-foreground">1k+</span> happy developers
-              </div>
-            </motion.div>
-
             {/* headline */}
+            {/* <GlassCard /> */}
+            <GlassText />
             <motion.div
               className="mx-auto mb-6 text-center"
               initial={{ opacity: 0, y: 16 }}
@@ -129,7 +104,8 @@ export function HeroSection() {
               </h1>
 
               <span className="mt-4 max-w-3xl text-lg md:text-xl text-foreground mx-auto text-center">
-                Build stunning UIs <span className="text-primary font-semibold">faster</span> with our powerful &amp; versatile components library.
+                Build stunning UIs <span className="text-primary font-semibold">faster</span> with
+                our powerful &amp; versatile components library.
               </span>
             </motion.div>
 
@@ -168,13 +144,23 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.95 }}
             >
               <div className="code-pill inline-flex items-center gap-3 px-4 py-2 rounded-full backdrop-blur-sm min-w-[280px] max-w-full overflow-hidden">
-                <ShineBorder shineColor="var(--primary)" className="rounded-full" borderWidth={1} duration={8} />
-                <CopyButton text="npm i @mindfiredigital/ignix-ui"/>
+                <ShineBorder
+                  shineColor="var(--primary)"
+                  className="rounded-full"
+                  borderWidth={1}
+                  duration={8}
+                />
+                <CopyButton text="npm i @mindfiredigital/ignix-ui" />
                 <span className="text-mono ml-1 truncate">npm i @mindfiredigital/ignix-ui</span>
               </div>
 
               <div className="code-pill inline-flex items-center gap-3 px-4 py-2 rounded-full backdrop-blur-sm">
-                <ShineBorder shineColor="var(--primary)" className="rounded-full" borderWidth={1} duration={8} />
+                <ShineBorder
+                  shineColor="var(--primary)"
+                  className="rounded-full"
+                  borderWidth={1}
+                  duration={8}
+                />
                 <Code className="h-5 w-5 text-orange-500" />
                 <span className="text-mono">typescript ready</span>
               </div>
@@ -200,7 +186,6 @@ function CopyButton({ text }: { text: string }) {
       await navigator.clipboard.writeText(text);
       setCopied(true);
     } catch {
-      // fallback: select + execCommand could be added if needed
       setCopied(false);
     }
   };
@@ -208,12 +193,82 @@ function CopyButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      className={clsx('copy-btn inline-flex items-center justify-center rounded px-2 py-1', copied && 'copied')}
+      className={clsx(
+        'copy-btn inline-flex items-center justify-center rounded px-2 py-1',
+        copied && 'copied'
+      )}
       aria-pressed={copied}
       aria-label={copied ? 'Copied' : 'Copy install command'}
       title={copied ? 'Copied!' : 'Copy'}
     >
       {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
     </button>
+  );
+}
+
+// Animation variants for cleaner code
+const cardAnimation = {
+  initial: {
+    opacity: 0,
+    y: 16,
+  },
+  animate: {
+    opacity: 1,
+    y: [0, -8, 0],
+    transition: {
+      y: {
+        duration: 4,
+        repeat: Infinity,
+        ease: 'easeInOut',
+      },
+    },
+  },
+};
+
+const logoAnimation = {
+  animate: {
+    y: [0, 6, 0],
+    transition: {
+      duration: 3.5,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    },
+  },
+};
+
+function GlassText() {
+  return (
+    <div className="relative flex justify-center items-center">
+      <motion.div
+        className="text-4xl font-bold text-center relative z-0"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.2 }}
+      >
+        <AuroraText colors={['#f7777f', '#f01622', '#e30613']}>Ignix UI</AuroraText>
+      </motion.div>
+    </div>
+  );
+}
+
+export function GlassCard() {
+  return (
+    <motion.div
+      className="relative w-18 h-18 mx-auto rounded-2xl border border-border/50 bg-background/10 backdrop-blur-sm shadow-lg"
+      variants={cardAnimation}
+      initial="initial"
+      animate="animate"
+    >
+      <div className="absolute inset-0 flex items-center justify-center">
+        <motion.img
+          src="img/logo.png"
+          alt="Mindfire logo"
+          className="w-6 h-full object-contain"
+          variants={logoAnimation}
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 0.3 }}
+        />
+      </div>
+    </motion.div>
   );
 }
