@@ -53,7 +53,7 @@ jobs:
         id: changeset-check
         run: |
           if [ -d ".changeset" ] && [ "$(ls -A .changeset/*.md 2>/dev/null | wc -l)" -gt 0 ]; then
-            echo "changesets=true" >> $GITHUB_OUTPUT
+            echo "chanchangeloggesets=true" >> $GITHUB_OUTPUT
             echo "Found changeset files:"
             ls -la .changeset/*.md
           else
@@ -61,14 +61,15 @@ jobs:
             echo "No changeset files found"
           fi
 
-      - name: Create Release and Publish to npm
+      - name: Create Release Pull Request or Publish to npm
         if: steps.changeset-check.outputs.changesets == 'true'
         id: changesets
         uses: changesets/action@v1.4.1
         with:
+          commit: 'chore(release): version packages'
+          title: 'chore(release): version packages'
           version: node .github/changeset-version.js
-          commit: "chore(release): version packages"
-          publish: "npx changeset publish"
+          publish: npx changeset publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
