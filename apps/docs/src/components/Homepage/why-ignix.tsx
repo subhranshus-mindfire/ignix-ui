@@ -29,7 +29,7 @@ export function WhyIgnixSection() {
 
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
         {/* Enhanced Header */}
-        <header style={{ textAlign: 'center', maxWidth: '768px', margin: '0 auto 3.5rem auto' }}>
+        <header style={{ textAlign: 'center', maxWidth: '868px', margin: '0 auto 3.5rem auto' }}>
           <div
             style={{
               display: 'inline-flex',
