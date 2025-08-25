@@ -36,33 +36,15 @@ jobs:
       - name: 'Build application'
         run: pnpm turbo run build
 
+      - name: 'Set Git user name and email'
+        run: |
+          git config --local user.email "github-actions@github.com"
+          git config --local user.name "GitHub Actions"
+
       - name: Generate Changeset from commit messages
         run: pnpm changeset:autogenerate
 
-      - name: Commit changeset files if present
-        run: |
-          if [ -d ".changeset" ] && [ "$(ls -A .changeset/*.md 2>/dev/null | wc -l)" -gt 0 ]; then
-            git config --local user.email "github-actions@github.com"
-            git config --local user.name "GitHub Actions"
-            git add .changeset/*.md
-            git commit -m "fix(cli): autogen changeset" || echo "No changes to commit"
-            git push origin HEAD:main
-          fi
-
-      - name: Check for changeset files
-        id: changeset-check
-        run: |
-          if [ -d ".changeset" ] && [ "$(ls -A .changeset/*.md 2>/dev/null | wc -l)" -gt 0 ]; then
-            echo "chanchangeloggesets=true" >> $GITHUB_OUTPUT
-            echo "Found changeset files:"
-            ls -la .changeset/*.md
-          else
-            echo "changesets=false" >> $GITHUB_OUTPUT
-            echo "No changeset files found"
-          fi
-
       - name: Create Release Pull Request or Publish to npm
-        if: steps.changeset-check.outputs.changesets == 'true'
         id: changesets
         uses: changesets/action@v1.4.1
         with:
@@ -73,8 +55,3 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Skip release
-        if: steps.changeset-check.outputs.changesets == 'false'
-        run: |
-          echo "No changeset files found. Skipping release."
