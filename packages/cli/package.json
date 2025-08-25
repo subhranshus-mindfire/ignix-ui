@@ -1,6 +1,7 @@
 {
   "name": "@mindfiredigital/ignix-ui",
-  "version": "1.0.1",
+  "version": "1.0.0",
+  "private": false,
   "description": "CLI tool for Ignix UI component library",
   "type": "commonjs",
   "main": "./dist/index.js",
