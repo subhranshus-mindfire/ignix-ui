@@ -1,5 +1,5 @@
 {
-  "name": "@mindfiredigital/ignix-ui",
+  "name": "ignix-ui",
   "private": true,
   "workspaces": [
     "packages/*"
