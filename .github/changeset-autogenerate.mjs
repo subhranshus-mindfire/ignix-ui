@@ -16,7 +16,6 @@ const validScopes = [
 ];
 
 // Define regex patterns
-// Define regex patterns
 const commitPatterns = {
   major: /^BREAKING CHANGE: (.+)/,
   minor: /^feat\(([^)]+)\): (.+)/,

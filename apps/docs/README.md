@@ -10,7 +10,7 @@ This package contains the documentation website for Ignix UI, providing:
 - Usage examples
 - Development guides
 - Interactive playground
-- Theme customization guides
+- Theme customization guide
 - Animation system documentation
 
 ## Structure
