@@ -184,7 +184,7 @@ pnpm format           # Run Prettier
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
 3. Make your changes
 4. Run tests (`pnpm test`)
-5. Commit with conventional commits (`git commit -m 'feat: Add amazing feature'`)
+5. Commit with conventional commits (`git commit -m 'feat(release): Add amazing feature'`)
 6. Push to your branch (`git push origin feature/AmazingFeature`)
 7. Open a Pull Request
 
