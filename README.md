@@ -75,7 +75,7 @@ ignix-ui/
 │   │   ├── styles/        # Base styles and themes
 │   │
 │   │
-│   └── tsconfig/          # Shared TypeScript configs
+│   └── tsconfig/          # Shared TypeScript config
 │
 ├── scripts/               # Build and maintenance scripts
 ├── .changeset/           # Changesets for versioning
