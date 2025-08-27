@@ -35,6 +35,13 @@
     },
     {
       "type": "category",
+      "label": "Layouts",
+      "items": [
+        "components/box"
+      ]
+    },
+    {
+      "type": "category",
       "label": "Contribution Guide",
       "items": [
         "contribution-guide/how-to-contribute",
