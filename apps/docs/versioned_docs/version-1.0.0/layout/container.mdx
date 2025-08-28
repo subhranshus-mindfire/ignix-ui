@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 
 The Container component is a flexible layout component that constrains content width, adds consistent padding, and handles responsive behavior. It's perfect for creating readable content areas with proper spacing.
 
-## Interactive Demo
+## Preview
 
 Try out the Container component with different settings:
 
@@ -20,10 +20,39 @@ import ContainerDemo from '@site/src/components/Demo/ContainerDemo';
 
 <ContainerDemo />
 
+
+## Installation
+
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    ```bash
+    npx @mindfiredigital/ignix-ui add container
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    ```bash
+    yarn @mindfiredigital/ignix-ui add container
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```bash
+    pnpm @mindfiredigital/ignix-ui add container
+    ```
+  </TabItem>
+</Tabs>
+
+## Usage
+
+Import the component:
+
+```tsx
+import { Container } from './components/ui';
+```
+
 ## Basic Usage
 
 ```tsx
-import { Container } from '@site/src/components/UI/layout/container';
+import { Container } from './components/ui';
 
 function MyComponent() {
   return (

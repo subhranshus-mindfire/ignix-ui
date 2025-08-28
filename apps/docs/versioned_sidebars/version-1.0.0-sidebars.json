@@ -33,18 +33,12 @@
         "components/tooltip"
       ]
     },
-        {
-      "type": "category",
-      "label": "Layout",
-      "items": [
-        "layout/spacer"
-      ]
-    },
     {
       "type": "category",
       "label": "Layout",
       "items": [
-        "layout/container"
+        "layout/container",
+        "layout/spacer"
       ]
     },
     {
