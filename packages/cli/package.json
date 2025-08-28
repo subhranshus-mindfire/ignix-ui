@@ -1,6 +1,7 @@
 {
   "name": "@mindfiredigital/ignix-ui",
-  "version": "1.0.0",
+  "version": "1.0.2",
+  "private": false,
   "description": "CLI tool for Ignix UI component library",
   "type": "commonjs",
   "main": "./dist/index.js",
@@ -9,7 +10,7 @@
     "animation-ui": "./dist/index.js"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
+    "registry": "https://registry.npmjs.org",
     "access": "public"
   },
   "files": [

@@ -199,6 +199,17 @@
         }
       }
     },
+    "spacer": {
+      "name": "Spacer",
+      "description": "A utility component that provides adjustable spacing between elements without adding extra visual content.",
+      "dependencies": ["class-variance-authority"],
+      "files": {
+        "main": {
+          "path": "components/layout/spacer/index.tsx",
+          "type": "component"
+        }
+      }
+    },
     "steppers": {
       "name": "Steppers",
       "description": "An animated steppers component with different variants",
