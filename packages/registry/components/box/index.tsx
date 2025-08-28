@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 
-export type BoxProps = {
+export type BoxProps = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode;
   width?: "auto" | "small" | "normal" | "large" | "full" | string;
   height?: "auto" | "small" | "normal" | "large" | "screen" | string;
@@ -55,6 +55,7 @@ export const Box: React.FC<BoxProps> = ({
   rounded = "md",
   shadow = "subtle",
   className,
+  ...props
 }) => {
   const widthClass = widthMap[width] || width;
   const heightClass = heightMap[height] || height;
@@ -74,6 +75,7 @@ export const Box: React.FC<BoxProps> = ({
         bgClass,
         className
       )}
+      {...props}
     >
       {children}
     </div>

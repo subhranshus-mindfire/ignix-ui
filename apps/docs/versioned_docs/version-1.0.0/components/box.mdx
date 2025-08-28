@@ -1,42 +1,80 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 title: Box
 description: A general-purpose layout component for wrapping content with customizable styling options.
 ---
 
-# Box
-
-A general-purpose layout component for wrapping content with customizable styling options.
-
-import BoxDemo from '@site/src/components/Demo/BoxDemo';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import { Box } from '@site/src/components/UI/box';
+import BoxDemo from '@site/src/components/Demo/BoxDemo';
+
+## Overview
+
+Box is a flexible layout component for wrapping content with customizable width, height, padding, background, border radius, and shadow. Use it for cards, containers, wrappers, and more.
 
 ## Preview
 
 <Tabs defaultValue="preview">
   <TabItem value="preview" label="Preview" default>
-    <BoxDemo />
+    <div className="flex items-center gap-8 border rounded-lg p-4">
+      <Box
+        width="large"
+        height="normal"
+        padding="lg"
+        background="white"
+        rounded="lg"
+        shadow="medium"
+      >
+        <h2 className="font-bold text-lg mb-2">Box Component</h2>
+        <p>This is a general-purpose content box.</p>
+      </Box>
+      <Box
+        width="small"
+        height="lg"
+        padding="sm"
+        background="secondary"
+        rounded="full"
+        shadow="strong"
+      >
+        <span className="text-primary font-semibold">Small Box</span>
+      </Box>
+    </div>
   </TabItem>
   <TabItem value="code" label="Code">
-```tsx
-import { Box } from '@ignix-ui/registry/components/box';
+    ```tsx
+    import { Box } from '@mindfiredigital/ignix-ui';
 
-<Box
-  width="full"
-  height="auto"
-  padding="normal"
-  background="white"
-  rounded="md"
-  shadow="subtle"
->
-  <h2>Box Component</h2>
-  <p>This is a general-purpose content box.</p>
-</Box>
-```
+    function BoxDemo() {
+      return (
+        <div className="flex items-center gap-8">
+          <Box
+            width="large"
+            height="normal"
+            padding="lg"
+            background="white"
+            rounded="lg"
+            shadow="medium"
+          >
+            <h2 className="font-bold text-lg mb-2">Box Component</h2>
+            <p>This is a general-purpose content box.</p>
+          </Box>
+          <Box
+            width="small"
+            height="lg"
+            padding="sm"
+            background="secondary"
+            rounded="full"
+            shadow="strong"
+          >
+            <span className="text-primary  font-semibold">Small Box</span>
+          </Box>
+        </div>
+      );
+    }
+    ```
   </TabItem>
 </Tabs>
-
 
 ## Installation
 
@@ -58,15 +96,15 @@ import { Box } from '@ignix-ui/registry/components/box';
   </TabItem>
 </Tabs>
 
-## Basic Usage
+## Usage
 
 Import the component:
 
 ```tsx
-import { Box } from '@ignix-ui/registry/components/box';
+import { Box } from './components/ui';
 ```
 
-Example:
+### Basic Usage
 
 ```tsx
 function BasicBox() {
@@ -84,6 +122,10 @@ function BasicBox() {
   );
 }
 ```
+
+## Variants
+
+<BoxDemo />
 
 ## Props
 

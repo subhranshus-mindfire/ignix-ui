@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import {Box} from "@site/src/components/UI/box";
+import { Box } from "@site/src/components/UI/box";
+import VariantSelector from "./VariantSelector";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
 
 const widthOptions = ["auto", "small", "normal", "large", "full"];
 const heightOptions = ["auto", "small", "normal", "large", "screen"];
@@ -17,88 +21,86 @@ const BoxDemo = () => {
   const [rounded, setRounded] = useState("md");
   const [shadow, setShadow] = useState("subtle");
 
+  const codeString = `
+    <Box
+      width="${width}"
+      height="${height}"
+      padding="${padding}"
+      background="${background}"
+      rounded="${rounded}"
+      shadow="${shadow}"
+    >
+      <h2>Box Component Demo</h2>
+      <p>
+        width: <b>${width}</b>, height: <b>${height}</b>, padding: <b>${padding}</b>, background: <b>${background}</b>, rounded: <b>${rounded}</b>, shadow: <b>${shadow}</b>
+      </p>
+    </Box>
+    `;
+
   return (
-    <div>
-      <div style={{ marginBottom: 16 }}>
-        <table style={{ width: "100%", marginBottom: 16, borderCollapse: "collapse" }}>
-          <thead>
-            <tr>
-              <th>Prop</th>
-              <th>Value</th>
-              <th>Options</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>width</td>
-              <td>{width}</td>
-              <td>
-                <select value={width} onChange={e => setWidth(e.target.value)}>
-                  {widthOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>height</td>
-              <td>{height}</td>
-              <td>
-                <select value={height} onChange={e => setHeight(e.target.value)}>
-                  {heightOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>padding</td>
-              <td>{padding}</td>
-              <td>
-                <select value={padding} onChange={e => setPadding(e.target.value)}>
-                  {paddingOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>background</td>
-              <td>{background}</td>
-              <td>
-                <select value={background} onChange={e => setBackground(e.target.value)}>
-                  {backgroundOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>rounded</td>
-              <td>{rounded}</td>
-              <td>
-                <select value={rounded} onChange={e => setRounded(e.target.value)}>
-                  {roundedOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>shadow</td>
-              <td>{shadow}</td>
-              <td>
-                <select value={shadow} onChange={e => setShadow(e.target.value)}>
-                  {shadowOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                </select>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <div className="space-y-6 mb-8">
+      <div className="flex flex-wrap gap-4 justify-start sm:justify-end">
+        <VariantSelector
+          variants={widthOptions}
+          selectedVariant={width}
+          onSelectVariant={setWidth}
+          type="Width"
+        />
+        <VariantSelector
+          variants={heightOptions}
+          selectedVariant={height}
+          onSelectVariant={setHeight}
+          type="Height"
+        />
+        <VariantSelector
+          variants={paddingOptions}
+          selectedVariant={padding}
+          onSelectVariant={setPadding}
+          type="Padding"
+        />
+        <VariantSelector
+          variants={backgroundOptions}
+          selectedVariant={background}
+          onSelectVariant={setBackground}
+          type="Background"
+        />
+        <VariantSelector
+          variants={roundedOptions}
+          selectedVariant={rounded}
+          onSelectVariant={setRounded}
+          type="Rounded"
+        />
+        <VariantSelector
+          variants={shadowOptions}
+          selectedVariant={shadow}
+          onSelectVariant={setShadow}
+          type="Shadow"
+        />
       </div>
-      <Box
-        width={width}
-        height={height}
-        padding={padding as "normal" | "none" | "sm" | "lg"}
-        background={background}
-        rounded={rounded as "none" | "sm" | "md" | "lg" | "full"}
-        shadow={shadow as "none" | "subtle" | "medium" | "strong"}
-      >
-        <h2>Box Component Demo</h2>
-        <p>
-          width: <b>{width}</b>, height: <b>{height}</b>, padding: <b>{padding}</b>, background: <b>{background}</b>, rounded: <b>{rounded}</b>, shadow: <b>{shadow}</b>
-        </p>
-      </Box>
+      <Tabs>
+        <TabItem value="preview" label="Preview">
+          <div className="p-6 border rounded-lg mt-4 flex items-center justify-center">
+            <Box
+              width={width}
+              height={height}
+              padding={padding as "normal" | "none" | "sm" | "lg"}
+              background={background}
+              rounded={rounded as "none" | "sm" | "md" | "lg" | "full"}
+              shadow={shadow as "none" | "subtle" | "medium" | "strong"}
+            >
+              <h2>Box Component Demo</h2>
+              <p>
+                width: <b>{width}</b>, height: <b>{height}</b>, padding:{" "}
+                <b>{padding}</b>, background: <b>{background}</b>, rounded:{" "}
+                <b>{rounded}</b>, shadow: <b>{shadow}</b>
+              </p>
+            </Box>
+          </div>
+        </TabItem>
+        <TabItem value="code" label="Code">
+          <CodeBlock language="tsx">{codeString}</CodeBlock>
+        </TabItem>
+      </Tabs>
     </div>
   );
 };
