@@ -33,6 +33,13 @@
         "components/tooltip"
       ]
     },
+        {
+      "type": "category",
+      "label": "Layout",
+      "items": [
+        "layout/spacer"
+      ]
+    },
     {
       "type": "category",
       "label": "Contribution Guide",
