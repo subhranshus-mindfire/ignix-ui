@@ -28,6 +28,17 @@
         }
       }
     },
+    "box": {
+      "name": "Box",
+      "description": "A versatile container component",
+      "dependencies": ["framer-motion"],
+      "files": {
+        "main": {
+          "path": "components/box/index.tsx",
+          "type": "component"
+        }
+      }
+    },
     "button": {
       "name": "Button",
       "description": "An animated button component",
