@@ -30,6 +30,17 @@
         "main": {
           "path": "components/layout/aspect-ratio/index.tsx",
           "type": "component"
+                  }
+      }
+    },
+    "box": {
+      "name": "Box",
+      "description": "A versatile container component",
+      "dependencies": ["framer-motion"],
+      "files": {
+        "main": {
+          "path": "components/box/index.tsx",
+          "type": "component"
         }
       }
     },
