@@ -22,6 +22,17 @@
         }
       }
     },
+    "aspect-ratio": {
+      "name": "Aspect Ratio",
+      "description": "A responsive container that maintains a consistent aspect ratio for its content",
+      "dependencies": [],
+      "files": {
+        "main": {
+          "path": "components/layout/aspect-ratio/index.tsx",
+          "type": "component"
+        }
+      }
+    },
     "button": {
       "name": "Button",
       "description": "An animated button component",
