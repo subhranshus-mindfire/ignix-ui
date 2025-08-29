@@ -10,6 +10,14 @@
     },
     {
       "type": "category",
+      "label": "Layout",
+      "items": [
+        "layout/spacer",
+        "layout/center"
+      ]
+    },
+    {
+      "type": "category",
       "label": "Components",
       "items": [
         "components/accordion",
@@ -31,13 +39,6 @@
         "components/textarea",
         "components/toast",
         "components/tooltip"
-      ]
-    },
-        {
-      "type": "category",
-      "label": "Layout",
-      "items": [
-        "layout/spacer"
       ]
     },
     {
