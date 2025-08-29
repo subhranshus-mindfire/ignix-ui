@@ -51,7 +51,7 @@
       ],
       "files": {
         "main": {
-          "path": "components/center/index.tsx",
+          "path": "components/layout/center/index.ts",
           "type": "component"
         }
       }
