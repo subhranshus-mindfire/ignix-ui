@@ -373,7 +373,7 @@
       "dependencies": ["class-variance-authority"],
       "files": {
         "main": {
-          "path": "components/layout/container/index.tsx",
+          "path": "components/layouts/container/index.tsx",
           "type": "component"
         }
       }
