@@ -14,7 +14,8 @@
       "items": [
         "layouts/spacer",
         "layouts/aspect-ratio",
-        "components/box"
+        "components/box",
+        "layouts/center"
       ]
     },
     {
