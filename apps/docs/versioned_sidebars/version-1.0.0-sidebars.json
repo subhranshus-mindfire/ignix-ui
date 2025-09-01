@@ -10,10 +10,12 @@
     },
     {
       "type": "category",
-      "label": "Layout",
+      "label": "Layouts",
       "items": [
-        "layout/spacer",
-        "layout/center"
+        "layouts/spacer",
+        "layouts/aspect-ratio",
+        "components/box",
+        "layouts/center"
       ]
     },
     {
@@ -39,13 +41,6 @@
         "components/textarea",
         "components/toast",
         "components/tooltip"
-      ]
-    },
-    {
-      "type": "category",
-      "label": "Layouts",
-      "items": [
-        "components/box"
       ]
     },
     {
