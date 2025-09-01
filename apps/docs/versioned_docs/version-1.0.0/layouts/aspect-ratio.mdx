@@ -8,6 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { AspectRatio } from '@site/src/components/UI/aspect-ratio';
 import AspectRatioDemo from '@site/src/components/Demo/AspectRatioDemo';
+import image from "../../../static/img/demo-img.jpg"
 
 ## Overview
 
@@ -19,7 +20,7 @@ The **AspectRatio** component ensures that its children maintain a specific widt
   <TabItem value="preview" label="Preview" default>
     <div className="p-4 border rounded-lg flex justify-center">
       <AspectRatio ratio="16:9" maxWidth="400px">
-        <img src="https://picsum.photos/800/450" alt="Demo Image" className="object-cover w-full h-full" />
+        <img loa src={image} alt="Demo Image" className="object-cover w-full h-full" />
       </AspectRatio>
     </div>
   </TabItem>
@@ -30,7 +31,7 @@ The **AspectRatio** component ensures that its children maintain a specific widt
     function MyComponent() {
       return (
         <AspectRatio ratio="16:9" maxWidth="400px">
-          <img src="https://picsum.photos/800/450" alt="Demo Image" className="object-cover w-full h-full" />
+          <img src={image} alt="Demo Image" className="object-cover w-full h-full" />
         </AspectRatio>
       );
     }
@@ -71,7 +72,7 @@ import { AspectRatio } from './components/ui';
 function BasicAspectRatio() {
   return (
     <AspectRatio ratio="4:3" maxWidth="500px">
-      <img src="https://picsum.photos/600/450" alt="Demo Image" className="object-cover w-full h-full" />
+      <img src={image} alt="Demo Image" className="object-cover w-full h-full" />
     </AspectRatio>
   );
 }

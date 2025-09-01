@@ -4,6 +4,7 @@ import VariantSelector from './VariantSelector';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
+import image from "../../../static/img/demo-img.jpg"
 
 const ratios = ['1:1', '4:3', '16:9', '21:9', '3:2'];
 const maxWidths = ['200px', '400px', '600px', '800px'];
@@ -14,7 +15,7 @@ const AspectRatioDemo = () => {
 
   const codeString = `
     <AspectRatio ratio="${ratio}" maxWidth="${maxWidth}">
-    <img src="https://picsum.photos/800/450" alt="Demo Image" />
+    <img src={image} alt="Demo Image" />
     </AspectRatio>
     `;
 
@@ -65,7 +66,7 @@ const AspectRatioDemo = () => {
           <div className="p-6 border rounded-lg mt-4 flex justify-center">
             <AspectRatio ratio={ratio} maxWidth={maxWidth}>
               <img
-                src="https://picsum.photos/800/450"
+                src={image}
                 alt="Demo Image"
                 className="object-cover w-full h-full"
               />
