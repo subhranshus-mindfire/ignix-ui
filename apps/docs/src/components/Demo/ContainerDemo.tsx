@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Container } from '../UI/layout/container';
+import { Container } from '../UI/container';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import { cn } from '@site/src/utils/cn';
-import { ContainerSize, ContainerPadding, MaxWidth } from '../UI/layout/container';
+import { ContainerSize, ContainerPadding, MaxWidth } from '../UI/container';
 import VariantSelector from './VariantSelector';
 
 const sizeOptions = ['small', 'normal', 'large', 'readable', 'full'];

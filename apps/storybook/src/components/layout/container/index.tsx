@@ -47,6 +47,7 @@ export function Container({
   maxWidth = "lg",
   responsive = true,
   className,
+  ...props
 }: ContainerProps) {
   return (
     <div
@@ -59,6 +60,7 @@ export function Container({
         responsive && "px-4 sm:px-6 lg:px-8",
         className
       )}
+      {...props}
     >
       {children}
     </div>
