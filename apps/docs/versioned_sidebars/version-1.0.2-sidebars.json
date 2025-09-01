@@ -16,7 +16,7 @@
         "layouts/aspect-ratio",
         "components/box",
         "layouts/center",
-        "layout/container"
+        "layouts/container"
       ]
     },
     {
