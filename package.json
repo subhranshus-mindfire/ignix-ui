@@ -16,13 +16,15 @@
     "version": "changeset version",
     "build:packages": "turbo run build --filter=./packages/*",
     "test:ci": "turbo run test --filter=./packages/*",
-    "docs:dev": "turbo run dev --filter=docs",
+    "docs:dev": "pnpm --filter docs start",
     "poc:dev": "turbo run dev --filter=poc",
-    "docs:build": "turbo run build --filter=docs",
+    "docs:build": "pnpm --filter docs build",
     "docs:deploy": "turbo run deploy --filter=docs",
     "clean": "turbo run clean && pnpm -r exec rm -rf node_modules && rm -rf node_modules",
     "typecheck": "turbo run typecheck",
-    "changeset:autogenerate": "node .github/changeset-autogenerate.mjs"
+    "changeset:autogenerate": "node .github/changeset-autogenerate.mjs",
+    "storybook": "pnpm --filter storybook storybook",
+    "build-storybook": "pnpm --filter storybook build"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",
