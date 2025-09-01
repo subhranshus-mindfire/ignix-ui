@@ -1,0 +1,44 @@
+---
+sidebar_position: 1
+---
+
+# Box
+
+A general-purpose layout component for wrapping content with customizable styling options.
+
+## Usage
+
+```tsx
+import { Box } from '@ignix-ui/registry/components/box';
+
+<Box
+  width="full"
+  height="auto"
+  padding="normal"
+  background="white"
+  rounded="md"
+  shadow="subtle"
+>
+  <h2>Box Component</h2>
+  <p>This is a general-purpose content box.</p>
+</Box>
+```
+
+## Props
+
+| Prop        | Type    | Default   | Description                                      |
+|-------------|---------|-----------|--------------------------------------------------|
+| width       | string  | "normal"  | Width: "auto", "small", "normal", "large", "full", or custom |
+| height      | string  | "auto"    | Height: "auto", "small", "normal", "large", "screen", or custom |
+| padding     | string  | "normal"  | Padding: "none", "sm", "normal", "lg"            |
+| background  | string  | "white"   | Background color (from theme or custom)           |
+| rounded     | string  | "md"      | Border radius: "none", "sm", "md", "lg", "full"   |
+| shadow      | string  | "subtle"  | Box shadow: "none", "subtle", "medium", "strong"  |
+| className   | string  |           | Additional CSS classes                            |
+| children    | node    |           | Content inside the box                            |
+
+## Use Cases
+- Cards
+- Content blocks
+- Wrappers
+- Styled containers
