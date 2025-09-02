@@ -12,9 +12,9 @@
       "type": "category",
       "label": "Layout",
       "items": [
-        "layout/spacer",
-        "layout/center",
-        "layout/form"
+        "layouts/spacer",
+        "layouts/center",
+        "layouts/form"
       ]
     },
     
