@@ -1,0 +1,122 @@
+@import 'tailwindcss';
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #0f172a;
+    --card: #ffffff;
+    --card-foreground: #0f172a;
+    --popover: #ffffff;
+    --popover-foreground: #0f172a;
+    --primary: #1e293b;
+    --primary-foreground: #f8fafc;
+    --secondary: #f1f5f9;
+    --secondary-foreground: #1e293b;
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+    --accent: #f1f5f9;
+    --accent-foreground: #1e293b;
+    --destructive: #ef4444;
+    --destructive-foreground: #f8fafc;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #0f172a;
+    --warning: #d93636;
+    --warning-foreground: #ffffff;
+    --success: #22c55d;
+    --success-foreground: #ffffff;
+    --error: #ef4444;
+    --error-foreground: #ffffff;
+    --primary-light: #1e293b;
+    --primary-dark: #0f172a;
+    --destructive-light: #ef4444; /* red-400 */
+    --destructive-dark: #b91c1c; /* red-700 */
+    --success-light: #34d399; /* emerald-400 */
+    --success-dark: #047857; /* emerald-700 */
+    --warning-light: #fbbf24; /* yellow-300 */
+    --warning-dark: #b45309; /* yellow-500 */
+    --info: #06b6d4; /* cyan-500 */
+    --info-light: #22d3ee; /* cyan-400 */
+    --info-dark: #0e7490; /* cyan-600 */
+    --info-foreground: #ffffff;
+
+  }
+
+  .dark {
+    --background: #0f172a;
+    --foreground: #f8fafc;
+    --card: #0f172a;
+    --card-foreground: #f8fafc;
+    --popover: #0f172a;
+    --popover-foreground: #f8fafc;
+    --primary: #f8fafc;
+    --primary-foreground: #1e293b;
+    --secondary: #1e293b;
+    --secondary-foreground: #f8fafc;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --accent: #1e293b;
+    --accent-foreground: #f8fafc;
+    --destructive: #7f1d1d;
+    --destructive-foreground: #f8fafc;
+    --border: #1e293b;
+    --input: #1e293b;
+    --ring: #e2e8f0;
+    --warning: #d93636;
+    --warning-foreground: #ffffff;
+    --success: #22c55d;
+    --success-foreground: #ffffff;
+    --error: #ef4444;
+    --error-foreground: #ffffff;
+    --primary-light: #1e293b;
+    --primary-dark: #0f172a;
+    --destructive-light: #ef4444; /* red-400 */
+    --destructive-dark: #b91c1c; /* red-700 */
+    --success-light: #34d399; /* emerald-400 */
+    --success-dark: #047857; /* emerald-700 */
+    --warning-light: #fbbf24; /* yellow-300 */
+    --warning-dark: #b45309; /* yellow-500 */
+    --info: #06b6d4; /* cyan-500 */
+    --info-light: #22d3ee; /* cyan-400 */
+    --info-dark: #0e7490; /* cyan-600 */
+    --info-foreground: #ffffff;
+  }
+}
+
+@theme inline{
+  --color-primary: var(--primary);
+  --color-background: var(--background);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);  
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-success-foreground: var(--success-foreground);
+  --color-error-foreground: var(--error-foreground);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-destructive-light: var(--destructive-light);
+  --color-destructive-dark: var(--destructive-dark);
+  --color-success-light: var(--success-light);
+  --color-success-dark: var(--success-dark);
+  --color-warning-light: var(--warning-light);
+  --color-warning-dark: var(--warning-dark);
+  --color-info: var(--info);
+  --color-info-light: var(--info-light);
+  --color-info-dark: var(--info-dark);
+  --color-info-foreground: var(--info-foreground);
+}
