@@ -284,9 +284,7 @@
 }
 
 .navbar {
-  background: var(--background) / 0.1;
-  -webkit-backdrop-filter: blur(10px);
-  -moz-backdrop-filter: blur(10px);
+  background: var(--background);
   width: 100%;
   display: flex;
   box-shadow: none;

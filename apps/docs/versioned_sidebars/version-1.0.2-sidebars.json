@@ -1,0 +1,60 @@
+{
+  "tutorialSidebar": [
+    {
+      "type": "category",
+      "label": "Getting Started",
+      "items": [
+        "introduction",
+        "installation"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Layouts",
+      "items": [
+        "layouts/spacer",
+        "layouts/aspect-ratio",
+        "components/box",
+        "layouts/center",
+        "layouts/pin",
+        "layouts/container",
+        "layouts/form"
+      ]
+    },
+    
+    {
+      "type": "category",
+      "label": "Components",
+      "items": [
+        "components/accordion",
+        "components/badge",
+        "components/breadcrumbs",
+        "components/button",
+        "components/box",
+        "components/card",
+        "components/dialog-box",
+        "components/dropdown",
+        "components/input",
+        "components/navbar",
+        "components/sidebar",
+        "components/slider",
+        "components/spinner",
+        "components/stepper",
+        "components/switch",
+        "components/tab",
+        "components/table",
+        "components/textarea",
+        "components/toast",
+        "components/tooltip"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Contribution Guide",
+      "items": [
+        "contribution-guide/how-to-contribute",
+        "contribution-guide/code-of-conduct"
+      ]
+    }
+  ]
+}
