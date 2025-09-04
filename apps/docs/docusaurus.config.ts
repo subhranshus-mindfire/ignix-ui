@@ -23,7 +23,9 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://mindfiredigital.github.io/ignix-ui/',
+          // TODO: UNCOMMENT IF YOU NEED TO SHOW THE "EDIT THIS PAGE" AT BOTTOMA
+          // editUrl: 'https://mindfiredigital.github.io/ignix-ui/',
+          editUrl:    undefined,
           sidebarCollapsed: false,
         },
         blog: false,

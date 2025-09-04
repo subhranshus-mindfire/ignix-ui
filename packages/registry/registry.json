@@ -389,6 +389,17 @@
           "type": "component"
         }
       }
+    },
+    "stack": {
+      "name": "Stack",
+      "description": "A layout component for arranging elements in a stack with adjustable spacing and alignment.",
+      "dependencies": ["class-variance-authority"],
+      "files": {
+        "main": {
+          "path": "components/layouts/stack/index.tsx",
+          "type": "component"
+        }
+      }
     }
   }
 }

@@ -20,6 +20,9 @@ Core UI component library built on Radix UI primitives with beautiful animations
 - Grid
 - Stack
 - Flex
+- Spacer
+- Center
+- AspectRatio
 
 ### Navigation
 - Menu
