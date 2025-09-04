@@ -15,7 +15,8 @@
         "layouts/spacer",
         "layouts/aspect-ratio",
         "components/box",
-        "layouts/center"
+        "layouts/center",
+        "layouts/pin"
       ]
     },
     {
