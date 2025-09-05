@@ -18,7 +18,8 @@
         "layouts/center",
         "layouts/pin",
         "layouts/container",
-        "layouts/form"
+        "layouts/form",
+        "layouts/responsive-grid"
       ]
     },
     
