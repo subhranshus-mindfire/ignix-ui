@@ -16,12 +16,12 @@ const ResponsiveGridDemo = () => {
   const columnOptions = ["1", "2", "3", "4"];
 
   const colors = [
-    "bg-red-500",
-    "bg-blue-500",
-    "bg-green-500",
-    "bg-purple-500",
-    "bg-yellow-500",
-    "bg-pink-500",
+    "bg-red-600",
+    "bg-red-600",
+    "bg-red-600",
+    "bg-red-600",
+    "bg-red-600",
+    "bg-red-600",
   ];
 
   const codeString = `
