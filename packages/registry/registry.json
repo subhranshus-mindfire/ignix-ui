@@ -75,7 +75,7 @@
       ],
       "files": {
         "main": {
-          "path": "components/layouts/center/index.ts",
+          "path": "components/layouts/center/index.tsx",
           "type": "component"
         }
       }
@@ -90,7 +90,21 @@
       ],
       "files": {
         "main": {
-          "path": "components/layouts/pin/index.ts",
+          "path": "components/layouts/pin/index.tsx",
+          "type": "component"
+        }
+      }
+    },
+    "responsive-grid": {
+      "name": "Responsive Grid",
+      "description": "A flexible grid layout component with responsive columns, gaps, equal-height option, and animations (fade, stagger, scale).",
+      "dependencies": [
+        "framer-motion",
+        "react"
+      ],
+      "files": {
+        "main": {
+          "path": "components/layouts/responsive-grid/index.tsx",
           "type": "component"
         }
       }
@@ -327,7 +341,9 @@
     "form": {
       "name": "Form",
       "description": "A utility component that provides adjustable spacing between elements without adding extra visual content.",
-      "dependencies": ["class-variance-authority"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "files": {
         "main": {
           "path": "components/layout/form/index.tsx",
@@ -335,7 +351,6 @@
         }
       }
     },
-
     "steppers": {
       "name": "Steppers",
       "description": "An animated steppers component with different variants",
@@ -399,7 +414,9 @@
     "container": {
       "name": "Container",
       "description": "A flexible container component for constraining content width with responsive padding and centering options.",
-      "dependencies": ["class-variance-authority"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "files": {
         "main": {
           "path": "components/layouts/container/index.tsx",
