@@ -21,7 +21,7 @@ const PinDemo = (): ReactElement => {
   const [zIndex, setZIndex] = useState("high");
 
   const codeString = `
-<div className="relative p-10 w-96 m-auto border rounded-lg min-h-[200px]">
+<div className="relative p-10 w-40 sm:w-96 m-auto border rounded-lg min-h-[200px]">
   <Pin to="${position}" offset="${offset}" zIndex="${zIndex}">
     <button className="bg-red-600 text-white w-6 h-6 rounded-full shadow">✕</button>
   </Pin>
@@ -65,7 +65,7 @@ const PinDemo = (): ReactElement => {
       <Tabs>
         <TabItem value="preview" label="Preview">
           <div className="border p-6 rounded-lg">
-            <div className="relative p-10 w-96 m-auto border rounded-lg min-h-[200px]">
+            <div className="relative p-10 w-40 sm:w-96 m-auto border rounded-lg min-h-[200px]">
               <Pin
                 to={position as "top-left" | "top-right" | "bottom-left" | "bottom-right"}
                 offset={offset as "none" | "small" | "normal" | "large" | "xl"}
