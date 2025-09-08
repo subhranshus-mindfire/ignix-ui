@@ -13,13 +13,14 @@
       "label": "Layouts",
       "items": [
         "layouts/aspect-ratio",
-        "components/box",
+        "layouts/box",
         "layouts/center",
         "layouts/container",
         "layouts/form",
         "layouts/pin",
         "layouts/responsive-grid",
         "layouts/spacer",
+        "layouts/split",
         "layouts/auto-grid"
 
       ]
