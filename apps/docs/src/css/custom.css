@@ -355,6 +355,11 @@ h1 {
 }
 
 
+.text-amber-800 {
+  color: #d5af6d !important;
+  font-weight: 300 !important;
+}
+
 
 /* ---------- hero typography ---------- */
 .hero-h1 {
