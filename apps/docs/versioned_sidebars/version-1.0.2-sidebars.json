@@ -15,11 +15,12 @@
         "layouts/aspect-ratio",
         "layouts/box",
         "layouts/center",
-        "layouts/pin",
         "layouts/container",
         "layouts/form",
+        "layouts/pin",
         "layouts/responsive-grid",
-        "layouts/spacer"
+        "layouts/spacer",
+        "layouts/split"
       ]
     },
     
