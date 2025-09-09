@@ -16,8 +16,8 @@
         "layouts/box",
         "layouts/center",
         "layouts/container",
-        "layouts/split",
         "layouts/form",
+        "layouts/split",
         "layouts/spacer"
       ]
     },
