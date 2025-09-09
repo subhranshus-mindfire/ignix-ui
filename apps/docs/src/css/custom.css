@@ -516,3 +516,12 @@ h1 {
   position: absolute;
   inset: 0;
 }
+
+/* alignment of right sidebar ui*/
+.table-of-contents > li > ul {
+  padding: 0px;
+}
+
+.table-of-contents > li > ul > li {
+  margin-left: 0px;
+}
