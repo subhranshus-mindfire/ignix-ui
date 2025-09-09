@@ -33,7 +33,6 @@
         "components/badge",
         "components/breadcrumbs",
         "components/button",
-        "components/box",
         "components/card",
         "components/dialog-box",
         "components/dropdown",

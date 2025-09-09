@@ -98,8 +98,7 @@
       "name": "Responsive Grid",
       "description": "A flexible grid layout component with responsive columns, gaps, equal-height option, and animations (fade, stagger, scale).",
       "dependencies": [
-        "framer-motion",
-        "react"
+        "framer-motion"
       ],
       "files": {
         "main": {
