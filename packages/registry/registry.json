@@ -356,7 +356,7 @@
       ],
       "files": {
         "main": {
-          "path": "components/layout/form/index.tsx",
+          "path": "components/layouts/form/index.tsx",
           "type": "component"
         }
       }
