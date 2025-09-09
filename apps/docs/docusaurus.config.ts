@@ -23,7 +23,6 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // editUrl: 'https://mindfiredigital.github.io/ignix-ui/',
           sidebarCollapsed: false,
         },
         blog: false,

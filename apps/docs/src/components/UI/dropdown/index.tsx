@@ -5,7 +5,7 @@ import { cn } from "../../../utils/cn";
 import { ReactNode } from "react";
 
 // Styling variants using CVA
-const dropdownVariants = cva("z-50 min-w-[10rem] border p-2 shadow-lg", {
+const dropdownVariants = cva("z-50 min-w-[10rem] border p-2 shadow-lg ml-[10px] mt-[12px]", {
   variants: {
     size: {
       sm: "text-sm",
@@ -21,7 +21,7 @@ const dropdownVariants = cva("z-50 min-w-[10rem] border p-2 shadow-lg", {
     bg: {
       default: "bg-background text-foreground",
       dark: "bg-card text-card-foreground",
-      transparent: "bg-transparent text-transparent",
+      transparent: "bg-transparent.",
       glass: "bg-white/10 backdrop-blur-lg text-[var(--color-glass-text)]",
       gradient: "bg-gradient-to-r from-[var(--color-gradient-from-dropdown)] to-[var(--color-gradient-to-dropdown)] text-white",
       primary: "bg-primary text-primary-foreground",
