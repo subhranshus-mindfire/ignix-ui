@@ -13,7 +13,6 @@
       "label": "Layouts",
       "items": [
         "layouts/aspect-ratio",
-        "layouts/box",
         "layouts/center",
         "layouts/container",
         "layouts/form",

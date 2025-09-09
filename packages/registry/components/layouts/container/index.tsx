@@ -3,7 +3,7 @@ import * as React from "react";
 
 export type ContainerSize = "small" | "normal" | "large" | "full" | "readable";
 export type ContainerPadding = "none" | "small" | "normal" | "large" | "xl";
-export type MaxWidth = "sm" | "md" | "lg" | "xl" | "full" | string; // allow custom
+export type MaxWidth = "sm" | "md" | "lg" | "xl" | "full" | string; 
 
 interface ContainerProps {
   children: React.ReactNode;
