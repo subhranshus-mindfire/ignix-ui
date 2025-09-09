@@ -17,10 +17,14 @@
         "layouts/center",
         "layouts/container",
         "layouts/form",
-        "layouts/spacer"
+        "layouts/pin",
+        "layouts/responsive-grid",
+        "layouts/spacer",
+        "layouts/split",
+        "layouts/auto-grid"
       ]
     },
-    
+
     {
       "type": "category",
       "label": "Components",
