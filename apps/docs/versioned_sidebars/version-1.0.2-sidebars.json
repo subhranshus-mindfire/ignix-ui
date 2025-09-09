@@ -13,14 +13,15 @@
       "label": "Layouts",
       "items": [
         "layouts/aspect-ratio",
+        "layouts/auto-grid",
+        "layouts/box",
         "layouts/center",
         "layouts/container",
         "layouts/form",
         "layouts/pin",
         "layouts/responsive-grid",
         "layouts/spacer",
-        "layouts/split",
-        "layouts/auto-grid"
+        "layouts/split"
       ]
     },
     
@@ -32,7 +33,6 @@
         "components/badge",
         "components/breadcrumbs",
         "components/button",
-        "components/box",
         "components/card",
         "components/dialog-box",
         "components/dropdown",
