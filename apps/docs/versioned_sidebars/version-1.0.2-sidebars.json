@@ -20,7 +20,8 @@
         "layouts/pin",
         "layouts/responsive-grid",
         "layouts/spacer",
-        "layouts/split"
+        "layouts/split",
+        "layouts/auto-grid"
       ]
     },
     

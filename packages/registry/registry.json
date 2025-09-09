@@ -107,6 +107,18 @@
         }
       }
     },
+    "auto-grid": {
+      "name": "Auto Grid",
+      "description": "A self-calculating grid layout that automatically determines columns based on available space and minimum item width, with support for max columns, gap, and balanced heights.",
+      "dependencies": [
+      ],
+      "files": {
+        "main": {
+          "path": "components/layouts/auto-grid/index.tsx",
+          "type": "component"
+        }
+      }
+    },
     "slider": {
       "name": "Slider",
       "description": "An animated slider component",
