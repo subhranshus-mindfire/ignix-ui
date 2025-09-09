@@ -17,11 +17,12 @@
         "layouts/center",
         "layouts/container",
         "layouts/form",
-        "layouts/split",
-        "layouts/spacer"
+        "layouts/pin",
+        "layouts/responsive-grid",
+        "layouts/spacer",
+        "layouts/split"
       ]
     },
-
     {
       "type": "category",
       "label": "Components",
