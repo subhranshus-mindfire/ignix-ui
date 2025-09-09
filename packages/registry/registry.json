@@ -389,6 +389,17 @@
           "type": "component"
         }
       }
+    },
+    "breakpoint": {
+      "name": "Breakpoint",
+      "description": "A flexible container component for constraining content width with responsive padding and centering options.",
+      "dependencies": ["class-variance-authority"],
+      "files": {
+        "main": {
+          "path": "components/layouts/container/index.tsx",
+          "type": "component"
+        }
+      }
     }
   }
 }
