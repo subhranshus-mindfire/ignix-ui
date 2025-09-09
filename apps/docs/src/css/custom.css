@@ -355,9 +355,9 @@ h1 {
 }
 
 
-.text-amber-800 {
-  color: #d5af6d !important;
-  font-weight: 300 !important;
+.text-amber-800{
+  color: rgb(230, 112, 9) !important;
+  font-weight: 600 !important;
 }
 
 
