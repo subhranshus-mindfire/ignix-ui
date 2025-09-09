@@ -1,0 +1,119 @@
+---
+sidebar_position: 3
+title: Breakpoint
+description: A utility component for conditionally rendering content based on the current viewport size.
+---
+
+import Breakpoint from '@site/src/components/UI/breakpoint';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## Overview
+
+The **Breakpoint** component provides a declarative way to conditionally render content based on the current viewport size. It eliminates the need for CSS media queries in your React components.
+
+## Preview
+
+```tsx
+import { Breakpoint } from './components/ui';
+
+function Example() {
+  return (
+    <>
+      <Breakpoint show="mobile">
+        <p>This content is visible only on mobile devices.</p>
+      </Breakpoint>
+      <Breakpoint hide="desktop">
+        <p>This content is hidden on desktop devices.</p>
+      </Breakpoint>
+      <Breakpoint from="tablet" to="desktop">
+        <p>This content is visible from tablet to desktop.</p>
+      </Breakpoint>
+    </>
+  );
+}
+```
+
+## Installation
+
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    ```bash
+    npx @mindfiredigital/ignix-ui add breakpoint
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    ```bash
+    yarn @mindfiredigital/ignix-ui add breakpoint
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```bash
+    pnpm @mindfiredigital/ignix-ui add breakpoint
+    ```
+  </TabItem>
+</Tabs>
+
+## Usage
+
+Import the component:
+
+```tsx
+import { Breakpoint } from './components/ui';
+```
+
+### Basic Usage
+
+```tsx
+<Breakpoint show="mobile">
+  <p>This content is visible only on mobile devices.</p>
+</Breakpoint>
+<Breakpoint hide="desktop">
+  <p>This content is hidden on desktop devices.</p>
+</Breakpoint>
+<Breakpoint from="tablet" to="desktop">
+  <p>This content is visible from tablet to desktop.</p>
+</Breakpoint>
+```
+
+## Props
+
+| Prop      | Type                                | Description                                      |
+|-----------|-------------------------------------|--------------------------------------------------|
+| `show`    | `"mobile" \| "tablet" \| "desktop"` | Render content only on the specified device.    |
+| `hide`    | `"mobile" \| "tablet" \| "desktop"` | Hide content on the specified device.           |
+| `from`    | `"mobile" \| "tablet" \| "desktop"` | Render content starting from this breakpoint.   |
+| `to`      | `"mobile" \| "tablet" \| "desktop"` | Render content up to this breakpoint.           |
+| `children`| `ReactNode`                         | Content to be conditionally rendered.           |
+
+## Examples
+
+### Show Content on Mobile
+
+```tsx
+<Breakpoint show="mobile">
+  <p>This content is visible only on mobile devices.</p>
+</Breakpoint>
+```
+
+### Hide Content on Desktop
+
+```tsx
+<Breakpoint hide="desktop">
+  <p>This content is hidden on desktop devices.</p>
+</Breakpoint>
+```
+
+### Render Content Between Tablet and Desktop
+
+```tsx
+<Breakpoint from="tablet" to="desktop">
+  <p>This content is visible from tablet to desktop.</p>
+</Breakpoint>
+```
+
+## Best Practices
+
+- Use `show` and `hide` for simple conditional rendering.
+- Combine `from` and `to` for more complex viewport logic.
+- Avoid nesting multiple Breakpoint components unnecessarily.
