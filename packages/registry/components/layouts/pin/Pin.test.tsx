@@ -3,7 +3,6 @@ import { describe, it, expect, vi } from "vitest";
 import React from "react";
 import { Pin } from "./index";
 
-// Mock Radix Slot so it renders a <span> that accepts className + props
 vi.mock("@radix-ui/react-slot", () => ({
   Slot: ({ children, className, ...props }: any) => (
     <span className={className} {...props}>
