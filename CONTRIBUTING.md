@@ -1,86 +1,204 @@
-# Contributing to Ignix UI
+# How to Contribute
 
-We welcome and appreciate your contribution to Ignix UI. These guidelines will help ensure a smooth and collaborative process for everyone.
+We are thrilled that you are interested in contributing to Ignix UI\! Your contributions are invaluable in making this project better for everyone. This guide will walk you through the entire process, from setting up your environment to submitting a high-quality pull request.
 
-## How To Make Simlink Locally?
+## Table of Contents
 
-### Step 1: Install dependencies
+- [Code of Conduct](#code-of-conduct)
+- [Finding Something to Work On](#finding-something-to-work-on)
+- [Contribution Workflow](#contribution-workflow)
+  - [1. Setup Your Environment](#1-setup-your-environment)
+  - [2. Create a Branch](#2-create-a-branch)
+  - [3. Develop in Storybook (The Fun Part\!)](#3-develop-in-storybook-the-fun-part)
+  - [4. Register Your Component](#4-register-your-component)
+  - [5. Add Documentation](#5-add-documentation)
+  - [6. Write Unit Tests](#6-write-unit-tests)
+  - [7. Commit and Push Your Changes](#7-commit-and-push-your-changes)
+  - [8. Create a Pull Request](#8-create-a-pull-request)
+- [Code Review Process](#code-review-process)
+- [Licensing](#licensing)
+
+---
+
+## Code of Conduct
+
+We are committed to fostering a welcoming and inclusive community. Before contributing, please take a moment to review our [Code of Conduct](https://www.google.com/search?q=./CODE_OF_CONDUCT.md).
+
+---
+
+## Finding Something to Work On
+
+1.  **Explore the Issues:** Head over to our [issue tracker](https://github.com/mindfiredigital/ignix-ui/issues). This is the best place to find tasks.
+2.  **Good First Issues:** Look for issues tagged with `good first issue` or `help wanted`. These are specifically prepared for new contributors.
+3.  **Propose a New Feature:** If you have an idea for a new component or feature, please **open an issue first**. This allows us to discuss the feature and make sure it aligns with the project's goals before you start working on it.
+
+---
+
+## Contribution Workflow
+
+### 1\. Setup Your Environment
+
+First, get the project running on your local machine.
+
+- **Fork the repository:** Click the "Fork" button at the top-right of the [Ignix UI repository](https://github.com/mindfiredigital/ignix-ui).
+- **Clone your forked repository:**
+  ```bash
+  git clone https://github.com/your-username/ignix-ui.git
+  cd ignix-ui
+  ```
+- **Install dependencies:** This project uses `pnpm` as its package manager.
+  ```bash
+  pnpm install
+  ```
+
+### 2\. Create a Branch
+
+Create a new branch for your changes. A descriptive name helps us understand what you're working on.
+
+- For new features: `feature/short-feature-description`
+- For bug fixes: `fix/short-bug-description`
+
+<!-- end list -->
 
 ```bash
-pnpm i
+# Example for a new feature
+git checkout -b feature/add-avatar-component
+
+# Example for a bug fix
+git checkout -b fix/button-alignment-issue
 ```
 
-### Step 2: Make build
+### 3\. Develop in Storybook (The Fun Part\!)
 
-```bash
-pnpm build
-```
+We use **Storybook** as our primary development environment. It allows you to build and test components in complete isolation, which is faster and more efficient.
 
-### Step 3: Go to cli file
+- **Create Component Files:** Navigate to `apps/storybook/src/components/` and create a new directory for your component (e.g., `button`). Inside, create your component file (e.g., `Button.tsx`).
 
-```bash
-cd ./packages/cli
-```
+- **Create a Story File:** In the _same directory_, create a story file named `[component-name].stories.tsx` (e.g., `Button.stories.tsx`). This file will contain different visual test cases for your component.
 
-### Step 4: Link cli package
+  _Example `button.stories.tsx`:_
 
-```bash
-npm link
-```
+  ```tsx
+  import { Button } from '.';
 
-### Step 5: Go to your demo react app and install cli
+  export default {
+    title: 'Components/Button',
+    component: Button,
+    parameters: {
+      layout: 'centered',
+    },
+    tags: ['autodocs'],
+    argTypes: {
+      variant: {
+        control: { type: 'select' },
+        options: [
+          'default',
+          'destructive',
+          'outline',
+          'secondary',
+          'ghost',
+          'link',
+          'subtle',
+          'elevated',
+          'glass',
+          'neon',
+          'pill',
+          'none',
+        ],
+      },
+      size: {
+        control: { type: 'select' },
+        options: ['xs', 'sm', 'md', 'lg', 'xl', 'icon'],
+      },
+    },
+  };
 
-```bash
-npm link @animtion-ui/cli
-```
+  export const Default = {
+    args: {
+      children: 'Click Me',
+      variant: 'default',
+      size: 'md',
+    },
+  };
 
-### Step 6: Initialize Cli
+  export const Success = {
+    args: {
+      children: 'Success',
+      variant: 'success',
+    },
+  };
 
-```bash
-npx animation-ui init
-```
+  export const Outline = {
+    args: {
+      children: 'Cancel',
+      variant: 'outline',
+    },
+  };
+  ```
 
-### Step 7: Add Components
+- **Launch Storybook:** Run the Storybook server from the **root directory**.
 
-```bash
-npx animation-ui add <component-name>
-```
+  ```bash
+  pnpm storybook
+  ```
 
-## How Can You Contribute?
+  This will open a new browser tab. You can now build, view, and test your component in real-time\!
 
-Here are some ways you can contribute to the project:
+### 4\. Register Your Component
 
-- Reporting bugs or issues
-- Submitting feature requests
-- Writing or improving documentation
-- Fixing bugs
-- Implementing new features
+Once your component is built and works correctly in Storybook, register it so it can be used by others.
 
-## Steps for Contributing
+- Open `packages/registry/components/` and create a new directory for your component (e.g., `button`).
+- Open `packages/registry/registry.json`.
+- Add a new entry for your component, following the structure of the existing components.
 
-1. **Fork** the repository to your GitHub account.
-2. **Clone** the forked repository to your local machine.
-3. Create a new **branch** for your feature/fix: `git checkout -b feature/feature-name`.
-4. **Make changes** and **test** to ensure they work as expected.
-5. **Commit** your changes: `git commit -m 'Your descriptive commit message'`.
-6. **Push** your branch to your GitHub repository: `git push origin feature-name`.
-7. Create a **Pull Request (PR)** from your branch to the original repository's `main` or `master` branch.
+### 5\. Add Documentation
 
-## Pull Request Guidelines
+Now that your component is complete, add documentation for it.
 
-- Make sure your PR addresses an issue or feature request.
-- Describe your PR and provide context in the description.
-- Keep your PR focused on a single change to make reviewing easier.
-- Ensure your code follows the project's coding style and conventions.
+- Create a new MDX file in `apps/docs/docs/components/` (e.g., `button.mdx`).
+- Describe what your component does and provide usage examples.
+- Add a link to your new documentation page in the sidebar by editing the `apps/docs/sidebars.ts` file.
 
-## Code of Conduct and Licensing
+### 6\. Write Unit Tests
 
-Please ensure your contributions adhere to the project's [Code of Conduct](./CODE_OF_CONDUCT.md) and are licensed under the project's [License](./LICENSE).
+We require tests for all new features to maintain code quality.
 
-## Need Help?
+- Add test cases for your component in a file located alongside the component source code.
+- Ensure all tests pass before submitting your changes.
+  ```bash
+  pnpm test
+  ```
 
-If you need further clarification or help, feel free to reach out by creating an issue or directly contacting the maintainers.
+### 7\. Commit and Push Your Changes
 
-Thank you for your interest in contributing to TextIgniterJS! We appreciate your efforts in making this project better.
+- **Stage and Commit:** Add your changes and write a clear, descriptive commit message that follows the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
+  ```bash
+  git add .
+  git commit -m "feat(component): add new avatar component with storybook and tests"
+  ```
+- **Push to Your Fork:**
+  ```bash
+  git push origin feature/add-avatar-component
+  ```
 
-Happy contributing!
+### 8\. Create a Pull Request
+
+- Go to your forked repository on GitHub and click "Compare & pull request".
+- Set the base branch to `development`.
+- Fill out the Pull Request (PR) template with all the required information.
+- Click "Create pull request" to submit it for review.
+
+---
+
+## Code Review Process
+
+- Once your PR is submitted, one or more maintainers will review it.
+- If changes are requested, simply make the updates on your branch and push them. Your PR will update automatically.
+- Once the PR is approved, a maintainer will merge it. Congratulations\! 🎉
+
+---
+
+## Licensing
+
+By contributing to Ignix UI, you agree that your contributions will be licensed under the project's MIT License.
