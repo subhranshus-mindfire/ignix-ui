@@ -13,6 +13,7 @@
       "label": "Layouts",
       "items": [
         "layouts/aspect-ratio",
+        "layouts/auto-grid",
         "layouts/box",
         "layouts/center",
         "layouts/container",
@@ -20,8 +21,7 @@
         "layouts/pin",
         "layouts/responsive-grid",
         "layouts/spacer",
-        "layouts/split",
-        "layouts/auto-grid"
+        "layouts/split"
       ]
     },
 
