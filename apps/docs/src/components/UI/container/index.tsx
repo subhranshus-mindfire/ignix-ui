@@ -1,4 +1,4 @@
-import { cn } from "@site/src/utils/cn";
+import { cn } from '../../../utils/cn';
 import * as React from "react";
 
 export type ContainerSize = "small" | "normal" | "large" | "full" | "readable";
@@ -44,18 +44,22 @@ export function Container({
   size = "normal",
   center = true,
   padding = "normal",
-  maxWidth = "lg",
+  maxWidth,
   responsive = true,
   className,
   ...props
 }: ContainerProps) {
+  // If maxWidth is provided, it takes precedence over size
+  const widthClass = maxWidth 
+    ? (typeof maxWidth === 'string' ? maxWidthClasses[maxWidth as keyof typeof maxWidthClasses] : maxWidth)
+    : sizeClasses[size];
+
   return (
     <div
       className={cn(
         "w-full",
-        sizeClasses[size],
+        widthClass,
         paddingClasses[padding],
-        typeof maxWidth === "string" && maxWidthClasses[maxWidth as keyof typeof maxWidthClasses],
         center && "mx-auto",
         responsive && "px-4 sm:px-6 lg:px-8",
         className
