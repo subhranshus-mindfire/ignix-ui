@@ -10,52 +10,6 @@ Core UI component library built on Radix UI primitives with beautiful animations
 - TypeScript support
 - Modern React patterns
 
-
-## Usage
-
-## Available Components
-
-### Layout
-- Container
-- Grid
-- Stack
-- Flex
-- Spacer
-- Center
-- AspectRatio
-
-### Navigation
-- Menu
-- Tabs
-- Breadcrumb
-- Pagination
-
-### Forms
-- Button
-- Input
-- Select
-- Checkbox
-- Radio
-- Switch
-
-### Feedback
-- Alert
-- Toast
-- Progress
-- Spinner
-
-### Overlay
-- Modal
-- Drawer
-- Popover
-- Tooltip
-
-### Data Display
-- Table
-- Card
-- List
-- Badge
-
 ## Component Structure
 
 Each component follows a consistent structure:
@@ -65,28 +19,8 @@ Each component follows a consistent structure:
 │   ├── ComponentName/                 # CLI package
 │       ├── index.tsx       # Main component
 │       ├── index.types.ts # types
-│       ├──  useIndex.ts  # hook   
-│       └──config.ts  # tailwind-config              
+│       ├──  useIndex.ts  # hook             
 └── registry.json  #Info about all component and dependencies
-```
-
-## Tailwind-Config Structure
-### Always add Tailwind-config in below defined Struture
-```tsx
-module.exports = {
-  theme: {
-    extend: {
-      keyframes: {
-        // add keyframes here
-      },
-      animation: {
-      // add animations here
-      },
-    },
-  },
-  plugins: [],
-}
-
 ```
 
 ## File Types
@@ -94,7 +28,6 @@ module.exports = {
 - component
 - hook
 - types
-- tailwind-config
 
 ## Contributing
 

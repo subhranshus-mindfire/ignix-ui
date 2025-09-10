@@ -8,6 +8,8 @@
 /* Custom styles for the Docusaurus theme */
 
 :root {
+   --color-gradient-from-dropdown:#a855f7 ; 
+  --color-gradient-to-dropdown:#ec4899; 
   --ifm-color-primary: #ff0000;
   --ifm-color-primary-dark: #cc0511;
   --ifm-color-primary-darker: #b70510;
@@ -355,6 +357,11 @@ h1 {
 }
 
 
+.text-amber-800{
+  color: rgb(230, 112, 9) !important;
+  font-weight: 600 !important;
+}
+
 
 /* ---------- hero typography ---------- */
 .hero-h1 {
@@ -515,4 +522,8 @@ h1 {
 .glass-card-surface {
   position: absolute;
   inset: 0;
+}
+
+ul {
+  list-style-type: disc;
 }
