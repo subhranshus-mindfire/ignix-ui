@@ -84,7 +84,6 @@
       "name": "Pin",
       "description": "A layout utility component for Pin content",
       "dependencies": [
-        "react",
         "@radix-ui/react-slot",
         "clsx"
       ],
@@ -99,8 +98,7 @@
       "name": "Responsive Grid",
       "description": "A flexible grid layout component with responsive columns, gaps, equal-height option, and animations (fade, stagger, scale).",
       "dependencies": [
-        "framer-motion",
-        "react"
+        "framer-motion"
       ],
       "files": {
         "main": {
@@ -358,7 +356,7 @@
       ],
       "files": {
         "main": {
-          "path": "components/layout/form/index.tsx",
+          "path": "components/layouts/form/index.tsx",
           "type": "component"
         }
       }
