@@ -73,7 +73,9 @@ pnpm run generate-component --name=componentName
 
 - Creates a new folder for your component.
 
-- Adds base files (like .tsx, .test.tsx, index.ts,).
+- Adds base files (like .tsx, .test.tsx, index.tsx,).
+
+- update registry.json
 
 - Ensures naming consistency.
 
