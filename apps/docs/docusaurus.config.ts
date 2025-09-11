@@ -23,7 +23,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://mindfiredigital.github.io/ignix-ui/',
+          editUrl: undefined,
           sidebarCollapsed: false,
         },
         blog: false,
@@ -35,12 +35,34 @@ const config: Config = {
   ],
 
   themeConfig: {
+    metadata: [
+      {
+        name: 'description',
+        content: 'Beautiful, animated UI components for modern web applications',
+      },
+      {
+        name: 'keywords',
+        content: 'Ignix UI, UI components, React components, Tailwind CSS, Tailwind Native, Animated components, Ignix UI components, Ignix UI React components, Ignix UI Tailwind CSS, Ignix UI Tailwind Native, Ignix UI Animated components',
+      },{
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },{
+        name: 'twitter:site',
+        content: '@mindfiredigital',
+      },{
+        name: 'twitter:title',
+        content: 'Ignix UI',
+      },{
+        name: 'twitter:description',
+        content: 'Beautiful, animated UI components for modern web applications',
+      }
+    ],
     colorMode: {
       defaultMode: 'dark',
       disableSwitch: false,
       respectPrefersColorScheme: false,
     },
-    image: 'img/social-card.jpg',
+    image: 'img/social-card.png',
     navbar: {
       title: 'Ignix UI',
       logo: {
