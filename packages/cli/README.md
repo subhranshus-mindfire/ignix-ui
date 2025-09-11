@@ -1,232 +1,78 @@
 # Ignix UI CLI
 
-Command-line interface for managing and developing Ignix UI components.
+[![NPM Version](https://img.shields.io/npm/v/@mindfiredigital/ignix-ui.svg)](https://www.npmjs.com/package/@mindfiredigital/ignix-ui)
+[![License](https://img.shields.io/npm/l/@mindfiredigital/ignix-ui.svg)](https://github.com/mindfiredigital/ignix-ui/blob/main/LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](../../CONTRIBUTING.md)
+
+**Ignix UI CLI** is a powerful command-line interface designed to streamline the development workflow for creating, managing, and customizing components in the Ignix UI library.
 
 ## Overview
 
-The Ignix UI CLI provides a powerful set of tools for:
+The CLI provides a set of intuitive commands to automate repetitive tasks, enforce project conventions, and accelerate your development process. Whether you're initializing a new project, adding components, or managing dependencies, the Ignix UI CLI has you covered.
 
-- Creating new components with proper structure and best practices
-- Managing component dependencies
-- Building and testing components
-- Configuring project settings
-- Automating development workflows
+## Features
+
+- **Project Initialization**: Quickly set up a new project with the necessary configurations and directory structure.
+- **Component Scaffolding**: Generate new components from predefined or custom templates.
+- **Dependency Management**: Automatically handle component dependencies.
+- **Customizable Templates**: Extend and override default templates to match your project's needs.
+- **Tailwind CSS Integration**: Seamlessly integrate with Tailwind CSS for styling.
+- **Interactive Prompts**: User-friendly prompts to guide you through the development process.
 
 ## Installation
 
+To install the Ignix UI CLI, use your preferred package manager:
+
 ```bash
 # Using pnpm (recommended)
-pnpm add -D @ignix-ui/cli
+pnpm add -D @mindfiredigital/ignix-ui
 
 # Using npm
-npm install --save-dev @ignix-ui/cli
+npm install --save-dev @mindfiredigital/ignix-ui
 
 # Using yarn
-yarn add -D @ignix-ui/cli
+yarn add -D @mindfiredigital/ignix-ui
 ```
 
-## Commands
+## Usage
 
 ### Initialize Project
 
-Sets up Ignix UI in your project:
+To initialize Ignix UI in your project, run the `init` command:
 
 ```bash
-pnpm ignix-ui init [options]
-
-Options:
-  -y, --yes    Skip confirmation prompts
+npx @mindfiredigital/ignix-ui init
 ```
 
-This will:
+This command will:
 
-- Add necessary dependencies
-- Create configuration files
-- Set up the component directory structure
-- Configure build tools
+- Add required dependencies to your `package.json`.
+- Create a `tailwind.config.js` if one doesn't exist.
+- Configure the `tailwind.config.js` to include Ignix UI components.
+- Create an `.ignixrc.js` configuration file for custom settings.
 
 ### Add Component
 
-Add a new component to your project:
+To add a new component to your project, use the `add` command:
 
 ```bash
-pnpm ignix-ui add [component-name] [options]
-
-Arguments:
-  component-name    Name of the component to add
-
-Options:
-  --type <type>    Component type (primitive/composite/layout/animation)
-  --path <path>    Custom component path
+npx @mindfiredigital/ignix-ui add [component-name]
 ```
 
-The command will:
+**Arguments:**
 
-1. Create component directory structure
-2. Generate component files from templates
-3. Add necessary dependencies
-4. Update component registry
-5. Create documentation template
+- `component-name`: The name of the component to add (e.g., `Button`, `Card`).
 
-## Component Templates
+The `add` command will:
 
-The CLI provides several component templates:
+1. Create the component's directory and files based on the specified template.
+2. Add any necessary dependencies.
+3. Update the component registry.
 
-### Primitive Components
+## Documentation
 
-Basic building blocks with minimal dependencies:
-
-```
-ComponentName/
-├── index.tsx           # Main component
-├── index.types.ts     # TypeScript types
-├── useComponent.ts    # Component hooks
-└── config.ts          # Tailwind configuration
-```
-
-### Composite Components
-
-Complex components composed of primitives:
-
-```
-ComponentName/
-├── index.tsx
-├── index.types.ts
-├── useComponent.ts
-├── config.ts
-└── components/        # Sub-components
-    ├── Part1.tsx
-    └── Part2.tsx
-```
-
-### Layout Components
-
-Structure and layout components:
-
-```
-ComponentName/
-├── index.tsx
-├── index.types.ts
-├── useComponent.ts
-└── config.ts
-```
-
-### Animation Components
-
-Animation-specific components:
-
-```
-ComponentName/
-├── index.tsx
-├── index.types.ts
-├── useComponent.ts
-├── config.ts
-└── animations/       # Animation definitions
-    └── variants.ts
-```
-
-## Configuration
-
-Create an `.ignixrc.js` file in your project root:
-
-```javascript
-module.exports = {
-  // Component settings
-  components: {
-    path: 'src/components',
-    types: ['primitive', 'composite', 'layout', 'animation'],
-    defaultType: 'primitive',
-  },
-
-  // Build configuration
-  build: {
-    target: 'es2019',
-    formats: ['esm', 'cjs'],
-    minify: true,
-  },
-
-  // Template settings
-  templates: {
-    // Custom template overrides
-    customTemplates: './templates',
-
-    // Default state management
-    useHooks: true,
-    useContext: false,
-  },
-
-  // Tailwind configuration
-  tailwind: {
-    configPath: './tailwind.config.js',
-    // Component-specific Tailwind settings
-  },
-};
-```
-
-## Development Workflow
-
-1. Initialize your project:
-
-   ```bash
-   pnpm ignix-ui init
-   ```
-
-2. Add new components:
-
-   ```bash
-   pnpm ignix-ui add Button --type primitive
-   ```
-
-3. Build components:
-
-   ```bash
-   pnpm ignix-ui build
-   ```
-
-4. Test components:
-   ```bash
-   pnpm ignix-ui test
-   ```
-
-## Project Structure
-
-```
-cli/
-├── src/
-│   ├── commands/          # CLI commands
-│   │   ├── init.ts       # Project initialization
-│   │   ├── add.ts        # Component creation
-│   │   └── build.ts      # Build process
-│   ├── templates/        # Component templates
-│   ├── services/         # Core services
-│   │   ├── component.ts  # Component management
-│   │   └── config.ts     # Configuration
-│   ├── utils/           # Helper utilities
-│   └── types/           # TypeScript types
-├── bin/                 # Executable scripts
-└── dist/               # Compiled output
-```
+For full documentation, visit [mindfiredigital.github.io/ignix-ui](https://mindfiredigital.github.io/ignix-ui/).
 
 ## Contributing
 
-See the main [CONTRIBUTING.md](../../CONTRIBUTING.md) for guidelines.
-
-### Development Setup
-
-```bash
-# Install dependencies
-pnpm install
-
-# Build CLI
-pnpm build
-
-# Run tests
-pnpm test
-
-# Watch mode
-pnpm dev
-```
-
-## License
-
-MIT - See [LICENSE](../../LICENSE) for details.
+Please follow our [contributing guidelines](https://mindfiredigital.github.io/ignix-ui/docs/contribution-guide/how-to-contribute).
