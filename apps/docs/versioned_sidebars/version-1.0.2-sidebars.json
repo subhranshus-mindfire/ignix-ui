@@ -13,18 +13,18 @@
       "label": "Layouts",
       "items": [
         "layouts/aspect-ratio",
+        "layouts/auto-grid",
         "layouts/box",
         "layouts/center",
         "layouts/container",
         "layouts/form",
+        "layouts/mansory",
         "layouts/pin",
         "layouts/responsive-grid",
         "layouts/spacer",
-        "layouts/split",
-        "layouts/auto-grid"
+        "layouts/split"
       ]
     },
-    
     {
       "type": "category",
       "label": "Components",

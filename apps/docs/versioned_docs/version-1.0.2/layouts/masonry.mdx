@@ -1,0 +1,131 @@
+---
+sidebar_position: 7
+title: Masonry
+description: A Pinterest-style layout component for displaying items of varying heights in a responsive grid.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Masonry from '@site/src/components/UI/masonry';
+
+## Overview
+
+The **Masonry** component creates Pinterest-style layouts that optimize vertical space by arranging items of varying heights into responsive columns.
+
+It supports responsive breakpoints, gaps, balanced column heights, and entrance animations.
+
+## Preview
+
+<Tabs defaultValue="preview">
+  <TabItem value="preview" label="Preview" default>
+    <div className="p-4 border rounded-lg">
+      <Masonry 
+        columns={3}
+        mobile={1}
+        gap="normal"
+        balanced
+        animation="fade-in"
+      >
+        <div className="bg-blue-600 text-white p-4 rounded">Item 1</div>
+        <div className="bg-blue-600 text-white p-10 rounded">Item 2 (taller)</div>
+        <div className="bg-blue-600 text-white p-6 rounded">Item 3</div>
+        <div className="bg-blue-600 text-white p-20 rounded">Item 4 (tallest)</div>
+      </Masonry>
+    </div>
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    import Masonry from './components/ui';
+
+    function Example() {
+      return (
+        <Masonry 
+          columns={3}
+          mobile={1}
+          gap="normal"
+          balanced
+          animation="fade-in"
+        >
+          <div>Item 1</div>
+          <div>Item 2 (taller)</div>
+          <div>Item 3</div>
+          <div>Item 4 (tallest)</div>
+        </Masonry>
+      );
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    ```bash
+    npx @mindfiredigital/ignix-ui add masonry
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    ```bash
+    yarn @mindfiredigital/ignix-ui add masonry
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```bash
+    pnpm @mindfiredigital/ignix-ui add masonry
+    ```
+  </TabItem>
+</Tabs>
+
+## Variants
+
+import MasonryDemo from '@site/src/components/Demo/MasonryDemo';
+
+<MasonryDemo />
+
+## Usage
+
+### Basic Example
+
+```tsx
+function Gallery() {
+  return (
+    <Masonry columns={3} mobile={1} gap="normal">
+      {images.map((src, i) => (
+        <img key={i} src={src} className="rounded shadow" />
+      ))}
+    </Masonry>
+  );
+}
+```
+
+### Balanced Columns
+
+```tsx
+<Masonry columns={4} mobile={2} gap="small" balanced>
+  {items.map((item, i) => (
+    <Card key={i} {...item} />
+  ))}
+</Masonry>
+```
+
+### With Animation
+
+```tsx
+<Masonry columns={3} animation="scale-in">
+  {products.map((p) => (
+    <ProductCard key={p.id} product={p} />
+  ))}
+</Masonry>
+```
+
+## Props
+
+| Prop        | Type                                                   | Default   | Description                                                             |
+|-------------|--------------------------------------------------------|-----------|-------------------------------------------------------------------------|
+| `columns`   | `number`                                               | `3`       | Number of columns at desktop.                                           |
+| `mobile`    | `number`                                               | `1`       | Number of columns at mobile breakpoint.                                 |
+| `gap`       | `"none" \| "small" \| "normal" \| "large" \| string`   | `"normal"`| Gap between items.                                                      |
+| `balanced`  | `boolean`                                              | `false`   | If `true`, items are distributed evenly to balance column heights.      |
+| `animation` | `"none" \| "fade-in" \| "scale-in" \| "slide-up"`      | `"none"`  | Defines entrance animation for items.                                   |
+| `className` | `string`                                               | `""`      | Custom class names for wrapper.                                         |
