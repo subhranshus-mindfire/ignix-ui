@@ -16,6 +16,6 @@ for scope in "${VALID_SCOPES[@]}"; do
   fi
 done
 
-echo "⚠️ No valid scope found. Skipping scoped jobs."
+echo "⚠️ No valid scope found. Skipping scoped jobs"
 echo "scope=false" >> "$GITHUB_OUTPUT"
 exit 0
