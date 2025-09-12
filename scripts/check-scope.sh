@@ -11,11 +11,11 @@ VALID_SCOPES=("cli" "docs" "release" "registry" "storybook" "component")
 for scope in "${VALID_SCOPES[@]}"; do
   if [[ "$COMMIT_MSG" == *"$scope"* ]]; then
     echo "✅ Scope '$scope' found in commit message."
-    echo "scope=true" >> "$GITHUB_OUTPUT"
+    echo "scope=true" >> $GITHUB_OUTPUT
     exit 0
   fi
 done
 
 echo "⚠️ No valid scope found. Skipping scoped jobs"
-echo "scope=false" >> "$GITHUB_OUTPUT"
+echo "scope=false" >> $GITHUB_OUTPUT
 exit 0
