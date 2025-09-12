@@ -62,5 +62,5 @@ jobs:
         run: echo "🔍 CI job executed because valid scope was found in commit message"
 
       - name: Debug scope output
-        run: echo "Scope output is: ${{ needs.check_scope.outputs.scope }}"
+        run: echo "Scope output is:${{ needs.check_scope.outputs.scope }}"
 
