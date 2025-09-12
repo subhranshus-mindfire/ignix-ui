@@ -3,14 +3,14 @@ name: CI Workflow Ignix-UI
 on:
   push:
     branches:
-      - '**'
+      - "**"  # Allow CI on all branches
   pull_request:
     branches:
       - main
   workflow_dispatch:
 
 jobs:
- check_scope:
+  check_scope:
     runs-on: ubuntu-latest
     outputs:
       scope: ${{ steps.scope-check.outputs.scope }}
@@ -20,9 +20,11 @@ jobs:
 
       - name: Run scope check
         id: scope-check
-        run: bash scripts/check-scope.sh
-        
-    build:
+        run: |
+          bash scripts/check-scope.sh
+          echo "scope=${scope}" >> $GITHUB_OUTPUT
+
+  build:
     name: '@mindfiredigital/ignix-ui'
     needs: check_scope
     if: needs.check_scope.outputs.scope == 'true'
@@ -44,20 +46,21 @@ jobs:
       - name: Enable Corepack
         run: npm install -g pnpm
 
-      - name: 'Install dependencies with pnpm'
+      - name: Install dependencies with pnpm
         run: pnpm install --no-frozen-lockfile
 
-      - name: 'Build application'
+      - name: Build application
         run: pnpm run build
 
-      - name: 'Run typecheck'
+      - name: Run typecheck
         run: pnpm run typecheck
 
-      - name: 'Run lint'
+      - name: Run lint
         run: pnpm run lint
-      
+
       - name: Log scope status
         run: echo "🔍 CI job executed because valid scope was found in commit message"
 
       - name: Debug scope output
-        run: echo "Scope output is:${{ steps.scope-check.outputs.scope }}"
+        run: echo "Scope output is: ${{ needs.check_scope.outputs.scope }}"
+
