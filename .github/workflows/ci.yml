@@ -22,7 +22,6 @@ jobs:
         id: scope-check
         run: |
           bash scripts/check-scope.sh
-          echo "scope=${scope}" >> $GITHUB_OUTPUT
 
   build:
     name: '@mindfiredigital/ignix-ui'
