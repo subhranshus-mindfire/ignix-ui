@@ -9,7 +9,7 @@ const MasonryDemo = () => {
   const [columns, setColumns] = useState(3);
   const [mobile, setMobile] = useState(1);
   const [gap, setGap] = useState("normal");
-  const [balanced, setBalanced] = useState(false);
+  const [balanced] = useState(true);
   const [animation, setAnimation] = useState("none");
 
   const gaps = ["none", "small", "normal", "large"];
@@ -17,12 +17,12 @@ const MasonryDemo = () => {
   const columnOptions = ["1", "2", "3", "4"];
 
   const colors = [
-    "bg-blue-600",
-    "bg-blue-600",
-    "bg-blue-600",
-    "bg-blue-600",
-    "bg-blue-600",
-    "bg-blue-600",
+    "bg-red-600 p-10",
+    "bg-red-600 p-4",
+    "bg-red-600 p-12",
+    "bg-red-600 p-40",
+    "bg-red-600 p-20",
+    "bg-red-600 p-6",
   ];
 
   const codeString = `
@@ -34,7 +34,7 @@ const MasonryDemo = () => {
   animation="${animation}"
 >
   {items.map((item, i) => (
-    <div key={i} className="bg-gray-200 p-6 rounded-lg shadow text-center">
+    <div key={i} className="bg-gray-200 rounded-lg shadow text-center">
       Item {i + 1}
     </div>
   ))}
@@ -65,16 +65,6 @@ const MasonryDemo = () => {
           />
         </div>
 
-        {/* Balanced */}
-        <div className="space-y-2">
-          <VariantSelector
-            variants={["true", "false"]}
-            selectedVariant={String(balanced)}
-            onSelectVariant={(val) => setBalanced(val === "true")}
-            type="Balanced"
-          />
-        </div>
-
         {/* Mobile Columns */}
         <div className="space-y-2">
           <VariantSelector
@@ -101,6 +91,7 @@ const MasonryDemo = () => {
         <TabItem value="preview" label="Preview">
           <div className="border p-6 rounded-lg">
             <Masonry
+              key={`${animation}-${columns}-${mobile}-${gap}-${balanced}`} 
               columns={columns}
               mobile={mobile}
               gap={gap as "none" | "small" | "normal" | "large"}
@@ -109,8 +100,8 @@ const MasonryDemo = () => {
             >
               {colors.map((color, i) => (
                 <div
-                  key={i}
-                  className={`${color} text-white p-6 rounded-lg shadow-md text-center`}
+                  key={`${animation}-${i}`} 
+                  className={`${color} text-white rounded-lg shadow-md text-center`}
                 >
                   Item {i + 1}
                 </div>
