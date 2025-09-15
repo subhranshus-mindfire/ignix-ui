@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode } from "react";
 import { motion } from "framer-motion";
 
 type Gap = "none" | "small" | "normal" | "large" | string;
@@ -31,37 +31,38 @@ const Masonry: React.FC<MasonryProps> = ({
   className = "",
 }) => {
   const computedGap = gapMap[gap as keyof typeof gapMap] || gap;
-  const [columnItems, setColumnItems] = useState<ReactNode[][]>([]);
 
-  useEffect(() => {
-    if (!balanced) return;
-
+  // compute balanced layout directly
+  let columnItems: ReactNode[][] = [];
+  if (balanced) {
     const colHeights = new Array(columns).fill(0);
-    const colItems: ReactNode[][] = Array.from({ length: columns }, () => []);
-
+    columnItems = Array.from({ length: columns }, () => []);
     React.Children.forEach(children, (child) => {
       const shortest = colHeights.indexOf(Math.min(...colHeights));
-      colItems[shortest].push(child);
+      columnItems[shortest].push(child);
       colHeights[shortest] += 1;
     });
-
-    setColumnItems(colItems);
-  }, [children, columns, balanced]);
+  }
 
   const variants = {
-    initial: { opacity: 0, y: animation === "slide-up" ? 20 : 0, scale: animation === "scale-in" ? 0.95 : 1 },
+    initial: {
+      opacity: 0,
+      y: animation === "slide-up" ? 20 : 0,
+      scale: animation === "scale-in" ? 0.95 : 1,
+    },
     animate: { opacity: 1, y: 0, scale: 1 },
   };
 
   if (balanced) {
     return (
-      <div
-        className={`flex w-full ${className}`}
-        style={{ gap: computedGap }}
-      >
+      <div className={`flex w-full ${className}`} style={{ gap: computedGap }}>
         {columnItems.map((col, i) => (
-          <div key={i} className="flex flex-col" style={{ gap: computedGap, flex: 1 }}>
-            {col.map((child, j) => (
+          <div
+            key={i}
+            className="flex flex-col"
+            style={{ gap: computedGap, flex: 1 }}
+          >
+            {col.map((child, j) =>
               animation === "none" ? (
                 <div key={j}>{child}</div>
               ) : (
@@ -75,7 +76,7 @@ const Masonry: React.FC<MasonryProps> = ({
                   {child}
                 </motion.div>
               )
-            ))}
+            )}
           </div>
         ))}
       </div>
