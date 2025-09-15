@@ -1,0 +1,77 @@
+---
+sidebar_position: 7
+title: Stack
+description: A flexible layout primitive for arranging items in a vertical or horizontal stack with consistent spacing.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { Stack } from '@site/src/components/UI/stack';
+import StackDemo from '@site/src/components/Demo/StackDemo';
+import { Button } from '@site/src/components/UI/button';
+
+## Overview
+
+The **Stack** component arranges its children in a vertical or horizontal stack with consistent spacing.  
+It’s ideal for layouts like button groups, form fields, navigation links, and responsive arrangements.
+
+## Preview
+
+<StackDemo />
+
+## Installation
+
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    ```bash
+    npx @mindfiredigital/ignix-ui add stack
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    ```bash
+    yarn @mindfiredigital/ignix-ui add stack
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```bash
+    pnpm @mindfiredigital/ignix-ui add stack
+    ```
+  </TabItem>
+</Tabs>
+
+## Usage
+
+Import the component:
+
+```tsx
+import { Stack } from './components/ui';
+```
+
+### Basic Usage
+
+```tsx
+<Stack responsive={{ mobile: "vertical", tablet: "horizontal", desktop: "horizontal" }}>
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Stack>
+```
+
+## Props
+
+| Prop        | Type      | Default    | Description                                      |
+|-------------|-----------|------------|--------------------------------------------------|
+| direction   | string    | "vertical" | Stack direction: "vertical", "horizontal", "responsive" |
+| align       | string    | "stretch"  | Alignment: "start", "center", "end", "stretch"   |
+| justify     | string    | "start"    | Justify: "start", "center", "end", "between", "around" |
+| spacing     | string    | "normal"   | Space between items: "none", "xs", "sm", "normal", "lg", "xl", or custom |
+| wrap        | boolean   | false      | Allow items to wrap to next line                 |
+| responsive  | object    |            | Responsive direction:  mobile, tablet, desktop  |
+| className   | string    |            | Additional CSS classes                            |
+| children    | node      |            | Content inside the stack                          |
+
+## Use Cases
+- 👉 Horizontal button groups
+- 👉 Vertical form layouts
+- 👉 Navigation links in a header
+- 👉 Responsive layouts (switch direction on mobile)
