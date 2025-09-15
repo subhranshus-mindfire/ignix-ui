@@ -5,6 +5,7 @@ packages:
   - 'packages/registry'
   # all packages in subdirs of apps/
   - 'apps/docs'  
+  - 'apps/storybook'  
   # exclude packages that are inside test directories
   - '!**/test/**'
   # exclude packages that are inside dist directories
