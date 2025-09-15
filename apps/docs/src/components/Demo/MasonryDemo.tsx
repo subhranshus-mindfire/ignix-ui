@@ -9,7 +9,7 @@ const MasonryDemo = () => {
   const [columns, setColumns] = useState(3);
   const [mobile, setMobile] = useState(1);
   const [gap, setGap] = useState("normal");
-  const [balanced] = useState(false);
+  const [balanced] = useState(true);
   const [animation, setAnimation] = useState("none");
 
   const gaps = ["none", "small", "normal", "large"];
