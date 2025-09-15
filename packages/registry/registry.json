@@ -110,11 +110,23 @@
     "auto-grid": {
       "name": "Auto Grid",
       "description": "A self-calculating grid layout that automatically determines columns based on available space and minimum item width, with support for max columns, gap, and balanced heights.",
-      "dependencies": [
-      ],
+      "dependencies": [],
       "files": {
         "main": {
           "path": "components/layouts/auto-grid/index.tsx",
+          "type": "component"
+        }
+      }
+    },
+    "masonry": {
+      "name": "Masonry",
+      "description": "A Pinterest-style layout component that arranges items of varying heights in multiple responsive columns, with support for balanced layout and entrance animations.",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "files": {
+        "main": {
+          "path": "components/layouts/masonry/index.tsx",
           "type": "component"
         }
       }
