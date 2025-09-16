@@ -446,6 +446,19 @@
           "type": "component"
         }
       }
+    },
+    "cluster": {
+      "name": "Cluster",
+      "description": "A layout component for creating distinct group related items with consistent spacing and alignment.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "files": {
+        "main": {
+          "path": "components/layouts/cluster/index.tsx",
+          "type": "component"
+        }
+      }
     }
   }
 }
