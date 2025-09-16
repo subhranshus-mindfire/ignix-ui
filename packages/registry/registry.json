@@ -444,6 +444,17 @@
           "type": "component"
         }
       }
+    },
+    "lazyload": {
+      "name": "Lazyload",
+      "description": "A layout component for  lazy loading is a strategy to identify resources as non-blocking (non-critical) and load these only when needed",
+      "dependencies": [],
+      "files": {
+        "main": {
+          "path": "components/layouts/lazyload/index.tsx",
+          "type": "component"
+        }
+      }
     }
   }
 }

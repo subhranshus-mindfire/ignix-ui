@@ -18,6 +18,7 @@
         "layouts/center",
         "layouts/container",
         "layouts/form",
+        "layouts/lazyload",
         "layouts/pin",
         "layouts/responsive-grid",
         "layouts/spacer",
