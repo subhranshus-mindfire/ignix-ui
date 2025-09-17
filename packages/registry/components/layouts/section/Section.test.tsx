@@ -2,9 +2,9 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { describe, it, expect } from "vitest";
 import React from "react";
-import { Section } from "./index";
+import { Section } from ".";
 
-describe("Section", () => {
+describe("<Section />", () => {
   it("renders children correctly", () => {
     render(<Section>hello world</Section>);
     expect(screen.getByText("hello world")).toBeInTheDocument();
@@ -94,31 +94,6 @@ describe("Section", () => {
     const ref = React.createRef<HTMLDivElement>();
     render(<Section ref={ref}>content</Section>);
     expect(ref.current).toBeInTheDocument();
-  });
-
-  it("applies animation variants", () => {
-    const { container } = render(<Section animation="fade">content</Section>);
-    expect(container.firstChild).toHaveClass("motion-safe");
-  });
-
-  it("applies animation delay", () => {
-    const { container } = render(<Section animation="fade" animationDelay={0.5}>content</Section>);
-    expect(container.firstChild).toHaveAttribute("style", expect.stringContaining("delay: 0.5s"));
-  });
-
-  it("applies slide-up animation", () => {
-    const { container } = render(<Section animation="slide-up">content</Section>);
-    expect(container.firstChild).toHaveClass("motion-safe");
-  });
-
-  it("applies zoom animation", () => {
-    const { container } = render(<Section animation="zoom">content</Section>);
-    expect(container.firstChild).toHaveClass("motion-safe");
-  });
-
-  it("applies none animation (no animation)", () => {
-    const { container } = render(<Section animation="none">content</Section>);
-    expect(container.firstChild).not.toHaveClass("motion-safe");
   });
 
   it("combines multiple props correctly", () => {

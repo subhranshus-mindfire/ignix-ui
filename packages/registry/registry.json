@@ -437,9 +437,7 @@
     "section": {
       "name": "Section",
       "description": "A layout component for creating distinct vertical blocks with consistent vertical rhythm, spacing, and background styling.",
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "files": {
         "main": {
           "path": "components/layouts/section/index.tsx",
@@ -450,15 +448,25 @@
     "cluster": {
       "name": "Cluster",
       "description": "A layout component for creating distinct group related items with consistent spacing and alignment.",
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "files": {
         "main": {
           "path": "components/layouts/cluster/index.tsx",
           "type": "component"
         }
       }
+    },
+    "stack": {
+      "name": "Stack",
+      "description": "A layout component for arranging elements in a stack with adjustable spacing and alignment.",
+      "dependencies": ["class-variance-authority"],
+      "files": {
+        "main": {
+          "path": "components/layouts/stack/index.tsx",
+          "type": "component"
+        }
+      }
     }
+
   }
 }
