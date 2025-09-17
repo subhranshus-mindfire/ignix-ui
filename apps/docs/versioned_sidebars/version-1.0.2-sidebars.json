@@ -23,7 +23,8 @@
         "layouts/spacer",
         "layouts/split",
         "layouts/cluster",
-        "layouts/section"
+        "layouts/section",
+        "layouts/stack"
       ]
     },
 
