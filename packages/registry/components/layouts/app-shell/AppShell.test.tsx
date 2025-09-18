@@ -53,9 +53,9 @@ describe("AppShell Component", () => {
     expect(screen.getByText("Dashboard")).toBeInTheDocument();
   });
 
-  it("supports drawer navigation mode", () => {
+  it("supports side navigation mode", () => {
     render(
-      <AppShell navigation="drawer" brand={brand} menu={menu}>
+      <AppShell navigation="side" brand={brand} menu={menu}>
         {children}
       </AppShell>
     );
