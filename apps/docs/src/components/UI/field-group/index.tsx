@@ -4,7 +4,7 @@ import clsx from "clsx";
 export type FieldGroupProps = {
   title?: string;
   columns?: "auto" | number;
-  spacing?: "none" | "small" | "normal" | "large" | number; // ✅ allow px values
+  spacing?: "none" | "small" | "normal" | "large" | number; 
   border?: boolean;
   children: ReactNode;
   className?: string;
@@ -25,7 +25,6 @@ const FieldGroup: React.FC<FieldGroupProps> = ({
   children,
   className,
 }) => {
-  // ✅ If spacing is a number, generate an inline style
   const gapStyle =
     typeof spacing === "number"
       ? { gap: `${spacing}px` }
