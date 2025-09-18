@@ -21,11 +21,9 @@ It improves structure, accessibility, and scannability of complex forms.
 <Tabs defaultValue="preview">
   <TabItem value="preview" label="Preview" default>
     <div className="p-4 border rounded-lg">
-      <FieldGroup title="Personal Information" columns="auto" spacing="normal" border={true}>
-        <div className="grid gap-2">
-          <input type="text" placeholder="First Name" className="border p-2 rounded" />
-          <input type="text" placeholder="Last Name" className="border p-2 rounded" />
-        </div>
+      <FieldGroup title="Personal Information" columns="3" spacing="normal" border={true}>
+          <input type="text" placeholder="First Name" className="border p-2 rounded-lg" />
+          <input type="text" placeholder="Last Name" className="border p-2 rounded-lg" />
       </FieldGroup>
     </div>
   </TabItem>
@@ -36,12 +34,12 @@ It improves structure, accessibility, and scannability of complex forms.
 
     export default function Demo() {
       return (
-        <FieldGroup title="Personal Information" columns="auto" spacing="normal" border>
-          <div className="grid gap-2">
-            <input type="text" placeholder="First Name" />
-            <input type="text" placeholder="Last Name" />
-          </div>
-        </FieldGroup>
+        <div className="p-4 border rounded-lg">
+          <FieldGroup title="Personal Information" columns="3" spacing="normal" border={true}>
+              <input type="text" placeholder="First Name" className="border p-2 rounded-lg" />
+              <input type="text" placeholder="Last Name" className="border p-2 rounded-lg" />
+          </FieldGroup>
+        </div>
       );
     }
     ```
