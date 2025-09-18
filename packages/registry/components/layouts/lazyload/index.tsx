@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 
-export interface LazyLoadProps {
+export interface LazyLoadProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
-  threshold?: string; // Distance from viewport to trigger loading
-  placeholder?: React.ReactNode; // Placeholder content
-  once?: boolean; // Load only once
-  animation?: "fade" | "slide" | "none"; // Animation type
+  threshold?: string; 
+  placeholder?: React.ReactNode; 
+  once?: boolean;
+  animation?: "fade" | "slide" | "none"; 
 }
 
 export const LazyLoad: React.FC<LazyLoadProps> = ({
@@ -16,6 +16,7 @@ export const LazyLoad: React.FC<LazyLoadProps> = ({
   placeholder = null,
   once = true,
   animation = "fade",
+  ...rest 
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -25,7 +26,7 @@ export const LazyLoad: React.FC<LazyLoadProps> = ({
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          if (once) observer.disconnect(); // Stop observing if `once` is true
+          if (once) observer.disconnect(); 
         }
       },
       { rootMargin: threshold }
@@ -56,7 +57,12 @@ export const LazyLoad: React.FC<LazyLoadProps> = ({
   };
 
   return (
-    <div ref={containerRef} className={className} style={getAnimationStyle()}>
+    <div
+      ref={containerRef}
+      className={className}
+      style={getAnimationStyle()}
+      {...rest}
+    >
       {isVisible ? children : placeholder}
     </div>
   );

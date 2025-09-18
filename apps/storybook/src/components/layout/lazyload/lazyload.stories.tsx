@@ -3,6 +3,7 @@ import { LazyLoad } from "./index";
 export default {
   title: "Layout/LazyLoad",
   component: LazyLoad,
+   tags: ['autodocs'],
   argTypes: {
     threshold: {
       control: { type: "text" },
