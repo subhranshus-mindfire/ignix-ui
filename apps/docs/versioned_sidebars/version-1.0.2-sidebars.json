@@ -18,6 +18,7 @@
         "layouts/box",
         "layouts/center",
         "layouts/container",
+        "layouts/field-group",
         "layouts/form",
         "layouts/masonry",
         "layouts/pin",
