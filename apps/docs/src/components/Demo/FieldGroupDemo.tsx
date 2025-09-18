@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import FieldGroup from "@site/src/components/UI/field-group";
 import VariantSelector from "./VariantSelector";
 import Tabs from "@theme/Tabs";
@@ -57,7 +57,7 @@ const FieldGroupDemo = () => {
           <VariantSelector
             variants={spacings}
             selectedVariant={spacing}
-            onSelectVariant={setSpacing}
+            onSelectVariant={(value)=>setSpacing(value as SetStateAction<"small" | "none" | "normal" | "large">)}
             type="Spacing"
           />
         </div>
