@@ -34,19 +34,19 @@ const AppShellDemo = () => {
     <nav className="flex space-x-4">
       <a
         href="#"
-        className="text-gray-600 hover:text-gray-900 hover:no-underline"
+        className="!text-gray-300 hover:text-gray-900 hover:no-underline"
       >
         Dashboard
       </a>
       <a
         href="#"
-        className="text-gray-600 hover:text-gray-900 hover:no-underline"
+        className="!text-gray-300 hover:text-gray-900 hover:no-underline"
       >
         Analytics
       </a>
       <a
         href="#"
-        className="text-gray-600 hover:text-gray-900 hover:no-underline"
+        className="!text-gray-300 hover:text-gray-900 hover:no-underline"
       >
         Settings
       </a>
