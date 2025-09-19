@@ -19,6 +19,7 @@
         "layouts/center",
         "layouts/container",
         "layouts/form",
+        "layouts/masonry",
         "layouts/pin",
         "layouts/responsive-grid",
         "layouts/spacer",
@@ -26,7 +27,7 @@
         "layouts/stack"
       ]
     },
-
+    
     {
       "type": "category",
       "label": "Components",
