@@ -131,6 +131,17 @@
         }
       }
     },
+    "appShell": {
+      "name": "AppShell",
+      "description": "A high-level layout component that structures the entire application frame, providing responsive navigation (side, top, or drawer), brand placement, user profile integration, and optional footer support.",
+      "dependencies": ["clsx"],
+      "files": {
+        "main": {
+          "path": "components/layouts/app-shell/index.tsx",
+          "type": "component"
+        }
+      }
+    },
     "slider": {
       "name": "Slider",
       "description": "An animated slider component",
@@ -464,6 +475,7 @@
       "name": "Stack",
       "description": "A layout component for arranging elements in a stack with adjustable spacing and alignment.",
       "dependencies": [
+
         "class-variance-authority",
         "lucide-react"
       ],
