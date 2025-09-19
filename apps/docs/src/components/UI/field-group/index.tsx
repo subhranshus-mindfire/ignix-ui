@@ -39,7 +39,7 @@ const FieldGroup: React.FC<FieldGroupProps> = ({
       )}
     >
       {title && (
-        <legend className="px-2 text-sm font-medium text-gray-700 dark:text-gray-200">
+        <legend className="px-2 text-sm font-medium text-gray-700 dark:text-gray-400">
           {title}
         </legend>
       )}

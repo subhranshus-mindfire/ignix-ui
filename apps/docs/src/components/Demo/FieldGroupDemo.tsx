@@ -88,7 +88,7 @@ const FieldGroupDemo = () => {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-400"
                 >
                   Full Name
                 </label>
@@ -102,7 +102,7 @@ const FieldGroupDemo = () => {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-400"
                 >
                   Email Address
                 </label>
