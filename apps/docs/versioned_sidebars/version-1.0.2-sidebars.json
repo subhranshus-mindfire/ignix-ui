@@ -21,6 +21,7 @@
         "layouts/container",
         "layouts/field-group",
         "layouts/form",
+        "layouts/lazyload",
         "layouts/masonry",
         "layouts/pin",
         "layouts/responsive",
