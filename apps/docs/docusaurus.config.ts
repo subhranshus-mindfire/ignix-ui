@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Ignix UI',
   tagline: 'Beautiful, animated UI components for modern web applications',
-  favicon: 'img/logo.png',
+  favicon: 'img/favicon-512x512.jpeg',
   url: 'https://ignix-ui.com',
   baseUrl: '/ignix-ui/',
   organizationName: 'mindfiredigital',
