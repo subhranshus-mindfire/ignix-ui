@@ -16,6 +16,7 @@
         "layouts/aspect-ratio",
         "layouts/auto-grid",
         "layouts/box",
+        "layouts/breakpoint",
         "layouts/center",
         "layouts/container",
         "layouts/form",
