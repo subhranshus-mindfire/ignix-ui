@@ -157,6 +157,17 @@
         }
       }
     },
+    "responsive": {
+      "name": "Responsive",
+      "description": "A layout component that renders completely different components or layouts depending on the current device breakpoint (mobile, tablet, desktop), enabling fully adaptive user interfaces.",
+      "dependencies": [],
+      "files": {
+        "main": {
+          "path": "components/layouts/responsive/index.tsx",
+          "type": "component"
+        }
+      }
+    },
     "slider": {
       "name": "Slider",
       "description": "An animated slider component",
