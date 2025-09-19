@@ -134,10 +134,36 @@
     "appShell": {
       "name": "AppShell",
       "description": "A high-level layout component that structures the entire application frame, providing responsive navigation (side, top, or drawer), brand placement, user profile integration, and optional footer support.",
-      "dependencies": ["clsx"],
+      "dependencies": [
+        "clsx"
+      ],
       "files": {
         "main": {
           "path": "components/layouts/app-shell/index.tsx",
+          "type": "component"
+        }
+      }
+    },
+    "fieldGroup": {
+      "name": "FieldGroup",
+      "description": "A form utility component that groups related form fields together with an optional label, description, and error message, ensuring consistent spacing and accessibility.",
+      "dependencies": [
+        "clsx"
+      ],
+      "files": {
+        "main": {
+          "path": "components/layouts/field-group/index.tsx",
+          "type": "component"
+        }
+      }
+    },
+    "responsive": {
+      "name": "Responsive",
+      "description": "A layout component that renders completely different components or layouts depending on the current device breakpoint (mobile, tablet, desktop), enabling fully adaptive user interfaces.",
+      "dependencies": [],
+      "files": {
+        "main": {
+          "path": "components/layouts/responsive/index.tsx",
           "type": "component"
         }
       }

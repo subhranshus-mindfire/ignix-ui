@@ -19,16 +19,17 @@
         "layouts/breakpoint",
         "layouts/center",
         "layouts/container",
+        "layouts/field-group",
         "layouts/form",
         "layouts/masonry",
         "layouts/pin",
+        "layouts/responsive",
         "layouts/responsive-grid",
         "layouts/spacer",
         "layouts/split",
         "layouts/stack"
       ]
     },
-    
     {
       "type": "category",
       "label": "Components",
