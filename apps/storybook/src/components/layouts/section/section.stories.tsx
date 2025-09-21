@@ -1,7 +1,7 @@
 import { Section } from ".";
 
 export default {
-  title: "Components/Section",
+  title: "Layouts/Section",
   component: Section,
   parameters: {
     layout: "padded",

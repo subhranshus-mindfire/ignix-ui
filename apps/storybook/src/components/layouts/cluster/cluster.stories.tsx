@@ -1,7 +1,7 @@
 import { Cluster } from ".";
 
 export default {
-  title: "Components/Cluster",
+  title: "Layouts/Cluster",
   component: Cluster,
   parameters: {
     layout: "padded",
