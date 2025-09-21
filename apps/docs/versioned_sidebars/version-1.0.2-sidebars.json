@@ -24,7 +24,8 @@
         "layouts/split",
         "layouts/cluster",
         "layouts/section",
-        "layouts/stack"
+        "layouts/stack",
+        "layouts/header-layout"
       ]
     },
 

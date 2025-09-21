@@ -1,0 +1,119 @@
+---
+sidebar_position: 1
+title: HeaderLayout
+description: A flexible layout component with header, sidebar, and footer that supports responsive design and various configuration options.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import HeaderLayout from '@site/src/components/UI/header-layout';
+import HeaderLayoutDemo from '@site/src/components/Demo/HeaderLayoutDemo';
+
+## Overview
+
+The **HeaderLayout** component provides a complete layout solution with a header, sidebar, and footer. It's designed to be highly configurable with support for responsive design, animations, and various layout variants. This component is perfect for building dashboards, admin panels, and complex web applications.
+
+## Preview
+
+<HeaderLayoutDemo />
+
+
+## Installation
+
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    ```bash
+    npx @mindfiredigital/ignix-ui add header-layout
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+    ```bash
+    yarn @mindfiredigital/ignix-ui add header-layout
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```bash
+    pnpm @mindfiredigital/ignix-ui add header-layout
+    ```
+  </TabItem>
+  <TabItem value="manual" label="manual" className="max-h-[500px] overflow-y-auto">
+    ```tsx
+
+    ```
+  </TabItem>
+</Tabs>
+
+
+## Usage
+
+```tsx
+import { HeaderLayout } from '@site/src/components/UI/header-layout';
+
+    function Example() {
+      return (
+        <HeaderLayout
+          variant="default"
+          sidebarPosition="left"
+          animation="slide"
+          mobileBreakpoint="md"
+          stickyHeader={true}
+          stickyFooter={false}
+          overlay={true}
+          enableGestures={true}
+          header={<div>Header Content</div>}
+          sidebar={<div>Sidebar Content</div>}
+          footer={<div>Footer Content</div>}
+        >
+          <div>Main Content</div>
+        </HeaderLayout>
+      );
+    }
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `header` | `React.ReactNode` | `undefined` | Content for the header section |
+| `sidebar` | `React.ReactNode` | `undefined` | Content for the sidebar section |
+| `footer` | `React.ReactNode` | `undefined` | Content for the footer section |
+| `children` | `React.ReactNode` | `undefined` | Main content area |
+| `variant` | `"default" \| "dark" \| "light" \| "glass" \| "gradient"` | `"default"` | Visual theme variant |
+| `sidebarPosition` | `"left" \| "right"` | `"left"` | Position of the sidebar |
+| `animation` | `"none" \| "slide" \| "fade" \| "scale" \| "bounce"` | `"slide"` | Animation type for transitions |
+| `mobileBreakpoint` | `"sm" \| "md" \| "lg"` | `"md"` | Breakpoint for mobile behavior |
+| `stickyHeader` | `boolean` | `true` | Whether header should be sticky |
+| `stickyFooter` | `boolean` | `false` | Whether footer should be sticky |
+| `overlay` | `boolean` | `true` | Whether to show overlay on mobile |
+| `enableGestures` | `boolean` | `true` | Whether to enable touch gestures |
+| `sidebarWidth` | `number` | `250` | Width of sidebar in pixels |
+| `sidebarCollapsedWidth` | `number` | `64` | Collapsed width in pixels |
+| `headerHeight` | `number` | `64` | Header height in pixels |
+| `footerHeight` | `number` | `64` | Footer height in pixels |
+| `contentPadding` | `string` | `"p-4 lg:p-6"` | Padding for content area |
+| `transitionDuration` | `number` | `0.3` | Animation duration in seconds |
+| `sidebarCollapsed` | `boolean` | `false` | Whether sidebar is initially collapsed |
+| `onSidebarToggle` | `(isOpen: boolean) => void` | `undefined` | Callback for sidebar toggle |
+| `zIndex` | `object` | `{ header: 100, sidebar: 90, footer: 50, overlay: 80 }` | Z-index values for each layer |
+| `className` | `string` | `undefined` | Additional CSS classes |
+
+## Advanced Configuration
+
+### Custom Z-Index Management
+
+```tsx
+function CustomZIndexExample() {
+  return (
+    <HeaderLayout
+      zIndex={{
+        header: 200,
+        sidebar: 150,
+        footer: 100,
+        overlay: 180
+      }}
+    >
+      {/* Content */}
+    </HeaderLayout>
+  );
+}
+```
