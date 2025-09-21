@@ -39,6 +39,7 @@
         "components/button",
         "components/card",
         "components/dialog-box",
+        "components/drawer",
         "components/dropdown",
         "components/input",
         "components/navbar",

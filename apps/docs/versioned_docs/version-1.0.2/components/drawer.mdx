@@ -1,0 +1,111 @@
+---
+sidebar_position: 12
+title: Drawer
+description: A versatile drawer component with multiple positions, animations, and customizable content areas.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import DrawerDemo from '@site/src/components/Demo/DrawerDemo';
+import CodeBlock from '@theme/CodeBlock';
+
+## Overview
+
+The Drawer component provides a sliding panel that can be positioned from any side of the screen. It supports multiple animation types, customizable sizes, and includes features like overlay, keyboard navigation, and accessibility support.
+
+## Preview
+
+<DrawerDemo />
+
+## Installation
+
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    ```bash
+    npx @mindfiredigital/ignix-ui add drawer
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+    ```bash
+    yarn @mindfiredigital/ignix-ui add drawer
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```bash
+    pnpm @mindfiredigital/ignix-ui add drawer
+    ```
+  </TabItem>
+</Tabs>
+
+## Usage
+
+```tsx
+import { Drawer } from './components/drawer';
+
+function MyComponent() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Drawer</Button>
+
+      <Drawer
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        position="right"
+        animationType="slide"
+        size="350px"
+        showOverlay={true}
+        title="My Drawer"
+      >
+        <div className="p-4">
+          <h3>Drawer Content</h3>
+          <p>This is the content of the drawer.</p>
+        </div>
+      </Drawer>
+    </>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isOpen` | `boolean` | - | Controls whether the drawer is open or closed |
+| `onClose` | `() => void` | - | Callback function called when the drawer should close |
+| `children` | `React.ReactNode` | - | Content to be displayed inside the drawer |
+| `position` | `'left' \| 'right' \| 'top' \| 'bottom'` | `'right'` | Position of the drawer relative to the screen |
+| `size` | `string \| number` | `'350px'` | Size of the drawer (width for left/right, height for top/bottom) |
+| `showOverlay` | `boolean` | `true` | Whether to show a backdrop overlay |
+| `closeOnOverlayClick` | `boolean` | `true` | Whether clicking the overlay closes the drawer |
+| `title` | `React.ReactNode` | - | Optional title displayed in the drawer header |
+| `footer` | `React.ReactNode` | - | Optional footer content |
+| `className` | `string` | - | Additional CSS classes for the drawer container |
+| `animationType` | `'slide' \| 'reveal' \| 'fade' \| 'hinge' \| 'zoom' \| 'flip'` | `'slide'` | Type of animation to use when opening/closing |
+| `zIndex` | `number` | `1000` | Z-index for the drawer and overlay |
+
+## Examples
+
+### Form Drawer
+
+```tsx
+<Drawer
+  isOpen={isOpen}
+  onClose={() => setIsOpen(false)}
+  position="right"
+  size="400px"
+  title="Edit Profile"
+  footer={
+    <div className="flex justify-end gap-2">
+      <Button variant="outline" onClick={() => setIsOpen(false)}>Cancel</Button>
+      <Button variant="default">Save Changes</Button>
+    </div>
+  }
+>
+  <form className="p-4 space-y-4">
+    <input placeholder="Name" className="w-full p-2 border rounded" />
+    <input placeholder="Email" className="w-full p-2 border rounded" />
+  </form>
+</Drawer>
+```
