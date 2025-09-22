@@ -12,13 +12,19 @@
       "type": "category",
       "label": "Layouts",
       "items": [
+        "layouts/app-shell",
         "layouts/aspect-ratio",
         "layouts/auto-grid",
         "layouts/box",
+        "layouts/breakpoint",
         "layouts/center",
         "layouts/container",
+        "layouts/field-group",
         "layouts/form",
+        "layouts/lazyload",
+        "layouts/masonry",
         "layouts/pin",
+        "layouts/responsive",
         "layouts/responsive-grid",
         "layouts/spacer",
         "layouts/split",
@@ -28,7 +34,6 @@
         "layouts/header-layout"
       ]
     },
-
     {
       "type": "category",
       "label": "Components",

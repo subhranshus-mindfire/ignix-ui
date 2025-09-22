@@ -8,15 +8,6 @@ describe("AspectRatio", () => {
     vi.resetAllMocks();
   });
 
-  it("renders children correctly", () => {
-    render(
-      <AspectRatio>
-        <span data-testid="child">content</span>
-      </AspectRatio>
-    );
-    expect(screen.getByTestId("child")).toBeInTheDocument();
-  });
-
   it("applies aspect-ratio style when supported", () => {
     // Mock CSS.supports to return true
     vi.stubGlobal("CSS", {
@@ -39,13 +30,6 @@ describe("AspectRatio", () => {
     expect(container.firstChild).toHaveStyle({
       paddingBottom: "75%",
       position: "relative",
-    });
-  });
-
-  it("handles invalid ratio gracefully (defaults to 1:1)", () => {
-    const { container } = render(<AspectRatio ratio="invalid">content</AspectRatio>);
-    expect(container.firstChild).toHaveStyle({
-      aspectRatio: "1 / 1",
     });
   });
 

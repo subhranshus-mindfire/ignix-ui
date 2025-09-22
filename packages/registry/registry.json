@@ -110,11 +110,60 @@
     "auto-grid": {
       "name": "Auto Grid",
       "description": "A self-calculating grid layout that automatically determines columns based on available space and minimum item width, with support for max columns, gap, and balanced heights.",
-      "dependencies": [
-      ],
+      "dependencies": [],
       "files": {
         "main": {
           "path": "components/layouts/auto-grid/index.tsx",
+          "type": "component"
+        }
+      }
+    },
+    "masonry": {
+      "name": "Masonry",
+      "description": "A Pinterest-style layout component that arranges items of varying heights in multiple responsive columns, with support for balanced layout and entrance animations.",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "files": {
+        "main": {
+          "path": "components/layouts/masonry/index.tsx",
+          "type": "component"
+        }
+      }
+    },
+    "appShell": {
+      "name": "AppShell",
+      "description": "A high-level layout component that structures the entire application frame, providing responsive navigation (side, top, or drawer), brand placement, user profile integration, and optional footer support.",
+      "dependencies": [
+        "clsx"
+      ],
+      "files": {
+        "main": {
+          "path": "components/layouts/app-shell/index.tsx",
+          "type": "component"
+        }
+      }
+    },
+    "fieldGroup": {
+      "name": "FieldGroup",
+      "description": "A form utility component that groups related form fields together with an optional label, description, and error message, ensuring consistent spacing and accessibility.",
+      "dependencies": [
+        "clsx"
+      ],
+      "files": {
+        "main": {
+          "path": "components/layouts/field-group/index.tsx",
+          "type": "component"
+        }
+      }
+    },
+    "responsive": {
+      "name": "Responsive",
+      "description": "A layout component that renders completely different components or layouts depending on the current device breakpoint (mobile, tablet, desktop), enabling fully adaptive user interfaces.",
+      "dependencies": [],
+      "files": {
+        "main": {
+          "path": "components/layouts/responsive/index.tsx",
           "type": "component"
         }
       }
@@ -456,10 +505,28 @@
         }
       }
     },
+    "breakpoint": {
+      "name": "Breakpoint",
+      "description": "A flexible container component for constraining content width with responsive padding and centering options.",
+      "dependencies": [
+        "class-variance-authority", 
+        "lucide-react"
+      ],
+      "files": {
+        "main": {
+          "path": "components/layouts/breakpoint/index.tsx",
+          "type": "component"
+        }
+      }
+    },
     "stack": {
       "name": "Stack",
       "description": "A layout component for arranging elements in a stack with adjustable spacing and alignment.",
-      "dependencies": ["class-variance-authority"],
+      "dependencies": [
+
+        "class-variance-authority",
+        "lucide-react"
+      ],
       "files": {
         "main": {
           "path": "components/layouts/stack/index.tsx",
@@ -496,7 +563,17 @@
           "type": "component"
         }
       }
+    },
+    "lazyload": {
+      "name": "Lazyload",
+      "description": "A layout component for  lazy loading is a strategy to identify resources as non-blocking (non-critical) and load these only when needed",
+      "dependencies": [],
+      "files": {
+        "main": {
+          "path": "components/layouts/lazyload/index.tsx",
+          "type": "component"
+        }
+      }
     }
-
   }
 }
