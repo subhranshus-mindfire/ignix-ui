@@ -7,6 +7,90 @@ import { Logger } from '../utils/logger';
 import { CLIError } from '../errors/CLIError';
 
 export class InitCommand {
+  private async setupIgnixUIAlias(): Promise<void> {
+    const root = process.cwd();
+
+    // 1) Update root tsconfig.json (merge safely)
+    const rootTsconfigPath = path.resolve(root, 'tsconfig.json');
+    let rootTsconfig: any = {};
+
+    if (await fs.pathExists(rootTsconfigPath)) {
+      try {
+        rootTsconfig = await fs.readJSON(rootTsconfigPath);
+      } catch {
+        rootTsconfig = {};
+      }
+    }
+
+    // Ensure compilerOptions + paths
+    rootTsconfig.compilerOptions = {
+      ...(rootTsconfig.compilerOptions || {}), // keep old options (jsx, strict, etc.)
+    };
+
+    // Ensure paths exists
+    rootTsconfig.compilerOptions = {
+      ...(rootTsconfig.compilerOptions || {}),
+      baseUrl: rootTsconfig.compilerOptions?.baseUrl || '.', // agar nahi hai to set karo
+      paths: {
+        ...(rootTsconfig.compilerOptions?.paths || {}),
+        '@ignix-ui/components/*': ['node_modules/@mindfiredigital/ignix-ui/components/*'],
+      },
+    };
+
+    // Write merged config back
+    await fs.writeJSON(rootTsconfigPath, rootTsconfig, { spaces: 2 });
+    this.logger.success('✔ Root tsconfig.json updated with @ignix-ui alias');
+
+    // 2) Create plugins/webpack-alias.ts
+    const pluginsDir = path.resolve(root, 'plugins');
+    await fs.ensureDir(pluginsDir);
+    const webpackAliasFile = path.join(pluginsDir, 'webpack-alias.ts');
+
+    if (!(await fs.pathExists(webpackAliasFile))) {
+      const pluginCode = `import path from 'path';
+
+export default function webpackAliasPlugin() {
+  return {
+    name: 'webpack-alias-plugin',
+    configureWebpack() {
+      return {
+        resolve: {
+          alias: {
+            '@ignix-ui': path.resolve(process.cwd(), 'node_modules/@mindfiredigital/ignix-ui/components'),
+          },
+        },
+      };
+    },
+  };
+}
+`;
+      await fs.writeFile(webpackAliasFile, pluginCode, 'utf8');
+      this.logger.success('✔ Created plugins/webpack-alias.ts');
+    } else {
+      this.logger.info('plugins/webpack-alias.ts already exists — skipping');
+    }
+  }
+
+  private async printInstallInstructions(): Promise<void> {
+    const dependencies = ['framer-motion', 'clsx', 'tailwind-merge'];
+    const devDependencies = ['tailwindcss', 'autoprefixer', 'postcss'];
+
+    this.logger.info('');
+    this.logger.info('To finish setup, please install required packages in your project:');
+    this.logger.info('');
+    this.logger.info(`  pnpm add ${dependencies.join(' ')}`);
+    this.logger.info(`  pnpm add -D ${devDependencies.join(' ')}`);
+    this.logger.info('');
+    this.logger.info('Or use npm:');
+    this.logger.info(`  npm install ${dependencies.join(' ')} --save`);
+    this.logger.info(`  npm install ${devDependencies.join(' ')} --save-dev`);
+    this.logger.info('');
+    this.logger.info(
+      'If you are using a pnpm workspace and want the packages added to the workspace root, add -w to pnpm commands.'
+    );
+    this.logger.info('');
+  }
+
   private logger = new Logger();
   private dependencyService = DependencyService.getInstance();
 
@@ -20,8 +104,10 @@ export class InitCommand {
       // Execute initialization steps
       await this.createProjectStructure();
       await this.createConfigFiles();
-      await this.installDependencies();
+      // await this.installDependencies();
+      await this.printInstallInstructions();
       await this.addColorVariablesToCss();
+      await this.setupIgnixUIAlias();
 
       spinner.succeed('Successfully initialized animation-ui');
       this.logger.printInitInstructions();
