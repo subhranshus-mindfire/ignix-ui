@@ -1,15 +1,10 @@
-// HeaderLayout.test.tsx
-
 import React from 'react';
 import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import '@testing-library/jest-dom';
-
-// Assuming HeaderLayout is in the same directory, adjust path as needed
 import { HeaderLayout, type HeaderLayoutProps } from '.';
 
-// Mock lucide-react icons for simplicity
 vi.mock('lucide-react', () => ({
   Menu: () => <div data-testid="menu-icon" />,
   X: () => <div data-testid="x-icon" />,
