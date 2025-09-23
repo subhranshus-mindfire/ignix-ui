@@ -444,6 +444,17 @@
           "type": "component"
         }
       }
+    },
+    "DebugBox": {
+  "name": "DebugBox",
+  "description": "A development utility that overlays grid, spacing, breakpoints, and dimensions for debugging layouts.",
+  "dependencies": [],
+  "files": {
+    "main": {
+      "path": "components/DebugBox/index.tsx",
+      "type": "component"
     }
+  }
+}
   }
 }
