@@ -64,7 +64,7 @@ export function HeroSection() {
         <div className="hero-noise -z-10" aria-hidden />
       </div>
 
-      <header className={clsx(styles.heroBanner, 'flex items-center justify-center py-24')}>
+      <header className={clsx(styles.heroBanner, 'flex items-center justify-center sm:py-24 py-16')}>
         <div className={clsx(styles.heroContent, 'w-full relative z-10')}>
           <div className="max-w-7xl mx-auto px-6 text-center md:text-left">
             <GlassText />
