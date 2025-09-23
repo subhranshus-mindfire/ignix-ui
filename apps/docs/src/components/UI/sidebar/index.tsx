@@ -1,7 +1,11 @@
 import React, { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
 import { motion } from "framer-motion";
 import {
+  HelpCircle,
+  Home,
   Menu,
+  Settings,
+  User,
   X,
 } from "lucide-react";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -183,3 +187,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
     </motion.div>
   );
 };
+
+export default function SidebarDemo() {
+  return (
+    <SidebarProvider>
+      <Sidebar
+        links={[
+          { label: 'Home', href: '#', icon: Home },
+          { label: 'Profile', href: '#', icon: User },
+          { label: 'Settings', href: '#', icon: Settings },
+          { label: 'Help', href: '#', icon: HelpCircle },
+        ]}
+        brandName="Demo App"
+      />
+    </SidebarProvider>
+  );
+}
