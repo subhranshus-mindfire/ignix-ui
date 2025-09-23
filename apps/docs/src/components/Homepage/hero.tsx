@@ -59,6 +59,7 @@ export function HeroSection() {
         ) : (
           <div className="fixed inset-0">
             <DarkVeil speed={0.6} hueShift={234} warpAmount={1.4} />
+            <div className="absolute inset-0 bg-black/20" />
           </div>
         )}
         <div className="hero-noise -z-10" aria-hidden />
