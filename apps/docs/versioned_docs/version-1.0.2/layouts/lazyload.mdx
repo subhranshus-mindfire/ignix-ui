@@ -38,77 +38,74 @@ This improves initial page load times and enhances performance.
     ```
   </TabItem>
 
-  <TabItem value="manual" label="manual" className="max-h-[500px] overflow-y-auto">
+  <TabItem value="manual" label="Manual" className="max-h-[500px] overflow-y-auto">
 
     ```tsx
-      import React, { useEffect, useState, useRef } from "react";
+    import React, { useEffect, useState, useRef } from "react";
 
-export interface LazyLoadProps {
-  children: React.ReactNode;
-  className?: string;
-  threshold?: string; // Distance from viewport to trigger loading
-  placeholder?: React.ReactNode; // Placeholder content
-  once?: boolean; // Load only once
-  animation?: "fade" | "slide" | "none"; // Animation type
-}
+    export interface LazyLoadProps {
+      children: React.ReactNode;
+      className?: string;
+      threshold?: string; // Distance from viewport to trigger loading
+      placeholder?: React.ReactNode; // Placeholder content
+      once?: boolean; // Load only once
+      animation?: "fade" | "slide" | "none"; // Animation type
+    }
 
-export const LazyLoad: React.FC<LazyLoadProps> = ({
-  children,
-  className,
-  threshold = "100px",
-  placeholder = null,
-  once = true,
-  animation = "fade",
-}) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+    export const LazyLoad: React.FC<LazyLoadProps> = ({
+      children,
+      className,
+      threshold = "100px",
+      placeholder = null,
+      once = true,
+      animation = "fade",
+    }) => {
+      const [isVisible, setIsVisible] = useState(false);
+      const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          if (once) observer.disconnect(); // Stop observing if `once` is true
+      useEffect(() => {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              setIsVisible(true);
+              if (once) observer.disconnect(); // Stop observing if `once` is true
+            }
+          },
+          { rootMargin: threshold }
+        );
+
+        if (containerRef.current) {
+          observer.observe(containerRef.current);
         }
-      },
-      { rootMargin: threshold }
-    );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => {
-      if (containerRef.current) observer.unobserve(containerRef.current);
-    };
-  }, [threshold, once]);
-
-  const getAnimationStyle = () => {
-    switch (animation) {
-      case "fade":
-        return { opacity: isVisible ? 1 : 0, transition: "opacity 0.5s ease" };
-      case "slide":
-        return {
-          transform: isVisible ? "translateY(0)" : "translateY(20px)",
-          opacity: isVisible ? 1 : 0,
-          transition: "transform 0.5s ease, opacity 0.5s ease",
+        return () => {
+          if (containerRef.current) observer.unobserve(containerRef.current);
         };
-      default:
-        return {};
-    }
-  };
+      }, [threshold, once]);
 
-  return (
-    <div ref={containerRef} className={className} style={getAnimationStyle()}>
-      {isVisible ? children : placeholder}
-    </div>
-  );
-};
+      const getAnimationStyle = () => {
+        switch (animation) {
+          case "fade":
+            return { opacity: isVisible ? 1 : 0, transition: "opacity 0.5s ease" };
+          case "slide":
+            return {
+              transform: isVisible ? "translateY(0)" : "translateY(20px)",
+              opacity: isVisible ? 1 : 0,
+              transition: "transform 0.5s ease, opacity 0.5s ease",
+            };
+          default:
+            return {};
+        }
+      };
 
-
+      return (
+        <div ref={containerRef} className={className} style={getAnimationStyle()}>
+          {isVisible ? children : placeholder}
+        </div>
+      );
+    };
     ```
   </TabItem>
-
 </Tabs>
 
 ## Usage
@@ -118,6 +115,8 @@ Import the component:
 ```tsx
 import { LazyLoad } from './components/ui';
 ```
+
+Example usage:
 
 ```tsx
 <LazyLoad 
@@ -129,3 +128,14 @@ import { LazyLoad } from './components/ui';
   <HeavyContent />
 </LazyLoad>
 ```
+
+## Props
+
+| Prop        | Type                         | Default     | Description |
+|-------------|------------------------------|-------------|-------------|
+| `children`  | `React.ReactNode`            | **required** | The content to lazy load. |
+| `className` | `string`                     | `""`        | Custom CSS class names. |
+| `threshold` | `string`                     | `"100px"`   | Distance from the viewport to start loading (e.g., `"0px"`, `"200px"`). |
+| `placeholder` | `React.ReactNode`          | `null`      | Placeholder shown until the content is loaded. |
+| `once`      | `boolean`                    | `true`      | If true, content loads only once. If false, it toggles visibility when entering/exiting viewport. |
+| `animation` | `"fade"` \| `"slide"` \| `"none"` | `"fade"` | Animation effect applied when content appears. |
