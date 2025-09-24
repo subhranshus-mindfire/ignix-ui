@@ -8,7 +8,7 @@ import CodeBlock from "@theme/CodeBlock";
 const LazyLoadDemo = () => {
   const [threshold, setThreshold] = useState("0px");
   const [animation, setAnimation] = useState("fade");
-  const [once, setOnce] = useState(true);
+  const [once, setOnce] = useState(false);
 
   const thresholds = ["0px", "100px", "200px", "400px"];
   const animations = ["none", "fade", "slide"];
