@@ -18,9 +18,11 @@
         "layouts/box",
         "layouts/breakpoint",
         "layouts/center",
+        "layouts/cluster",
         "layouts/container",
         "layouts/field-group",
         "layouts/form",
+        "layouts/header-layout",
         "layouts/lazyload",
         "layouts/masonry",
         "layouts/pin",
@@ -28,10 +30,12 @@
         "layouts/responsive-grid",
         "layouts/spacer",
         "layouts/split",
+        "layouts/DebugBox"
         "layouts/cluster",
         "layouts/section",
-        "layouts/stack",
-        "layouts/header-layout"
+        "layouts/split",
+        "layouts/spacer",
+        "layouts/stack"
       ]
     },
     {
