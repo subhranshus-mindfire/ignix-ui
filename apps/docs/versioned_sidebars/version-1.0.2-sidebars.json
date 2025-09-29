@@ -28,6 +28,10 @@
         "layouts/pin",
         "layouts/responsive",
         "layouts/responsive-grid",
+        "layouts/spacer",
+        "layouts/split",
+        "layouts/DebugBox"
+        "layouts/cluster",
         "layouts/section",
         "layouts/split",
         "layouts/spacer",
