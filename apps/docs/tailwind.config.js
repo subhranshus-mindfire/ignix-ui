@@ -13,6 +13,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        //Custom Colors
       },
     },
   },
