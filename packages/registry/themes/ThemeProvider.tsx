@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect, useCallback } from 'react';
-import type { ThemeConfig, ThemeMode, ThemeState } from './types';
+import type { ThemeConfig, ThemeMode, ThemeState } from '../types/theme';
 import { themeReducer, initialThemeState } from './themeReducer';
 import { injectCSSVariables, removeCSSVariables } from './cssInjector';
 
