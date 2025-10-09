@@ -486,7 +486,9 @@
     "section": {
       "name": "Section",
       "description": "A layout component for creating distinct vertical blocks with consistent vertical rhythm, spacing, and background styling.",
-      "dependencies": ["class-variance-authority"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "files": {
         "main": {
           "path": "components/layouts/section/index.tsx",
@@ -497,7 +499,9 @@
     "cluster": {
       "name": "Cluster",
       "description": "A layout component for creating distinct group related items with consistent spacing and alignment.",
-      "dependencies": ["class-variance-authority"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "files": {
         "main": {
           "path": "components/layouts/cluster/index.tsx",
@@ -509,7 +513,7 @@
       "name": "Breakpoint",
       "description": "A flexible container component for constraining content width with responsive padding and centering options.",
       "dependencies": [
-        "class-variance-authority", 
+        "class-variance-authority",
         "lucide-react"
       ],
       "files": {
@@ -523,7 +527,6 @@
       "name": "Stack",
       "description": "A layout component for arranging elements in a stack with adjustable spacing and alignment.",
       "dependencies": [
-
         "class-variance-authority",
         "lucide-react"
       ],
@@ -535,19 +538,16 @@
       }
     },
     "DebugBox": {
-  "name": "DebugBox",
-  "description": "A development utility that overlays grid, spacing, breakpoints, and dimensions for debugging layouts.",
-  "dependencies": [],
-  "files": {
-    "main": {
-      "path": "components/DebugBox/index.tsx",
-      "type": "component"
-    }
-  }
-}
-  }
-}
-=======
+      "name": "DebugBox",
+      "description": "A development utility that overlays grid, spacing, breakpoints, and dimensions for debugging layouts.",
+      "dependencies": [],
+      "files": {
+        "main": {
+          "path": "components/DebugBox/index.tsx",
+          "type": "component"
+        }
+      }
+    },
     "header-layout": {
       "name": "HeaderLayout",
       "description": "A flexible layout component with header, sidebar, and footer that supports responsive design and various configuration options.",
@@ -580,7 +580,7 @@
     },
     "lazyload": {
       "name": "Lazyload",
-      "description": "A layout component for  lazy loading is a strategy to identify resources as non-blocking (non-critical) and load these only when needed",
+      "description": "A layout component for lazy loading...",
       "dependencies": [],
       "files": {
         "main": {
@@ -591,4 +591,3 @@
     }
   }
 }
-
