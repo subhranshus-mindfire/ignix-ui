@@ -546,46 +546,46 @@
           "path": "components/DebugBox/index.tsx",
           "type": "component"
         }
-      },
-      "header-layout": {
-        "name": "HeaderLayout",
-        "description": "A flexible layout component with header, sidebar, and footer that supports responsive design and various configuration options.",
-        "dependencies": [
-          "framer-motion",
-          "lucide-react",
-          "class-variance-authority"
-        ],
-        "files": {
-          "main": {
-            "path": "components/layouts/header-layout/index.tsx",
-            "type": "component"
-          }
+      }
+    },
+    "header-layout": {
+      "name": "HeaderLayout",
+      "description": "A flexible layout component with header, sidebar, and footer that supports responsive design and various configuration options.",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react",
+        "class-variance-authority"
+      ],
+      "files": {
+        "main": {
+          "path": "components/layouts/header-layout/index.tsx",
+          "type": "component"
         }
-      },
-      "drawer": {
-        "name": "Drawer",
-        "description": "A drawer component with animation and different variants",
-        "dependencies": [
-          "framer-motion",
-          "lucide-react",
-          "class-variance-authority"
-        ],
-        "files": {
-          "main": {
-            "path": "components/drawer/index.tsx",
-            "type": "component"
-          }
+      }
+    },
+    "drawer": {
+      "name": "Drawer",
+      "description": "A drawer component with animation and different variants",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react",
+        "class-variance-authority"
+      ],
+      "files": {
+        "main": {
+          "path": "components/drawer/index.tsx",
+          "type": "component"
         }
-      },
-      "lazyload": {
-        "name": "Lazyload",
-        "description": "A layout component for  lazy loading is a strategy to identify resources as non-blocking (non-critical) and load these only when needed",
-        "dependencies": [],
-        "files": {
-          "main": {
-            "path": "components/layouts/lazyload/index.tsx",
-            "type": "component"
-          }
+      }
+    },
+    "lazyload": {
+      "name": "Lazyload",
+      "description": "A layout component for lazy loading...",
+      "dependencies": [],
+      "files": {
+        "main": {
+          "path": "components/layouts/lazyload/index.tsx",
+          "type": "component"
         }
       }
     }
