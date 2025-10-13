@@ -36,6 +36,39 @@
     },
     {
       "type": "category",
+      "label": "Theming",
+      "link": {
+        "type": "doc",
+        "id": "theming/quick-start"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "theming/quick-start",
+          "label": "Quick Start"
+        },
+        {
+          "type": "doc",
+          "id": "theming/core-concepts",
+          "label": "Core Concepts"
+        },
+        {
+          "type": "category",
+          "label": "API Reference",
+          "items": [
+            "theming/api-reference/components",
+            "theming/api-reference/hooks"
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "theming/theme-wizard",
+          "label": "Theme Wizard"
+        }
+      ]
+    },
+    {
+      "type": "category",
       "label": "Components",
       "items": [
         "components/accordion",
