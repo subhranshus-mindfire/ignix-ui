@@ -13,6 +13,7 @@ const validScopes = [
   'release',
   'registry',
   'poc',
+  'storybook'
 ];
 
 // Define regex patterns
