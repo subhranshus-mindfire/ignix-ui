@@ -5,7 +5,8 @@
       "label": "Getting Started",
       "items": [
         "introduction",
-        "installation"
+        "installation",
+        "CLI"
       ]
     },
     {
