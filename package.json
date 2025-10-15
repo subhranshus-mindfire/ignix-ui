@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo run build --filter=!./apps/storybook",
+    "build": "turbo run build --filter=!./apps/storybook --filter=!./apps/poc",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "generate-component": "node --no-warnings --no-deprecation --loader ts-node/esm scripts/generate-component.ts",
