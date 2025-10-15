@@ -75,8 +75,8 @@ const Alert = ({ variant, title, children }) => {
 
 export default function ThemePlayground() {
   const defaultColors = {
-    primary: "#2563EB",
-    secondary: "#14B8A6",
+    primary: "#ff0000",
+    secondary: "#f5f5f5",
     accent: "#F59E0B",
   };
 
@@ -101,6 +101,49 @@ export default function ThemePlayground() {
     setTheme(fixedTheme);
     setValidation(newValidation);
   }, [customColors, contrastLevel]);
+
+  // Apply theme colors to Docusaurus CSS variables
+  useEffect(() => {
+    if (!theme) return;
+
+    const currentColors = previewMode === 'dark' && theme.dark ? theme.dark : theme.colors;
+    const root = document.documentElement;
+
+    // Apply Docusaurus CSS variables
+    root.style.setProperty('--ifm-color-primary', currentColors.primary);
+    // root.style.setProperty('--ifm-color-primary-dark', currentColors.primary || currentColors.primary);
+    // root.style.setProperty('--ifm-color-primary-darker', currentColors.primary || currentColors.primary);
+    // root.style.setProperty('--ifm-color-primary-darkest', currentColors.primary || currentColors.primary);
+    // root.style.setProperty('--ifm-color-primary-light', currentColors.primary || currentColors.primary);
+    // root.style.setProperty('--ifm-color-primary-lighter', currentColors.primary || currentColors.primary);
+    // root.style.setProperty('--ifm-color-primary-lightest', currentColors.primary || currentColors.primary);
+    
+    // // Background and text colors
+    // root.style.setProperty('--ifm-font-color-base', currentColors.text);
+    // root.style.setProperty('--ifm-color-content', currentColors.text);
+    
+    // // Link colors
+    // root.style.setProperty('--ifm-link-color', currentColors.primary);
+    // root.style.setProperty('--ifm-link-hover-color', currentColors.primary);
+    
+    // // Navbar colors
+    // root.style.setProperty('--ifm-navbar-background-color', currentColors.surface);
+    // root.style.setProperty('--ifm-navbar-link-color', currentColors.text);
+    // root.style.setProperty('--ifm-navbar-link-hover-color', currentColors.primary);
+    
+    // // Footer colors
+    // root.style.setProperty('--ifm-footer-background-color', currentColors.surface);
+    // root.style.setProperty('--ifm-footer-color', currentColors.textMuted);
+    
+    // // Code block colors
+    // root.style.setProperty('--ifm-code-background', currentColors.surface);
+    // root.style.setProperty('--ifm-code-color', currentColors.accent);
+
+    // Cleanup function to reset on unmount (optional)
+    return () => {
+      // You can reset to default values here if needed
+    };
+  }, [theme, previewMode]);
 
   const handlePresetSelect = (value: string) => {
     if (!value) return;
