@@ -11,7 +11,7 @@ const injectedThemes = new Set<string>();
  */
 export function injectCSSVariables(colors: ThemeColors, themeId: string): void {
   const root = document.documentElement;
-  
+
   // Remove previously injected theme if different
   if (injectedThemes.size > 0 && !injectedThemes.has(themeId)) {
     removeAllCSSVariables();
@@ -25,7 +25,7 @@ export function injectCSSVariables(colors: ThemeColors, themeId: string): void {
 
   // Track this theme
   injectedThemes.add(themeId);
-  
+
   // Add theme class to body for CSS targeting
   document.body.className = document.body.className
     .replace(/ignix-theme-\S+/g, '')
@@ -41,20 +41,18 @@ export function removeCSSVariables(themeId: string): void {
 
   const root = document.documentElement;
   const computedStyle = getComputedStyle(root);
-  
+
   // Find and remove all ignix variables
-  Array.from(computedStyle).forEach(property => {
+  Array.from(computedStyle).forEach((property) => {
     if (property.startsWith(CSS_VAR_PREFIX)) {
       root.style.removeProperty(property);
     }
   });
 
   injectedThemes.delete(themeId);
-  
+
   // Remove theme class
-  document.body.className = document.body.className
-    .replace(/ignix-theme-\S+/g, '')
-    .trim();
+  document.body.className = document.body.className.replace(/ignix-theme-\S+/g, '').trim();
 }
 
 /**
@@ -63,20 +61,18 @@ export function removeCSSVariables(themeId: string): void {
 export function removeAllCSSVariables(): void {
   const root = document.documentElement;
   const computedStyle = getComputedStyle(root);
-  
+
   // Remove all ignix variables
-  Array.from(computedStyle).forEach(property => {
+  Array.from(computedStyle).forEach((property) => {
     if (property.startsWith(CSS_VAR_PREFIX)) {
       root.style.removeProperty(property);
     }
   });
 
   injectedThemes.clear();
-  
+
   // Remove all theme classes
-  document.body.className = document.body.className
-    .replace(/ignix-theme-\S+/g, '')
-    .trim();
+  document.body.className = document.body.className.replace(/ignix-theme-\S+/g, '').trim();
 }
 
 /**
@@ -110,7 +106,7 @@ export function generateCSSVariables(colors: ThemeColors): string {
  */
 export function generateThemeCSS(colors: ThemeColors, themeName: string): string {
   const lightVars = generateCSSVariables(colors);
-  
+
   return `/* ${themeName} Theme */
 ${lightVars}
 

@@ -12,7 +12,7 @@ export const initialThemeState: ThemeState = {
 };
 
 export function themeReducer(state: ThemeState, action: ThemeAction): ThemeState {
-  let newMode: "light" | "dark";
+  let newMode: 'light' | 'dark';
   switch (action.type) {
     case 'SET_THEME':
       return {
@@ -38,9 +38,7 @@ export function themeReducer(state: ThemeState, action: ThemeAction): ThemeState
       return {
         ...state,
         systemPreference: action.payload,
-        mode: state.enableSystemPreference && state.mode === 'system' 
-          ? action.payload 
-          : state.mode,
+        mode: state.enableSystemPreference && state.mode === 'system' ? action.payload : state.mode,
       };
 
     case 'LOAD_PERSISTED_THEME':

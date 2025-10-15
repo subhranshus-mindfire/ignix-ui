@@ -13,7 +13,7 @@ export class PresetLoader {
    */
   static async loadPresets(): Promise<ThemePresets> {
     const cacheKey = `presets-${this.version}`;
-    
+
     if (presetCache.has(cacheKey)) {
       return presetCache.get(cacheKey)!;
     }
@@ -25,16 +25,16 @@ export class PresetLoader {
       }
 
       const presets: ThemePresets = await response.json();
-      
+
       // Validate presets structure
       this.validatePresets(presets);
-      
+
       // Cache the result
       presetCache.set(cacheKey, presets);
-      
+
       // Pre-cache individual themes
       this.precacheThemes(presets);
-      
+
       return presets;
     } catch (error) {
       console.error('Failed to load theme presets:', error);
@@ -67,16 +67,16 @@ export class PresetLoader {
 
     try {
       const presets = await this.loadPresets();
-      
+
       // Search through all categories
       for (const category of Object.values(presets.categories)) {
-        const theme = category.themes.find(t => t.id === themeId);
+        const theme = category.themes.find((t) => t.id === themeId);
         if (theme) {
           themeCache.set(themeId, theme);
           return theme;
         }
       }
-      
+
       return null;
     } catch (error) {
       console.error(`Failed to load theme ${themeId}:`, error);
@@ -102,7 +102,9 @@ export class PresetLoader {
             theme.category,
             ...(theme.metadata?.tags || []),
             ...(theme.metadata?.mood || []),
-          ].join(' ').toLowerCase();
+          ]
+            .join(' ')
+            .toLowerCase();
 
           if (searchableText.includes(lowerQuery)) {
             results.push(theme);
@@ -195,11 +197,11 @@ export class PresetLoader {
           results = [...category.themes];
         }
       } else {
-        results = Object.values(presets.categories).flatMap(cat => cat.themes);
+        results = Object.values(presets.categories).flatMap((cat) => cat.themes);
       }
 
       // Apply filters
-      return results.filter(theme => {
+      return results.filter((theme) => {
         // Accessibility filter
         if (criteria.accessibility && theme.metadata?.accessibility !== criteria.accessibility) {
           return false;
@@ -208,7 +210,7 @@ export class PresetLoader {
         // Mood filter
         if (criteria.mood?.length) {
           const themeMoods = theme.metadata?.mood || [];
-          if (!criteria.mood.some(mood => themeMoods.includes(mood))) {
+          if (!criteria.mood.some((mood) => themeMoods.includes(mood))) {
             return false;
           }
         }
@@ -216,7 +218,7 @@ export class PresetLoader {
         // Tags filter
         if (criteria.tags?.length) {
           const themeTags = theme.metadata?.tags || [];
-          if (!criteria.tags.some(tag => themeTags.includes(tag))) {
+          if (!criteria.tags.some((tag) => themeTags.includes(tag))) {
             return false;
           }
         }
@@ -251,7 +253,7 @@ export class PresetLoader {
     try {
       const presets = await this.loadPresets();
       const categories = Object.values(presets.categories);
-      const allThemes = categories.flatMap(cat => cat.themes);
+      const allThemes = categories.flatMap((cat) => cat.themes);
 
       const accessibilityBreakdown = allThemes.reduce((acc, theme) => {
         const level = theme.metadata?.accessibility || 'Unknown';
@@ -311,7 +313,7 @@ export class PresetLoader {
    */
   private static validateTheme(theme: ThemeConfig): void {
     const required = ['id', 'name', 'category', 'colors'];
-    
+
     for (const field of required) {
       if (!theme[field as keyof ThemeConfig]) {
         throw new Error(`Theme ${theme.id || 'unknown'} missing required field: ${field}`);
@@ -320,8 +322,14 @@ export class PresetLoader {
 
     // Validate colors object
     const requiredColors = [
-      'primary', 'secondary', 'accent', 'background', 
-      'surface', 'text', 'textSecondary', 'border'
+      'primary',
+      'secondary',
+      'accent',
+      'background',
+      'surface',
+      'text',
+      'textSecondary',
+      'border',
     ];
 
     for (const color of requiredColors) {
@@ -465,7 +473,7 @@ export function useThemePresets() {
   useEffect(() => {
     PresetLoader.loadPresets()
       .then(setPresets)
-      .catch(err => setError(err.message))
+      .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
 
@@ -473,7 +481,7 @@ export function useThemePresets() {
     setLoading(true);
     setError(null);
     PresetLoader.clearCache();
-    
+
     try {
       const newPresets = await PresetLoader.loadPresets();
       setPresets(newPresets);

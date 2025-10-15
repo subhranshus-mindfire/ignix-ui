@@ -58,16 +58,16 @@ export function ThemeProvider({
       if (enableSystemPreference) {
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         const handleSystemChange = (e: MediaQueryListEvent) => {
-          dispatch({ 
-            type: 'SET_SYSTEM_PREFERENCE', 
-            payload: e.matches ? 'dark' : 'light' 
+          dispatch({
+            type: 'SET_SYSTEM_PREFERENCE',
+            payload: e.matches ? 'dark' : 'light',
           });
         };
-        
+
         mediaQuery.addEventListener('change', handleSystemChange);
-        dispatch({ 
-          type: 'SET_SYSTEM_PREFERENCE', 
-          payload: mediaQuery.matches ? 'dark' : 'light' 
+        dispatch({
+          type: 'SET_SYSTEM_PREFERENCE',
+          payload: mediaQuery.matches ? 'dark' : 'light',
         });
 
         return () => mediaQuery.removeEventListener('change', handleSystemChange);
@@ -80,18 +80,22 @@ export function ThemeProvider({
   // Apply CSS variables when theme or mode changes
   useEffect(() => {
     if (state.currentTheme) {
-      const colors = state.mode === 'dark' && state.currentTheme.dark 
-        ? state.currentTheme.dark 
-        : state.currentTheme.colors;
-      
+      const colors =
+        state.mode === 'dark' && state.currentTheme.dark
+          ? state.currentTheme.dark
+          : state.currentTheme.colors;
+
       injectCSSVariables(colors, state.currentTheme.id);
-      
+
       // Persist theme selection
       try {
-        localStorage.setItem(persistKey, JSON.stringify({
-          themeId: state.currentTheme.id,
-          mode: state.mode,
-        }));
+        localStorage.setItem(
+          persistKey,
+          JSON.stringify({
+            themeId: state.currentTheme.id,
+            mode: state.mode,
+          })
+        );
       } catch (error) {
         console.warn('Failed to persist theme:', error);
       }
@@ -142,11 +146,7 @@ export function ThemeProvider({
     resetTheme,
   };
 
-  return (
-    <ThemeContext.Provider value={contextValue}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={contextValue}>{children}</ThemeContext.Provider>;
 }
 
 // Hook for consuming theme context
@@ -172,8 +172,8 @@ export function useThemeMode(): ThemeMode {
 export function useThemeColors() {
   const { state } = useTheme();
   if (!state.currentTheme) return null;
-  
-  return state.mode === 'dark' && state.currentTheme.dark 
-    ? state.currentTheme.dark 
+
+  return state.mode === 'dark' && state.currentTheme.dark
+    ? state.currentTheme.dark
     : state.currentTheme.colors;
 }
