@@ -1,4 +1,4 @@
-import { ColorUtils } from '../utils/colorUtils';
+import { ColorUtils } from './colorUtils';
 import type { ThemeColors, ContrastLevel, ThemeMode } from '../types/theme';
 
 export class ThemeGenerator {
@@ -14,11 +14,7 @@ export class ThemeGenerator {
     return ColorUtils.hslToHex(h, s, l + adj);
   }
 
-  static ensureContrast(
-    color: string,
-    background: string,
-    level: ContrastLevel = 'AA'
-  ): string {
+  static ensureContrast(color: string, background: string, level: ContrastLevel = 'AA'): string {
     const target = level === 'AAA' ? 7 : 4.5;
     if (ColorUtils.getContrastRatio(color, background) >= target) return color;
 
@@ -72,8 +68,16 @@ export class ThemeGenerator {
     // TODO: Allow custom text colors
     // Base text
     const text = this.ensureContrast(isDark ? '#F5F7FA' : '#0F172A', background, contrastLevel);
-    const textSecondary = this.ensureContrast(isDark ? '#D1D5DB' : '#475569', background, contrastLevel);
-    const textMuted = this.ensureContrast(isDark ? '#9CA3AF' : '#6B7280', background, contrastLevel);
+    const textSecondary = this.ensureContrast(
+      isDark ? '#D1D5DB' : '#475569',
+      background,
+      contrastLevel
+    );
+    const textMuted = this.ensureContrast(
+      isDark ? '#9CA3AF' : '#6B7280',
+      background,
+      contrastLevel
+    );
     const textInverse = isDark ? '#0F172A' : '#FFFFFF';
 
     // TODO: Allow custom border colors
@@ -138,10 +142,10 @@ export class ThemeGenerator {
   }
 
   static generateDarkMode(light: ThemeColors, contrastLevel: ContrastLevel = 'AA'): ThemeColors {
-    return this.generateThemeColors(
-      light.primary,
-      light.secondary,
-      { accent: light.accent, mode: 'dark', contrastLevel }
-    );
+    return this.generateThemeColors(light.primary, light.secondary, {
+      accent: light.accent,
+      mode: 'dark',
+      contrastLevel,
+    });
   }
 }

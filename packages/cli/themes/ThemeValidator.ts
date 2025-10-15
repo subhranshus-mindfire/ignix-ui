@@ -2,7 +2,9 @@ import { ColorUtils } from '../utils/colorUtils';
 import type { ThemeColors, ThemeConfig, ThemeMetadata } from '../types/theme';
 
 export class ThemeValidator {
-  static validateTheme(theme: ThemeConfig): {
+  static validateTheme(
+    theme: ThemeConfig
+  ): {
     isValid: boolean;
     errors: string[];
     warnings: string[];
@@ -22,7 +24,12 @@ export class ThemeValidator {
     return { isValid: errors.length === 0, errors, warnings, score };
   }
 
-  private static validateColorSet(colors: ThemeColors, mode: string, errors: string[], warnings: string[]) {
+  private static validateColorSet(
+    colors: ThemeColors,
+    mode: string,
+    errors: string[],
+    warnings: string[]
+  ) {
     // Key pairs: body text, and each filled surface text
     const pairs: Array<[string, string, string]> = [
       ['text', 'background', 'Body text on background'],
@@ -76,10 +83,7 @@ export class ThemeValidator {
     const validation = this.validateTheme(theme);
     const accessibility: 'AA' | 'AAA' | 'Fail' = validation.errors.length === 0 ? 'AA' : 'Fail';
 
-    const contrastRatio = ColorUtils.getContrastRatio(
-      theme.colors.text,
-      theme.colors.background
-    );
+    const contrastRatio = ColorUtils.getContrastRatio(theme.colors.text, theme.colors.background);
 
     const [h, s, l] = ColorUtils.hexToHsl(theme.colors.primary);
     const mood = this.determineMood(h, s, l);

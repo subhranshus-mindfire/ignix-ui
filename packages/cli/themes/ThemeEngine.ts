@@ -1,12 +1,8 @@
 import { ThemeGenerator } from './ThemeGenerator';
 import { ThemeValidator } from './ThemeValidator';
-import { ColorUtils } from '../utils/colorUtils';
-import { toCssVars } from '../utils/cssEmitter';
-import type {
-  CreateThemeInput,
-  ThemeConfig,
-  ContrastLevel
-} from '../types/theme';
+import { toCssVars } from './cssEmitter';
+import type { CreateThemeInput, ThemeConfig, ContrastLevel } from '../types/theme';
+import { ColorUtils } from './colorUtils';
 
 export class ThemeEngine {
   static ColorUtils = ColorUtils;
@@ -33,9 +29,7 @@ export class ThemeEngine {
       contrastLevel,
     });
 
-    const dark = generateDark
-      ? ThemeGenerator.generateDarkMode(colors, contrastLevel)
-      : undefined;
+    const dark = generateDark ? ThemeGenerator.generateDarkMode(colors, contrastLevel) : undefined;
 
     const theme: ThemeConfig = {
       id,
