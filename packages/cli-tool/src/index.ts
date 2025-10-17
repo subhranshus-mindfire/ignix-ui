@@ -4,6 +4,7 @@ import { initCommand } from './commands/init';
 import { themesCommand } from './commands/theme';
 import { wizardCommand } from './commands/wizard';
 import { listCommand } from './commands/list';
+// import { validateCommand } from './commands/validate';
 import prompts from 'prompts';
 import chalk from 'chalk';
 
@@ -17,6 +18,7 @@ program.addCommand(addCommand);
 program.addCommand(listCommand);
 program.addCommand(themesCommand);
 program.addCommand(wizardCommand);
+// program.addCommand(validateCommand);
 // Display welcome message
 function showWelcome(): void {
   console.log(`
@@ -49,6 +51,7 @@ async function startInteractiveCLI(): Promise<void> {
           { title: chalk.hex('#FF6B35')('📋 List components'), value: 'list' },
           { title: chalk.hex('#FF7F50')('🎨 Manage themes'), value: 'themes' },
           { title: chalk.hex('#FFA500')('🧙 Run wizard'), value: 'wizard' },
+          // { title: chalk.hex('#FFA500')('🧙 Validate themes'), value: 'validate' },
           { title: chalk.red('❌ Exit'), value: 'exit' },
         ],
         initial: 0,
@@ -70,41 +73,20 @@ async function startInteractiveCLI(): Promise<void> {
         case 'add': {
           const addResponse = await prompts([
             {
-              type: 'select',
-              name: 'namespace',
-              message: 'What do you want to add?',
-              choices: [
-                { title: 'Component', value: 'component' },
-                { title: 'Theme', value: 'theme' },
-              ],
-            },
-            {
               type: 'text',
               name: 'identifiers',
-              message: 'Enter component/theme names (space-separated):',
+              message: 'Enter component names (space-separated):',
             },
           ]);
 
-          if (addResponse.namespace && addResponse.identifiers) {
+          if (addResponse.identifiers) {
             const ids = addResponse.identifiers.split(' ').filter((id: string) => id.trim());
-            await addCommand.parseAsync(['node', 'ignix', addResponse.namespace, ...ids]);
+            await addCommand.parseAsync(['node', 'ignix', 'component', ...ids]);
           }
           break;
         }
         case 'list': {
-          const listResponse = await prompts({
-            type: 'select',
-            name: 'namespace',
-            message: 'What do you want to list?',
-            choices: [
-              { title: 'Components', value: 'component' },
-              { title: 'Themes', value: 'theme' },
-            ],
-          });
-
-          if (listResponse.namespace) {
-            await listCommand.parseAsync(['node', 'ignix', listResponse.namespace]);
-          }
+          await listCommand.parseAsync(['node', 'ignix', 'component']);
           break;
         }
         case 'themes': {
@@ -115,6 +97,10 @@ async function startInteractiveCLI(): Promise<void> {
           await wizardCommand.parseAsync(['node', 'ignix']);
           break;
         }
+        // case 'validate': {
+        //   await validateCommand.parseAsync(['node', 'ignix']);
+        //   break;
+        // }
       }
 
       console.log(''); // Add spacing after command execution
@@ -139,20 +125,3 @@ if (process.argv.length <= 2) {
   showWelcome();
   program.parse();
 }
-
-// function showWelcome(): void {
-//     console.log(`
-//   ${chalk.hex('#FF0000').bold('                  ███                                                                     ')}
-//   ${chalk.hex('#FF0000').bold('                ████                                                                      ')}
-//   ${chalk.hex('#FF0000').bold('               ███                                                                        ')}
-//   ${chalk.hex('#FF0000').bold('          █    ████        ██╗ ██████╗ ███╗      ██╗██╗███      ███╗       ██╗      ██╗██╗')}
-//   ${chalk.hex('#FF2A2A').bold('           ██  ██████      ██║██╔════╝ ████╗     ██║██║╚██      ██╝║       ██║      ██║██║')}
-//   ${chalk.hex('#FF5555').bold('            ███████ █      ██║██║     ╗██╔██╗    ██║██║ ╚██    ██╝ ║       ██║      ██║██║')}
-//   ${chalk.hex('#FF8080').bold('             ██ ███ ██     ██║██║  ███║██║╚██╗   ██║██║   ╚██ ██╝  ║       ██║      ██║██║')}
-//   ${chalk.hex('#FF8080').bold('           ████ ██ ███     ██║██║   ██║██║ ╚██╗  ██║██║    ╚██╝    ║       ██║      ██║██║')}
-//   ${chalk.hex('#FF8080').bold('         █████ ██ ████     ██║██║   ██║██║  ╚██╗ ██║██║   ╔██ ██╗  ║       ██║      ██║██║')}
-//   ${chalk.hex('#FF8080').bold('       ██████  ██████      ██║██║   ██║██║   ╚██╗██║██║  ╔██   ██╗ ║       ██║      ██║██║')}
-//   ${chalk.hex('#FFAAAA').bold('     ████████ ██████       ██║╚██████╔╝██║    ╚████║██║███║     ███║       ███████████║██║')}
-//   ${chalk.hex('#FFD5D5').bold('           ███████████     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝╚══════════════╝       ╚═════════╝╚═╝')}
-//     \n${chalk.hex('#FF5555')('A ultimate CLI tool to create modern, production-ready React UI system designed to help you ship beautiful, animated, and accessible interfaces with incredible speed.')} 🔥✨
-//   `);

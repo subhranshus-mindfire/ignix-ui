@@ -22,13 +22,9 @@ export interface ThemeColors {
   borderLight: string;
   borderHover: string;
   success: string;
-  successHover: string;
   warning: string;
-  warningHover: string;
   error: string;
-  errorHover: string;
   info: string;
-  infoHover: string;
 }
 
 export interface ThemeMetadata {

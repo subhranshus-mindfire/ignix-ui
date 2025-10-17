@@ -6,6 +6,7 @@ const DEFAULT_CONFIG_FILENAME = 'ignix.config.js';
 
 export interface IgnixConfig {
   registryUrl: string;
+  themeUrl: string;
   componentsDir: string;
   themesDir: string;
   tokensDir: string;

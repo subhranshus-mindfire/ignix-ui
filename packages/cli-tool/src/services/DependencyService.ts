@@ -1,5 +1,6 @@
-import { execa } from 'execa'; // Using execa for better process management
+import execa from 'execa'; // Using execa for better process management
 import { getPackageManager } from '../utils/getPackageManager';
+import { logger } from '../utils/logger';
 
 export class DependencyService {
   public async install(packages: string[], isDev: boolean): Promise<void> {
@@ -15,8 +16,12 @@ export class DependencyService {
     args.push(...packages);
 
     try {
+      logger.info(
+        `Installing dependencies: ${packageManager} ${args.join(' ')} { stdio: 'inherit' }`
+      );
       await execa(packageManager, args, { stdio: 'inherit' });
     } catch (error) {
+      logger.error(error as string);
       throw new Error(`Failed to install dependencies: ${packages.join(', ')}`);
     }
   }

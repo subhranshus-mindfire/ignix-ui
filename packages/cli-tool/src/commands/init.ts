@@ -5,6 +5,8 @@ import ora from 'ora';
 import chalk from 'chalk';
 import { logger } from '../utils/logger';
 import { DependencyService } from '../services/DependencyService';
+import prompts from 'prompts';
+import { ThemeService } from '../services/ThemeService';
 
 const DEFAULT_CONFIG_PATH = 'ignix.config.js';
 const TAILWIND_CONFIG_PATH = 'tailwind.config.js';
@@ -71,7 +73,45 @@ export const initCommand = new Command()
       await fs.ensureDir(path.resolve(themesDir));
       logger.success('Created required directories.');
 
-      // 6. Install dependencies
+      // Ask about theming setup
+      const themingResponse = await prompts({
+        type: 'select',
+        name: 'setupTheming',
+        message: 'Do you want to set up the Ignix theming system? (Recommended)',
+        choices: [
+          { title: 'Yes', value: true },
+          { title: 'No', value: false },
+        ],
+      });
+
+      if (themingResponse.setupTheming === true) {
+        spinner.text = 'Setting up theming system...';
+        const themeService = new ThemeService();
+
+        // 1. Ask user to select a preset
+        spinner.text = 'Fetching theme presets...';
+        const availableThemes = await themeService.getAvailableThemes();
+        spinner.stop();
+
+        if (availableThemes.length > 0) {
+          const presetResponse = await prompts({
+            type: 'select',
+            name: 'themeId',
+            message: 'Select a default theme preset to install:',
+            choices: [
+              ...availableThemes.map((t) => ({ title: t.name, value: t.id })),
+              { title: 'None for now', value: null },
+            ],
+          });
+
+          if (presetResponse.themeId) {
+            spinner.start('Installing selected theme preset...');
+            await themeService.install(presetResponse.themeId);
+          }
+        }
+      }
+
+      // 2. Install dependencies
       spinner.text = 'Installing required dependencies...';
       const depService = new DependencyService();
       await depService.install(['@mindfiredigital/ignix-ui'], false);
@@ -80,9 +120,12 @@ export const initCommand = new Command()
       spinner.succeed(chalk.green('Ignix UI initialized successfully!'));
       logger.info('\nNext steps:');
       logger.info(
-        `1. Add components with ${chalk.cyan('npx ignix add component <component-name>')}`
+        `1. Wrap your app in the <ThemeProvider> from ${chalk.cyan("'./themes/ThemeProvider'")}`
       );
-      logger.info(`2. Explore themes with ${chalk.cyan('npx ignix themes list')}`);
+      logger.info(
+        `2. Add components with ${chalk.cyan('npx ignix add component <component-name>')}`
+      );
+      logger.info(`3. Explore themes with ${chalk.cyan('npx ignix themes list')}`);
     } catch (error) {
       spinner.fail('Initialization failed.');
       if (error instanceof Error) {

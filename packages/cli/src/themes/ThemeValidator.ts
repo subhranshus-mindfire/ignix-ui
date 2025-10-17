@@ -1,4 +1,4 @@
-import { ColorUtils } from '../utils/colorUtils';
+import { ColorUtils } from './colorUtils';
 import type { ThemeColors, ThemeConfig, ThemeMetadata } from '../types/theme';
 
 export class ThemeValidator {
@@ -81,7 +81,7 @@ export class ThemeValidator {
 
   static generateMetadata(theme: ThemeConfig): ThemeMetadata {
     const validation = this.validateTheme(theme);
-    const accessibility: 'AA' | 'AAA' | 'Fail' = validation.errors.length === 0 ? 'AA' : 'Fail';
+    const accessibility: 'AA' | 'AAA' = validation.errors.length === 0 ? 'AA' : 'AAA';
 
     const contrastRatio = ColorUtils.getContrastRatio(theme.colors.text, theme.colors.background);
 

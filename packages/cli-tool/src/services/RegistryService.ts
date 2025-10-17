@@ -18,7 +18,6 @@ interface ComponentConfig {
 
 interface Registry {
   components: Record<string, ComponentConfig>;
-  // themes: Record<string, ThemeConfig>; // To be added
 }
 
 export class RegistryService {
