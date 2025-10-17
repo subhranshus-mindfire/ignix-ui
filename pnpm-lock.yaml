@@ -21,8 +21,8 @@ importers:
         specifier: ^1.2.7
         version: 1.2.7(@types/react@19.1.10)(react-dom@19.1.1)(react@19.1.1)
       framer-motion:
-        specifier: 11.18.2
-        version: 11.18.2(@emotion/is-prop-valid@1.3.1)(react-dom@19.1.1)(react@19.1.1)
+        specifier: ^12.4.10
+        version: 12.4.10(react-dom@19.1.1)(react@19.1.1)
       react:
         specifier: ^19.1.1
         version: 19.1.1
@@ -408,6 +408,9 @@ importers:
       '@antfu/ni':
         specifier: ^23.3.1
         version: 23.3.1
+      autoprefixer:
+        specifier: ^10.4.21
+        version: 10.4.21(postcss@8.5.6)
       axios:
         specifier: ^1.8.2
         version: 1.8.2
@@ -429,9 +432,15 @@ importers:
       ora:
         specifier: ^5.4.1
         version: 5.4.1
+      postcss:
+        specifier: ^8.5.6
+        version: 8.5.6
       tailwind-merge:
         specifier: ^3.0.2
         version: 3.3.0
+      tailwindcss:
+        specifier: ^4.1.14
+        version: 4.1.14
     devDependencies:
       '@types/fs-extra':
         specifier: ^9.0.13
@@ -444,7 +453,7 @@ importers:
         version: 3.0.2
       tsup:
         specifier: ^6.5.0
-        version: 6.5.0(ts-node@10.9.2)(typescript@4.9.3)
+        version: 6.5.0(postcss@8.5.6)(ts-node@10.9.2)(typescript@4.9.3)
       typescript:
         specifier: ^4.9.3
         version: 4.9.3
@@ -15341,7 +15350,7 @@ packages:
       '@csstools/utilities': 2.0.0(postcss@8.5.6)
       postcss: 8.5.6
 
-  /postcss-load-config@3.1.4(ts-node@10.9.2):
+  /postcss-load-config@3.1.4(postcss@8.5.6)(ts-node@10.9.2):
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
     engines: {node: '>= 10'}
     peerDependencies:
@@ -15354,6 +15363,7 @@ packages:
         optional: true
     dependencies:
       lilconfig: 2.1.0
+      postcss: 8.5.6
       ts-node: 10.9.2(@types/node@20.5.1)(typescript@5.6.2)
       yaml: 1.10.2
     dev: true
@@ -17813,6 +17823,10 @@ packages:
     resolution: {integrity: sha512-DzFtxOi+7NsFf7DBtI3BJsynR+0Yp6etH+nRPTbpWnS2pZBaSksv/JGctNwSWzbFjp0vxSqknaUylseZqMDGrA==}
     dev: true
 
+  /tailwindcss@4.1.14:
+    resolution: {integrity: sha512-b7pCxjGO98LnxVkKjaZSDeNuljC4ueKUddjENJOADtubtdo8llTaJy7HwBMeLNSSo2N5QIAgklslK1+Ir8r6CA==}
+    dev: false
+
   /tailwindcss@4.1.8:
     resolution: {integrity: sha512-kjeW8gjdxasbmFKpVGrGd5T4i40mV5J2Rasw48QARfYeQ8YS9x02ON9SFWax3Qf616rt4Cp3nVNIj6Hd1mP3og==}
 
@@ -18100,7 +18114,7 @@ packages:
   /tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
-  /tsup@6.5.0(ts-node@10.9.2)(typescript@4.9.3):
+  /tsup@6.5.0(postcss@8.5.6)(ts-node@10.9.2)(typescript@4.9.3):
     resolution: {integrity: sha512-36u82r7rYqRHFkD15R20Cd4ercPkbYmuvRkz3Q1LCm5BsiFNUgpo36zbjVhCOgvjyxNBWNKHsaD5Rl8SykfzNA==}
     engines: {node: '>=14'}
     hasBin: true
@@ -18124,7 +18138,8 @@ packages:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss-load-config: 3.1.4(ts-node@10.9.2)
+      postcss: 8.5.6
+      postcss-load-config: 3.1.4(postcss@8.5.6)(ts-node@10.9.2)
       resolve-from: 5.0.0
       rollup: 3.29.5
       source-map: 0.8.0-beta.0
