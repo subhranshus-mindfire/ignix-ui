@@ -104,7 +104,7 @@ export default function webpackAliasPlugin() {
       // Execute initialization steps
       await this.createProjectStructure();
       await this.createConfigFiles();
-      // await this.installDependencies();
+      await this.installDependencies();
       await this.printInstallInstructions();
       await this.addColorVariablesToCss();
       await this.setupIgnixUIAlias();
