@@ -1,4 +1,4 @@
-import type { ThemeColors } from '../types/theme';
+import type { ThemeColors } from '../../types/theme';
 
 // CSS variable prefix
 const CSS_VAR_PREFIX = '--ignix';

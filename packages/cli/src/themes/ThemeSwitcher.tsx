@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTheme } from './ThemeProvider';
-import type { ThemeConfig } from '../types/theme';
+import type { ThemeConfig } from '../../types/theme';
 
 // Import available themes
 import { cyberpunk } from '@/themes/presets/cyberpunk';

@@ -1,4 +1,4 @@
-import type { ThemePresets, ThemeConfig, ThemeCategory } from '../types/theme';
+import type { ThemePresets, ThemeConfig, ThemeCategory } from '../../types/theme';
 
 // Cache for loaded presets
 const presetCache = new Map<string, ThemePresets>();
