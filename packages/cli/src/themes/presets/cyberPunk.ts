@@ -1,6 +1,6 @@
-import { ThemeConfig } from '../types/theme';
+import type { ThemeConfig } from '../../types/theme';
 
-export const defaultTheme: ThemeConfig = {
+export const cyberpunk: ThemeConfig = {
   id: 'cyberpunk-neon',
   name: 'Cyberpunk Neon',
   category: 'futuristic',
