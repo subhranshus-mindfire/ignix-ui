@@ -24,7 +24,7 @@
     "dev": "tsup --watch",
     "clean": "rimraf dist",
     "typecheck": "tsc --noEmit",
-    "lint": "es lint src --ext .ts,.tsx"
+    "lint": "eslint src --ext .ts,.tsx"
   },
   "keywords": [
     "ignix-ui",
