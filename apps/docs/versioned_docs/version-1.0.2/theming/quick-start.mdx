@@ -20,7 +20,7 @@ Wrap your application with the `ThemeProvider` component to enable theming throu
 
 ```tsx
 // our layout component or entrypoint of app
-import { ThemeProvider } from '@ignix-ui/themes';
+import { ThemeProvider } from '@mindfiredigital/ignix-ui';
 
 function Layout() {
   return (
@@ -38,8 +38,9 @@ export default Layout;
 Add the `ThemeSwitcher` component to allow users to change themes:
 
 ```tsx
-import { ThemeSwitcher } from '@ignix-ui/themes';
-import { Button, Card } from '@ignix-ui/components';
+import { ThemeSwitcher } from '@mindfiredigital/ignix-ui';
+import { Button } from '@components/ui/Button';
+import { Card } from '@components/ui/Card';
 
 export default function YourAppComponent() {
   return (
@@ -61,20 +62,12 @@ export default function YourAppComponent() {
 }
 ```
 
-## Live Example
-
-<Admonition type="tip" title="Try it out">
-  The dropdown in the top-right corner is a live ThemeSwitcher component. Give it a try!
-</Admonition>
-
 ## Next Steps
 
 - 🎨 **Style Your Own Components**: Learn how to use theme variables in your components
 - 🧙‍♂️ **Create Custom Themes**: Build your own unique themes
 - 📚 **Explore the API**: Check out all available theming options
 
-## Related
+## Next
 
 - [Core Concepts](/docs/theming/core-concepts)
-- [API Reference](/docs/theming/api-reference)
-- [Theme Wizard](/docs/theming/theme-wizard)
