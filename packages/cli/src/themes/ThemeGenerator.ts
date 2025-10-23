@@ -131,13 +131,9 @@ export class ThemeGenerator {
       borderHover,
 
       success,
-      successHover: this.generateHoverColor(success),
       warning,
-      warningHover: this.generateHoverColor(warning),
       error,
-      errorHover: this.generateHoverColor(error),
       info,
-      infoHover: this.generateHoverColor(info),
     };
   }
 
