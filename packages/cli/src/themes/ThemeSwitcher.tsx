@@ -2,12 +2,11 @@ import React from 'react';
 import { useTheme } from './ThemeProvider';
 import type { ThemeConfig } from '../types/theme';
 
-// Import available themes
-import { cyberpunk } from '@/themes/presets/cyberpunk';
-import { forestmist } from '@/themes/presets/forestmist';
-import { holo } from '@/themes/presets/holographic';
+import { cyberpunk } from './presets/cyberPunk';
+import { forestMist } from './presets/forestMist';
+import { holo } from './presets/holographic';
 
-const availableThemes: ThemeConfig[] = [cyberpunk, forestmist, holo];
+const availableThemes: ThemeConfig[] = [cyberpunk, forestMist, holo];
 
 export const ThemeSwitcher: React.FC = () => {
   const { state, setTheme } = useTheme();
