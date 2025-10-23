@@ -1,4 +1,4 @@
-import type { ThemeState, ThemeAction } from '../../types/theme';
+import type { ThemeState, ThemeAction } from '../types/theme';
 import { defaultTheme } from './defaultTheme';
 
 export const initialThemeState: ThemeState = {
