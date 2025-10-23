@@ -34,16 +34,12 @@ export const defaultTheme: ThemeConfig = {
     borderHover: '#555555',
 
     success: '#39FF14',
-    successHover: '#76FF7A',
 
     warning: '#FFD700',
-    warningHover: '#FFEA70',
 
     error: '#FF1493',
-    errorHover: '#FF69B4',
 
     info: '#00BFFF',
-    infoHover: '#1E90FF',
   },
 
   dark: {
@@ -75,16 +71,12 @@ export const defaultTheme: ThemeConfig = {
     borderHover: '#666666',
 
     success: '#7FFF00',
-    successHover: '#ADFF2F',
 
     warning: '#FFD700',
-    warningHover: '#FFEA70',
 
     error: '#FF69B4',
-    errorHover: '#FF85C1',
 
     info: '#87CEEB',
-    infoHover: '#00BFFF',
   },
 
   metadata: {
