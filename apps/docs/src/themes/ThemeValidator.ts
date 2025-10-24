@@ -85,7 +85,7 @@ export class ThemeValidator {
     const mood = this.determineMood(h, s, l);
 
     return {
-      accessibility,
+      accessibility: accessibility as 'AA' | 'AAA',
       contrastRatio,
       mood,
       tags: this.generateTags(theme),
