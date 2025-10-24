@@ -18,7 +18,7 @@ The root provider component that powers the theming system. Must wrap your appli
 ### Import
 
 ```tsx
-import { ThemeProvider } from '@ignix-ui/themes';
+import { ThemeProvider } from '@mindfiredigital/ignix-ui';
 ```
 
 ### Props
@@ -52,7 +52,7 @@ A component that allows users to browse and select themes.
 ### Import
 
 ```tsx
-import { ThemeSwitcher } from '@ignix-ui/themes';
+import { ThemeSwitcher } from '@mindfiredigital/ignix-ui';
 ```
 
 ### Props
@@ -83,7 +83,7 @@ The core engine that powers the Ignix UI theming system. Provides methods for cr
 ### Import
 
 ```typescript
-import { ThemeEngine } from '@ignix-ui/themes';
+import { ThemeEngine } from '@mindfiredigital/ignix-ui';
 ```
 
 ### `ThemeEngine.createTheme(input: CreateThemeInput)`
@@ -175,7 +175,7 @@ Utility class for color manipulation and contrast checking.
 ### Import
 
 ```typescript
-import { ColorUtils } from '@ignix-ui/themes';
+import { ColorUtils } from '@mindfiredigital/ignix-ui';
 ```
 
 ### Methods
@@ -214,8 +214,6 @@ const ratio = ColorUtils.getContrastRatio('#FFFFFF', '#000000');
 const isAccessible = ColorUtils.isAccessible('#FFFFFF', '#000000', 'AA');
 ```
 
-## Related
+## Next
 
-- [Quick Start](/docs/theming/quick-start)
-- [Core Concepts](/docs/theming/core-concepts)
-- [Theme Wizard](/docs/theming/theme-wizard)
+- [Hooks](/docs/theming/api-reference/hooks)

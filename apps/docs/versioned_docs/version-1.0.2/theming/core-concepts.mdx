@@ -18,18 +18,30 @@ The entire theming system is built on CSS Custom Properties (CSS Variables). Whe
 
 ```css title="/styles/theme.css"
 :root {
-  /* Core Colors */
-  --color-primary: #FF1493;
-  --color-secondary: #00BFFF;
-  
-  /* Semantic Colors */
-  --color-background: #0A0A0A;
-  --color-surface: #1A1A1A;
-  --color-border: #333333;
-  
-  /* Text Colors */
-  --color-text: #FFFFFF;
-  --color-text-secondary: #CCCCCC;
+  --primary: string;
+  --primaryHover: string;
+  --primaryActive: string;
+  --secondary: string;
+  --secondaryHover: string;
+  --secondaryActive: string;
+  --accent: string;
+  --accentHover: string;
+  --accentActive: string;
+  --background: string;
+  --backgroundAlt: string;
+  --surface: string;
+  --surfaceAlt: string;
+  --text: string;
+  --textSecondary: string;
+  --textMuted: string;
+  --textInverse: string;
+  --border: string;
+  --borderLight: string;
+  --borderHover: string;
+  --success: string;
+  --warning: string;
+  --error: string;
+  --info: string;
 }
 ```
 
@@ -41,28 +53,77 @@ The entire theming system is built on CSS Custom Properties (CSS Variables). Whe
 
 Every theme follows a structured `ThemeConfig` object that defines its identity, colors, and metadata.
 
-```tsx title="theme.config.ts"
-const cyberpunkTheme = {
-  id: 'cyberpunk-neon',
-  name: 'Cyberpunk Neon',
-  category: 'futuristic',
-  colors: {
-    primary: '#FF1493',
-    secondary: '#00BFFF',
-    accent: '#39FF14',
-    background: '#0A0A0A',
-    surface: '#1A1A1A',
-    text: '#FFFFFF',
-  },
-  dark: {
-    // Optional dark mode overrides
-  },
-  metadata: {
-    accessibility: 'AA',
-    contrast: 4.8,
-    mood: ['energetic', 'bold', 'futuristic']
-  }
-};
+```tsx title="themeconfig.ts"
+interface ThemeConfig {
+    id: string;
+    name: string;
+    category: string;
+    description?: string;
+    colors: {
+      primary: string;
+      primaryHover: string;
+      primaryActive: string;
+      secondary: string;
+      secondaryHover: string;
+      secondaryActive: string;
+      accent: string;
+      accentHover: string;
+      accentActive: string;
+      background: string;
+      backgroundAlt: string;
+      surface: string;
+      surfaceAlt: string;
+      text: string;
+      textSecondary: string;
+      textMuted: string;
+      textInverse: string;
+      border: string;
+      borderLight: string;
+      borderHover: string;
+      success: string;
+      warning: string;
+      error: string;
+      info: string;
+    };
+
+    dark?: {
+      primary: string;
+      primaryHover: string;
+      primaryActive: string;
+      secondary: string;
+      secondaryHover: string;
+      secondaryActive: string;
+      accent: string;
+      accentHover: string;
+      accentActive: string;
+      background: string;
+      backgroundAlt: string;
+      surface: string;
+      surfaceAlt: string;
+      text: string;
+      textSecondary: string;
+      textMuted: string;
+      textInverse: string;
+      border: string;
+      borderLight: string;
+      borderHover: string;
+      success: string;
+      warning: string;
+      error: string;
+      info: string;
+    };
+    metadata?: {
+      accessibility: 'AA' | 'AAA';
+      contrastRatio: number;
+      mood: string[];
+      tags: string[];
+      industry?: string[];
+      author?: string;
+      version?: string;
+      created?: string;
+      updated?: string;
+    };
+}
 ```
 
 ## Light & Dark Modes
@@ -74,7 +135,7 @@ Ignix UI provides first-class support for both light and dark color schemes.
 Respects the user's OS preference by default:
 
 ```tsx
-<ThemeProvider defaultThemeId="cyberpunk-neon" respectSystemColorScheme />
+<ThemeProvider defaultThemeId="cyberpunk-neon" />
 ```
 
 ### Manual Control
@@ -82,7 +143,7 @@ Respects the user's OS preference by default:
 Use the `useTheme` hook to toggle modes programmatically:
 
 ```tsx
-import { useTheme } from '@ignix-ui/themes';
+import { useTheme } from '@mindfiredigital/ignix-ui';
 
 function ThemeToggle() {
   const { toggleMode, mode } = useTheme();
@@ -95,31 +156,18 @@ function ThemeToggle() {
 }
 ```
 
-## Accessibility
-
-### Color Contrast
-
-All themes meet or exceed WCAG AA contrast ratios:
-
-```tsx
-// Check contrast ratio
-const isAccessible = checkContrast('#FFFFFF', '#000000'); // Returns boolean
-```
-
 ### Semantic Tokens
 
 Use semantic color tokens for consistent theming:
 
 ```css
 .button {
-  background: var(--color-primary);
-  color: var(--color-text-on-primary);
-  border: 1px solid var(--color-border);
+  background: var(--primary);
+  color: var(--text);
+  border: 1px solid var(--border);
 }
 ```
 
-## Related
+## Next Step
 
-- [Quick Start](/docs/theming/quick-start)
-- [API Reference](/docs/theming/api-reference)
-- [Theme Wizard](/docs/theming/theme-wizard)
+- [API Reference](/docs/theming/api-reference/components)

@@ -2,9 +2,7 @@ import { Command } from 'commander';
 import { addCommand } from './commands/add';
 import { initCommand } from './commands/init';
 import { themesCommand } from './commands/theme';
-import { wizardCommand } from './commands/wizard';
 import { listCommand } from './commands/list';
-// import { validateCommand } from './commands/validate';
 import prompts from 'prompts';
 import chalk from 'chalk';
 
@@ -17,8 +15,6 @@ program.addCommand(initCommand);
 program.addCommand(addCommand);
 program.addCommand(listCommand);
 program.addCommand(themesCommand);
-program.addCommand(wizardCommand);
-// program.addCommand(validateCommand);
 // Display welcome message
 function showWelcome(): void {
   console.log(`
@@ -50,8 +46,6 @@ async function startInteractiveCLI(): Promise<void> {
           { title: chalk.hex('#FF8C00')('➕ Add components'), value: 'add' },
           { title: chalk.hex('#FF6B35')('📋 List components'), value: 'list' },
           { title: chalk.hex('#FF7F50')('🎨 Manage themes'), value: 'themes' },
-          { title: chalk.hex('#FFA500')('🧙 Run wizard'), value: 'wizard' },
-          // { title: chalk.hex('#FFA500')('🧙 Validate themes'), value: 'validate' },
           { title: chalk.red('❌ Exit'), value: 'exit' },
         ],
         initial: 0,
@@ -93,14 +87,6 @@ async function startInteractiveCLI(): Promise<void> {
           await themesCommand.parseAsync(['node', 'ignix']);
           break;
         }
-        case 'wizard': {
-          await wizardCommand.parseAsync(['node', 'ignix']);
-          break;
-        }
-        // case 'validate': {
-        //   await validateCommand.parseAsync(['node', 'ignix']);
-        //   break;
-        // }
       }
 
       console.log(''); // Add spacing after command execution

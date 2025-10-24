@@ -1,9 +1,15 @@
-export type ContrastLevel = 'AA' | 'AAA';
+export type ThemeMode = 'light' | 'dark' | 'system';
 
-export type ThemeMode = 'light' | 'dark';
-
-export type ThemeColors = {
-  // Base surfaces and text
+export interface ThemeColors {
+  primary: string;
+  primaryHover: string;
+  primaryActive: string;
+  secondary: string;
+  secondaryHover: string;
+  secondaryActive: string;
+  accent: string;
+  accentHover: string;
+  accentActive: string;
   background: string;
   backgroundAlt: string;
   surface: string;
@@ -12,37 +18,28 @@ export type ThemeColors = {
   textSecondary: string;
   textMuted: string;
   textInverse: string;
-
-  // Action colors
-  primary: string;
-  primaryHover: string;
-  primaryActive: string;
-
-  secondary: string;
-  secondaryHover: string;
-  secondaryActive: string;
-
-  accent: string;
-  accentHover: string;
-  accentActive: string;
-
-  // Border tokens
   border: string;
   borderLight: string;
   borderHover: string;
-
-  // Status
   success: string;
-  successHover: string;
   warning: string;
-  warningHover: string;
   error: string;
-  errorHover: string;
   info: string;
-  infoHover: string;
-};
+}
 
-export type ThemeConfig = {
+export interface ThemeMetadata {
+  accessibility: 'AA' | 'AAA';
+  contrastRatio: number;
+  mood: string[];
+  tags: string[];
+  industry?: string[];
+  author?: string;
+  version?: string;
+  created?: string;
+  updated?: string;
+}
+
+export interface ThemeConfig {
   id: string;
   name: string;
   category: string;
@@ -50,17 +47,44 @@ export type ThemeConfig = {
   colors: ThemeColors;
   dark?: ThemeColors;
   metadata?: ThemeMetadata;
-};
+}
 
-export type ThemeMetadata = {
-  accessibility: 'AA' | 'AAA' | 'Fail';
-  contrastRatio: number;
-  mood: string[];
-  tags: string[];
+export interface ThemeCategory {
+  id: string;
+  name: string;
+  description: string;
+  icon?: string;
+  themes: ThemeConfig[];
+}
+
+export interface ThemePresets {
   version: string;
-  created: string;
-  updated: string;
-};
+  categories: Record<string, ThemeCategory>;
+  featured: string[];
+  recent: string[];
+}
+
+export interface ThemeState {
+  currentTheme: ThemeConfig | null;
+  mode: ThemeMode;
+  systemPreference: ThemeMode;
+  isLoading: boolean;
+  error: string | null;
+  persistKey: string;
+  enableSystemPreference: boolean;
+}
+
+export type ThemeAction =
+  | { type: 'SET_THEME'; payload: ThemeConfig }
+  | { type: 'SET_MODE'; payload: ThemeMode }
+  | { type: 'TOGGLE_MODE' }
+  | { type: 'SET_SYSTEM_PREFERENCE'; payload: 'light' | 'dark' }
+  | { type: 'LOAD_PERSISTED_THEME'; payload: { themeId: string; mode: ThemeMode } }
+  | { type: 'RESET_THEME' }
+  | { type: 'SET_LOADING'; payload: boolean }
+  | { type: 'SET_ERROR'; payload: string | null };
+
+export type ContrastLevel = 'AA' | 'AAA';
 
 export type CreateThemeInput = {
   id: string;

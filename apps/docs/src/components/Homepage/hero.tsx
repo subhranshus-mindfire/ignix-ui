@@ -12,7 +12,7 @@ import LightVeil from '../UI/darkveil/lightveil';
 import DarkVeil from '../UI/darkveil';
 import { AuroraText } from '../UI/aurora-text';
 
-const getTheme = (): string => {
+export const getTheme = (): string => {
   if (typeof window === 'undefined') return 'dark';
   return document.documentElement.getAttribute('data-theme') || 'dark';
 };
