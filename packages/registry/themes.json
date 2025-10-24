@@ -13875,9 +13875,22 @@
     "metadata": {
       "accessibility": "AAA",
       "contrastRatio": 7.1,
-      "mood": ["natural", "healthy", "calming"],
-      "tags": ["vegan", "greens", "mint", "olive"],
-      "industry": ["culinary", "wellness", "nutrition"],
+      "mood": [
+        "natural",
+        "healthy",
+        "calming"
+      ],
+      "tags": [
+        "vegan",
+        "greens",
+        "mint",
+        "olive"
+      ],
+      "industry": [
+        "culinary",
+        "wellness",
+        "nutrition"
+      ],
       "author": "Ignix UI Team",
       "version": "1.0.0"
     }
@@ -13942,9 +13955,22 @@
     "metadata": {
       "accessibility": "AA",
       "contrastRatio": 5.9,
-      "mood": ["sweet", "playful", "soft"],
-      "tags": ["dessert", "lavender", "peach", "candy"],
-      "industry": ["culinary", "bakery", "branding"],
+      "mood": [
+        "sweet",
+        "playful",
+        "soft"
+      ],
+      "tags": [
+        "dessert",
+        "lavender",
+        "peach",
+        "candy"
+      ],
+      "industry": [
+        "culinary",
+        "bakery",
+        "branding"
+      ],
       "author": "Ignix UI Team",
       "version": "1.0.0"
     }
@@ -14009,9 +14035,22 @@
     "metadata": {
       "accessibility": "AA",
       "contrastRatio": 6.1,
-      "mood": ["warm", "vibrant", "rich"],
-      "tags": ["spice", "saffron", "maroon", "market"],
-      "industry": ["culinary", "restaurant", "branding"],
+      "mood": [
+        "warm",
+        "vibrant",
+        "rich"
+      ],
+      "tags": [
+        "spice",
+        "saffron",
+        "maroon",
+        "market"
+      ],
+      "industry": [
+        "culinary",
+        "restaurant",
+        "branding"
+      ],
       "author": "Ignix UI Team",
       "version": "1.0.0"
     }
@@ -14076,9 +14115,22 @@
     "metadata": {
       "accessibility": "AA",
       "contrastRatio": 6.0,
-      "mood": ["bold", "energetic", "urban"],
-      "tags": ["asian", "street", "food", "chili"],
-      "industry": ["culinary", "restaurant", "street-food"],
+      "mood": [
+        "bold",
+        "energetic",
+        "urban"
+      ],
+      "tags": [
+        "asian",
+        "street",
+        "food",
+        "chili"
+      ],
+      "industry": [
+        "culinary",
+        "restaurant",
+        "street-food"
+      ],
       "author": "Ignix UI Team",
       "version": "1.0.0"
     }
@@ -14143,9 +14195,22 @@
     "metadata": {
       "accessibility": "AA",
       "contrastRatio": 6.4,
-      "mood": ["rustic", "craft", "warm"],
-      "tags": ["brewery", "amber", "beer", "artisan"],
-      "industry": ["culinary", "beverage", "craft"],
+      "mood": [
+        "rustic",
+        "craft",
+        "warm"
+      ],
+      "tags": [
+        "brewery",
+        "amber",
+        "beer",
+        "artisan"
+      ],
+      "industry": [
+        "culinary",
+        "beverage",
+        "craft"
+      ],
       "author": "Ignix UI Team",
       "version": "1.0.0"
     }
@@ -14210,9 +14275,822 @@
     "metadata": {
       "accessibility": "AA",
       "contrastRatio": 6.2,
-      "mood": ["retro", "playful", "bold"],
-      "tags": ["diner", "teal", "cherry", "retro"],
-      "industry": ["culinary", "branding", "entertainment"],
+      "mood": [
+        "retro",
+        "playful",
+        "bold"
+      ],
+      "tags": [
+        "diner",
+        "teal",
+        "cherry",
+        "retro"
+      ],
+      "industry": [
+        "culinary",
+        "branding",
+        "entertainment"
+      ],
+      "author": "Ignix UI Team",
+      "version": "1.0.0"
+    }
+  },
+  "rock-concert": {
+    "id": "rock-concert",
+    "name": "Rock Concert",
+    "category": "music-entertainment",
+    "description": "Bold black and red tones capturing the intensity and energy of live rock.",
+    "colors": {
+      "primary": "#000000",
+      "primaryHover": "#1A1A1A",
+      "primaryActive": "#333333",
+      "secondary": "#C21807",
+      "secondaryHover": "#D32F2F",
+      "secondaryActive": "#A00000",
+      "accent": "#8B0000",
+      "accentHover": "#9E0000",
+      "accentActive": "#7A0000",
+      "background": "#121212",
+      "backgroundAlt": "#1E1E1E",
+      "surface": "#1A1A1A",
+      "surfaceAlt": "#2C2C2C",
+      "text": "#FFFFFF",
+      "textSecondary": "#CCCCCC",
+      "textMuted": "#999999",
+      "textInverse": "#000000",
+      "border": "#3D3D3D",
+      "borderLight": "#5A5A5A",
+      "borderHover": "#2A2A2A",
+      "success": "#81C784",
+      "warning": "#FFB74D",
+      "error": "#E57373",
+      "info": "#4FC3F7"
+    },
+    "dark": {
+      "primary": "#000000",
+      "primaryHover": "#1A1A1A",
+      "primaryActive": "#333333",
+      "secondary": "#C21807",
+      "secondaryHover": "#D32F2F",
+      "secondaryActive": "#A00000",
+      "accent": "#8B0000",
+      "accentHover": "#9E0000",
+      "accentActive": "#7A0000",
+      "background": "#000000",
+      "backgroundAlt": "#1C1C1C",
+      "surface": "#111111",
+      "surfaceAlt": "#222222",
+      "text": "#FFFFFF",
+      "textSecondary": "#CCCCCC",
+      "textMuted": "#888888",
+      "textInverse": "#000000",
+      "border": "#3D3D3D",
+      "borderLight": "#5A5A5A",
+      "borderHover": "#2A2A2A",
+      "success": "#A5D6A7",
+      "warning": "#FFD54F",
+      "error": "#EF9A9A",
+      "info": "#81D4FA"
+    },
+    "metadata": {
+      "accessibility": "AAA",
+      "contrastRatio": 8.0,
+      "mood": [
+        "intense",
+        "bold",
+        "energetic"
+      ],
+      "tags": [
+        "rock",
+        "concert",
+        "black",
+        "red"
+      ],
+      "industry": [
+        "music",
+        "entertainment",
+        "live"
+      ],
+      "author": "Ignix UI Team",
+      "version": "1.0.0"
+    }
+  },
+  "jazz-club": {
+    "id": "jazz-club",
+    "name": "Jazz Club",
+    "category": "music-entertainment",
+    "description": "Deep purple and gold evoke a sophisticated, moody jazz lounge.",
+    "colors": {
+      "primary": "#4B0082",
+      "primaryHover": "#5C1A99",
+      "primaryActive": "#3A0066",
+      "secondary": "#FFD700",
+      "secondaryHover": "#FFDF33",
+      "secondaryActive": "#E6C200",
+      "accent": "#6A0DAD",
+      "accentHover": "#7F24C0",
+      "accentActive": "#560089",
+      "background": "#1A0D26",
+      "backgroundAlt": "#2E1A3D",
+      "surface": "#3C2955",
+      "surfaceAlt": "#4C3873",
+      "text": "#FDF5E6",
+      "textSecondary": "#E6D6B8",
+      "textMuted": "#B8A77A",
+      "textInverse": "#1A0D26",
+      "border": "#6A0DAD",
+      "borderLight": "#9B5ED1",
+      "borderHover": "#4B0082",
+      "success": "#81C784",
+      "warning": "#FFB74D",
+      "error": "#E57373",
+      "info": "#4FC3F7"
+    },
+    "dark": {
+      "primary": "#4B0082",
+      "primaryHover": "#5C1A99",
+      "primaryActive": "#3A0066",
+      "secondary": "#FFD700",
+      "secondaryHover": "#FFDF33",
+      "secondaryActive": "#E6C200",
+      "accent": "#6A0DAD",
+      "accentHover": "#7F24C0",
+      "accentActive": "#560089",
+      "background": "#12002C",
+      "backgroundAlt": "#1F003F",
+      "surface": "#2A004F",
+      "surfaceAlt": "#3B0066",
+      "text": "#FDF5E6",
+      "textSecondary": "#E6D6B8",
+      "textMuted": "#B8A77A",
+      "textInverse": "#12002C",
+      "border": "#6A0DAD",
+      "borderLight": "#9B5ED1",
+      "borderHover": "#4B0082",
+      "success": "#A5D6A7",
+      "warning": "#FFD54F",
+      "error": "#EF9A9A",
+      "info": "#81D4FA"
+    },
+    "metadata": {
+      "accessibility": "AA",
+      "contrastRatio": 7.5,
+      "mood": [
+        "sophisticated",
+        "moody",
+        "elegant"
+      ],
+      "tags": [
+        "jazz",
+        "club",
+        "purple",
+        "gold"
+      ],
+      "industry": [
+        "music",
+        "entertainment",
+        "lounge"
+      ],
+      "author": "Ignix UI Team",
+      "version": "1.0.0"
+    }
+  },
+  "pop-festival": {
+    "id": "pop-festival",
+    "name": "Pop Festival",
+    "category": "music-entertainment",
+    "description": "Fun, playful pink and neon yellow for a vibrant pop concert vibe.",
+    "colors": {
+      "primary": "#FF69B4",
+      "primaryHover": "#FF85C3",
+      "primaryActive": "#E05599",
+      "secondary": "#FFFF33",
+      "secondaryHover": "#FFFF66",
+      "secondaryActive": "#E6E600",
+      "accent": "#FF1493",
+      "accentHover": "#FF36A9",
+      "accentActive": "#CC0F80",
+      "background": "#FFF8FB",
+      "backgroundAlt": "#FFF1F6",
+      "surface": "#FFE6F0",
+      "surfaceAlt": "#FFD1E0",
+      "text": "#3A002E",
+      "textSecondary": "#66204F",
+      "textMuted": "#993366",
+      "textInverse": "#FFFFFF",
+      "border": "#FFB3D1",
+      "borderLight": "#FFD1E0",
+      "borderHover": "#FF85C3",
+      "success": "#81C784",
+      "warning": "#FFB74D",
+      "error": "#E57373",
+      "info": "#4FC3F7"
+    },
+    "dark": {
+      "primary": "#FF85C3",
+      "primaryHover": "#FFA3D9",
+      "primaryActive": "#FF69B4",
+      "secondary": "#FFFF66",
+      "secondaryHover": "#FFFF99",
+      "secondaryActive": "#FFFF33",
+      "accent": "#FF1493",
+      "accentHover": "#FF36A9",
+      "accentActive": "#CC0F80",
+      "background": "#2E0020",
+      "backgroundAlt": "#3A002E",
+      "surface": "#66204F",
+      "surfaceAlt": "#993366",
+      "text": "#FFF1F6",
+      "textSecondary": "#FFD1E0",
+      "textMuted": "#FFB3D1",
+      "textInverse": "#2E0020",
+      "border": "#FF69B4",
+      "borderLight": "#FFA3D9",
+      "borderHover": "#FF85C3",
+      "success": "#A5D6A7",
+      "warning": "#FFD54F",
+      "error": "#EF9A9A",
+      "info": "#81D4FA"
+    },
+    "metadata": {
+      "accessibility": "AA",
+      "contrastRatio": 6.5,
+      "mood": [
+        "fun",
+        "playful",
+        "energetic"
+      ],
+      "tags": [
+        "pop",
+        "festival",
+        "pink",
+        "neon"
+      ],
+      "industry": [
+        "music",
+        "entertainment",
+        "events"
+      ],
+      "author": "Ignix UI Team",
+      "version": "1.0.0"
+    }
+  },
+  "classical-elegance": {
+    "id": "classical-elegance",
+    "name": "Classical Elegance",
+    "category": "music-entertainment",
+    "description": "Navy and ivory for refined, timeless classical sophistication.",
+    "colors": {
+      "primary": "#001F54",
+      "primaryHover": "#003366",
+      "primaryActive": "#000F33",
+      "secondary": "#FFFFF0",
+      "secondaryHover": "#FFFFFF",
+      "secondaryActive": "#E6E6D9",
+      "accent": "#003366",
+      "accentHover": "#004080",
+      "accentActive": "#001A33",
+      "background": "#F8F8F8",
+      "backgroundAlt": "#EFEFEF",
+      "surface": "#E6E6E6",
+      "surfaceAlt": "#DADADA",
+      "text": "#001F54",
+      "textSecondary": "#003366",
+      "textMuted": "#667399",
+      "textInverse": "#FFFFFF",
+      "border": "#B0B0B0",
+      "borderLight": "#D6D6D6",
+      "borderHover": "#999999",
+      "success": "#81C784",
+      "warning": "#FFB74D",
+      "error": "#E57373",
+      "info": "#4FC3F7"
+    },
+    "dark": {
+      "primary": "#003366",
+      "primaryHover": "#004080",
+      "primaryActive": "#001F54",
+      "secondary": "#E6E6D9",
+      "secondaryHover": "#FFFFF0",
+      "secondaryActive": "#FFFFFF",
+      "accent": "#001F54",
+      "accentHover": "#003366",
+      "accentActive": "#000F33",
+      "background": "#101A33",
+      "backgroundAlt": "#1A2540",
+      "surface": "#003366",
+      "surfaceAlt": "#001F54",
+      "text": "#FFFFF0",
+      "textSecondary": "#E6E6D9",
+      "textMuted": "#B0B0B0",
+      "textInverse": "#101A33",
+      "border": "#667399",
+      "borderLight": "#999999",
+      "borderHover": "#003366",
+      "success": "#A5D6A7",
+      "warning": "#FFD54F",
+      "error": "#EF9A9A",
+      "info": "#81D4FA"
+    },
+    "metadata": {
+      "accessibility": "AAA",
+      "contrastRatio": 7.8,
+      "mood": [
+        "refined",
+        "timeless",
+        "sophisticated"
+      ],
+      "tags": [
+        "classical",
+        "elegance",
+        "navy",
+        "ivory"
+      ],
+      "industry": [
+        "music",
+        "orchestra",
+        "entertainment"
+      ],
+      "author": "Ignix UI Team",
+      "version": "1.0.0"
+    }
+  },
+  "edm-rave": {
+    "id": "edm-rave",
+    "name": "EDM Rave",
+    "category": "music-entertainment",
+    "description": "Black and electric blue evoke high-energy neon vibes for electronic music festivals.",
+    "colors": {
+      "primary": "#000000",
+      "primaryHover": "#1A1A1A",
+      "primaryActive": "#333333",
+      "secondary": "#00FFFF",
+      "secondaryHover": "#33FFFF",
+      "secondaryActive": "#00CCCC",
+      "accent": "#008B8B",
+      "accentHover": "#00AAAA",
+      "accentActive": "#006666",
+      "background": "#0D0D0D",
+      "backgroundAlt": "#1A1A1A",
+      "surface": "#262626",
+      "surfaceAlt": "#333333",
+      "text": "#FFFFFF",
+      "textSecondary": "#CCCCCC",
+      "textMuted": "#999999",
+      "textInverse": "#000000",
+      "border": "#444444",
+      "borderLight": "#666666",
+      "borderHover": "#222222",
+      "success": "#81C784",
+      "warning": "#FFB74D",
+      "error": "#E57373",
+      "info": "#4FC3F7"
+    },
+    "dark": {
+      "primary": "#000000",
+      "primaryHover": "#1A1A1A",
+      "primaryActive": "#333333",
+      "secondary": "#00FFFF",
+      "secondaryHover": "#33FFFF",
+      "secondaryActive": "#00CCCC",
+      "accent": "#008B8B",
+      "accentHover": "#00AAAA",
+      "accentActive": "#006666",
+      "background": "#000000",
+      "backgroundAlt": "#111111",
+      "surface": "#222222",
+      "surfaceAlt": "#333333",
+      "text": "#00FFFF",
+      "textSecondary": "#33FFFF",
+      "textMuted": "#008B8B",
+      "textInverse": "#000000",
+      "border": "#00CCCC",
+      "borderLight": "#33FFFF",
+      "borderHover": "#00FFFF",
+      "success": "#A5D6A7",
+      "warning": "#FFD54F",
+      "error": "#EF9A9A",
+      "info": "#81D4FA"
+    },
+    "metadata": {
+      "accessibility": "AA",
+      "contrastRatio": 7.2,
+      "mood": [
+        "energetic",
+        "neon",
+        "electric"
+      ],
+      "tags": [
+        "EDM",
+        "rave",
+        "black",
+        "electric-blue"
+      ],
+      "industry": [
+        "music",
+        "festival",
+        "entertainment"
+      ],
+      "author": "Ignix UI Team",
+      "version": "1.0.0"
+    }
+  },
+  "indie-folk": {
+    "id": "indie-folk",
+    "name": "Indie Folk",
+    "category": "music-entertainment",
+    "description": "Mustard and forest green create a rustic, earthy vibe typical of indie folk music.",
+    "colors": {
+      "primary": "#FFDB58",
+      "primaryHover": "#FFE87A",
+      "primaryActive": "#E6C650",
+      "secondary": "#2E4D25",
+      "secondaryHover": "#3A6230",
+      "secondaryActive": "#1F341B",
+      "accent": "#A18832",
+      "accentHover": "#BFA947",
+      "accentActive": "#8F7130",
+      "background": "#FAF8F0",
+      "backgroundAlt": "#F0EEDC",
+      "surface": "#E6E2C7",
+      "surfaceAlt": "#DAD6B0",
+      "text": "#2E4D25",
+      "textSecondary": "#4A5B3D",
+      "textMuted": "#6B7A5A",
+      "textInverse": "#FFFFFF",
+      "border": "#CFC595",
+      "borderLight": "#E0D8B3",
+      "borderHover": "#B8AC7D",
+      "success": "#81C784",
+      "warning": "#FFB74D",
+      "error": "#E57373",
+      "info": "#4FC3F7"
+    },
+    "dark": {
+      "primary": "#FFE87A",
+      "primaryHover": "#FFDB58",
+      "primaryActive": "#E6C650",
+      "secondary": "#3A6230",
+      "secondaryHover": "#4D7B44",
+      "secondaryActive": "#2E4D25",
+      "accent": "#BFA947",
+      "accentHover": "#D6BF5F",
+      "accentActive": "#A18832",
+      "background": "#1E2615",
+      "backgroundAlt": "#2E3A1F",
+      "surface": "#3A4D2A",
+      "surfaceAlt": "#4A5B3D",
+      "text": "#FAF8F0",
+      "textSecondary": "#E6E2C7",
+      "textMuted": "#CFC595",
+      "textInverse": "#1E2615",
+      "border": "#A18832",
+      "borderLight": "#BFA947",
+      "borderHover": "#FFE87A",
+      "success": "#A5D6A7",
+      "warning": "#FFD54F",
+      "error": "#EF9A9A",
+      "info": "#81D4FA"
+    },
+    "metadata": {
+      "accessibility": "AA",
+      "contrastRatio": 6.8,
+      "mood": [
+        "rustic",
+        "earthy",
+        "organic"
+      ],
+      "tags": [
+        "indie",
+        "folk",
+        "mustard",
+        "forest"
+      ],
+      "industry": [
+        "music",
+        "festival",
+        "entertainment"
+      ],
+      "author": "Ignix UI Team",
+      "version": "1.0.0"
+    }
+  },
+  "hip-hop-vibe": {
+    "id": "hip-hop-vibe",
+    "name": "Hip-Hop Vibe",
+    "category": "music-entertainment",
+    "description": "Black and bright green convey urban energy and bold hip-hop style.",
+    "colors": {
+      "primary": "#000000",
+      "primaryHover": "#1A1A1A",
+      "primaryActive": "#333333",
+      "secondary": "#00FF00",
+      "secondaryHover": "#33FF33",
+      "secondaryActive": "#00CC00",
+      "accent": "#006600",
+      "accentHover": "#009900",
+      "accentActive": "#004400",
+      "background": "#0D0D0D",
+      "backgroundAlt": "#1A1A1A",
+      "surface": "#262626",
+      "surfaceAlt": "#333333",
+      "text": "#FFFFFF",
+      "textSecondary": "#CCCCCC",
+      "textMuted": "#999999",
+      "textInverse": "#000000",
+      "border": "#444444",
+      "borderLight": "#666666",
+      "borderHover": "#222222",
+      "success": "#81C784",
+      "warning": "#FFB74D",
+      "error": "#E57373",
+      "info": "#4FC3F7"
+    },
+    "dark": {
+      "primary": "#000000",
+      "primaryHover": "#1A1A1A",
+      "primaryActive": "#333333",
+      "secondary": "#00FF00",
+      "secondaryHover": "#33FF33",
+      "secondaryActive": "#00CC00",
+      "accent": "#006600",
+      "accentHover": "#009900",
+      "accentActive": "#004400",
+      "background": "#000000",
+      "backgroundAlt": "#111111",
+      "surface": "#222222",
+      "surfaceAlt": "#333333",
+      "text": "#00FF00",
+      "textSecondary": "#33FF33",
+      "textMuted": "#006600",
+      "textInverse": "#000000",
+      "border": "#00CC00",
+      "borderLight": "#33FF33",
+      "borderHover": "#00FF00",
+      "success": "#A5D6A7",
+      "warning": "#FFD54F",
+      "error": "#EF9A9A",
+      "info": "#81D4FA"
+    },
+    "metadata": {
+      "accessibility": "AA",
+      "contrastRatio": 7.3,
+      "mood": [
+        "urban",
+        "energetic",
+        "bold"
+      ],
+      "tags": [
+        "hip-hop",
+        "black",
+        "green",
+        "urban"
+      ],
+      "industry": [
+        "music",
+        "entertainment",
+        "street"
+      ],
+      "author": "Ignix UI Team",
+      "version": "1.0.0"
+    }
+  },
+  "retro-vinyl": {
+    "id": "retro-vinyl",
+    "name": "Retro Vinyl",
+    "category": "music-entertainment",
+    "description": "Maroon and cream capture nostalgic, vintage vinyl vibes.",
+    "colors": {
+      "primary": "#800000",
+      "primaryHover": "#990000",
+      "primaryActive": "#660000",
+      "secondary": "#FFF5E1",
+      "secondaryHover": "#FFF8E6",
+      "secondaryActive": "#E6D6C0",
+      "accent": "#993333",
+      "accentHover": "#B34747",
+      "accentActive": "#7A0000",
+      "background": "#FDF8F5",
+      "backgroundAlt": "#F8F1EC",
+      "surface": "#E8D9D5",
+      "surfaceAlt": "#DCCAC2",
+      "text": "#4B1A1A",
+      "textSecondary": "#704141",
+      "textMuted": "#A08080",
+      "textInverse": "#FFFFFF",
+      "border": "#C0AFA9",
+      "borderLight": "#E0D4CF",
+      "borderHover": "#A0807A",
+      "success": "#81C784",
+      "warning": "#FFB74D",
+      "error": "#E57373",
+      "info": "#4FC3F7"
+    },
+    "dark": {
+      "primary": "#990000",
+      "primaryHover": "#B20000",
+      "primaryActive": "#800000",
+      "secondary": "#FFF8E6",
+      "secondaryHover": "#FFF5E1",
+      "secondaryActive": "#E6D6C0",
+      "accent": "#B34747",
+      "accentHover": "#CC5A5A",
+      "accentActive": "#993333",
+      "background": "#2A1616",
+      "backgroundAlt": "#4B1A1A",
+      "surface": "#704141",
+      "surfaceAlt": "#A08080",
+      "text": "#FFF8F5",
+      "textSecondary": "#E8D9D5",
+      "textMuted": "#C0AFA9",
+      "textInverse": "#2A1616",
+      "border": "#993333",
+      "borderLight": "#B34747",
+      "borderHover": "#990000",
+      "success": "#A5D6A7",
+      "warning": "#FFD54F",
+      "error": "#EF9A9A",
+      "info": "#81D4FA"
+    },
+    "metadata": {
+      "accessibility": "AA",
+      "contrastRatio": 6.6,
+      "mood": [
+        "nostalgic",
+        "vintage",
+        "warm"
+      ],
+      "tags": [
+        "retro",
+        "vinyl",
+        "maroon",
+        "cream"
+      ],
+      "industry": [
+        "music",
+        "entertainment",
+        "collectibles"
+      ],
+      "author": "Ignix UI Team",
+      "version": "1.0.0"
+    }
+  },
+  "movie-theater": {
+    "id": "movie-theater",
+    "name": "Movie Theater",
+    "category": "music-entertainment",
+    "description": "Red velvet and black evoke classic cinema luxury and drama.",
+    "colors": {
+      "primary": "#800000",
+      "primaryHover": "#990000",
+      "primaryActive": "#660000",
+      "secondary": "#000000",
+      "secondaryHover": "#1A1A1A",
+      "secondaryActive": "#333333",
+      "accent": "#B22222",
+      "accentHover": "#C12E2E",
+      "accentActive": "#8B0000",
+      "background": "#1A0D0D",
+      "backgroundAlt": "#2E1A1A",
+      "surface": "#3D1F1F",
+      "surfaceAlt": "#4B2C2C",
+      "text": "#FFFFFF",
+      "textSecondary": "#CCCCCC",
+      "textMuted": "#999999",
+      "textInverse": "#1A0D0D",
+      "border": "#5A3D3D",
+      "borderLight": "#7A5A5A",
+      "borderHover": "#3D1F1F",
+      "success": "#81C784",
+      "warning": "#FFB74D",
+      "error": "#E57373",
+      "info": "#4FC3F7"
+    },
+    "dark": {
+      "primary": "#990000",
+      "primaryHover": "#B20000",
+      "primaryActive": "#800000",
+      "secondary": "#1A1A1A",
+      "secondaryHover": "#333333",
+      "secondaryActive": "#000000",
+      "accent": "#C12E2E",
+      "accentHover": "#D14343",
+      "accentActive": "#B22222",
+      "background": "#0D0D0D",
+      "backgroundAlt": "#1A1A1A",
+      "surface": "#333333",
+      "surfaceAlt": "#4B2C2C",
+      "text": "#FFFFFF",
+      "textSecondary": "#CCCCCC",
+      "textMuted": "#999999",
+      "textInverse": "#0D0D0D",
+      "border": "#800000",
+      "borderLight": "#B22222",
+      "borderHover": "#990000",
+      "success": "#A5D6A7",
+      "warning": "#FFD54F",
+      "error": "#EF9A9A",
+      "info": "#81D4FA"
+    },
+    "metadata": {
+      "accessibility": "AA",
+      "contrastRatio": 7.0,
+      "mood": [
+        "dramatic",
+        "luxurious",
+        "classic"
+      ],
+      "tags": [
+        "movie",
+        "theater",
+        "red",
+        "black"
+      ],
+      "industry": [
+        "entertainment",
+        "cinema",
+        "media"
+      ],
+      "author": "Ignix UI Team",
+      "version": "1.0.0"
+    }
+  },
+  "broadway-lights": {
+    "id": "broadway-lights",
+    "name": "Broadway Lights",
+    "category": "music-entertainment",
+    "description": "Gold and dark red capture dazzling theatrical energy and elegance.",
+    "colors": {
+      "primary": "#FFD700",
+      "primaryHover": "#FFE033",
+      "primaryActive": "#E6C200",
+      "secondary": "#8B0000",
+      "secondaryHover": "#A00000",
+      "secondaryActive": "#660000",
+      "accent": "#FFB700",
+      "accentHover": "#FFC233",
+      "accentActive": "#E6A100",
+      "background": "#2A0D0D",
+      "backgroundAlt": "#3D1A1A",
+      "surface": "#5A2C2C",
+      "surfaceAlt": "#7A3D3D",
+      "text": "#FFF8E1",
+      "textSecondary": "#FFE8B3",
+      "textMuted": "#CCB07A",
+      "textInverse": "#2A0D0D",
+      "border": "#B38A44",
+      "borderLight": "#D1B070",
+      "borderHover": "#FFD700",
+      "success": "#81C784",
+      "warning": "#FFB74D",
+      "error": "#E57373",
+      "info": "#4FC3F7"
+    },
+    "dark": {
+      "primary": "#FFE033",
+      "primaryHover": "#FFF24D",
+      "primaryActive": "#FFD700",
+      "secondary": "#A00000",
+      "secondaryHover": "#B22222",
+      "secondaryActive": "#8B0000",
+      "accent": "#FFC233",
+      "accentHover": "#FFD24D",
+      "accentActive": "#FFB700",
+      "background": "#1A0D0D",
+      "backgroundAlt": "#2A0D0D",
+      "surface": "#5A2C2C",
+      "surfaceAlt": "#7A3D3D",
+      "text": "#FFF8E1",
+      "textSecondary": "#FFE8B3",
+      "textMuted": "#CCB07A",
+      "textInverse": "#1A0D0D",
+      "border": "#B38A44",
+      "borderLight": "#D1B070",
+      "borderHover": "#FFD700",
+      "success": "#A5D6A7",
+      "warning": "#FFD54F",
+      "error": "#EF9A9A",
+      "info": "#81D4FA"
+    },
+    "metadata": {
+      "accessibility": "AA",
+      "contrastRatio": 7.4,
+      "mood": [
+        "dazzling",
+        "theatrical",
+        "elegant"
+      ],
+      "tags": [
+        "broadway",
+        "lights",
+        "gold",
+        "red"
+      ],
+      "industry": [
+        "entertainment",
+        "theater",
+        "showbiz"
+      ],
       "author": "Ignix UI Team",
       "version": "1.0.0"
     }
