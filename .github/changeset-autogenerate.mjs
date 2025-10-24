@@ -13,7 +13,8 @@ const validScopes = [
   'release',
   'registry',
   'poc',
-  'storybook'
+  'storybook',
+  'cli-tool'
 ];
 
 // Define regex patterns
@@ -56,7 +57,11 @@ if (packageScope) {
   const packageName =
     packageScope === 'cli'
       ? '@mindfiredigital/ignix-ui'
+      : packageScope === 'cli-tool'
+      ? '@mindfiredigital/ignix-cli'
       : `@mindfiredigital/ignix-ui-${packageScope}`;
+
+  
 
   // Generate changeset content
   const changesetContent = `---

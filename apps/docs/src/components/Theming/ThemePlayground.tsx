@@ -1,35 +1,53 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { ThemeEngine } from "../../themes/ThemeEngine";
-import type { ThemeConfig, ContrastLevel } from "../../types/theme";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../UI/card";
+import type {
+  ThemeConfig,
+  ContrastLevel,
+  ThemeCategory,
+} from "../../types/theme";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../UI/card";
 import { Button } from "../UI/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../UI/select";
 import { Tabs } from "../UI/tab";
-import { CheckCircle, Clipboard, Sun, Moon, AlertTriangle } from "lucide-react";
+import {
+  Clipboard,
+  Loader2,
+  Box,
+  Gift,
+  Zap,
+} from "lucide-react";
+import AutoGrid from "../UI/auto-grid";
+import { getTheme } from "../Homepage/hero";
 
-// --- (Assume colorCategories is the same as your original code) ---
-const colorCategories = [
-  {
-    name: "Modern",
-    themes: [
-      { name: "Ocean Blue", primary: "#2563EB", secondary: "#14B8A6", accent: "#F59E0B" },
-      { name: "Forest Green", primary: "#059669", secondary: "#10B981", accent: "#F59E0B" },
-      { name: "Purple Dream", primary: "#7C3AED", secondary: "#2563EB", accent: "#EC4899" },
-    ],
-  },
-  {
-    name: "Classic",
-    themes: [
-      { name: "Royal Blue", primary: "#4F46E5", secondary: "#7C3AED", accent: "#A78BFA" },
-      { name: "Sunset Orange", primary: "#DC2626", secondary: "#F59E0B", accent: "#7C3AED" },
-      { name: "Minimal Gray", primary: "#374151", secondary: "#6B7280", accent: "#9CA3AF" },
-    ],
-  },
-];
+const THEMES_JSON_URL =
+  "https://raw.githubusercontent.com/mindfiredigital/ignix-ui/main/packages/registry/themes.json";
 
-// A more interactive color input component
+const groupThemesByCategory = (
+  themes: Record<string, ThemeConfig>
+): ThemeCategory[] => {
+  const categories: Record<string, ThemeCategory> = {};
+  Object.values(themes).forEach((theme) => {
+    if (!categories[theme.category]) {
+      categories[theme.category] = {
+        id: theme.category,
+        name: theme.category
+          .split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" "),
+        description: `Themes in the ${theme.category} category`,
+        themes: [],
+      };
+    }
+    categories[theme.category].themes.push(theme);
+  });
+  return Object.values(categories).sort((a, b) => a.name.localeCompare(b.name));
+};
+
 const ColorInput = ({ label, value, onChange }) => (
   <div className="flex flex-col space-y-2">
     <label className="text-sm font-medium">{label}</label>
@@ -38,276 +56,405 @@ const ColorInput = ({ label, value, onChange }) => (
         type="color"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="h-10 w-10 shrink-0 cursor-pointer appearance-none rounded-md border bg-transparent p-0"
-        aria-label={`Select ${label.toLowerCase()} color`}
+        className="h-10 w-10 cursor-pointer rounded-md border bg-transparent"
       />
       <input
         type="text"
         value={value.toUpperCase()}
         onChange={(e) => onChange(e.target.value)}
-        className="h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-        placeholder="#FFFFFF"
+        className="h-10 w-full rounded-md border bg-transparent px-3 py-2 text-sm"
       />
     </div>
   </div>
 );
 
-// New Alert component for the live preview
-const Alert = ({ variant, title, children }) => {
-  const baseClasses = "flex items-start space-x-3 rounded-lg border p-4";
-  const variants = {
-    success: "border-green-300 bg-green-50 text-green-800 dark:border-green-700 dark:bg-green-950 dark:text-green-300",
-    error: "border-red-300 bg-red-50 text-red-800 dark:border-red-700 dark:bg-red-950 dark:text-red-300",
-  };
-  const Icon = variant === 'success' ? CheckCircle : AlertTriangle;
-
-  return (
-    <div className={`${baseClasses} ${variants[variant]}`} role="alert">
-      <Icon className="h-5 w-5" />
-      <div className="flex-1 space-y-1">
-        <p className="font-semibold">{title}</p>
-        <p className="text-sm opacity-90">{children}</p>
-      </div>
-    </div>
-  );
-};
-
-
 export default function ThemePlayground() {
-  const defaultColors = {
-    primary: "#ff0000",
-    secondary: "#f5f5f5",
-    accent: "#F59E0B",
-  };
-
+  const [categories, setCategories] = useState<ThemeCategory[]>([]);
+  const [selectedCategoryName, setSelectedCategoryName] = useState<string | null>(
+    null
+  );
   const [theme, setTheme] = useState<ThemeConfig | null>(null);
-  const [validation, setValidation] = useState<any>(null);
+  const [customColors, setCustomColors] = useState({
+    primary: "#2563EB",
+    secondary: "#10B981",
+    accent: "#F59E0B",
+  });
   const [contrastLevel, setContrastLevel] = useState<ContrastLevel>("AA");
-  const [customColors, setCustomColors] = useState(defaultColors);
-  const [previewMode, setPreviewMode] = useState<'light' | 'dark'>('light');
-  const [copyStatus, setCopyStatus] = useState('Copy');
+  const [previewMode, setPreviewMode] = useState<"light" | "dark">("light");
+  const [isLoading, setIsLoading] = useState(true);
+  const [copyStatus, setCopyStatus] = useState("Copy");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
+    const fetchThemes = async () => {
+      try {
+        const resp = await fetch(THEMES_JSON_URL);
+        if (!resp.ok) throw new Error("Failed to fetch themes");
+        const themes = await resp.json();
+        const grouped = groupThemesByCategory(themes);
+        setCategories(grouped);
+        if (grouped.length > 0) {
+          const firstCategory = grouped[0];
+          setSelectedCategoryName(firstCategory.name);
+          if (firstCategory.themes?.length) {
+            const firstTheme = firstCategory.themes[0];
+            setTheme(firstTheme);
+            setCustomColors({
+              primary: firstTheme.colors.primary,
+              secondary: firstTheme.colors.secondary,
+              accent: firstTheme.colors.accent,
+            });
+          }
+        }
+      } catch (err) {
+        console.error("Error:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchThemes();
+    const observer = new MutationObserver(() =>
+      setPreviewMode(getTheme() as "light" | "dark")
+    );
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  const handleColorChange = (colorName: string, value: string) => {
+    const newCustomColors = { ...customColors, [colorName]: value };
+    setCustomColors(newCustomColors);
+
     const newTheme = ThemeEngine.createTheme({
-      id: "playground-theme",
-      name: "Playground Theme",
+      id: "custom",
+      name: "Custom",
       category: "custom",
-      ...customColors,
+      ...newCustomColors,
       generateDark: true,
       contrastLevel,
     });
-    
-    const { theme: fixedTheme, validation: newValidation } = ThemeEngine.validateAndFix(newTheme, contrastLevel);
-    setTheme(fixedTheme);
-    setValidation(newValidation);
-  }, [customColors, contrastLevel]);
+    const { theme: fixed } = ThemeEngine.validateAndFix(
+      newTheme,
+      contrastLevel
+    );
+    setTheme(fixed);
+  };
 
-  // Apply theme colors to Docusaurus CSS variables
+  const activeTheme = useMemo(() => {
+    if (!theme) return null;
+    const { theme: fixed } = ThemeEngine.validateAndFix(theme, contrastLevel);
+    return fixed;
+  }, [theme, contrastLevel]);
+
+  const currentColors =
+    previewMode === "dark" && activeTheme?.dark
+      ? activeTheme.dark
+      : activeTheme?.colors;
+
+  const previewStyles = useMemo(() => {
+    if (!currentColors) return {};
+    return {
+      "--background": currentColors.background,
+      "--foreground": currentColors.text,
+      "--card": currentColors.surface,
+      "--card-foreground": currentColors.text,
+      "--popover": currentColors.surface,
+      "--popover-foreground": currentColors.text,
+      "--primary": currentColors.primary,
+      "--primary-foreground": currentColors.textInverse,
+      "--secondary": currentColors.secondary,
+      "--secondary-foreground": currentColors.textInverse,
+      "--muted": currentColors.surface,
+      "--muted-foreground": currentColors.textMuted,
+      "--accent": currentColors.accent,
+      "--accent-foreground": currentColors.textInverse,
+      "--border": currentColors.border,
+      "--input": currentColors.border,
+      "--ring": currentColors.primary,
+      "--radius": "0.5rem",
+      "--destructive": currentColors.error,
+      "--destructive-foreground": currentColors.textInverse,
+      "--success": currentColors.success,
+    } as React.CSSProperties;
+  }, [currentColors]);
+
+  const filteredCategories = useMemo(() => {
+    if (!search.trim()) return categories;
+    return categories
+      .map((cat) => ({
+        ...cat,
+        themes: cat.themes.filter((t) =>
+          t.name.toLowerCase().includes(search.toLowerCase())
+        ),
+      }))
+      .filter((cat) => cat.themes.length > 0);
+  }, [categories, search]);
+
+  const handleCopyToClipboard = () => {
+    if (activeTheme) {
+      navigator.clipboard.writeText(ThemeEngine.toCss(activeTheme));
+      setCopyStatus("Copied!");
+      setTimeout(() => setCopyStatus("Copy"), 2000);
+    }
+  };
+
+
   useEffect(() => {
     if (!theme) return;
+
 
     const currentColors = previewMode === 'dark' && theme.dark ? theme.dark : theme.colors;
     const root = document.documentElement;
 
+
     // Apply Docusaurus CSS variables
     root.style.setProperty('--ifm-color-primary', currentColors.primary);
-    // root.style.setProperty('--ifm-color-primary-dark', currentColors.primary || currentColors.primary);
-    // root.style.setProperty('--ifm-color-primary-darker', currentColors.primary || currentColors.primary);
-    // root.style.setProperty('--ifm-color-primary-darkest', currentColors.primary || currentColors.primary);
-    // root.style.setProperty('--ifm-color-primary-light', currentColors.primary || currentColors.primary);
-    // root.style.setProperty('--ifm-color-primary-lighter', currentColors.primary || currentColors.primary);
-    // root.style.setProperty('--ifm-color-primary-lightest', currentColors.primary || currentColors.primary);
-    
-    // // Background and text colors
-    // root.style.setProperty('--ifm-font-color-base', currentColors.text);
-    // root.style.setProperty('--ifm-color-content', currentColors.text);
-    
-    // // Link colors
-    // root.style.setProperty('--ifm-link-color', currentColors.primary);
-    // root.style.setProperty('--ifm-link-hover-color', currentColors.primary);
-    
-    // // Navbar colors
-    // root.style.setProperty('--ifm-navbar-background-color', currentColors.surface);
-    // root.style.setProperty('--ifm-navbar-link-color', currentColors.text);
-    // root.style.setProperty('--ifm-navbar-link-hover-color', currentColors.primary);
-    
-    // // Footer colors
-    // root.style.setProperty('--ifm-footer-background-color', currentColors.surface);
-    // root.style.setProperty('--ifm-footer-color', currentColors.textMuted);
-    
-    // // Code block colors
-    // root.style.setProperty('--ifm-code-background', currentColors.surface);
-    // root.style.setProperty('--ifm-code-color', currentColors.accent);
-
-    // Cleanup function to reset on unmount (optional)
-    return () => {
-      // You can reset to default values here if needed
-    };
+   root.style.setProperty('--ifm-background-color', currentColors.background);
   }, [theme, previewMode]);
-
-  const handlePresetSelect = (value: string) => {
-    if (!value) return;
-    const [catName, themeName] = value.split(":::");
-    const category = colorCategories.find((c) => c.name === catName);
-    const selected = category?.themes.find((t) => t.name === themeName);
-    if (selected) {
-      setCustomColors({
-        primary: selected.primary,
-        secondary: selected.secondary,
-        accent: selected.accent,
-      });
-    }
-  };
   
-  const handleCopyToClipboard = () => {
-    if (theme) {
-      navigator.clipboard.writeText(ThemeEngine.toCss(theme));
-      setCopyStatus('Copied!');
-      setTimeout(() => setCopyStatus('Copy'), 2000);
-    }
+  const handleThemeChange = (t: ThemeConfig) => {
+    setTheme(t);
+    setCustomColors({
+    primary: t.colors.primary,
+    secondary: t.colors.secondary,
+    accent: t.colors.accent,
+  });
   };
 
-  if (!theme || !validation) return <div className="p-10 text-center">Generating Theme...</div>;
+  if (isLoading || !activeTheme)
+    return (
+      <div className="flex h-64 items-center justify-center gap-2">
+        <Loader2 className="animate-spin h-6 w-6" />
+        <span>Loading themes...</span>
+      </div>
+    );
 
-  const currentColors = previewMode === 'dark' && theme.dark ? theme.dark : theme.colors;
-  const previewStyles = {
-    '--background': currentColors.background,
-    '--foreground': currentColors.text,
-    '--muted': currentColors.surface,
-    '--muted-foreground': currentColors.textMuted,
-    '--border': currentColors.border,
-    '--primary': currentColors.primary,
-    '--primary-foreground': currentColors.textInverse,
-    '--secondary': currentColors.secondary,
-    '--secondary-foreground': currentColors.textInverse,
-    '--accent': currentColors.accent,
-    '--accent-foreground': currentColors.textInverse,
-    '--destructive': currentColors.error,
-    '--destructive-foreground': currentColors.textInverse,
-    '--success': currentColors.success,
-  } as React.CSSProperties;
-
-  // Docusaurus integration: Use a simple container div. 
-  // Removed outer padding, shadow, and blur to let it fit into the page flow.
   return (
-    <div className="w-full space-y-8 my-8">
+    <div
+      className="space-y-8 my-8 text-foreground"
+      style={previewStyles}
+    >
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
-        {/* LEFT COLUMN: Controls */}
-        <div className="lg:col-span-1 space-y-6">
+        <div className="space-y-6">
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between">
-              <div>
-                <CardTitle>Color Controls</CardTitle>
-                <CardDescription>Pick a preset or craft your own.</CardDescription>
-              </div>
-              {/* Moved Tabs here for better grouping of controls */}
-              <Tabs
-                options={["AA", "AAA"]}
-                selected={contrastLevel === "AA" ? 0 : 1}
-                value={(index) => setContrastLevel(index === 0 ? "AA" : "AAA")}
-              />
+            <CardHeader>
+              <CardTitle>Explore Themes</CardTitle>
+              <CardDescription>
+                Browse our curated theme collections.
+              </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <Select onValueChange={handlePresetSelect}>
-                <SelectTrigger><SelectValue placeholder="Choose a preset..." /></SelectTrigger>
-                <SelectContent>
-                  {colorCategories.map((cat) => (
-                    <div key={cat.name}>
-                      <div className="text-xs text-muted-foreground px-2 py-1">{cat.name}</div>
-                      {cat.themes.map((t) => (
-                        <SelectItem key={t.name} value={`${cat.name}:::${t.name}`}>{t.name}</SelectItem>
+            <CardContent className="space-y-4">
+              <input
+                placeholder="Search themes..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full px-3 py-2 border rounded-md bg-transparent"
+              />
+              <div className="flex gap-4" style={{ minHeight: "300px" }}>
+                <div
+                  className="w-1/2 border-r pr-4"
+                  style={{ borderColor: "var(--border)" }}
+                >
+                  <p className="text-sm font-semibold mb-3">Categories</p>
+                  <div className="flex flex-col gap-1">
+                    {filteredCategories.map((category) => (
+                      <button
+                        key={category.name}
+                        onClick={() => setSelectedCategoryName(category.name)}
+                        className={`w-full text-left p-2 rounded-md text-xs transition ${
+                          selectedCategoryName === category.name
+                            ? "bg-primary/10 text-primary font-semibold"
+                            : "hover:bg-muted/50"
+                        }`}
+                      >
+                        {category.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="w-1/2">
+                  <AutoGrid minItemWidth="100px" gap="normal">
+                    {filteredCategories
+                      .find((c) => c.name === selectedCategoryName)
+                      ?.themes.map((t) => (
+                        <div
+                          key={t.id}
+                          onClick={() => handleThemeChange(t)}
+                          className={`p-2 rounded-md border cursor-pointer transition ${
+                            theme && t.id === theme.id && t.id !== "custom"
+                              ? "ring-2 ring-primary border-transparent"
+                              : "hover:border-primary/40"
+                          }`}
+                          style={{
+                            borderColor:
+                              theme && t.id === theme.id && t.id !== "custom"
+                                ? "transparent"
+                                : "var(--border)",
+                          }}
+                        >
+                          <div className="flex mb-2 rounded overflow-hidden h-10">
+                            <div
+                              className="w-1/3"
+                              style={{ background: t.colors.primary }}
+                            />
+                            <div
+                              className="w-1/3"
+                              style={{ background: t.colors.secondary }}
+                            />
+                            <div
+                              className="w-1/3"
+                              style={{ background: t.colors.accent }}
+                            />
+                          </div>
+                          <p className="font-medium text-xs text-center">
+                            {t.name}
+                          </p>
+                        </div>
                       ))}
-                    </div>
-                  ))}
-                </SelectContent>
-              </Select>
-              
-              <ColorInput label="Primary" value={customColors.primary} onChange={(v) => setCustomColors(c => ({...c, primary: v}))} />
-              <ColorInput label="Secondary" value={customColors.secondary} onChange={(v) => setCustomColors(c => ({...c, secondary: v}))} />
-              <ColorInput label="Accent" value={customColors.accent} onChange={(v) => setCustomColors(c => ({...c, accent: v}))} />
-              
-              <Button variant="outline" className="w-full" onClick={() => setCustomColors(defaultColors)}>Reset Colors</Button>
+                  </AutoGrid>
+                </div>
+              </div>
             </CardContent>
           </Card>
 
-           <Card>
+          <Card>
             <CardHeader>
-              <CardTitle>Theme Health & Insights</CardTitle>
-              <CardDescription>Real-time accessibility data.</CardDescription>
+              <CardTitle>Customize Colors</CardTitle>
+              <CardDescription>
+                Adjust colors and test accessibility.
+              </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4 text-sm">
-                <div className="flex items-center justify-between p-3 bg-muted rounded-md">
-                    <span className="font-semibold">Validation Score</span>
-                    <span className={`font-bold ${validation.score > 80 ? 'text-green-500' : 'text-yellow-500'}`}>{validation.score} / 100</span>
-                </div>
-                {validation.errors.length > 0 && (
-                    <div className="text-red-600 dark:text-red-400 space-y-1 text-xs">
-                        <h4 className="font-semibold text-sm">Errors:</h4>
-                        <ul className="list-disc pl-5">
-                            {validation.errors.map((e, i) => <li key={i}>{e}</li>)}
-                        </ul>
-                    </div>
-                )}
-                 {validation.warnings.length > 0 && (
-                    <div className="text-yellow-600 dark:text-yellow-400 space-y-1 text-xs">
-                        <h4 className="font-semibold text-sm">Warnings:</h4>
-                        <ul className="list-disc pl-5">
-                            {validation.warnings.map((w, i) => <li key={i}>{w}</li>)}
-                        </ul>
-                    </div>
-                )}
-                {validation.isValid && <p className="text-green-600 dark:text-green-400 flex items-center gap-2"><CheckCircle size={16}/> All accessibility checks passed!</p>}
+            <CardContent className="space-y-6">
+              <ColorInput
+                label="Primary"
+                value={customColors.primary}
+                onChange={(val) => handleColorChange("primary", val)}
+              />
+              <ColorInput
+                label="Secondary"
+                value={customColors.secondary}
+                onChange={(val) => handleColorChange("secondary", val)}
+              />
+              <ColorInput
+                label="Accent"
+                value={customColors.accent}
+                onChange={(val) => handleColorChange("accent", val)}
+              />
+              <Tabs
+                options={["AA", "AAA"]}
+                selected={contrastLevel === "AA" ? 0 : 1}
+                value={(idx) => setContrastLevel(idx === 0 ? "AA" : "AAA")}
+                variant="underline"
+              />
             </CardContent>
           </Card>
         </div>
 
-        {/* RIGHT COLUMN: Previews */}
         <div className="lg:col-span-2 space-y-6">
-          <Card style={previewStyles}>
+          <Card>
             <CardHeader className="flex flex-row items-center justify-between">
               <div>
-                <CardTitle style={{ color: 'var(--foreground)' }}>Live Preview</CardTitle>
-                <CardDescription style={{ color: 'var(--muted-foreground)' }}>See your theme in action.</CardDescription>
-              </div>
-              <div className="flex items-center gap-1 rounded-lg bg-muted p-1">
-                  <button onClick={() => setPreviewMode('light')} className={`p-1.5 rounded-md ${previewMode === 'light' ? 'bg-background text-black' : ''}`}><Sun size={16}/></button>
-                  <button onClick={() => setPreviewMode('dark')} className={`p-1.5 rounded-md ${previewMode === 'dark' ? 'bg-background' : 'text-black'}`}><Moon size={16}/></button>
+                <CardTitle>Preview</CardTitle>
               </div>
             </CardHeader>
-            <CardContent className="space-y-6 p-6 bg-background rounded-b-lg">
-              <div className="p-6 rounded-xl border" style={{ borderColor: 'var(--border)', backgroundColor: 'var(--muted)' }}>
-                <h2 className="text-lg font-semibold mb-2" style={{ color: 'var(--foreground)' }}>Card Title Example</h2>
-                <p className="text-sm mb-4" style={{ color: 'var(--muted-foreground)' }}>This is a sample paragraph that uses the 'muted-foreground' color for less important text.</p>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Button style={{ backgroundColor: 'var(--primary)', color: 'var(--primary-foreground)' }}>Primary</Button>
-                  <Button style={{ backgroundColor: 'var(--secondary)', color: 'var(--secondary-foreground)' }}>Secondary</Button>
-                  <Button variant="outline" style={{ borderColor: 'var(--border)', color: 'var(--foreground)' }}>Outline</Button>
-                  <Button disabled style={{ color: 'var(--muted-foreground)' }}>Disabled</Button>
+            <CardContent className="p-0 lg:p-6 bg-muted/20 overflow-hidden">
+              <div className="w-full max-w-6xl mx-auto bg-muted/30 rounded-2xl border-8 border-muted p-1 sm:p-2 lg:p-4 shadow-lg">
+                <div className="w-full h-full rounded-lg overflow-hidden bg-background">
+                  <div className="w-full h-full bg-background text-foreground font-sans p-4 sm:p-6 lg:p-8 overflow-y-auto">
+                    <div className="text-center my-8">
+                      <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                        Ignite Your UI
+                      </h1>
+                      <p className="text-lg text-muted-foreground mt-2 max-w-md mx-auto">
+                        A beautiful showcase of what you can build with this
+                        theme.
+                      </p>
+                      <div className="mt-8 flex gap-4 justify-center">
+                        <Button size="lg">Get Started</Button>
+                        <Button size="lg" variant="secondary">
+                          Learn More
+                        </Button>
+                      </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-6 my-16">
+                      <div className="p-6 rounded-lg bg-card border border-border text-center">
+                        <div className="w-12 h-12 rounded-lg bg-accent text-accent-foreground inline-flex items-center justify-center mb-4">
+                          <Zap size={24} />
+                        </div>
+                        <h3 className="font-bold mb-2">Blazing Fast</h3>
+                        <p className="text-sm text-muted-foreground">
+                          Optimized for performance and speed.
+                        </p>
+                      </div>
+                      <div className="p-6 rounded-lg bg-card border border-border text-center">
+                        <div className="w-12 h-12 rounded-lg bg-accent text-accent-foreground inline-flex items-center justify-center mb-4">
+                          <Box size={24} />
+                        </div>
+                        <h3 className="font-bold mb-2">Fully Modular</h3>
+                        <p className="text-sm text-muted-foreground">
+                          Easily customizable and extendable.
+                        </p>
+                      </div>
+                      <div className="p-6 rounded-lg bg-card border border-border text-center">
+                        <div className="w-12 h-12 rounded-lg bg-accent text-accent-foreground inline-flex items-center justify-center mb-4">
+                          <Gift size={24} />
+                        </div>
+                        <h3 className="font-bold mb-2">Free to Use</h3>
+                        <p className="text-sm text-muted-foreground">
+                          Open source and free for everyone.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="max-w-md mx-auto my-16 p-6 bg-muted/50 rounded-lg border border-border">
+                      <h2 className="text-2xl font-bold text-center mb-6">
+                        Contact Us
+                      </h2>
+                      <div className="space-y-4">
+                        <input
+                          type="text"
+                          placeholder="Your Name"
+                          className="w-full p-3 rounded-md bg-card border-border"
+                        />
+                        <input
+                          type="email"
+                          placeholder="Your Email"
+                          className="w-full p-3 rounded-md bg-card border-border"
+                        />
+                        <Button className="w-full" size="lg">
+                          Submit
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Alert variant="success" title="Success Message">Your action was completed successfully.</Alert>
-                  <Alert variant="error" title="Error Message">There was an issue with your submission.</Alert>
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
               <div>
                 <CardTitle>Generated CSS Variables</CardTitle>
-                <CardDescription>Ready to use in your project.</CardDescription>
+                <CardDescription>
+                  Ready to use in your project.
+                </CardDescription>
               </div>
-              <Button variant="outline" size="sm" onClick={handleCopyToClipboard}>
-                <Clipboard size={14} className="mr-2"/>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleCopyToClipboard}
+              >
+                <Clipboard size={14} className="mr-2" />
                 {copyStatus}
               </Button>
             </CardHeader>
             <CardContent>
-              <pre className="bg-gray-900 text-gray-100 p-4 rounded-md overflow-x-auto text-sm">
-                <code>{ThemeEngine.toCss(theme)}</code>
+              <pre className="p-4 rounded-md overflow-x-auto text-sm bg-muted text-muted-foreground">
+                <code>{ThemeEngine.toCss(activeTheme)}</code>
               </pre>
             </CardContent>
           </Card>
@@ -316,3 +463,4 @@ export default function ThemePlayground() {
     </div>
   );
 }
+
