@@ -108,6 +108,7 @@ export default function webpackAliasPlugin() {
       await this.addColorVariablesToCss();
       await this.setupIgnixUIAlias();
       await this.setupTailwindInViteConfig();
+      await this.addTailwindImportToIndexCSS();
 
       spinner.succeed('Successfully initialized animation-ui');
       this.logger.printInitInstructions();
@@ -416,5 +417,35 @@ The Ignix UI CLI is the primary way to interact with the library.
     this.logger.error(
       '⚠️ No vite.config.js or vite.config.ts found. Please add `@tailwindcss/vite` manually.'
     );
+  }
+
+  private async addTailwindImportToIndexCSS(): Promise<void> {
+    const root = process.cwd();
+    const cssPaths = [
+      path.join(root, 'src', 'index.css'),
+      path.join(root, 'src', 'main.css'),
+      path.join(root, 'index.css'),
+    ];
+
+    for (const cssPath of cssPaths) {
+      if (await fs.pathExists(cssPath)) {
+        let content = await fs.readFile(cssPath, 'utf-8');
+
+        // Check if Tailwind import is already there
+        if (content.includes('@import "tailwindcss"')) {
+          this.logger.info('Tailwind already imported in CSS.');
+          return;
+        }
+
+        // Add import to the very top
+        content = `@import "tailwindcss";\n\n` + content;
+        await fs.writeFile(cssPath, content, 'utf-8');
+
+        this.logger.success(`✅ Added @import "tailwindcss"; to ${path.basename(cssPath)}`);
+        return;
+      }
+    }
+
+    this.logger.error('⚠️ No index.css or main.css found to add @import "tailwindcss";');
   }
 }
