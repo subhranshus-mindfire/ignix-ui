@@ -416,7 +416,7 @@ The Ignix UI CLI is the primary way to interact with the library.
 
   private async installDependencies(): Promise<void> {
     const dependencies = ['framer-motion', 'clsx', 'tailwind-merge'];
-    const devDependencies = ['tailwindcss', 'autoprefixer', 'postcss'];
+    const devDependencies = ['tailwindcss', '@tailwindcss/vite'];
 
     await this.dependencyService.installDependencies(dependencies);
     await this.dependencyService.installDependencies(devDependencies);
