@@ -313,45 +313,8 @@ export default function webpackAliasPlugin() {
   }
 
   private async createConfigFiles(): Promise<void> {
-    await this.createTailwindConfig();
     await this.createUtilsFile();
     await this.createLlmsTxtFile();
-  }
-
-  private async createTailwindConfig(): Promise<void> {
-    const configPath = path.resolve(PROJECT_PATHS.CONFIG_FILES.TAILWIND);
-    if (await fs.pathExists(configPath)) return;
-
-    const config = `module.exports = {
-  darkMode: ["class"],
-  content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-  ],
-  theme: {
-    extend: {
-      keyframes: {
-        slideUpAndFade: {
-          from: { opacity: '0', transform: 'translateY(2px)' },
-          to: { opacity: '1', transform: 'translateY(0)' },
-        },
-        slideDownAndFade: {
-          from: { opacity: '0', transform: 'translateY(-2px)' },
-          to: { opacity: '1', transform: 'translateY(0)' },
-        },
-      },
-      animation: {
-        slideUpAndFade: 'slideUpAndFade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-        slideDownAndFade: 'slideDownAndFade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-      },
-    },
-  },
-  plugins: [],
-}`;
-
-    await fs.writeFile(configPath, config);
   }
 
   private async createUtilsFile(): Promise<void> {
