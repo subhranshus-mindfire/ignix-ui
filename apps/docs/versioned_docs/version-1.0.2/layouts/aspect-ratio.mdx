@@ -8,7 +8,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { AspectRatio } from '@site/src/components/UI/aspect-ratio';
 import AspectRatioDemo from '@site/src/components/Demo/AspectRatioDemo';
-import image from "../../../static/img/demo-img.jpg"
 
 ## Overview
 
@@ -20,18 +19,18 @@ The **AspectRatio** component ensures that its children maintain a specific widt
   <TabItem value="preview" label="Preview" default>
     <div className="p-4 border rounded-lg flex justify-center">
       <AspectRatio ratio="16:9" maxWidth="400px">
-        <img loa src={image} alt="Demo Image" className="object-cover w-full h-full" />
+        <img loa src="https://thumbs.wbm.im/pw/medium/859204cf5b71808ed4c6bd19d95974c6.jpg" alt="Demo Image"/>
       </AspectRatio>
     </div>
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
-    import { AspectRatio } from './components/ui';
+    import { AspectRatio } from '@ignix-ui';
 
     function MyComponent() {
       return (
         <AspectRatio ratio="16:9" maxWidth="400px">
-          <img src={image} alt="Demo Image" className="object-cover w-full h-full" />
+          <img src="https://thumbs.wbm.im/pw/medium/859204cf5b71808ed4c6bd19d95974c6.jpg" alt="Demo Image" />
         </AspectRatio>
       );
     }
@@ -60,11 +59,16 @@ The **AspectRatio** component ensures that its children maintain a specific widt
   <TabItem value="manual" label="manual" className="max-h-[500px] overflow-y-auto">
 
     ```tsx
+import { cn } from './src/utils/cn';
 import * as React from 'react';
-import { cn } from '../../../utils/cn';
 
 export interface AspectRatioProps extends React.HTMLAttributes<HTMLDivElement> {
   ratio?: '1:1' | '4:3' | '16:9' | '21:9' | string;
+  /**
+   * The maximum width of the container.
+   * - Accepts a string (e.g., '50%', '30rem', '400px')
+   * - Or a number (auto-converted to 'px')
+   */
   maxWidth?: string | number;
   children: React.ReactNode;
 }
@@ -77,11 +81,16 @@ const parseRatio = (ratio: string) => {
 const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
   ({ ratio = '1:1', maxWidth, children, className, style, ...props }, ref) => {
     const { w, h } = parseRatio(ratio);
-    
-    const isAspectRatioSupported = typeof CSS !== 'undefined' && CSS.supports('aspect-ratio', '1/1');
+
+    const isAspectRatioSupported =
+      typeof CSS !== 'undefined' && CSS.supports('aspect-ratio', '1/1');
+
+    const computedMaxWidth =
+      typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
+
     const containerStyle: React.CSSProperties = {
       width: '100%',
-      maxWidth: maxWidth,
+      maxWidth: computedMaxWidth,
       ...style,
     };
 
@@ -102,9 +111,34 @@ const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
           height: '100%',
         };
 
+    const enhancedChildren = React.Children.map(children, (child) => {
+      if (
+        React.isValidElement(child) &&
+        typeof child.type === 'string' &&
+        child.type === 'img'
+      ) {
+        const imgElement = child as React.ReactElement<
+          React.ImgHTMLAttributes<HTMLImageElement>
+        >;
+
+        return React.cloneElement(imgElement, {
+          className: cn(
+            imgElement.props.className,
+            'object-cover w-full h-full'
+          ),
+        });
+      }
+      return child;
+    });
+
     return (
-      <div ref={ref} className={cn('aspect-ratio-container', className)} style={containerStyle} {...props}>
-        <div style={contentStyle}>{children}</div>
+      <div
+        ref={ref}
+        className={cn('aspect-ratio-container', className)}
+        style={containerStyle}
+        {...props}
+      >
+        <div style={contentStyle}>{enhancedChildren}</div>
       </div>
     );
   }
@@ -112,7 +146,8 @@ const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
 
 AspectRatio.displayName = 'AspectRatio';
 
-export { AspectRatio }; 
+export { AspectRatio };
+
     ```
   </TabItem>
 </Tabs>
@@ -122,7 +157,7 @@ export { AspectRatio };
 Import the component:
 
 ```tsx
-import { AspectRatio } from './components/ui';
+import { AspectRatio } from '@ignix-ui';
 ```
 ## Basic Usage
 
@@ -130,7 +165,7 @@ import { AspectRatio } from './components/ui';
 function BasicAspectRatio() {
   return (
     <AspectRatio ratio="4:3" maxWidth="500px">
-      <img src={image} alt="Demo Image" className="object-cover w-full h-full" />
+      <img src="https://thumbs.wbm.im/pw/medium/859204cf5b71808ed4c6bd19d95974c6.jpg" alt="Demo Image" />
     </AspectRatio>
   );
 }
