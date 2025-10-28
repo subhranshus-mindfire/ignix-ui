@@ -72,7 +72,7 @@ export default function webpackAliasPlugin() {
 
   private async printInstallInstructions(): Promise<void> {
     const dependencies = ['framer-motion', 'clsx', 'tailwind-merge'];
-    const devDependencies = ['tailwindcss', 'autoprefixer', 'postcss'];
+    const devDependencies = ['tailwindcss', '@tailwindcss/vite'];
 
     this.logger.info('');
     this.logger.info('To finish setup, please install required packages in your project:');
@@ -94,7 +94,7 @@ export default function webpackAliasPlugin() {
   private dependencyService = DependencyService.getInstance();
 
   async execute(): Promise<void> {
-    const spinner = ora('Initializing animation-ui...').start();
+    const spinner = ora('Initializing Ignix-UI...').start();
 
     try {
       // Validate environment
@@ -110,7 +110,7 @@ export default function webpackAliasPlugin() {
       await this.setupTailwindInViteConfig();
       await this.addTailwindImportToIndexCSS();
 
-      spinner.succeed('Successfully initialized animation-ui');
+      spinner.succeed('Successfully initialized Ignix-UI');
       this.logger.printInitInstructions();
     } catch (error) {
       spinner.fail();
