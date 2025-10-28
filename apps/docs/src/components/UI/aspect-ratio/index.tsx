@@ -45,18 +45,19 @@ const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
     const enhancedChildren = React.Children.map(children, (child) => {
       if (
         React.isValidElement(child) &&
-        typeof child.type === 'string' && child.type === 'img'
+        typeof child.type === 'string' &&
+        child.type === 'img'
       ) {
-        return React.cloneElement(
-          child as React.ReactElement<React.ImgHTMLAttributes<HTMLImageElement>>,
-          {
-            className: cn(child.props.className, 'object-cover w-full h-full'),
-          }
-        );
+        const imgElement = child as React.ReactElement<
+          React.ImgHTMLAttributes<HTMLImageElement>
+        >;
+
+        return React.cloneElement(imgElement, {
+          className: cn(imgElement.props.className, 'object-cover w-full h-full'),
+        });
       }
       return child;
     });
-
 
     return (
       <div
