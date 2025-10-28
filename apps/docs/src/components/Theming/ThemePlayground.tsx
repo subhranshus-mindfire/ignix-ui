@@ -14,15 +14,50 @@ import {
 } from "../UI/card";
 import { Button } from "../UI/button";
 import { Tabs } from "../UI/tab";
-import {
-  Clipboard,
-  Loader2,
-  Box,
-  Gift,
-  Zap,
-} from "lucide-react";
+import { Clipboard, Loader2, Box, Gift, Zap, X } from "lucide-react";
 import AutoGrid from "../UI/auto-grid";
 import { getTheme } from "../Homepage/hero";
+
+// Simple Dialog Component
+interface DialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  children: React.ReactNode;
+  className?: string;
+}
+
+const Dialog = ({ open, children, className = '' }: DialogProps) => {
+  if (!open) return null;
+  
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+      <div 
+        className={`bg-background rounded-lg shadow-lg ${className}`}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {children}
+      </div>
+    </div>
+  );
+};
+
+const DialogHeader = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
+  <div className={`p-4 border-b ${className}`}>
+    {children}
+  </div>
+);
+
+const DialogTitle = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
+  <h3 className={`text-lg font-semibold ${className}`}>
+    {children}
+  </h3>
+);
+
+const DialogContent = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
+  <div className={`p-4 ${className}`}>
+    {children}
+  </div>
+);
 
 const THEMES_JSON_URL =
   "https://raw.githubusercontent.com/mindfiredigital/ignix-ui/main/packages/registry/themes.json";
@@ -84,6 +119,7 @@ export default function ThemePlayground() {
   const [isLoading, setIsLoading] = useState(true);
   const [copyStatus, setCopyStatus] = useState("Copy");
   const [search, setSearch] = useState("");
+  const [showCssDialog, setShowCssDialog] = useState(false);
 
   useEffect(() => {
     // Set initial theme mode
@@ -207,6 +243,10 @@ export default function ThemePlayground() {
       setCopyStatus("Copied!");
       setTimeout(() => setCopyStatus("Copy"), 2000);
     }
+  };
+
+  const handleExportClick = () => {
+    setShowCssDialog(true);
   };
 
 
@@ -364,8 +404,15 @@ export default function ThemePlayground() {
         <div className="lg:col-span-2 space-y-6">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
-              <div>
-                <CardTitle>Preview</CardTitle>
+                <div className="flex flex-row items-center justify-between w-full">
+                  <p>Preview</p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleExportClick}
+                  >
+                  Export CSS
+                </Button>
               </div>
             </CardHeader>
             <CardContent className="p-0 lg:p-6 bg-muted/20 overflow-hidden">
@@ -443,7 +490,7 @@ export default function ThemePlayground() {
               </div>
             </CardContent>
           </Card>
-
+{/* 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
               <div>
@@ -452,23 +499,62 @@ export default function ThemePlayground() {
                   Ready to use in your project.
                 </CardDescription>
               </div>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleCopyToClipboard}
-              >
-                <Clipboard size={14} className="mr-2" />
-                {copyStatus}
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleExportClick}
+                >
+                  Export CSS
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleCopyToClipboard}
+                >
+                  <Clipboard size={14} className="mr-2" />
+                  {copyStatus}
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
               <pre className="p-4 rounded-md overflow-x-auto text-sm bg-muted text-muted-foreground">
                 {activeTheme && <code>{ThemeEngine.toCss(activeTheme)}</code>}
               </pre>
             </CardContent>
-          </Card>
+          </Card> */}
         </div>
       </div>
+
+      <Dialog open={showCssDialog} onOpenChange={setShowCssDialog}>
+        <DialogContent className="max-w-4xl max-h-[80vh] flex flex-col">
+          <DialogHeader>
+            <div className="flex justify-between items-center">
+              <DialogTitle>Generated CSS Variables</DialogTitle>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setShowCssDialog(false)}
+                className="h-8 w-8"
+              >
+                <X className="h-4 w-4" />
+                <span className="sr-only">Close</span>
+              </Button>
+            </div>
+          </DialogHeader>
+          <div className="flex-1 overflow-auto">
+            <pre className="p-4 rounded-md text-sm bg-muted text-muted-foreground">
+              <code>{activeTheme ? ThemeEngine.toCss(activeTheme) : 'No theme selected'}</code>
+            </pre>
+          </div>
+          <div className="flex justify-end pt-4 border-t">
+            <Button onClick={handleCopyToClipboard}>
+              <Clipboard size={16} className="mr-2" />
+              {copyStatus}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
