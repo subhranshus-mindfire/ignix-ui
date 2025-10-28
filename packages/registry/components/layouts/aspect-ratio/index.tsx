@@ -1,8 +1,6 @@
 import { cn } from './src/utils/cn';
 import * as React from 'react';
 
-cn
-
 export interface AspectRatioProps extends React.HTMLAttributes<HTMLDivElement> {
   ratio?: '1:1' | '4:3' | '16:9' | '21:9' | string;
   /**
