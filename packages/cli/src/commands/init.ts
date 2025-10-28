@@ -107,6 +107,7 @@ export default function webpackAliasPlugin() {
       await this.printInstallInstructions();
       await this.addColorVariablesToCss();
       await this.setupIgnixUIAlias();
+      await this.setupTailwindInViteConfig();
 
       spinner.succeed('Successfully initialized animation-ui');
       this.logger.printInitInstructions();
@@ -383,5 +384,37 @@ The Ignix UI CLI is the primary way to interact with the library.
 
     await this.dependencyService.installDependencies(dependencies);
     await this.dependencyService.installDependencies(devDependencies);
+  }
+
+  private async setupTailwindInViteConfig(): Promise<void> {
+    const root = process.cwd();
+    const viteConfigPaths = [path.join(root, 'vite.config.ts'), path.join(root, 'vite.config.js')];
+
+    for (const configPath of viteConfigPaths) {
+      if (await fs.pathExists(configPath)) {
+        let content = await fs.readFile(configPath, 'utf-8');
+
+        // Ensure import exists
+        if (!content.includes('@tailwindcss/vite')) {
+          content = `import tailwindcss from '@tailwindcss/vite';\n` + content;
+        }
+
+        // Ensure plugin is added
+        if (!content.includes('tailwindcss()')) {
+          content = content.replace(
+            /plugins\s*:\s*\[([\s\S]*?)\]/,
+            (match, inner) => `plugins: [${inner.trim()}${inner.trim() ? ', ' : ''}tailwindcss()]`
+          );
+        }
+
+        await fs.writeFile(configPath, content, 'utf-8');
+        this.logger.success('✅ TailwindCSS Vite plugin added to vite.config');
+        return;
+      }
+    }
+
+    this.logger.error(
+      '⚠️ No vite.config.js or vite.config.ts found. Please add `@tailwindcss/vite` manually.'
+    );
   }
 }
