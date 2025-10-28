@@ -86,6 +86,9 @@ export default function ThemePlayground() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
+    // Set initial theme mode
+    setPreviewMode(getTheme() as "light" | "dark");
+    
     const fetchThemes = async () => {
       try {
         const resp = await fetch(THEMES_JSON_URL);
@@ -98,7 +101,6 @@ export default function ThemePlayground() {
           setSelectedCategoryName(firstCategory.name);
           if (firstCategory.themes?.length) {
             const firstTheme = firstCategory.themes[0];
-            setTheme(firstTheme);
             setCustomColors({
               primary: firstTheme.colors.primary,
               secondary: firstTheme.colors.secondary,
@@ -112,14 +114,19 @@ export default function ThemePlayground() {
         setIsLoading(false);
       }
     };
+    
     fetchThemes();
-    const observer = new MutationObserver(() =>
-      setPreviewMode(getTheme() as "light" | "dark")
-    );
+    
+    // Set up theme observer for changes after initial load
+    const observer = new MutationObserver(() => {
+      setPreviewMode(getTheme() as "light" | "dark");
+    });
+    
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["data-theme"],
     });
+    
     return () => observer.disconnect();
   }, []);
 
@@ -155,6 +162,8 @@ export default function ThemePlayground() {
 
   const previewStyles = useMemo(() => {
     if (!currentColors) return {};
+    console.log(currentColors);
+    console.log(previewMode);
     return {
       "--background": currentColors.background,
       "--foreground": currentColors.text,
@@ -223,7 +232,7 @@ export default function ThemePlayground() {
   });
   };
 
-  if (isLoading || !activeTheme)
+  if (isLoading)
     return (
       <div className="flex h-64 items-center justify-center gap-2">
         <Loader2 className="animate-spin h-6 w-6" />
@@ -454,7 +463,7 @@ export default function ThemePlayground() {
             </CardHeader>
             <CardContent>
               <pre className="p-4 rounded-md overflow-x-auto text-sm bg-muted text-muted-foreground">
-                <code>{ThemeEngine.toCss(activeTheme)}</code>
+                {activeTheme && <code>{ThemeEngine.toCss(activeTheme)}</code>}
               </pre>
             </CardContent>
           </Card>

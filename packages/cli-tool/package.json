@@ -7,8 +7,7 @@
     "ignix": "./dist/index.js"
   },
   "files": [
-    "dist",
-    "templates"
+    "dist"
   ],
   "scripts": {
     "build": "tsup",
