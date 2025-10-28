@@ -35,21 +35,28 @@ const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
     const contentStyle: React.CSSProperties = isAspectRatioSupported
       ? { width: '100%', height: '100%' }
       : {
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-        };
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+      };
 
     const enhancedChildren = React.Children.map(children, (child) => {
-      if (React.isValidElement(child) && child.type === 'img') {
-        return React.cloneElement(child, {
-          className: cn(child.props.className, 'object-cover w-full h-full'),
-        });
+      if (
+        React.isValidElement(child) &&
+        typeof child.type === 'string' && child.type === 'img'
+      ) {
+        return React.cloneElement(
+          child as React.ReactElement<React.ImgHTMLAttributes<HTMLImageElement>>,
+          {
+            className: cn(child.props.className, 'object-cover w-full h-full'),
+          }
+        );
       }
       return child;
     });
+
 
     return (
       <div
