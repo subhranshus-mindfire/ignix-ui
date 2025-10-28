@@ -15,11 +15,13 @@ const parseRatio = (ratio: string) => {
 const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
   ({ ratio = '1:1', maxWidth, children, className, style, ...props }, ref) => {
     const { w, h } = parseRatio(ratio);
-    
-    const isAspectRatioSupported = typeof CSS !== 'undefined' && CSS.supports('aspect-ratio', '1/1');
+
+    const isAspectRatioSupported =
+      typeof CSS !== 'undefined' && CSS.supports('aspect-ratio', '1/1');
+
     const containerStyle: React.CSSProperties = {
       width: '100%',
-      maxWidth: maxWidth,
+      maxWidth,
       ...style,
     };
 
@@ -40,9 +42,23 @@ const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
           height: '100%',
         };
 
+    const enhancedChildren = React.Children.map(children, (child) => {
+      if (React.isValidElement(child) && child.type === 'img') {
+        return React.cloneElement(child, {
+          className: cn(child.props.className, 'object-cover w-full h-full'),
+        });
+      }
+      return child;
+    });
+
     return (
-      <div ref={ref} className={cn('aspect-ratio-container', className)} style={containerStyle} {...props}>
-        <div style={contentStyle}>{children}</div>
+      <div
+        ref={ref}
+        className={cn('aspect-ratio-container', className)}
+        style={containerStyle}
+        {...props}
+      >
+        <div style={contentStyle}>{enhancedChildren}</div>
       </div>
     );
   }
@@ -50,4 +66,4 @@ const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
 
 AspectRatio.displayName = 'AspectRatio';
 
-export { AspectRatio }; 
+export { AspectRatio };
