@@ -1,10 +1,8 @@
----
-title: CLI
-description: Comprehensive guide to using the Ignix Command Line Interface
-sidebar_position: 3
----
-
 # Ignix CLI
+
+[![NPM Version](https://img.shields.io/npm/v/ignix-cli.svg)](https://www.npmjs.com/package/@mindfiredigital/ignix-cli)
+[![License](https://img.shields.io/npm/l/ignix-cli.svg)](https://github.com/mindfiredigital/ignix-ui/blob/main/LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](../../CONTRIBUTING.md)
 
 The Ignix CLI is a powerful command-line tool that helps you quickly scaffold, manage, and interact with Ignix components and themes in your projects. It provides both interactive and command-based interfaces for seamless development.
 
@@ -13,13 +11,13 @@ The Ignix CLI is a powerful command-line tool that helps you quickly scaffold, m
 Install the CLI globally using npm or yarn:
 
 ```bash
-npm install -g @mindfiredigital/ignix-cli
+npm install -g ignix-cli
 ```
 
 Or use it directly with npx:
 
 ```bash
-npx @mindfiredigital/ignix-cli
+npx ignix-cli
 ```
 
 ## Usage Modes
@@ -33,6 +31,7 @@ ignix
 ```
 
 The interactive mode provides a beautiful, guided interface with the following options:
+
 - 🚀 **Initialize Ignix UI** - Set up your project
 - ➕ **Add components** - Add components to your project
 - 📋 **List components** - View available components
@@ -47,8 +46,6 @@ Run specific commands directly:
 ignix <command> [options]
 ```
 
----
-
 ## Commands
 
 ### `ignix init`
@@ -60,18 +57,18 @@ ignix init
 ```
 
 **What it does:**
+
 - Creates an `ignix.config.js` configuration file
 - Sets up the components directory structure
 - Creates utility files (e.g., `utils/cn.ts` for className utilities)
 - Installs required dependencies
 
 **Interactive prompts:**
+
 - Project framework selection
 - Components directory path
 - Styling preferences
 - Additional configuration options
-
----
 
 ### `ignix add`
 
@@ -97,6 +94,7 @@ ignix add component
 ```
 
 **What it does:**
+
 - Fetches component files from the registry
 - Creates a dedicated folder for each component
 - Writes component files to your components directory
@@ -114,8 +112,6 @@ ignix add theme <theme-name>
 ignix add theme dark
 ```
 
----
-
 ### `ignix list`
 
 List all available components or themes from the Ignix UI registry.
@@ -127,6 +123,7 @@ ignix list component
 ```
 
 **Output:**
+
 - Component name
 - Description
 - Available variants
@@ -138,11 +135,10 @@ ignix list theme
 ```
 
 **Output:**
+
 - Theme name
 - Description
 - Color palette information
-
----
 
 ### `ignix themes`
 
@@ -153,29 +149,11 @@ ignix themes
 ```
 
 **Features:**
+
 - View installed themes
 - Switch between themes
 - Customize theme variables
 - Export theme configurations
-
----
-
-### `ignix wizard`
-
-Launch the interactive setup wizard for a complete guided experience.
-
-```bash
-ignix wizard
-```
-
-The wizard walks you through:
-1. Project initialization
-2. Framework selection
-3. Component installation
-4. Theme configuration
-5. Final setup verification
-
----
 
 ## Configuration
 
@@ -185,7 +163,7 @@ The CLI uses an `ignix.config.js` file in your project root for configuration.
 
 ```javascript
 /* eslint-env node */
-/** @type {import('@mindfiredigital/ignix-cli').IgnixConfig} */
+/** @type {import('ignix-cli').IgnixConfig} */
 module.exports = {
   // URL to the raw registry.json file on GitHub
   registryUrl:
@@ -198,127 +176,14 @@ module.exports = {
   // Default directory for UI components
   componentsDir: 'src/components/ui',
 
-  // Default directory for themes
-  themesDir: 'src/themes',
+  // Your other configuration options...
 };
 ```
----
 
-## Common Workflows
+## Contributing
 
-### Starting a New Project
+We welcome contributions! Please see our [contributing guidelines](https://mindfiredigital.github.io/ignix-ui/docs/contribution-guide/how-to-contribute) for more information.
 
-```bash
-# 1. Create your project
-npx create-react-app my-app
-cd my-app
+## License
 
-# 2. Initialize Ignix UI
-ignix init
-
-# 3. Add components
-ignix add component button card input
-
-# 4. Start using components in your app
-```
-
-### Adding Components to Existing Project
-
-```bash
-# Navigate to your project
-cd my-existing-project
-
-# Initialize if not already done
-ignix init
-
-# Add specific components
-ignix add component modal dialog tooltip
-```
-
-### Managing Themes
-
-```bash
-# List available themes
-ignix list theme
-
-# Add a theme
-ignix add theme japanese-washi
-
-# Manage themes interactively
-ignix themes
-```
-
----
-
-## CLI Options
-
-### Global Options
-
-- `--help, -h` - Display help information
-- `--version, -v` - Show CLI version
-
-### Command-Specific Options
-
-```bash
-# Show help for a specific command
-ignix add --help
-ignix init --help
-```
-
----
-
-## Troubleshooting
-
-### Common Issues
-
-#### 1. Command Not Found
-
-**Problem:** `ignix: command not found`
-
-**Solution:**
-```bash
-# Reinstall globally
-npm install -g @mindfiredigital/ignix-ui-cli
-
-# Or use npx
-npx @mindfiredigital/ignix-ui-cli
-```
-
-#### 2. Permission Errors
-
-**Problem:** `EACCES: permission denied`
-
-**Solution:**
-```bash
-# Use npx (recommended)
-npx @mindfiredigital/ignix-cli
-
-# Or fix npm permissions
-npm config set prefix ~/.npm-global
-export PATH=~/.npm-global/bin:$PATH
-```
-
-#### 3. Component Not Found
-
-**Problem:** Component doesn't exist in registry
-
-**Solution:**
-```bash
-# List available components first
-ignix list component
-
-# Verify component name spelling
-```
-
-#### 4. Configuration File Issues
-
-**Problem:** `ignix.config.js` not found
-
-**Solution:**
-```bash
-# Run init to create configuration
-ignix init
-
-# Or create manually
-touch ignix.config.js
-```
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/mindfiredigital/ignix-ui/blob/main/LICENSE) file for details.
