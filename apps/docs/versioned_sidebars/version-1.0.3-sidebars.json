@@ -11,33 +11,6 @@
     },
     {
       "type": "category",
-      "label": "Layouts",
-      "items": [
-        "layouts/app-shell",
-        "layouts/aspect-ratio",
-        "layouts/auto-grid",
-        "layouts/box",
-        "layouts/breakpoint",
-        "layouts/center",
-        "layouts/cluster",
-        "layouts/container",
-        "layouts/DebugBox",
-        "layouts/field-group",
-        "layouts/form",
-        "layouts/header-layout",
-        "layouts/lazyload",
-        "layouts/masonry",
-        "layouts/pin",
-        "layouts/responsive",
-        "layouts/responsive-grid",
-        "layouts/section",
-        "layouts/split",
-        "layouts/spacer",
-        "layouts/stack"
-      ]
-    },
-    {
-      "type": "category",
       "label": "Theming",
       "link": {
         "type": "doc",
@@ -67,6 +40,33 @@
           "id": "theming/theme-wizard",
           "label": "Theme Wizard"
         }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Layouts",
+      "items": [
+        "layouts/app-shell",
+        "layouts/aspect-ratio",
+        "layouts/auto-grid",
+        "layouts/box",
+        "layouts/breakpoint",
+        "layouts/center",
+        "layouts/cluster",
+        "layouts/container",
+        "layouts/DebugBox",
+        "layouts/field-group",
+        "layouts/form",
+        "layouts/header-layout",
+        "layouts/lazyload",
+        "layouts/masonry",
+        "layouts/pin",
+        "layouts/responsive",
+        "layouts/responsive-grid",
+        "layouts/section",
+        "layouts/split",
+        "layouts/spacer",
+        "layouts/stack"
       ]
     },
     {
