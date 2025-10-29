@@ -30,10 +30,9 @@ export class InitCommand {
     // Ensure paths exists
     rootTsconfig.compilerOptions = {
       ...(rootTsconfig.compilerOptions || {}),
-      baseUrl: rootTsconfig.compilerOptions?.baseUrl || '.', // agar nahi hai to set karo
       paths: {
         ...(rootTsconfig.compilerOptions?.paths || {}),
-        '@ignix-ui/components/*': ['node_modules/@mindfiredigital/ignix-ui/components/*'],
+        '@ignix-ui/*': ['./src/components/ui/*'],
       },
     };
 
