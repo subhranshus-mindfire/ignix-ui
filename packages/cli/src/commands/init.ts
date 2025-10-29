@@ -72,7 +72,7 @@ export default function webpackAliasPlugin() {
 
   private async printInstallInstructions(): Promise<void> {
     const dependencies = ['framer-motion', 'clsx', 'tailwind-merge'];
-    const devDependencies = ['tailwindcss', 'autoprefixer', 'postcss'];
+    const devDependencies = ['tailwindcss', '@tailwindcss/vite'];
 
     this.logger.info('');
     this.logger.info('To finish setup, please install required packages in your project:');
@@ -94,7 +94,7 @@ export default function webpackAliasPlugin() {
   private dependencyService = DependencyService.getInstance();
 
   async execute(): Promise<void> {
-    const spinner = ora('Initializing animation-ui...').start();
+    const spinner = ora('Initializing Ignix-UI...').start();
 
     try {
       // Validate environment
@@ -107,8 +107,10 @@ export default function webpackAliasPlugin() {
       await this.printInstallInstructions();
       await this.addColorVariablesToCss();
       await this.setupIgnixUIAlias();
+      await this.setupTailwindInViteConfig();
+      await this.addTailwindImportToIndexCSS();
 
-      spinner.succeed('Successfully initialized animation-ui');
+      spinner.succeed('Successfully initialized Ignix-UI');
       this.logger.printInitInstructions();
     } catch (error) {
       spinner.fail();
@@ -313,45 +315,8 @@ export default function webpackAliasPlugin() {
   }
 
   private async createConfigFiles(): Promise<void> {
-    await this.createTailwindConfig();
     await this.createUtilsFile();
     await this.createLlmsTxtFile();
-  }
-
-  private async createTailwindConfig(): Promise<void> {
-    const configPath = path.resolve(PROJECT_PATHS.CONFIG_FILES.TAILWIND);
-    if (await fs.pathExists(configPath)) return;
-
-    const config = `module.exports = {
-  darkMode: ["class"],
-  content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-  ],
-  theme: {
-    extend: {
-      keyframes: {
-        slideUpAndFade: {
-          from: { opacity: '0', transform: 'translateY(2px)' },
-          to: { opacity: '1', transform: 'translateY(0)' },
-        },
-        slideDownAndFade: {
-          from: { opacity: '0', transform: 'translateY(-2px)' },
-          to: { opacity: '1', transform: 'translateY(0)' },
-        },
-      },
-      animation: {
-        slideUpAndFade: 'slideUpAndFade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-        slideDownAndFade: 'slideDownAndFade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-      },
-    },
-  },
-  plugins: [],
-}`;
-
-    await fs.writeFile(configPath, config);
   }
 
   private async createUtilsFile(): Promise<void> {
@@ -416,9 +381,71 @@ The Ignix UI CLI is the primary way to interact with the library.
 
   private async installDependencies(): Promise<void> {
     const dependencies = ['framer-motion', 'clsx', 'tailwind-merge'];
-    const devDependencies = ['tailwindcss', 'autoprefixer', 'postcss'];
+    const devDependencies = ['tailwindcss', '@tailwindcss/vite'];
 
     await this.dependencyService.installDependencies(dependencies);
     await this.dependencyService.installDependencies(devDependencies);
+  }
+
+  private async setupTailwindInViteConfig(): Promise<void> {
+    const root = process.cwd();
+    const viteConfigPaths = [path.join(root, 'vite.config.ts'), path.join(root, 'vite.config.js')];
+
+    for (const configPath of viteConfigPaths) {
+      if (await fs.pathExists(configPath)) {
+        let content = await fs.readFile(configPath, 'utf-8');
+
+        // Ensure import exists
+        if (!content.includes('@tailwindcss/vite')) {
+          content = `import tailwindcss from '@tailwindcss/vite';\n` + content;
+        }
+
+        // Ensure plugin is added
+        if (!content.includes('tailwindcss()')) {
+          content = content.replace(
+            /plugins\s*:\s*\[([\s\S]*?)\]/,
+            (match, inner) => `plugins: [${inner.trim()}${inner.trim() ? ', ' : ''}tailwindcss()]`
+          );
+        }
+
+        await fs.writeFile(configPath, content, 'utf-8');
+        this.logger.success('✅ TailwindCSS Vite plugin added to vite.config');
+        return;
+      }
+    }
+
+    this.logger.error(
+      '⚠️ No vite.config.js or vite.config.ts found. Please add `@tailwindcss/vite` manually.'
+    );
+  }
+
+  private async addTailwindImportToIndexCSS(): Promise<void> {
+    const root = process.cwd();
+    const cssPaths = [
+      path.join(root, 'src', 'index.css'),
+      path.join(root, 'src', 'main.css'),
+      path.join(root, 'index.css'),
+    ];
+
+    for (const cssPath of cssPaths) {
+      if (await fs.pathExists(cssPath)) {
+        let content = await fs.readFile(cssPath, 'utf-8');
+
+        // Check if Tailwind import is already there
+        if (content.includes('@import "tailwindcss"')) {
+          this.logger.info('Tailwind already imported in CSS.');
+          return;
+        }
+
+        // Add import to the very top
+        content = `@import "tailwindcss";\n\n` + content;
+        await fs.writeFile(cssPath, content, 'utf-8');
+
+        this.logger.success(`✅ Added @import "tailwindcss"; to ${path.basename(cssPath)}`);
+        return;
+      }
+    }
+
+    this.logger.error('⚠️ No index.css or main.css found to add @import "tailwindcss";');
   }
 }
