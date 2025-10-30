@@ -162,7 +162,7 @@ export class ComponentService {
     try {
       if (!(await fs.pathExists(configPath))) {
         throw new CLIError('Tailwind config file not found', 'CONFIG_NOT_FOUND', [
-          'Run `animation-ui init` first to create the config file',
+          'Run `npx @mindfiredigital/ignix-ui init` first to create the config file',
         ]);
       }
 
