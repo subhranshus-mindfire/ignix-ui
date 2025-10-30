@@ -149,8 +149,8 @@ async function validateEnvironment() {
 }
 
 async function createProjectStructure() {
-  await fs.ensureDir(path.resolve('components/ui'));
-  await fs.ensureDir(path.resolve('lib/utils'));
+  await fs.ensureDir(path.resolve('src/components/ui'));
+  await fs.ensureDir(path.resolve('src/utils'));
 }
 
 async function createConfigFiles() {
@@ -178,7 +178,7 @@ async function setupIgnixUIAlias() {
     baseUrl: rootTsconfig.compilerOptions?.baseUrl || '.',
     paths: {
       ...(rootTsconfig.compilerOptions?.paths || {}),
-      '@ignix-ui/components/*': ['node_modules/@mindfiredigital/ignix-ui/components/*'],
+      '@ignix-ui/*': ['./src/components/ui/*'],
     },
   };
 
@@ -200,7 +200,7 @@ async function setupIgnixUIAlias() {
         return {
           resolve: {
             alias: {
-              '@ignix-ui': path.resolve(process.cwd(), 'node_modules/@mindfiredigital/ignix-ui/components'),
+              '@ignix-ui': path.resolve(process.cwd(), 'src/components/ui'),
             },
           },
         };
@@ -213,7 +213,7 @@ async function setupIgnixUIAlias() {
 }
 
 async function createUtilsFile() {
-  const utilsPath = path.resolve('utils/cn.ts');
+  const utilsPath = path.resolve('src/utils/cn.ts');
   if (await fs.pathExists(utilsPath)) return;
 
   const content = `import { clsx, type ClassValue } from 'clsx'
