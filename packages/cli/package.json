@@ -60,6 +60,11 @@
     "node": ">=14.0.0"
   },
   "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.js"
+    },
     "./tailwind": "./dist/tailwind.js"
   }
 }
