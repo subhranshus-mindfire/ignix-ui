@@ -22,11 +22,7 @@ export class Logger {
 
   printUsageInstructions(component: ComponentConfig): void {
     console.log('\nYou can now import the component from:');
-    console.log(
-      chalk.cyan(
-        `import { ${component.name} } from "@/components/ui/${component.name.toLowerCase()}"`
-      )
-    );
+    console.log(chalk.cyan(`import { ${component.name} } from "@ignix-ui"`));
 
     if (Object.keys(component.files).length > 1) {
       console.log('\nThis component includes:');
@@ -38,7 +34,10 @@ export class Logger {
 
   printInitInstructions(): void {
     console.log('\nNext steps:');
-    console.log('1. Add components using:', chalk.cyan('npx animation-ui add <component>'));
-    console.log('2. Start using animations in your project!\n');
+    console.log(
+      '1. Add components using:',
+      chalk.cyan('npx @mindfiredigital/ignix-ui add <component>')
+    );
+    console.log('2. Start using Ignix UI in your project!\n');
   }
 }
