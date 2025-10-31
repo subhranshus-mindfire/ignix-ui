@@ -10,35 +10,69 @@ export class InitCommand {
   private async setupIgnixUIAlias(): Promise<void> {
     const root = process.cwd();
 
-    // 1) Update root tsconfig.json (merge safely)
-    const rootTsconfigPath = path.resolve(root, 'tsconfig.json');
-    let rootTsconfig: any = {};
+    // 1️⃣ Update tsconfig.app.json (merge safely)
+    const tsconfigPath = path.resolve(root, 'tsconfig.app.json');
+    let tsconfig: any = {};
 
-    if (await fs.pathExists(rootTsconfigPath)) {
+    if (await fs.pathExists(tsconfigPath)) {
       try {
-        rootTsconfig = await fs.readJSON(rootTsconfigPath);
+        tsconfig = await fs.readJSON(tsconfigPath);
       } catch {
-        rootTsconfig = {};
+        tsconfig = {};
       }
     }
 
     // Ensure compilerOptions + paths
-    rootTsconfig.compilerOptions = {
-      ...(rootTsconfig.compilerOptions || {}), // keep old options (jsx, strict, etc.)
-    };
-
-    // Ensure paths exists
-    rootTsconfig.compilerOptions = {
-      ...(rootTsconfig.compilerOptions || {}),
+    tsconfig.compilerOptions = {
+      ...(tsconfig.compilerOptions || {}),
+      baseUrl: tsconfig.compilerOptions?.baseUrl || '.',
       paths: {
-        ...(rootTsconfig.compilerOptions?.paths || {}),
+        ...(tsconfig.compilerOptions?.paths || {}),
+        '@ignix-ui': ['./src/components/ui/index.ts'],
         '@ignix-ui/*': ['./src/components/ui/*'],
       },
     };
 
     // Write merged config back
-    await fs.writeJSON(rootTsconfigPath, rootTsconfig, { spaces: 2 });
-    this.logger.success('✔ Root tsconfig.json updated with @ignix-ui alias');
+    await fs.writeJSON(tsconfigPath, tsconfig, { spaces: 2 });
+    this.logger.success('✔ Updated tsconfig.app.json with @ignix-ui alias');
+
+    // 2️⃣ Update vite.config.ts alias
+    const viteConfigPath = path.resolve(root, 'vite.config.ts');
+    if (await fs.pathExists(viteConfigPath)) {
+      let viteConfig = await fs.readFile(viteConfigPath, 'utf8');
+      const aliasLine = `@ignix-ui: path.resolve(__dirname, "src/components/ui")`;
+
+      if (!viteConfig.includes('@ignix-ui')) {
+        const aliasRegex = /alias\s*:\s*\{([\s\S]*?)\}/m;
+        if (aliasRegex.test(viteConfig)) {
+          viteConfig = viteConfig.replace(aliasRegex, (match, inner) => {
+            return `alias: {${inner.trimEnd()},\n      ${aliasLine}}`;
+          });
+        } else {
+          const resolveRegex = /resolve\s*:\s*\{([\s\S]*?)\}/m;
+          if (resolveRegex.test(viteConfig)) {
+            viteConfig = viteConfig.replace(resolveRegex, (match, inner) => {
+              return `resolve: {${inner.trimEnd()},\n    alias: { ${aliasLine} }}`;
+            });
+          } else {
+            viteConfig += `
+            resolve: {
+              alias: {
+                ${aliasLine}
+              }
+            },`;
+          }
+        }
+
+        await fs.writeFile(viteConfigPath, viteConfig, 'utf8');
+        this.logger.success('✔ Added @ignix-ui alias to vite.config.ts');
+      } else {
+        this.logger.info('ℹ @ignix-ui alias already exists in vite.config.ts — skipping');
+      }
+    } else {
+      this.logger.error('⚠ vite.config.ts not found — skipping alias update');
+    }
 
     // 2) Create plugins/webpack-alias.ts
     const pluginsDir = path.resolve(root, 'plugins');
@@ -48,21 +82,21 @@ export class InitCommand {
     if (!(await fs.pathExists(webpackAliasFile))) {
       const pluginCode = `import path from 'path';
 
-export default function webpackAliasPlugin() {
-  return {
-    name: 'webpack-alias-plugin',
-    configureWebpack() {
-      return {
-        resolve: {
-          alias: {
-            '@ignix-ui': path.resolve(process.cwd(), 'node_modules/@mindfiredigital/ignix-ui/components'),
+      export default function webpackAliasPlugin() {
+        return {
+          name: 'webpack-alias-plugin',
+          configureWebpack() {
+            return {
+              resolve: {
+                alias: {
+                  '@ignix-ui': path.resolve(process.cwd(), 'node_modules/@mindfiredigital/ignix-ui/components'),
+                },
+              },
+            };
           },
-        },
-      };
-    },
-  };
-}
-`;
+        };
+      }
+      `;
       await fs.writeFile(webpackAliasFile, pluginCode, 'utf8');
       this.logger.success('✔ Created plugins/webpack-alias.ts');
     } else {
